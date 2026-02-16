@@ -13,21 +13,20 @@ n_jobs = sys.argv[1]
 msol_to_erg = 1.787624e54
 
 # load EOS
-m_val, r_val, l_val = np.loadtxt("../eos/RMF3_MRL.dat", unpack=True)
+m_val, r_val, l_val, mb_val = np.loadtxt("../eos/RMF3_MRLMb.dat", unpack=True)
 mtov = m_val.max()
 r16 = np.interp(1.6, m_val, r_val)
 
 
 def eta(chi_BH):
     OmegaH = chi_BH / (2*(1+np.sqrt(1-chi_BH**2)))
-    return 0.011 * OmegaH**2 * (1+1.38*OmegaH**2-9.2*OmegaH**4)
+    return 0.011 * OmegaH**2 * (1+1.38*OmegaH**2-9.2*OmegaH**4) # 0.02 if the prompt collapse threshold is 3.0 msun
 
 def draw_thetaCore(n):
     theta_c = np.zeros(n)
-    mask = np.random.choice([True, False], replace=True, size=n)
-    theta_c[mask] = stats.truncnorm(loc=6.1, scale=3.2, a=-6.09/3.2, b=0).rvs(np.sum(mask))
-    theta_c[~mask] = stats.truncnorm(loc=6.1, scale=9.3, a=0, b=(90-6.1)/9.3).rvs(np.sum(~mask))
-    
+    mask = np.random.choice([True, False], replace=True, size=n, p=[0.65, 0.35])
+    theta_c[mask] = stats.truncnorm(loc=5, scale=2, a=(0.5-5)/2, b=(35-5)/2).rvs(np.sum(mask))
+    theta_c[~mask] = stats.truncnorm(loc=16, scale=4, a=(0.5-16)/4, b=(35-16)/4).rvs(np.sum(~mask))
     return np.deg2rad(theta_c)
 
 
@@ -95,15 +94,20 @@ def _worker(j, gamma_energy, df):
     return 0.0, 0.0, 0.0
 
 
-def add_grb_parameters(df):
+def add_grb_parameters(df, df_gw):
 
-    has_BH = df["prompt_collapse"] < 4
+    mass1_b = np.interp(df_gw['mass_1_source'], m_val, mb_val)
+    mass2_b = np.interp(df_gw["mass_2_source"], m_val, mb_val)
+    has_BH = ((mass1_b + mass2_b - 10**df["log10_mej_dyn"] - 10**df["log10_mej_wind"]) > 2.918) | (df["prompt_collapse"] <=1)
+
+    print("Number of BNSs with BH remnant: ", np.sum(has_BH))
 
     jet_energy = eta(df["chi_BH"])*(10**df["log10_mdisk"] - 10**df["log10_mej_wind"])* msol_to_erg / 2 # divide by 2 for counter jet
     breakout_energy = 0.05 * 0.78**2 *(10**df["log10_mej_dyn"]/2 *df["v_ej_dyn"]**2 + 10**df["log10_mej_wind"]/2 * df["v_ej_wind"]**2) * msol_to_erg / 2
     jet_energy -= breakout_energy
-
-    df["has_grb"] = has_BH & (jet_energy > 0) # jet_energy > breakout_energy is always fulfilled in our sample
+    
+    print("Number of BNSs with BHs and sufficient jet energy:", np.sum(has_BH & (jet_energy > 0)))
+    df["has_grb"] = has_BH & (jet_energy > 0)
     df["thetaCore"] = draw_thetaCore(df.shape[0])
     df["eta_gamma"] = np.random.uniform(low=0.01, high=0.15, size=df.shape[0])
 
@@ -115,22 +119,25 @@ def add_grb_parameters(df):
 
 
     kinetic_energy = jet_energy - gamma_energy
-    df["log10_Ekin_iso"] = np.log10(np.vectorize(energy_gaussian)(0, df["thetaCore"], kinetic_energy))
+    df["log10_Ekin_iso"] = np.log10(4*np.pi*np.vectorize(energy_gaussian)(0, df["thetaCore"], kinetic_energy))
     df["log10_n0"] = np.random.uniform(low=-5, high=0, size=df.shape[0])
 
     return df
 
 def main():
+
+    df_narrow_gw = pd.read_csv("../catalogs/full_narrow.dat", sep=" ")
+    df_wide_gw = pd.read_csv("../catalogs/full_wide.dat", sep=" ")
+
     df_narrow_kn_parameters = pd.read_csv("../kilonova/full_narrow_kn_parameters.dat", sep=" ")
     df_wide_kn_parameters = pd.read_csv("../kilonova/full_wide_kn_parameters.dat", sep=" ")
 
-    df_narrow_kn_parameters = add_grb_parameters(df_narrow_kn_parameters)
-    df_wide_kn_parameters = add_grb_parameters(df_wide_kn_parameters)
+    df_narrow_kn_parameters = add_grb_parameters(df_narrow_kn_parameters, df_narrow_gw)
+    df_wide_kn_parameters = add_grb_parameters(df_wide_kn_parameters, df_wide_gw)
 
     df_narrow_kn_parameters[["inclination_EM", "has_grb", "thetaCore", "eta_gamma", "log10_Egamma_fermi_gbm", "log10_Egamma_swift_bat", "log10_Egamma_gecam", "log10_Ekin_iso", "log10_n0", "redshift", "luminosity_distance", "prompt_collapse"]].to_csv("full_narrow_grb_parameters.dat", sep=" ", index=False)
     df_wide_kn_parameters[["inclination_EM", "has_grb", "thetaCore", "eta_gamma", "log10_Egamma_fermi_gbm", "log10_Egamma_swift_bat", "log10_Egamma_gecam", "log10_Ekin_iso", "log10_n0", "redshift", "luminosity_distance", "prompt_collapse"]].to_csv("full_wide_grb_parameters.dat", sep=" ", index=False)
     
-
 
 if __name__=="__main__":
     main()

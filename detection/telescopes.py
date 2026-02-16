@@ -1,10 +1,14 @@
-from equinox import is_inexact_array
 import numpy as np
 import pandas as pd
+from scipy import integrate, interpolate
 
 import astropy.units as u
 from astropy.time import Time
 from astropy.coordinates import SkyCoord, EarthLocation, AltAz, get_sun
+import warnings
+from astropy.utils.exceptions import ErfaWarning
+warnings.simplefilter("ignore", ErfaWarning)
+
 
 from fiesta.inference.lightcurve_model import FluxModel
 from fiesta.filters import Filter
@@ -30,13 +34,17 @@ class GroundTelescope:
         self.exposure_time = exposure_time / (24*3600)
         self.dead_time = dead_time / (24*3600)
     
-    def follow_up_campaign(self,
-                           trigger_time, 
-                           dec, 
-                           ra, 
-                           DeltaOmega, 
-                           times_transient, 
-                           mags_transient):
+    def kilonova_campaign(self,
+                    start: bool,
+                    trigger_time, 
+                    dec, 
+                    ra, 
+                    DeltaOmega, 
+                    times_transient, 
+                    mags_transient):
+        
+        if not start:
+            return 0, {filt: 0 for filt in self.filters}
         
         time = trigger_time + 0.2
         ntiles = int(np.ceil(DeltaOmega/self.fov)) + 1
@@ -61,15 +69,96 @@ class GroundTelescope:
                 break
             
             # third epoch only if certain criteria are met
-            ambigous_detection = sum(total_detections.values()) > 0 and sum(total_detections.values()) <= len(self.filters)/2
             if epoch==0:
                 continue
-            elif epoch==1 and total_telescope_time<=0.25 and ambigous_detection:
-                continue
-            else: 
-                break
+            elif epoch==1:
+                ambigous_detection = 0 < sum(total_detections.values()) <= len(self.filters)/2
+                if total_telescope_time<=0.25 and ambigous_detection:
+                    continue
+                else: 
+                    break
         
         return total_telescope_time, total_detections
+
+    def afterglow_campaign(self,               
+                           start: bool,
+                           trigger_time, 
+                           dec, 
+                           ra, 
+                           DeltaOmega, 
+                           times_transient, 
+                           mags_transient):
+        
+        if not start:
+            return 0, {filt: 0 for filt in self.filters}
+        
+        t_epochs = np.geomspace(10, 10*365, 5) + trigger_time
+        ntiles = int(np.ceil(DeltaOmega/self.fov)) + 1
+        true_tile = np.random.choice(ntiles)
+
+        total_telescope_time = 0
+        total_detections = {filt: 0 for filt in self.filters}
+        
+        for t_epoch in t_epochs:
+
+            if t_epoch - trigger_time < 30:
+                _, telescope_time, detections = self.target_epoch(t_epoch, 
+                                                                  ntiles, 
+                                                                  true_tile, 
+                                                                  dec, 
+                                                                  ra, 
+                                                                  times_transient,
+                                                                  mags_transient)
+            else:
+                epoch_tolerance = (t_epoch - trigger_time)/2 >  182
+                _, telescope_time, detections = self.late_epoch(t_epoch,
+                                                                epoch_tolerance,
+                                                                ntiles,
+                                                                true_tile,
+                                                                dec,
+                                                                ra,
+                                                                times_transient,
+                                                                mags_transient)
+
+
+            total_telescope_time += telescope_time
+            for filt in self.filters: 
+                total_detections[filt] += detections[filt]
+            if sum(total_detections.values())  > 0:
+                return total_telescope_time, total_detections
+
+        return 0, {filt: 0 for filt in self.filters}
+    
+    def late_epoch(self, 
+                   start_time,
+                   epoch_tolerance,
+                   ntiles,
+                   true_tile,
+                   dec,
+                   ra,
+                   times_transient,
+                   mags_transient):
+        
+        detections = {filt: 0 for filt in self.filters}
+        telescope_time = 0
+
+        for filt in self.filters:
+            possible_times = np.arange(start_time, start_time+1, 1/24)
+            visible = self.check_visibility(possible_times, ra, dec)
+
+            if not np.any(visible) and epoch_tolerance:
+                visible = self.check_visibility(possible_times+ 182, ra, dec)
+            if not np.any(visible):
+                break
+            else: 
+                t_obs = possible_times[visible][0]
+            
+            mag_obs = np.interp(t_obs, times_transient, mags_transient[filt])
+            if mag_obs < self.thr[filt]:
+                detections[filt] += 1
+            telescope_time += ntiles * self.exposure_time + self.dead_time
+
+        return np.nan, telescope_time, detections
    
     def target_epoch(self,
                      start_time,
@@ -104,31 +193,23 @@ class GroundTelescope:
                          ra: float,
                          ntiles: float) -> np.ndarray:
 
-        tobs = np.empty(ntiles)
-        time = start_time
-        target = SkyCoord(ra=ra*u.deg, dec=dec*u.deg, frame='icrs')
+        possible_times = np.arange(start_time, start_time+1, 1/24)
+        visible = self.check_visibility(possible_times, ra, dec)
 
-        for j in range(ntiles):
-
-            while not self.check_night_visibility(target, time):
-                time += 1/24
-                if time>=start_time + 1:
-                    return np.array([])
-
-            tobs[j] = time
-            time += self.exposure_time
-            
-        return tobs
+        if not np.any(visible):
+            return np.array([])
+        else:
+            return possible_times[visible][0] + np.linspace(0, (ntiles-1)*self.exposure_time, ntiles)
     
-    def check_night_visibility(self, target, time):
-
+    def check_visibility(self, time, ra, dec):
         mjd = Time(time, format="mjd")
         altaz_frame = AltAz(obstime=mjd, location=self.loc)
-
+        
+        target = SkyCoord(ra=ra*u.deg, dec=dec*u.deg, frame='icrs')
         sun_coords = get_sun(mjd).transform_to(altaz_frame)
         sky_coords = target.transform_to(altaz_frame)
 
-        return sun_coords.alt.degree <= -12. and sky_coords.alt.degree > 20.
+        return (sun_coords.alt.degree <= -18.) & (sky_coords.alt.degree > 20.)
         
 
 wavel_ultrasat = np.linspace(220, 300, 100)
@@ -154,13 +235,17 @@ class ULTRASAT:
         self.instant_coverage = 0.51
         self.max_coverage = 0.75 # based on sky access limitations
     
-    def follow_up_campaign(self,
+    def kilonova_campaign(self,
+                           start: bool,
                            trigger_time, 
                            dec, 
                            ra, 
                            DeltaOmega, 
                            times_transient, 
                            mags_transient):
+        
+        if not start:
+            return 0, {filt: 0 for filt in self.filters}
         
         ntiles = int(np.ceil(DeltaOmega/self.fov)) + 1
         true_tile = np.random.choice(ntiles)
@@ -197,6 +282,65 @@ class ULTRASAT:
                 detection[filt] +=1
 
         return tobs[-1]+ self.exposure_time + self.dead_time, ntiles*self.exposure_time, detection
+    
+
+class RadioTelescope(GroundTelescope):
+
+    def __init__(self,
+                 *args,
+                 **kwargs):
+        
+        super().__init__(*args, **kwargs)
+    
+    def check_visibility(self, time, ra, dec):
+        mjd = Time(time, format="mjd")
+        altaz_frame = AltAz(obstime=mjd, location=self.loc)
+        
+        target = SkyCoord(ra=ra*u.deg, dec=dec*u.deg, frame='icrs')
+        sky_coords = target.transform_to(altaz_frame)
+
+        return sky_coords.alt.degree > 20.
+        
+class EINSTEINPROBE():
+
+    def __init__(self, name ="einsteinprobe"):
+        self.name = name    
+    
+    def afterglow_campaign(self,
+                           start,
+                           trigger_time,
+                           dec,
+                           ra,
+                           DeltaOmega,
+                           times_transient,
+                           nus_transient,
+                           log10_flux):
+        
+        if not start: 
+            return 0, {"X-ray-0.5-4keV": 0}
+        
+        t_epochs =  np.geomspace(10, 10*365, 5) + trigger_time
+        visible = self.check_visiblity(t_epochs, ra, dec)
+        t_epochs[~visible] += 365/2
+        t_epochs[:2] = np.minimum(trigger_time + 365/2 + 10, t_epochs[:2])
+
+        xray_filt = Filter("X-ray-0.5-4keV")
+        log10flux_xray = interpolate.interp1d(nus_transient, log10_flux, axis=0)(xray_filt.nus)
+        xray_fluence = integrate.simpson(y=10**(log10flux_xray-26), x=xray_filt.nus, axis=0)
+        xray_fluence = np.interp(t_epochs, times_transient, xray_fluence)
+
+        detected = xray_fluence >= 2.6e-11
+
+        if np.random.uniform()> 0.5:
+            detected[:2] = False
+
+        return 5 * 300/(24*3600) , {"X-ray-0.5-4keV": np.sum(detected)}
+    
+    def check_visiblity(self, time, ra, dec):
+        mjd = Time(time, format="mjd")
+        sun_coords = get_sun(mjd)
+        cos_alpha = np.cos(sun_coords.ra.rad) * np.sin(sun_coords.dec) * np.cos(ra) * np.sin(dec) + np.sin(sun_coords.ra.rad) * np.sin(sun_coords.dec) * np.sin(ra) * np.sin(dec) + np.cos(sun_coords.dec.rad) * np.cos(dec)
+        return cos_alpha < 0 
 
 
 #####################
@@ -232,4 +376,23 @@ pstarrs = GroundTelescope("pstarrs",
 
 ultrasat = ULTRASAT()
 
-        
+
+ska = RadioTelescope("ska",
+                     lat = -30.7,
+                     long = 21.4,
+                     height = 1086.6,
+                     fov = 5,
+                     exposure_time=300,
+                     dead_time=100,
+                     thresholds={"radio-1.4GHz": 22.1})
+
+dsa = RadioTelescope("dsa",
+                     lat = 34 + 4/60 + 43/3600,
+                     long = 107 + 37/60 + 4/3600,
+                     height=2124,
+                     fov = 10.6,
+                     exposure_time=300,
+                     dead_time=100,
+                     thresholds={"radio-1.4GHz": 22.5})
+
+einsteinprobe = EINSTEINPROBE()

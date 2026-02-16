@@ -1,0 +1,4 @@
+# ./rns -f ./rns_eos.dat -t kepler -e 1.5e15 -l 2.3e15 -n 10 -p 2 -d 0
+
+
+# shows that Kepler mass limit is at 2.493 Msun (2.918 Msun baryonic)

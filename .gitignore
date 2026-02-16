@@ -2,3 +2,6 @@ GWFish
 gwtoolbox
 **postmerger_classifier
 **trash
+**__pycache__
+**.tar
+**.h5

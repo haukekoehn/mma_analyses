@@ -7,113 +7,161 @@ import scipy.optimize as optimize
 import pandas as pd
 
 
-def find_vmax_wind(v_ej_wind, v_min = 0.02):
+def powerlaw_integral(alpha, x0, x1):
 
-    res = optimize.brentq(lambda x: (x-v_min) / np.log(x/v_min) - v_ej_wind, 1e-3, 0.9)
+    if alpha==-1.: 
+        return np.log(x1/x0)
+    else:
+        return (x1**(alpha+1) - x0**(alpha+1)) / (alpha+1)
+    
+def double_powerlaw_integral(alpha1, alpha2, xmid, x0, x1):
+    if x1 <= xmid:
+        return powerlaw_integral(alpha1, x0, x1)
+    elif x0 <= xmid and xmid < x1:
+        return powerlaw_integral(alpha1, x0, xmid) + xmid**(alpha1 - alpha2) * powerlaw_integral(alpha2, xmid, x1)
+    elif xmid < x0:
+        return powerlaw_integral(alpha2, x0, x1)
 
-    return res
+def velocity_grid_wind(v_ej_wind, v_min = 0.02, alpha=3):
 
-def find_vmax_dyn(v_ej_dyn, vmin=0.1, vmid=0.4):
+    def eq(x):
+        a = powerlaw_integral(3-alpha, v_min, x)
+        b = powerlaw_integral(2-alpha, v_min, x)
+        return a/b - v_ej_wind
 
-    if v_ej_dyn <= np.log(vmid/vmin) / (1/vmin-1/vmid):
+    res = optimize.brentq(eq, 0.0201, 0.9)
+
+    return v_min, res, alpha
+
+def velocity_grid_dyn(v_ej_dyn, v_min=0.1, v_mid=0.4, alpha1=4, alpha2=8):
+
+    max_vavg = double_powerlaw_integral(3-alpha1, 3-alpha2, v_mid, v_min, 0.9) / double_powerlaw_integral(2-alpha1, 2-alpha2, v_mid, v_min, 0.9)
+
+    if v_ej_dyn < max_vavg:
+
         def eq(x):
-            out = np.log(x/vmin)
-            out /= vmin**(-1) - x**(-1)
-            return out - v_ej_dyn
-        res = optimize.brentq(eq, 0.11, 0.4)
+            a = double_powerlaw_integral(3-alpha1, 3-alpha2, v_mid, v_min, x)
+            b = double_powerlaw_integral(2-alpha1, 2-alpha2, v_mid, v_min, x)
+            return a / b - v_ej_dyn
+        
+        res = optimize.brentq(eq, 0.101, 0.9)
+        v_max = res
     
     else:
+
+        v_max = 0.9
+
         def eq(x):
-            out = np.log(vmid/vmin) + 0.4**4 * (vmid**(-4)-x**(-4)) / 4
-            out /= (vmin**(-1)- vmid**(-1) ) + 0.4**4 * ( vmid**(-5) - x**(-5) ) / 5
-            return out - v_ej_dyn
+            alpha1_tmp = 6 - 2* x/0.1
+            a = double_powerlaw_integral(3-alpha1_tmp, 3-alpha2, v_mid, x, v_max)
+            b = double_powerlaw_integral(2-alpha1_tmp, 2-alpha2, v_mid, x, v_max)
+            return a / b - v_ej_dyn
         
-        try:
-            res = optimize.brentq(eq, 0.4, 0.9)
-        except ValueError:
-            res = 0.9
-        
-    return res
+        res = optimize.brentq(eq, 0.1, 0.2)
+        v_min = res
+        alpha1 = 6 - 2*v_min/0.1
 
-def find_rho0_wind(mej, vmax):
-    rho0 = mej
-    rho0 /= (4*np.pi* np.log(vmax/0.02))
-    return rho0
+    return v_min, v_mid, v_max, alpha1, alpha2
 
-def find_rho0_dyn(mej, vmax):
-    rho0 = mej
 
-    if vmax <= 0.4:
-        rho0 /= (8*np.pi)/3 *(1/0.1 - 1/vmax)
-    else:
-        rho0 /= (8*np.pi)/3 * ( (1/0.1 - 1/0.4) + 0.4**4 * (0.4**(-5) - vmax**(-5)) / 5 )
-
-    return rho0
 
 class POSSISDensity:
-    def __init__(self, rho0_dyn, vmax_dyn, rho0_wind, vmax_wind):
+    def __init__(self, m_ej_dyn, v_ej_dyn, m_ej_wind, v_ej_wind):
 
-        self.rho0_dyn = rho0_dyn
-        self.rho0_wind = rho0_wind
-        self.vmax_dyn = vmax_dyn
-        self.vmax_wind = vmax_wind
+        self.m_ej_dyn = m_ej_dyn
+        self.v_ej_dyn = v_ej_dyn
+        self.m_ej_wind = m_ej_wind
+        self.v_ej_wind = v_ej_wind
+
+        self.v_min_dyn, self.v_mid_dyn, self.v_max_dyn, self.alpha1, self.alpha2 = velocity_grid_dyn(v_ej_dyn)
+        self.v_min_wind, self.v_max_wind, self.alpha_wind = velocity_grid_wind(v_ej_wind)
+
+        self.rho0_dyn = self.find_rho0_dyn(self.m_ej_dyn)
+        self.rho0_wind = self.find_rho0_wind(self.m_ej_wind)
+    
+    def find_rho0_dyn(self, m_ej_dyn):
+        radial_integral = double_powerlaw_integral(2-self.alpha1, 2-self.alpha2, self.v_mid_dyn, self.v_min_dyn, self.v_max_dyn)
+        angular_integral = 8*np.pi/3
+        return m_ej_dyn / (angular_integral * radial_integral)
+    
+    def find_rho0_wind(self, m_ej_wind):
+        radial_integral = powerlaw_integral(2-self.alpha_wind, self.v_min_wind, self.v_max_wind)
+        angular_integral = 4*np.pi
+        return m_ej_wind / (angular_integral * radial_integral)
 
     def mass_segment(self, v0, v1, theta0, theta1):
 
         delta_mej_wind = self.wind_mass_segment(v0, v1, theta0, theta1)
         delta_mej_dyn = self.dyn_mass_segment(v0, v1, theta0, theta1)
 
-        return delta_mej_wind + delta_mej_dyn
+        return delta_mej_dyn + delta_mej_wind
     
     def wind_mass_segment(self, v0, v1, theta0, theta1):
 
-        v0 = min( max(0.02, v0), self.vmax_wind)
-        v1 = min( max(0.02, v1), self.vmax_wind)
-        return 2*np.pi*self.rho0_wind*np.log(v1/v0) * (np.cos(theta0) - np.cos(theta1))
+        v0 = min( max(self.v_min_wind, v0), self.v_max_wind)
+        v1 = min( max(self.v_min_wind, v1), self.v_max_wind)
+        
+        velocity_integral = powerlaw_integral(2-self.alpha_wind, v0, v1)
+
+        return 2*np.pi*self.rho0_wind * velocity_integral * (np.cos(theta0) - np.cos(theta1))
     
     def dyn_mass_segment(self, v0, v1, theta0, theta1):
-        v0 = min( max(0.1, v0), self.vmax_dyn)
-        v1 = min( max(0.1, v1), self.vmax_dyn)
+        v0 = min( max(self.v_min_dyn, v0), self.v_max_dyn)
+        v1 = min( max(self.v_min_dyn, v1), self.v_max_dyn)
 
-        if v1 <= 0.4:
-            radial_factor = self.rho0_dyn * (1/v0 - 1/v1)
-        elif v0 < 0.4 and v1 > 0.4:
-            radial_factor = self.rho0_dyn * ( (1/v0 - 1/0.4) + 0.4**4 * (0.4**(-5) - v1**(-5) ) / 5 )
-        elif v0 >= 0.4:
-            radial_factor = self.rho0_dyn * 0.4**4 * (v0**(-5) - v1**(-5)) / 5
+        if v1 <= self.v_mid_dyn:
+            radial_factor = powerlaw_integral(2-self.alpha1, v0, v1)
+        elif v0 < self.v_mid_dyn and v1 > self.v_mid_dyn:
+            radial_factor = double_powerlaw_integral(2-self.alpha1, 2-self.alpha2, self.v_mid_dyn, v0, v1)
+        elif v0 >= self.v_mid_dyn:
+            radial_factor =  self.v_mid_dyn**(self.alpha2-self.alpha1) * powerlaw_integral(2-self.alpha2, v0, v1)
 
-        angular_factor = 2*np.pi * (np.cos(theta1)**3 / 3 - np.cos(theta1) - np.cos(theta0)**3 / 3 + np.cos(theta0))
+        angular_factor = 2*np.pi * ( np.cos(theta1)**3 / 3 - np.cos(theta1) - np.cos(theta0)**3 / 3 + np.cos(theta0) )
 
-        return radial_factor * angular_factor
-
-
+        return self.rho0_dyn * radial_factor * angular_factor
+    
 
 def make_histogram(density: POSSISDensity, theta_arr, vel_arr):
     
     ntheta = theta_arr.shape[0]
     nvel = vel_arr.shape[0]
     mej_2d = np.zeros((ntheta-1, nvel-1))
+    flags = np.zeros((ntheta-1, nvel-1))
 
     for j in range(ntheta-1):
         for k in range(nvel-1):
-            mej_2d[j, k] = density.mass_segment(vel_arr[k], vel_arr[k+1], theta_arr[j], theta_arr[j+1])
+            theta = 0.5*(theta_arr[j] + theta_arr[j+1])
+            v = 0.5*(vel_arr[k] + vel_arr[k+1])
+            
+            if (density.v_min_wind < v < density.v_max_wind) and (v < density.v_min_dyn or theta < np.pi/4 or theta > 3/4*np.pi):
+                mej_2d[j, k] = density.wind_mass_segment(vel_arr[k], vel_arr[k+1], theta_arr[j], theta_arr[j+1])
+            elif density.v_min_dyn < v < density.v_max_dyn:
+                mej_2d[j, k] = density.dyn_mass_segment(vel_arr[k], vel_arr[k+1], theta_arr[j], theta_arr[j+1])
+                flags[j,k] = 1
+            else:
+                mej_2d[j, k] = 0.
+                flags[j,k] = 3
     
+    mej_2d[flags==0] *= density.m_ej_wind / np.sum(mej_2d[flags==0])
+    mej_2d[flags==1] *= density.m_ej_dyn / np.sum(mej_2d[flags==1])
+    
+    #import matplotlib.pyplot as plt
+    #fig, ax = plt.subplots(subplot_kw={"projection": "polar"})
+    #ax.pcolormesh(0.5*(theta_arr[1:]+theta_arr[:-1]), 0.5*(vel_arr[1:] + vel_arr[:-1]), np.log10(mej_2d.T))
+    #ax.set_xlim((0, np.pi))
+    #breakpoint()
+        
     return mej_2d
 
 
 
 def get_mass_histogram(m_ej_dyn, v_ej_dyn, m_ej_wind, v_ej_wind):
 
-    vmax_dyn = find_vmax_dyn(v_ej_dyn)
-    vmax_wind = find_vmax_wind(v_ej_wind)
-    rho0_dyn = find_rho0_dyn(m_ej_dyn, vmax_dyn)
-    rho0_wind = find_rho0_wind(m_ej_wind, vmax_wind)
-
-    density = POSSISDensity(rho0_dyn, vmax_dyn, rho0_wind, vmax_wind)
+    density = POSSISDensity(m_ej_dyn, v_ej_dyn, m_ej_wind, v_ej_wind)
 
 
     theta_arr = np.linspace(0, np.pi, 101)
-    vel_arr = np.linspace(0, max(vmax_dyn, vmax_wind), 31)
+    vel_arr = np.linspace(min(density.v_min_dyn, density.v_min_wind), max(density.v_max_dyn, density.v_max_wind), 31)
 
     mej_2d = make_histogram(density, theta_arr, vel_arr)
     return mej_2d, vel_arr, theta_arr
