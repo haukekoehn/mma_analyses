@@ -11,7 +11,7 @@ from fiesta.inference.lightcurve_model import FluxModel, CombinedSurrogate
 from fiesta.extinction import extinctionFactorP92SMC
 
 from telescopes import ztf, vr, pstarrs, ultrasat, ultrasat_filter, ska, dsa, einsteinprobe
-from detection_utils import log10_fluence, which_telescopes_will_observe, check_afterglow_thresholds, which_telescopes_will_observe_afterglow, check_surrogate_param_range, apply_extinction_mag
+from detection_utils import which_telescopes_will_observe, check_afterglow_thresholds, which_telescopes_will_observe_afterglow, check_surrogate_param_range, apply_extinction_mag
 
 Mpc_to_cm = 3.8057e24
 np.random.seed(671938)
@@ -111,23 +111,15 @@ def grb_detection(event):
     if not event["has_grb"]:
         return 0, np.inf
     
-    log10_fermi_fluence = log10_fluence(event, "log10_Egamma_fermi_gbm")
-    log10_swift_fluence = log10_fluence(event, "log10_Egamma_swift_bat")
-    log10_gecam_fluence = log10_fluence(event, "log10_Egamma_gecam")
-    
-    mask_fermi = (log10_fermi_fluence > np.log10(2e-7)) & (np.random.uniform() < 0.6)
-    mask_swift = (log10_swift_fluence > np.log10(2e-8)) & (np.random.uniform() < 0.1)
-    mask_gecam = (log10_gecam_fluence > np.log10(2e-8)) & (np.random.uniform() < 0.8)
-
     DeltaOmega = np.inf
-    if mask_fermi: 
+    if event["fermi_detected"]: 
         DeltaOmega = 100
-    if mask_gecam: 
+    if event["gecam_detected"]: 
         DeltaOmega = 10
-    if mask_swift:
+    if event["swift_detected"]:
         DeltaOmega = 0.1
     
-    return (mask_fermi or (mask_swift or mask_gecam)), DeltaOmega
+    return DeltaOmega < np.inf, DeltaOmega
 
 def kn_detection(gw_event, kn_event, grb_event, DeltaOmega, has_CE):
 
@@ -197,7 +189,7 @@ def afterglow_detection(gw_event, kn_event, grb_event, DeltaOmega, kn_result, ha
     if not grb_event["has_grb"]:
         return dict(radio_afterglow=0, xray_afterglow=0, opt_afterglow=0, telt_vr=0)
 
-    trigger_time = gw_event["trigger_time"]
+    trigger_time = kn_event["trigger_time"]
     dec = gw_event["dec"]
     ra = gw_event["ra"]
 
@@ -209,7 +201,9 @@ def afterglow_detection(gw_event, kn_event, grb_event, DeltaOmega, kn_result, ha
 
     times, nus, log10_flux = model_afterglow.predict_log_flux(params)
     log10_flux += np.log10(extinctionFactorP92SMC(nus, kn_event["Ebv"], params['redshift'])[:, None])
-    
+    mags = {Filt.name: Filt.get_mag(10**log10_flux, nus) for Filt in [Filter("radio-1.4GHz"), Filter("lsstg"), Filter("lssti"), Filter("X-ray-0.5-4keV")]}
+    times += trigger_time
+        
     # check whether a KN has been detected
     kn_detected = 0
     for key in ["lssti", "lsstg", "ultrasat_custom", "ztfg", "ztfi", "ps1::g", "ps1::i"]:
@@ -220,7 +214,6 @@ def afterglow_detection(gw_event, kn_event, grb_event, DeltaOmega, kn_result, ha
     else:
 
         start = which_telescopes_will_observe_afterglow(DeltaOmega, params["redshift"], has_CE)
-        mags = {Filt.name: Filt.get_mag(10**log10_flux, nus) for Filt in [Filter("radio-1.4GHz"), Filter("lsstg"), Filter("lssti"), Filter("X-ray-0.5-4keV")]}
         
         _, detections_ska = ska.afterglow_campaign(start["ska"],
                                                    trigger_time,

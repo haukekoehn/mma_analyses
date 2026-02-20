@@ -26,13 +26,10 @@ def which_telescopes_will_observe(DeltaOmega, redshift, has_CE):
     if (DeltaOmega>200) or (DeltaOmega>100 and has_CE) or redshift>0.2:
         start["ztf"] = False
     
-    if has_CE:
-        alpha = np.random.uniform()
-        start["vr"] = alpha <=0.25
-    if (DeltaOmega>100.) or (DeltaOmega>30 and has_CE) or redshift>1.:
+    if (DeltaOmega>50.) or (has_CE and DeltaOmega>=10.) or (has_CE and (DeltaOmega>8. and redshift>=0.2) ) or redshift>1.:
         start["vr"] = False
     
-    if (DeltaOmega>100.) or (DeltaOmega>30 and has_CE) or redshift>0.2:
+    if (DeltaOmega>50.) or (DeltaOmega>30 and has_CE) or redshift>0.2:
         start["pstarrs"] = False
 
     if redshift>0.5:
@@ -43,7 +40,7 @@ def which_telescopes_will_observe(DeltaOmega, redshift, has_CE):
 def which_telescopes_will_observe_afterglow(DeltaOmega, redshift, has_CE):
     start = dict(ska=True, dsa=True, vr=True, ep=True)
 
-    if (DeltaOmega>100) or (DeltaOmega>30 and has_CE) or redshift>1.5:
+    if (DeltaOmega>50.) or (DeltaOmega>10. and has_CE) or redshift>1.:
         start["ska"] = False
         start["dsa"] = False
         start["vr"] = False

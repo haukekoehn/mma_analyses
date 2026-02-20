@@ -92,15 +92,14 @@ class GroundTelescope:
         if not start:
             return 0, {filt: 0 for filt in self.filters}
         
-        t_epochs = np.geomspace(10, 10*365, 5) + trigger_time
+        t_epochs = np.geomspace(10, 5*365, 10) + trigger_time
         ntiles = int(np.ceil(DeltaOmega/self.fov)) + 1
         true_tile = np.random.choice(ntiles)
 
         total_telescope_time = 0
         total_detections = {filt: 0 for filt in self.filters}
-        
-        for t_epoch in t_epochs:
 
+        for t_epoch in t_epochs:
             if t_epoch - trigger_time < 30:
                 _, telescope_time, detections = self.target_epoch(t_epoch, 
                                                                   ntiles, 
@@ -212,8 +211,10 @@ class GroundTelescope:
         return (sun_coords.alt.degree <= -18.) & (sky_coords.alt.degree > 20.)
         
 
-wavel_ultrasat = np.linspace(220, 300, 100)
-trans_ultrasat = np.exp( -0.5*((wavel_ultrasat - 260)/15)**2 ) * 0.34
+wavel_ultrasat = np.linspace(200, 350, 100)
+transmission_matrix = np.loadtxt("./ultrasat_filter/ULTRASAT_TR.dat", delimiter=",")
+wavelengths = np.loadtxt("./ultrasat_filter/wavelength.dat")
+trans_ultrasat = np.interp(wavel_ultrasat, wavelengths/10, transmission_matrix[:, 10]) # 4.6 deg offset
 nus_ultrasat = 2.99792458e17 / wavel_ultrasat
 ultrasat_filter = Filter("ultrasat_custom", nus=nus_ultrasat[::-1], trans=trans_ultrasat[::-1])
 
@@ -319,8 +320,8 @@ class EINSTEINPROBE():
         if not start: 
             return 0, {"X-ray-0.5-4keV": 0}
         
-        t_epochs =  np.geomspace(10, 10*365, 5) + trigger_time
-        visible = self.check_visiblity(t_epochs, ra, dec)
+        t_epochs =  np.geomspace(10, 5*365, 10) + trigger_time
+        visible = self.check_visibility(t_epochs, ra, dec)
         t_epochs[~visible] += 365/2
         t_epochs[:2] = np.minimum(trigger_time + 365/2 + 10, t_epochs[:2])
 
@@ -331,15 +332,15 @@ class EINSTEINPROBE():
 
         detected = xray_fluence >= 2.6e-11
 
-        if np.random.uniform()> 0.5:
-            detected[:2] = False
-
         return 5 * 300/(24*3600) , {"X-ray-0.5-4keV": np.sum(detected)}
     
-    def check_visiblity(self, time, ra, dec):
+    def check_visibility(self, time, ra, dec):
         mjd = Time(time, format="mjd")
         sun_coords = get_sun(mjd)
-        cos_alpha = np.cos(sun_coords.ra.rad) * np.sin(sun_coords.dec) * np.cos(ra) * np.sin(dec) + np.sin(sun_coords.ra.rad) * np.sin(sun_coords.dec) * np.sin(ra) * np.sin(dec) + np.cos(sun_coords.dec.rad) * np.cos(dec)
+        sun_theta = np.pi/2 - sun_coords.dec.rad
+        sun_phi = sun_coords.ra.rad
+        theta = np.pi/2 - dec
+        cos_alpha = np.cos(sun_phi) * np.sin(sun_theta) * np.cos(ra) * np.sin(theta) + np.sin(sun_phi) * np.sin(sun_theta) * np.sin(ra) * np.sin(theta) + np.cos(sun_theta) * np.cos(theta)
         return cos_alpha < 0 
 
 

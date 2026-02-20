@@ -131,16 +131,13 @@ def add_grb_parameters(df, df_gw):
 
 def add_detections(df):
 
-    no_grb = ~df["has_grb"]
-
-
     log10_fermi_fluence = log10_fluence(df, "log10_Egamma_fermi_gbm")
     log10_swift_fluence = log10_fluence(df, "log10_Egamma_swift_bat")
     log10_gecam_fluence = log10_fluence(df, "log10_Egamma_gecam")
     
-    df["fermi_detected"] = (log10_fermi_fluence > np.log10(2e-7)) & (np.random.uniform() < 0.6)
-    df["swift_detected"] = (log10_swift_fluence > np.log10(2e-8)) & (np.random.uniform() < 0.1)
-    df["gecam_detected"] = (log10_gecam_fluence > np.log10(2e-8)) & (np.random.uniform() < 0.8)
+    df["fermi_detected"] = (log10_fermi_fluence > np.log10(2e-7)) & (np.random.uniform(size=df.shape[0]) < 0.6) & df["has_grb"].astype(bool) 
+    df["swift_detected"] = (log10_swift_fluence > np.log10(2e-8)) & (np.random.uniform(size=df.shape[0]) < 0.1) & df["has_grb"].astype(bool)
+    df["gecam_detected"] = (log10_gecam_fluence > np.log10(2e-8)) & (np.random.uniform(size=df.shape[0]) < 0.8) & df["has_grb"].astype(bool) 
     
     return df
 
