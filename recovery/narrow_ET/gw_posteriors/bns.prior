@@ -16,6 +16,6 @@ psi = Uniform(name='psi', minimum=0, maximum=np.pi, boundary='periodic')
 phase = Uniform(name='phase', minimum=0, maximum=2 * np.pi, boundary='periodic') 
 
 theta_jn = Sine(name='theta_jn')
-luminosity_distance = bilby.gw.prior.UniformSourceFrame(name='luminosity_distance', minimum=40, maximum=1e4)
+luminosity_distance = bilby.gw.prior.UniformSourceFrame(name='luminosity_distance', minimum=40, maximum=8e3)
 # ra and dec are fixed
 # geocent_time will be added with an interval close to the injection value

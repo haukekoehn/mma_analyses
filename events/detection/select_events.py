@@ -27,11 +27,9 @@ def main():
     print(f"Total of {np.sum(selected)} selected events.")
 
     selected_df = pd.concat([df_gw[selected], df_kn[selected], df_grb[["has_grb", "thetaCore", "log10_Ekin_iso", "log10_n0"]][selected]], axis=1)
-
+    selected_df["afterglow_detected"] = np.sum(df_detection[["radio_afterglow", "opt_afterglow", "xray_afterglow"]], axis=1) >= 1
+    
     selected_df.to_csv(f"../../recovery/{catalog}/events.dat", sep=" ", index=False)
-
-
-
 
 if __name__=="__main__":
     main()

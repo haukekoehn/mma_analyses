@@ -1,142 +1,145 @@
 import os
 
 import numpy as np
+import pandas as pd
+from sklearn import model_selection
 import jax
 import jax.numpy as jnp
 import scipy.integrate as integrate
 
-from fiesta.inference.prior import Uniform, Constraint
+from fiesta.inference.prior import Uniform, Constraint, Sine, UniformSourceFrame
 from fiesta.inference.prior_dict import ConstrainedPrior
 from fiesta.inference.fiesta import Fiesta
 from fiesta.inference.likelihood import EMLikelihood
-from fiesta.inference.lightcurve_model import FluxModel
-from fiesta.inference.injection import InjectionKN
-
-def hdi_quantile_compute(samples, injected_value):
-    hist, bins = np.histogram(samples, bins='auto', density=True)
-    x = (bins[1:]+bins[:-1])/2
-    density = np.interp(injected_value, x , hist)
-    hist[hist<density] = 0.
-    return integrate.simpson(x=x, y=hist)
-
+from fiesta.inference.lightcurve_model import FluxModel, CombinedSurrogate
+from fiesta.inference.injection import InjectionSurrogate
 
 
 #########
 # MODEL #
 #########
-FILTERS = ["2massj", "besselli", "bessellg", "bessellux"]
-model = FluxModel(name="Bu2026_MLP",
-                      filters = FILTERS)
+
+FILTERS = ["radio-1.4GHz", "2massj", "besselli", "bessellv", "bessellux", "X-ray-1keV"]
+FILTERS_KN = ["2massj", "besselli", "bessellv", "bessellux"]
+detection_limit = {"radio-1.4GHz": 23.0, "2massj": 29.5, "besselli": 29.5, "bessellv": 29.5, "bessellux": 29.5, "X-ray-1keV": 39.0}
+
+model_KN = FluxModel(name="Bu2026_MLP",
+                      filters = FILTERS_KN)
+
+model_afterglow = FluxModel(name="pbag_gaussian_CVAE",
+                            filters=FILTERS)
+
+model = CombinedSurrogate(models=[model_KN, model_afterglow], sample_times= jnp.geomspace(0.2, 2000, 200))
 
 
 #########
 # PRIOR #
 #########
 
-inclination_EM = Uniform(xmin=0.0, xmax=np.pi/2, naming=['inclination_EM'])
-log10_mej_dyn = Uniform(xmin=-3.0, xmax=-1.30, naming=["log10_mej_dyn"])
-v_ej_dyn = Uniform(xmin=0.12, xmax=0.28, naming=["v_ej_dyn"])
-Ye_dyn = Uniform(xmin=0.15, xmax=0.35, naming=["Ye_dyn"])
-log10_mej_wind = Uniform(xmin=-2.0, xmax=-0.89, naming=["log10_mej_wind"])
-v_ej_wind = Uniform(xmin=0.05, xmax=0.15, naming=["v_ej_wind"])
-Ye_wind = Uniform(xmin=0.2, xmax=0.4, naming=["Ye_wind"])
-sys_err = Uniform(xmin=0.3, xmax=1.0, naming=["sys_err"])  #used to be 0.5
 
-prior_list = [inclination_EM, 
-              log10_mej_dyn,
-              v_ej_dyn,
-              Ye_dyn,
-              log10_mej_wind,
-              v_ej_wind,
-              Ye_wind,
-              sys_err]
+def conversion_function(sample):
+    converted_sample = sample
+    converted_sample["thetaWing"] = converted_sample["thetaCore"] * converted_sample["alphaWing"]
+    converted_sample["epsilon_tot"] = 10**(converted_sample["log10_epsilon_B"]) + 10**(converted_sample["log10_epsilon_e"]) 
+    return converted_sample
 
-prior = ConstrainedPrior(prior_list)
+KN_prior = [
+            Uniform(xmin=0., xmax=np.pi/2, naming=["inclination_EM"]),
+            Uniform(xmin=-4.0, xmax=-1.3, naming=["log10_mej_dyn"]),
+            Uniform(xmin=0.12, xmax=0.35, naming=["v_ej_dyn"]),
+            Uniform(xmin=0.15, xmax=0.35, naming=["Ye_dyn"]),
+            Uniform(xmin=-4., xmax=-0.55, naming=["log10_mej_wind"]),
+            Uniform(xmin=0.05, xmax=0.15, naming=["v_ej_wind"]),
+            Uniform(xmin=0.2, xmax=0.4, naming=["Ye_wind"]),
+            UniformSourceFrame(dmin=40.0, dmax=8000.0, naming=["luminosity_distance"])
+]
+
+GRB_prior = [Uniform(xmin=47.0, xmax=57.0, naming=['log10_E0']),
+             Uniform(xmin=0.01, xmax=np.pi/5, naming=['thetaCore']),
+             Uniform(xmin = 0.2, xmax = 3.5, naming= ["alphaWing"]),
+             Constraint(xmin = 0, xmax = np.pi/2, naming = ["thetaWing"]),
+             Uniform(xmin=-6.0, xmax=2.0, naming=['log10_n0']),
+             Uniform(xmin=2.01, xmax=3.0, naming=['p']),
+             Uniform(xmin=-4.0, xmax=0.0, naming=['log10_epsilon_e']),
+             Uniform(xmin=-8.0, xmax=0.0, naming=['log10_epsilon_B']),
+             Uniform(xmin=100, xmax=1000., naming=['Gamma0']),
+             Constraint(xmin = 0., xmax = 1., naming=["epsilon_tot"])]
+
+
+prior = ConstrainedPrior([*KN_prior, *GRB_prior], conversion_function)
+
 
 ################
-# LIKELIHOOD & #
 # SAMPLING     #
 ################
 
-rng_key = jax.random.PRNGKey(3551)
-trigger_time = 58849.
+def afterglow_peak(param_dict):
+    times, mags = model_afterglow.predict(param_dict)
+    return times[mags["radio-1.4GHz"].argmax()]
 
-injection = InjectionKN(filters=FILTERS, 
-                        N_datapoints=50, 
-                        error_budget=0.1, 
-                        tmin=0.5, 
-                        tmax=20,
-                        trigger_time=trigger_time,
-                        detection_limit=24
-                        )
+def main():
 
-injection_prior = ConstrainedPrior([Uniform(xmin=0., xmax=np.pi/2, naming=['inclination_EM']),
-                                    Uniform(xmin=-3.0, xmax=-1.30, naming=["log10_mej_dyn"]),
-                                    Uniform(xmin=0.12, xmax=0.28, naming=["v_ej_dyn"]),
-                                    Uniform(xmin=0.15, xmax=0.35, naming=["Ye_dyn"]),
-                                    Uniform(xmin=-2.0, xmax=-0.886, naming=["log10_mej_wind"]),
-                                    Uniform(xmin=0.05, xmax=0.15, naming=["v_ej_wind"]),
-                                    Uniform(xmin=0.2, xmax=0.4, naming=["Ye_wind"])
-])
-quantile_list = []
-hdi_quantile_list = []
-param_list = []
-
-for j in range(0, 200):
+    events = pd.read_csv("../events.dat", sep=" ")
+    rng_key = jax.random.PRNGKey(567893127)
     
-    rng_key, subkey = jax.random.split(rng_key)
-    param_dict = injection_prior.sample(subkey , n_samples=1)
-    param_dict = {key: p.item() for key, p in param_dict.items()}
-    param_dict["luminosity_distance"] = 40.0
+    for j in range(0, events.shape[0]):
+                
+        param_dict = events.iloc[j].to_dict()
+        param_dict.update(dict(alphaWing=2., p=2.15, log10_epsilon_e=-1., log10_epsilon_B=-3., Gamma0=500))
+        param_dict["log10_E0"] = param_dict.pop("log10_Ekin_iso")
 
-    injection.create_injection(param_dict, file="/home/aya/work/hkoehn/fiesta/fiesta/surrogates/KN/training_data/Bu2025_raw_data.h5")
-    param_dict = injection.injection_dict
+        if param_dict["afterglow_detected"]:
+            filters = FILTERS
+            tpeak = afterglow_peak(param_dict)
+            tmax = max(14., 1.5 * tpeak)
+            systematics_file = "./systematics_file_kn.yaml"
+        else:
+            filters = FILTERS_KN
+            tmax = 14.
+            systematics_file = "./systematics_file_kn.yaml"
 
-    likelihood = EMLikelihood(model,
-                              injection.data,
-                              FILTERS,
-                              tmin=0.5,
-                              tmax = 15.0,
-                              trigger_time=trigger_time,
-                              detection_limit = None,
-                              fixed_params={"luminosity_distance": 40.0, "redshift": 0.0},
-                              )
+        injection = InjectionSurrogate(model=model,
+                                       filters=filters,
+                                       trigger_time=param_dict['trigger_time'],
+                                       tmin=0.5,
+                                       tmax=tmax,
+                                       N_datapoints=30,
+                                       error_budget=0.1,
+                                       nondetections=True,
+                                       detection_limit=detection_limit)
+        injection.create_injection(param_dict)
     
-    mass_matrix = jnp.eye(prior.n_dim)
-    eps = 5e-3
-    local_sampler_arg = {"step_size": mass_matrix * eps}
-    
-    # Save for postprocessing
-    outdir = f"./outdir/"
-    
-    fiesta = Fiesta(likelihood,
-                    prior,
-                    n_chains = 1_000,
-                    n_loop_training = 7,
-                    n_loop_production = 3,
-                    num_layers = 4,
-                    hidden_size = [64, 64],
-                    n_epochs = 20,
-                    n_local_steps = 50,
-                    n_global_steps = 200,
-                    local_sampler_arg=local_sampler_arg,
-                    outdir=outdir)
-    
-    fiesta.sample(jax.random.PRNGKey(42))
+        likelihood = EMLikelihood(model,
+                                  injection.data,
+                                  tmin=0.5,
+                                  tmax = 14.0,
+                                  trigger_time=param_dict["trigger_time"],
+                                  detection_limit = None,
+                                  fixed_params={"redshift": param_dict["redshift"]}
+                                  )
+        
+        # Save for postprocessing
+        outdir = f"./source_{j}"
 
-    state = fiesta.Sampler.get_sampler_state(training=False)
-    chains = state["chains"]
-    n_chains, n_steps, n_dim = jnp.shape(chains)
-    samples = jnp.reshape(chains, (n_chains * n_steps, n_dim))
-
-    quantiles = [jnp.sum(samples[:,j]<=param_dict[p])/(n_chains * n_steps)  for j, p in enumerate(prior.naming[:-1])]
-    hdi_quantiles = [hdi_quantile_compute(samples[:,j], param_dict[p]) for j, p in enumerate(prior.naming[:-1])]
-
-    hdi_quantile_list.append(hdi_quantiles)
-    quantile_list.append(quantiles)
-    param_list.append([param_dict[p] for p in prior.naming[:-1]])
+        fiesta = Fiesta(likelihood,
+                        prior,
+                        systematics_file=systematics_file,
+                        n_chains = 200,
+                        n_loop_training = 7,
+                        n_loop_production = 3,
+                        num_layers = 4,
+                        hidden_size = [64, 64],
+                        n_epochs = 20,
+                        n_local_steps = 50,
+                        n_global_steps = 200,
+                        outdir=outdir)
+        
+        rng_key, subkey = jax.random.split(rng_key)
+        fiesta.sample(subkey)
+        fiesta.save_results()
+        fiesta.plot_lightcurves()
+        fiesta.plot_corner(truths=injection.injection_dict)
 
 
-np.savetxt("./outdir/hdi_quantiles.txt", np.array(hdi_quantile_list))
-np.savetxt("./outdir/quantiles.txt", np.array(quantile_list))
-np.savetxt("./outdir/params.txt", np.array(param_list)) 
+if __name__ == "__main__":
+    main()
