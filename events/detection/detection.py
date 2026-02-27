@@ -76,7 +76,7 @@ def observation_campaign(outfile, gw_event, fim_event, kn_event, grb_event, has_
         if not gw_detected:
             DeltaOmega = np.inf
         with open(outfile, "a") as out:
-            out.write(f"{gw_event["redshift"]:.3f}    {int(gw_detected)}    {int(grb_detected)}    {DeltaOmega:.2f}    ")
+            out.write(f"{gw_event['redshift']:.3f}    {int(gw_detected)}    {int(grb_detected)}    {DeltaOmega:.2f}    ")
             for key in ["telt_vr", "lsstg", "lssti", "telt_ztf", "ztfg", "ztfi", "telt_pstarrs", "ps1::g", "ps1::i", "telt_ultrasat", "ultrasat_custom", "radio_afterglow", "opt_afterglow", "xray_afterglow"]:
                 out.write(f"{0}    ")
             out.write(f"{0} \n") # telt_vr_afterglow
@@ -96,7 +96,7 @@ def observation_campaign(outfile, gw_event, fim_event, kn_event, grb_event, has_
     
 
     with open(outfile, "a") as out:
-        out.write(f"{gw_event["redshift"]:.3f}    1    {int(grb_detected)}    {DeltaOmega:.2f}    ")
+        out.write(f"{gw_event['redshift']:.3f}    1    {int(grb_detected)}    {DeltaOmega:.2f}    ")
         for key in ["telt_vr", "lsstg", "lssti", "telt_ztf", "ztfg", "ztfi", "telt_pstarrs", "ps1::g", "ps1::i", "telt_ultrasat", "ultrasat_custom"]:
             out.write(f"{kn_results[key]}    ")
         

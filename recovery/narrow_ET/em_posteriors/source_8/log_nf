@@ -1,0 +1,70 @@
+[INFO] jester: ============================================================
+[INFO] jester: Normalizing Flow Training
+[INFO] jester: ============================================================
+[INFO] jester: Posterior file: ./source_8/posterior.npz
+[INFO] jester: Output directory: ./source_8/nf
+[INFO] jester: Parameter names: ['log10_mej_dyn', 'log10_mej_wind', 'inclination_EM', 'luminosity_distance']
+[INFO] jester: Max samples: 50000
+[INFO] jester: Flow type: masked_autoregressive_flow
+[INFO] jester: NN depth: 4
+[INFO] jester: NN block dim: 8
+[INFO] jester: NN width: 50
+[INFO] jester: Flow layers: 1
+[INFO] jester: Invert: True
+[INFO] jester: Cond dim: None
+[INFO] jester: Transformer: rational_quadratic_spline
+[INFO] jester: Transformer knots: 10
+[INFO] jester: Transformer interval: 5.0
+[INFO] jester: Standardize: True
+[INFO] jester: Standardization method: zscore
+[INFO] jester: Max epochs: 3000
+[INFO] jester: Learning rate: 0.0001
+[INFO] jester: Patience: 500
+[INFO] jester: Val proportion: 0.2
+[INFO] jester: Seed: 0
+[INFO] jester: ============================================================
+[INFO] jester: JAX devices: [CudaDevice(id=0)]
+[INFO] jester: [1/5] Loading posterior samples...
+[INFO] jester: Downsampled from 1875000 to 49343 samples (factor: 38)
+[INFO] jester: Data shape: (49343, 4)
+[INFO] jester: Parameters: ['log10_mej_dyn', 'log10_mej_wind', 'inclination_EM', 'luminosity_distance']
+[INFO] jester: Original data ranges:
+[INFO] jester:   log10_mej_dyn: [-4.000, -1.313]
+[INFO] jester:   log10_mej_wind: [-3.779, -0.550]
+[INFO] jester:   inclination_EM: [0.009, 1.571]
+[INFO] jester:   luminosity_distance: [578.975, 3819.317]
+[INFO] jester: Standardizing data using z-score (mean=0, std=1)...
+[INFO] jester: Standardized data statistics:
+[INFO] jester:   log10_mej_dyn: mean=-0.000, std=1.000
+[INFO] jester:   log10_mej_wind: mean=0.000, std=1.000
+[INFO] jester:   inclination_EM: mean=0.000, std=1.000
+[INFO] jester:   luminosity_distance: mean=0.000, std=1.000
+[INFO] jester: Data mean and std saved for inverse transformation
+[INFO] jester: [2/5] Creating flow architecture...
+[INFO] jester: Flow dimensionality: 4D
+[INFO] jester: [3/5] Training flow...
+[INFO] jester: Training dataset shape: (49343, 4)
+[INFO] jester: Training flow for up to 3000 epochs...
+[INFO] jester: Using 20.0% of data for validation
+[INFO] jester: Batch size: 128
+[INFO] jester: Training completed after 3000 epochs
+[INFO] jester: Final train loss: 4.4400
+[INFO] jester: Final val loss: 4.5351
+[INFO] jester: [4/5] Saving model...
+[INFO] jester: Saving model weights to ./source_8/nf/flow_weights.eqx
+[INFO] jester: Saving flow kwargs to ./source_8/nf/flow_kwargs.json
+[INFO] jester: Saving metadata to ./source_8/nf/metadata.json
+[INFO] jester: [5/5] Generating plots...
+[INFO] jester: Saved loss plot to ./source_8/nf/figures/losses.png
+[INFO] jester: Saved corner plot to ./source_8/nf/figures/corner.png
+[INFO] jester: ============================================================
+[INFO] jester: Training complete!
+[INFO] jester: Model saved to: ./source_8/nf
+[INFO] jester: Figures saved to: ./source_8/nf/figures
+[INFO] jester: ============================================================
+[INFO] jester: To use the trained flow:
+[INFO] jester: >>> from jesterTOV.inference.flows.flow import Flow
+[INFO] jester: >>> flow = Flow.from_directory('./source_8/nf')
+[INFO] jester: >>> samples = flow.sample(jax.random.key(0), (1000,))
+[INFO] jester: >>> # Samples are automatically rescaled to original domain
+[INFO] jester: ============================================================

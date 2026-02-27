@@ -1,7 +1,0 @@
-collective:
-    time_nodes: 1
-    prior: Uniform
-    time_range: linear 0.3 14
-    params:
-        xmin: 0.3
-        xmax: 2.0
