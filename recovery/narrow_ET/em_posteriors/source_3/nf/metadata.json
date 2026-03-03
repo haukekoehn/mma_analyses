@@ -3,9 +3,7 @@
   "n_samples_used": 49343,
   "parameter_names": [
     "log10_mej_dyn",
-    "log10_mej_wind",
-    "inclination_EM",
-    "luminosity_distance"
+    "log10_mej_wind"
   ],
   "filepath": "./source_3/posterior.npz",
   "flow_type": "masked_autoregressive_flow",
@@ -17,14 +15,10 @@
   "standardization_method": "zscore",
   "data_mean": [
     -2.2583372592926025,
-    -0.9931586980819702,
-    0.694027304649353,
-    945.2808227539062
+    -0.9931586980819702
   ],
   "data_std": [
     0.47829577326774597,
-    0.2078024446964264,
-    0.22694969177246094,
-    529.8783569335938
+    0.2078024446964264
   ]
 }

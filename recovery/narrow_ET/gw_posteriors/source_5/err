@@ -1,95 +1,95 @@
-10:49 bilby INFO    : Waveform generator instantiated: WaveformGenerator(duration=5605.0, sampling_frequency=4096, start_time=0, frequency_domain_source_model=bilby.gw.source.lal_binary_neutron_star, time_domain_source_model=None, parameter_conversion=bilby.gw.conversion.convert_to_lal_binary_neutron_star_parameters, waveform_arguments={'waveform_approximant': 'IMRPhenomXAS_NRTidalv3', 'reference_frequency': 5.0, 'minimum_frequency': 5.0})
-10:49 bilby INFO    : Injected signal in ETL1:
-10:49 bilby INFO    :   optimal SNR = 13.10
-10:49 bilby INFO    :   matched filter SNR = 14.75+0.36j
-10:49 bilby INFO    :   chirp_mass = 1.4014972993546522
-10:49 bilby INFO    :   mass_ratio = 0.9489227237148661
-10:49 bilby INFO    :   chi_1 = 0.0348899942018882
-10:49 bilby INFO    :   chi_2 = 0.0
-10:49 bilby INFO    :   lambda_1 = 504.2101711775889
-10:49 bilby INFO    :   lambda_2 = 689.4960107850269
-10:49 bilby INFO    :   theta_jn = 0.8850377627699506
-10:49 bilby INFO    :   luminosity_distance = 1212.2776692155053
-10:49 bilby INFO    :   phase = 0.1180823278914499
-10:49 bilby INFO    :   psi = 2.444215808602052
-10:49 bilby INFO    :   ra = 4.116602935590886
-10:49 bilby INFO    :   dec = -0.290072050761744
-10:49 bilby INFO    :   geocent_time = 2240055072.510669
-10:49 bilby INFO    : Injected signal in ETL2:
-10:49 bilby INFO    :   optimal SNR = 2.88
-10:49 bilby INFO    :   matched filter SNR = 3.65-1.43j
-10:49 bilby INFO    :   chirp_mass = 1.4014972993546522
-10:49 bilby INFO    :   mass_ratio = 0.9489227237148661
-10:49 bilby INFO    :   chi_1 = 0.0348899942018882
-10:49 bilby INFO    :   chi_2 = 0.0
-10:49 bilby INFO    :   lambda_1 = 504.2101711775889
-10:49 bilby INFO    :   lambda_2 = 689.4960107850269
-10:49 bilby INFO    :   theta_jn = 0.8850377627699506
-10:49 bilby INFO    :   luminosity_distance = 1212.2776692155053
-10:49 bilby INFO    :   phase = 0.1180823278914499
-10:49 bilby INFO    :   psi = 2.444215808602052
-10:49 bilby INFO    :   ra = 4.116602935590886
-10:49 bilby INFO    :   dec = -0.290072050761744
-10:49 bilby INFO    :   geocent_time = 2240055072.510669
-10:49 bilby INFO    : Waveform generator instantiated: WaveformGenerator(duration=5605.0, sampling_frequency=4096, start_time=0, frequency_domain_source_model=bilby.gw.source.binary_neutron_star_frequency_sequence, time_domain_source_model=None, parameter_conversion=bilby.gw.conversion.convert_to_lal_binary_neutron_star_parameters, waveform_arguments={'waveform_approximant': 'IMRPhenomXAS_NRTidalv3', 'reference_frequency': 5.0})
-10:49 bilby INFO    : Loaded distance marginalisation lookup table from source_5/.distance_marginalization_lookup.npz.
-10:49 bilby INFO    : The total frequency range is divided into 12 bands with frequency intervals of 1/5605.0 Hz, 1/2802.5 Hz, 1/1401.25 Hz, 1/700.625 Hz, 1/350.3125 Hz, 1/175.15625 Hz, 1/87.578125 Hz, 1/43.7890625 Hz, 1/21.89453125 Hz, 1/10.947265625 Hz, 1/5.4736328125 Hz, 1/2.73681640625 Hz.
-10:49 bilby INFO    : The number of frequency points where waveforms are evaluated is 29633.
-10:49 bilby INFO    : The speed-up gain of multi-banding is 386.42780008774.
-10:49 bilby INFO    : Pre-computing linear coefficients for ETL1
-10:49 bilby INFO    : Pre-computing linear coefficients for ETL2
-10:49 bilby INFO    : Linear-interpolation algorithm is used for (h, h).
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 0-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 1-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 2-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 3-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 4-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 5-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 6-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 7-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 8-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 9-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 10-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 11-th band
-10:49 bilby INFO    : Running for label 'source_5', output will be saved to 'source_5'
-10:49 bilby INFO    : Analysis priors:
-10:49 bilby INFO    : mass_ratio=bilby.gw.prior.UniformInComponentsMassRatio(minimum=0.4, maximum=1, name='mass_ratio', latex_label='$q$', unit=None, boundary=None, equal_mass=False)
-10:49 bilby INFO    : chi_1=bilby.gw.prior.AlignedSpin(a_prior=Uniform(minimum=0, maximum=0.2, name=None, latex_label=None, unit=None, boundary=None), z_prior=Uniform(minimum=-1, maximum=1, name=None, latex_label=None, unit=None, boundary=None), name='chi_1', latex_label='$\\chi_1$', unit=None, boundary=None, minimum=-0.2, maximum=0.2, num_interp=100000)
-10:49 bilby INFO    : chi_2=bilby.gw.prior.AlignedSpin(a_prior=Uniform(minimum=0, maximum=0.2, name=None, latex_label=None, unit=None, boundary=None), z_prior=Uniform(minimum=-1, maximum=1, name=None, latex_label=None, unit=None, boundary=None), name='chi_2', latex_label='$\\chi_2$', unit=None, boundary=None, minimum=-0.2, maximum=0.2, num_interp=100000)
-10:49 bilby INFO    : lambda_1=Uniform(minimum=0, maximum=5000, name='lambda_1', latex_label='$\\Lambda_1$', unit=None, boundary=None)
-10:49 bilby INFO    : lambda_2=Uniform(minimum=0, maximum=5000, name='lambda_2', latex_label='$\\Lambda_2$', unit=None, boundary=None)
-10:49 bilby INFO    : psi=Uniform(minimum=0, maximum=3.141592653589793, name='psi', latex_label='$\\psi$', unit=None, boundary='periodic')
-10:49 bilby INFO    : theta_jn=Sine(minimum=0, maximum=3.141592653589793, name='theta_jn', latex_label='$\\theta_{JN}$', unit=None, boundary=None)
-10:49 bilby INFO    : chirp_mass=bilby.gw.prior.UniformInComponentsChirpMass(minimum=np.float64(1.3914972993546522), maximum=np.float64(1.4114972993546522), name='chirp_mass', latex_label='$\\mathcal{M}$', unit=None, boundary=None)
-10:49 bilby INFO    : geocent_time=Uniform(minimum=2240055072.4106693, maximum=2240055072.610669, name='geocent_time', latex_label='$t_c$', unit=None, boundary=None)
-10:49 bilby INFO    : mass_1=Constraint(minimum=0.5, maximum=3, name='mass_1', latex_label='$m_1$', unit=None)
-10:49 bilby INFO    : mass_2=Constraint(minimum=0.5, maximum=3, name='mass_2', latex_label='$m_2$', unit=None)
-10:49 bilby INFO    : phase=0.0
-10:49 bilby INFO    : luminosity_distance=5081.994536908556
-10:49 bilby INFO    : ra=4.116602935590886
-10:49 bilby INFO    : dec=-0.290072050761744
-10:49 bilby INFO    : Analysis likelihood class: <class 'nmma.gw.gw_likelihood.GravitationalWaveTransientLikelihood'>
-10:49 bilby INFO    : Analysis likelihood noise evidence: -22908778.230077587
-10:49 bilby INFO    : Single likelihood evaluation took 1.058e-02 s
-10:49 bilby INFO    : Using sampler Dynesty with kwargs {'nlive': 1024, 'bound': 'live', 'sample': 'acceptance-walk', 'periodic': None, 'reflective': None, 'update_interval': 600, 'first_update': None, 'npdim': None, 'rstate': None, 'queue_size': 192, 'pool': None, 'use_pool': None, 'live_points': None, 'logl_args': None, 'logl_kwargs': None, 'ptform_args': None, 'ptform_kwargs': None, 'gradient': None, 'grad_args': None, 'grad_kwargs': None, 'compute_jac': False, 'enlarge': None, 'bootstrap': None, 'walks': 100, 'facc': 0.2, 'slices': None, 'fmove': 0.9, 'max_move': 100, 'update_func': None, 'ncdim': None, 'blob': False, 'save_history': False, 'history_filename': None, 'maxiter': None, 'maxcall': None, 'dlogz': 0.1, 'logl_max': inf, 'n_effective': None, 'add_live': True, 'print_progress': True, 'print_func': <bound method Dynesty._print_func of <bilby.core.sampler.dynesty.Dynesty object at 0x7f76e8f57790>>, 'save_bounds': False, 'checkpoint_file': None, 'checkpoint_every': 60, 'resume': False, 'seed': None}
-10:49 bilby INFO    : Global meta data was removed from the result object for compatibility. Use the `BILBY_INCLUDE_GLOBAL_METADATA` environment variable to include it. This behaviour will be removed in a future release. For more details see: https://bilby-dev.github.io/bilby/faq.html#global-meta-data
-10:49 bilby INFO    : Checkpoint every check_point_delta_t = 1800s
-10:49 bilby INFO    : Using dynesty version 2.1.5
-10:49 bilby INFO    : Using the bilby-implemented acceptance-walk sampling with an average of 60 accepted steps per MCMC and maximum length 5000
-10:49 bilby INFO    : Setting up multiproccesing pool with 192 processes
-10:49 bilby INFO    : Reading resume file source_5/source_5_resume.pickle
-10:49 bilby INFO    : Resume file successfully loaded.
-10:49 bilby INFO    : Written checkpoint file source_5/source_5_resume.pickle
-10:49 bilby INFO    : Starting to close worker pool.
-10:49 bilby INFO    : Finished closing worker pool.
-10:49 bilby INFO    : Rejection sampling nested samples to obtain 5469 posterior samples
-10:49 bilby INFO    : Sampling time: 1:16:17.385440
-10:49 bilby INFO    : Summary of results:
+10:39 bilby INFO    : Waveform generator instantiated: WaveformGenerator(duration=5605.0, sampling_frequency=4096, start_time=0, frequency_domain_source_model=bilby.gw.source.lal_binary_neutron_star, time_domain_source_model=None, parameter_conversion=bilby.gw.conversion.convert_to_lal_binary_neutron_star_parameters, waveform_arguments={'waveform_approximant': 'IMRPhenomXAS_NRTidalv3', 'reference_frequency': 5.0, 'minimum_frequency': 5.0})
+10:39 bilby INFO    : Injected signal in ETL1:
+10:39 bilby INFO    :   optimal SNR = 13.10
+10:39 bilby INFO    :   matched filter SNR = 14.75+0.36j
+10:39 bilby INFO    :   chirp_mass = 1.4014972993546522
+10:39 bilby INFO    :   mass_ratio = 0.9489227237148661
+10:39 bilby INFO    :   chi_1 = 0.0348899942018882
+10:39 bilby INFO    :   chi_2 = 0.0
+10:39 bilby INFO    :   lambda_1 = 504.2101711775889
+10:39 bilby INFO    :   lambda_2 = 689.4960107850269
+10:39 bilby INFO    :   theta_jn = 0.8850377627699506
+10:39 bilby INFO    :   luminosity_distance = 1212.2776692155053
+10:39 bilby INFO    :   phase = 0.1180823278914499
+10:39 bilby INFO    :   psi = 2.444215808602052
+10:39 bilby INFO    :   ra = 4.116602935590886
+10:39 bilby INFO    :   dec = -0.290072050761744
+10:39 bilby INFO    :   geocent_time = 2240055072.510669
+10:39 bilby INFO    : Injected signal in ETL2:
+10:39 bilby INFO    :   optimal SNR = 2.88
+10:39 bilby INFO    :   matched filter SNR = 3.65-1.43j
+10:39 bilby INFO    :   chirp_mass = 1.4014972993546522
+10:39 bilby INFO    :   mass_ratio = 0.9489227237148661
+10:39 bilby INFO    :   chi_1 = 0.0348899942018882
+10:39 bilby INFO    :   chi_2 = 0.0
+10:39 bilby INFO    :   lambda_1 = 504.2101711775889
+10:39 bilby INFO    :   lambda_2 = 689.4960107850269
+10:39 bilby INFO    :   theta_jn = 0.8850377627699506
+10:39 bilby INFO    :   luminosity_distance = 1212.2776692155053
+10:39 bilby INFO    :   phase = 0.1180823278914499
+10:39 bilby INFO    :   psi = 2.444215808602052
+10:39 bilby INFO    :   ra = 4.116602935590886
+10:39 bilby INFO    :   dec = -0.290072050761744
+10:39 bilby INFO    :   geocent_time = 2240055072.510669
+10:39 bilby INFO    : Waveform generator instantiated: WaveformGenerator(duration=5605.0, sampling_frequency=4096, start_time=0, frequency_domain_source_model=bilby.gw.source.binary_neutron_star_frequency_sequence, time_domain_source_model=None, parameter_conversion=bilby.gw.conversion.convert_to_lal_binary_neutron_star_parameters, waveform_arguments={'waveform_approximant': 'IMRPhenomXAS_NRTidalv3', 'reference_frequency': 5.0})
+10:39 bilby INFO    : Loaded distance marginalisation lookup table from source_5/.distance_marginalization_lookup.npz.
+10:39 bilby INFO    : The total frequency range is divided into 12 bands with frequency intervals of 1/5605.0 Hz, 1/2802.5 Hz, 1/1401.25 Hz, 1/700.625 Hz, 1/350.3125 Hz, 1/175.15625 Hz, 1/87.578125 Hz, 1/43.7890625 Hz, 1/21.89453125 Hz, 1/10.947265625 Hz, 1/5.4736328125 Hz, 1/2.73681640625 Hz.
+10:39 bilby INFO    : The number of frequency points where waveforms are evaluated is 29633.
+10:39 bilby INFO    : The speed-up gain of multi-banding is 386.42780008774.
+10:39 bilby INFO    : Pre-computing linear coefficients for ETL1
+10:39 bilby INFO    : Pre-computing linear coefficients for ETL2
+10:39 bilby INFO    : Linear-interpolation algorithm is used for (h, h).
+10:39 bilby INFO    : Pre-computing quadratic coefficients for the 0-th band
+10:39 bilby INFO    : Pre-computing quadratic coefficients for the 1-th band
+10:39 bilby INFO    : Pre-computing quadratic coefficients for the 2-th band
+10:39 bilby INFO    : Pre-computing quadratic coefficients for the 3-th band
+10:39 bilby INFO    : Pre-computing quadratic coefficients for the 4-th band
+10:39 bilby INFO    : Pre-computing quadratic coefficients for the 5-th band
+10:39 bilby INFO    : Pre-computing quadratic coefficients for the 6-th band
+10:39 bilby INFO    : Pre-computing quadratic coefficients for the 7-th band
+10:39 bilby INFO    : Pre-computing quadratic coefficients for the 8-th band
+10:39 bilby INFO    : Pre-computing quadratic coefficients for the 9-th band
+10:39 bilby INFO    : Pre-computing quadratic coefficients for the 10-th band
+10:39 bilby INFO    : Pre-computing quadratic coefficients for the 11-th band
+10:39 bilby INFO    : Running for label 'source_5', output will be saved to 'source_5'
+10:39 bilby INFO    : Analysis priors:
+10:39 bilby INFO    : mass_ratio=bilby.gw.prior.UniformInComponentsMassRatio(minimum=0.4, maximum=1, name='mass_ratio', latex_label='$q$', unit=None, boundary=None, equal_mass=False)
+10:39 bilby INFO    : chi_1=bilby.gw.prior.AlignedSpin(a_prior=Uniform(minimum=0, maximum=0.2, name=None, latex_label=None, unit=None, boundary=None), z_prior=Uniform(minimum=-1, maximum=1, name=None, latex_label=None, unit=None, boundary=None), name='chi_1', latex_label='$\\chi_1$', unit=None, boundary=None, minimum=-0.2, maximum=0.2, num_interp=100000)
+10:39 bilby INFO    : chi_2=bilby.gw.prior.AlignedSpin(a_prior=Uniform(minimum=0, maximum=0.2, name=None, latex_label=None, unit=None, boundary=None), z_prior=Uniform(minimum=-1, maximum=1, name=None, latex_label=None, unit=None, boundary=None), name='chi_2', latex_label='$\\chi_2$', unit=None, boundary=None, minimum=-0.2, maximum=0.2, num_interp=100000)
+10:39 bilby INFO    : lambda_1=Uniform(minimum=0, maximum=5000, name='lambda_1', latex_label='$\\Lambda_1$', unit=None, boundary=None)
+10:39 bilby INFO    : lambda_2=Uniform(minimum=0, maximum=5000, name='lambda_2', latex_label='$\\Lambda_2$', unit=None, boundary=None)
+10:39 bilby INFO    : psi=Uniform(minimum=0, maximum=3.141592653589793, name='psi', latex_label='$\\psi$', unit=None, boundary='periodic')
+10:39 bilby INFO    : theta_jn=Sine(minimum=0, maximum=3.141592653589793, name='theta_jn', latex_label='$\\theta_{JN}$', unit=None, boundary=None)
+10:39 bilby INFO    : chirp_mass=bilby.gw.prior.UniformInComponentsChirpMass(minimum=np.float64(1.3914972993546522), maximum=np.float64(1.4114972993546522), name='chirp_mass', latex_label='$\\mathcal{M}$', unit=None, boundary=None)
+10:39 bilby INFO    : geocent_time=Uniform(minimum=2240055072.4106693, maximum=2240055072.610669, name='geocent_time', latex_label='$t_c$', unit=None, boundary=None)
+10:39 bilby INFO    : mass_1=Constraint(minimum=0.5, maximum=3, name='mass_1', latex_label='$m_1$', unit=None)
+10:39 bilby INFO    : mass_2=Constraint(minimum=0.5, maximum=3, name='mass_2', latex_label='$m_2$', unit=None)
+10:39 bilby INFO    : phase=0.0
+10:39 bilby INFO    : luminosity_distance=5081.994536908556
+10:39 bilby INFO    : ra=4.116602935590886
+10:39 bilby INFO    : dec=-0.290072050761744
+10:39 bilby INFO    : Analysis likelihood class: <class 'nmma.gw.gw_likelihood.GravitationalWaveTransientLikelihood'>
+10:39 bilby INFO    : Analysis likelihood noise evidence: -22908778.230077587
+10:39 bilby INFO    : Single likelihood evaluation took 1.047e-02 s
+10:39 bilby INFO    : Using sampler Dynesty with kwargs {'nlive': 1024, 'bound': 'live', 'sample': 'acceptance-walk', 'periodic': None, 'reflective': None, 'update_interval': 600, 'first_update': None, 'npdim': None, 'rstate': None, 'queue_size': 192, 'pool': None, 'use_pool': None, 'live_points': None, 'logl_args': None, 'logl_kwargs': None, 'ptform_args': None, 'ptform_kwargs': None, 'gradient': None, 'grad_args': None, 'grad_kwargs': None, 'compute_jac': False, 'enlarge': None, 'bootstrap': None, 'walks': 100, 'facc': 0.2, 'slices': None, 'fmove': 0.9, 'max_move': 100, 'update_func': None, 'ncdim': None, 'blob': False, 'save_history': False, 'history_filename': None, 'maxiter': None, 'maxcall': None, 'dlogz': 0.1, 'logl_max': inf, 'n_effective': None, 'add_live': True, 'print_progress': True, 'print_func': <bound method Dynesty._print_func of <bilby.core.sampler.dynesty.Dynesty object at 0x7fcfdfe3c8d0>>, 'save_bounds': False, 'checkpoint_file': None, 'checkpoint_every': 60, 'resume': False, 'seed': None}
+10:39 bilby INFO    : Global meta data was removed from the result object for compatibility. Use the `BILBY_INCLUDE_GLOBAL_METADATA` environment variable to include it. This behaviour will be removed in a future release. For more details see: https://bilby-dev.github.io/bilby/faq.html#global-meta-data
+10:39 bilby INFO    : Checkpoint every check_point_delta_t = 1800s
+10:39 bilby INFO    : Using dynesty version 2.1.5
+10:39 bilby INFO    : Using the bilby-implemented acceptance-walk sampling with an average of 60 accepted steps per MCMC and maximum length 5000
+10:39 bilby INFO    : Setting up multiproccesing pool with 192 processes
+10:39 bilby INFO    : Reading resume file source_5/source_5_resume.pickle
+10:39 bilby INFO    : Resume file successfully loaded.
+10:39 bilby INFO    : Written checkpoint file source_5/source_5_resume.pickle
+10:40 bilby INFO    : Starting to close worker pool.
+10:40 bilby INFO    : Finished closing worker pool.
+10:40 bilby INFO    : Rejection sampling nested samples to obtain 5469 posterior samples
+10:40 bilby INFO    : Sampling time: 1:16:17.274095
+10:40 bilby INFO    : Summary of results:
 nsamples: 5469
 ln_noise_evidence: -22908778.230
 ln_evidence: -22908691.777 +/-  0.163
 ln_bayes_factor: 86.453 +/-  0.163
 
-10:50 bilby INFO    : Reconstructing marginalised parameters.
-10:50 bilby WARNING : Likelihood has no outdir and label attribute: caching disabled
-10:50 bilby INFO    : Using a pool with size 192 for nsamples=5469
+10:40 bilby INFO    : Reconstructing marginalised parameters.
+10:40 bilby WARNING : Likelihood has no outdir and label attribute: caching disabled
+10:40 bilby INFO    : Using a pool with size 192 for nsamples=5469

@@ -42,7 +42,7 @@ def main():
         os.mkdir(args.outdir)
 
     events = pd.read_csv("../events.dat", sep=" ")
-    event = events.loc[int(args.source), ["mass_1", "mass_2", "chi_1", "chi_2", "lambda_1", "lambda_2", "theta_jn", "luminosity_distance", "phase", "psi", "ra", "dec", "geocent_time"]]
+    event = events.loc[int(args.source), ["mass_1", "mass_2", "chi_1", "chi_2", "lambda_1", "lambda_2", "theta_jn", "luminosity_distance", "phase", "psi", "ra", "dec", "geocent_time", "redshift"]]
     CHIEFF = (event['chi_1'] * event['mass_1'] + event['chi_2'] * event['mass_2']) / (event['mass_1'] + event['mass_2'])
     MCHIRP = bilby.gw.conversion.component_masses_to_chirp_mass(event['mass_1'], event["mass_2"])
     event["mass_ratio"] = event["mass_2"] / event["mass_1"]
@@ -136,10 +136,19 @@ def main():
         label=args.outdir,
         save="hdf5"
     )
-    
-    posterior_samples = generate_all_bns_parameters(result.posterior)
+
+    posterior_samples = generate_all_bns_parameters(result.posterior)    
     posterior_samples = generate_posterior_samples_from_marginalized_likelihood(posterior_samples, likelihood.sub_model, npool=192, use_cache=False)
+    posterior_samples = generate_all_bns_parameters(posterior_samples)
     np.savez(os.path.join(args.outdir, "posterior.npz"), **posterior_samples)
+
+    true_redshift = event["redshift"]
+    redshift_mean = np.random.normal(loc=true_redshift, scale=0.01*true_redshift, size=1)
+    redshift_samples = np.random.normal(loc=redshift_mean, scale=0.01*true_redshift, size=posterior_samples["mass_1"].shape)
+
+    posterior_samples["mass_1_source"] = posterior_samples["mass_1"] / (1 + redshift_samples)
+    posterior_samples["mass_2_source"] = posterior_samples["mass_2"] / (1 + redshift_samples)
+    np.savez(os.path.join(args.outdir, "posterior_mm.npz"), **posterior_samples)
 
     if args.plot:
         result.plot_corner()
