@@ -1,5 +1,6 @@
 from typing import Iterable
 
+import h5py
 import numpy as np
 import pandas as pd
 import scipy.interpolate as interpolate
@@ -8,7 +9,7 @@ from astropy import coordinates
 
 
 from fiesta.filters import Filter
-from fiesta.conversions import mag_app_from_mag_abs
+from fiesta.conversions import mag_app_from_mag_abs, apply_redshift
 from fiesta.extinction import extinctionFactorP92SMC
 
 from telescopes import ultrasat_filter
@@ -109,5 +110,106 @@ def filter_freq(filt):
         return Filter(filt).nu
     else:
         return ultrasat_filter.nu
+
+
+def determine_kn_visibility(params, model_kn, model_afg):
+    """
+    This function tries to determine whether the kn is outshined by the afterglow (e.g. at low inclination).
+    """
+    times_kn, mags_kn = model_kn.predict(params)
+    times_afg, mags_afg = model_afg.predict(params)
+
+    times = np.geomspace(1, 10, 100)    
+    mag_difference = np.interp(times, times_kn, mags_kn["lsstg"]) - np.interp(times, times_afg, mags_afg["lsstg"])
+    mags_kn = np.interp(times, times_kn, mags_kn["lsstg"])
+    mags_afg_xray = np.interp(times, times_afg, mags_afg["X-ray-1keV"])
+    mags_afg_radio = np.interp(times, times_afg, mags_afg["radio-1.4GHz"])
+
+    kn_visible = np.any( (mag_difference <= 1) & (mags_kn<30.) )
+
+    grb_visible = np.any( (mag_difference >= 1) & (mags_kn<30) ) or np.any(mags_afg_xray<42) or np.any(mags_afg_radio<24.5)
+
+    return int(kn_visible), int(grb_visible)
+
+
+
+def predict_kilonova_afterglow(j, mass_dist, params):
+    with h5py.File(f"../kilonova_afterglow/kilonova_afterglow_files/kn_afterglow_results_{mass_dist}.mat") as f:
+        flux = f["flux_mJy"][:, :, j]
+        times_kn_afg = f["t_days"][:].flatten()
+        nus_kn_afg = f["nu_Hz"][:].flatten()
+    
+    times_kn_afg, nus_kn_afg, flux = apply_redshift(flux, times_kn_afg, nus_kn_afg, params["redshift"])
+
+    times = np.geomspace(10, 365*10, 250)
+    nus = np.geomspace(1e9, 2e18, 200)
+
+    log10_flux = interpolate.interp1d(np.log10(nus_kn_afg), np.log10(flux), 
+                                      fill_value="extrapolate", axis=0)(np.log10(nus))
+    log10_flux = interpolate.interp1d(np.log10(times_kn_afg), log10_flux, 
+                                      fill_value="extrapolate", axis=1)(np.log10(times))
+
+    log10_flux += 2*np.log10(1e2/params["luminosity_distance"])
+
+    return times, nus, log10_flux
+
+
+def determine_afterglow_visibility(log10_flux, log10_flux_kn_afg, times, nus, afterglow_result, transient_search):
+    
+    if not (afterglow_result["radio_afterglow"] or afterglow_result["xray_afterglow"] or afterglow_result["opt_afterglow"]):
+        afterglow_result["kn_afg_visible"] = 0
+        afterglow_result["grb_afg_visible"] = 0
+        return afterglow_result
+
+    log10_flux_reduced = interpolate.interp1d(np.log10(nus), log10_flux, axis=0)(np.log10([1.4e9, 6.25e14, 2.417989e+17]))
+
+    if transient_search:
+        t_radio = times[log10_flux_reduced[0]>np.log10(5e-3)]
+        t_opt = times[log10_flux_reduced[1]>np.log10(9e-5)]
+        t_xray = t_opt # xray will never be found in transient searched  
+
+    else:
+        t_radio = times[log10_flux_reduced[0]>np.log10(5e-4)]
+        t_opt = times[log10_flux_reduced[1]>np.log10(1e-5)]
+        t_xray = times[log10_flux_reduced[2]>np.log10(5e-11)]
+    
+    non_empty = [a for a in [t_radio, t_opt, t_xray] if a.size > 0]
+    if not non_empty:
+        # if none of the thresholds is met 
+        # (because these are in flux density and the detection is with fluxes or mags)
+        # then simply use the radio peak
+        first_epoch = times[log10_flux_reduced[0].argmax()]
+    else:
+        first_epoch = np.min(np.concatenate(non_empty))
+    t_obs = np.geomspace(first_epoch, 10*365, 50)
+    
+    # interpolate the fluxes to the observed frequencies and times
+    flux_diff = log10_flux_kn_afg - log10_flux
+    flux_diff = interpolate.interp1d(np.log10(nus), flux_diff, axis=0)(np.log10([1.4e9, 6.25e14, 2.417989e+17]))
+    flux_diff = interpolate.interp1d(times, flux_diff, axis=1)(t_obs)
+    flux_diff = 10**(flux_diff)
+    
+    log10_flux = interpolate.interp1d(np.log10(nus), log10_flux, axis=0)(np.log10([1.4e9, 6.25e14, 2.417989e+17]))
+    log10_flux = interpolate.interp1d(times, log10_flux, axis=1)(t_obs)
+
+    kn_afg_visible = 0
+    grb_afg_visible = 0
+
+    # in radio
+    kn_afg_visible += int( np.any( (flux_diff[0, :]>=0.3) & (log10_flux[0]>np.log10(5e-4)) ) )
+    grb_afg_visible += int(  np.any( (flux_diff[0, :]<=0.7) & (log10_flux[0]>np.log10(5e-4)) ) )
+
+    # in optical
+    kn_afg_visible += int( np.any( (flux_diff[1, :]>=0.3) & (log10_flux[1]>np.log10(1e-5)) ) )
+    grb_afg_visible += int( np.any( (flux_diff[1, :]<=0.7) & (log10_flux[1]>np.log10(1e-5)) ) )
+
+    # in xray
+    kn_afg_visible += int( np.any((flux_diff[2, :]>=0.3) & (log10_flux[2]>np.log10(5e-11)) ) )
+    grb_afg_visible += int( np.any((flux_diff[2, :]<=0.7) & (log10_flux[2]>np.log10(5e-11)) ) )
+
+    afterglow_result["kn_afg_visible"] = kn_afg_visible
+    afterglow_result["grb_afg_visible"] = grb_afg_visible
+        
+    return afterglow_result
 
 

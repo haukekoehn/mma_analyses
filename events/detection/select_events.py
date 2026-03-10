@@ -3,6 +3,12 @@ import sys
 import numpy as np
 import pandas as pd
 
+from scipy.interpolate import interp1d
+
+from fiesta.filters import Filter
+from fiesta.conversions import apply_redshift
+from fiesta.inference.lightcurve_model import FluxModel, CombinedSurrogate
+from fiesta.extinction import extinctionFactorP92SMC
 
 file_lists = {"narrow_ET": ["../gw/gw_params_narrow.dat", "../kilonova/kn_params_narrow.dat", "../grb/grb_params_narrow.dat", "./detection_output/narrow_ET.dat"],
          "narrow_ET_CE": ["../gw/gw_params_narrow.dat", "../kilonova/kn_params_narrow.dat", "../grb/grb_params_narrow.dat", "./detection_output/narrow_ET_CE.dat"],
@@ -10,8 +16,8 @@ file_lists = {"narrow_ET": ["../gw/gw_params_narrow.dat", "../kilonova/kn_params
          "wide_ET_CE": ["../gw/gw_params_wide.dat", "../kilonova/kn_params_wide.dat", "../grb/grb_params_wide.dat", "./detection_output/wide_ET_CE.dat"],
         }
 
-
 def main():
+
     
     catalog = sys.argv[1]
 
@@ -22,8 +28,10 @@ def main():
     df_kn = pd.read_csv(files[1], sep=" ")
     df_grb = pd.read_csv(files[2], sep=" ")
     df_detection = pd.read_csv(files[3], sep=" ")
+    
+   
+    selected = df_detection["kn_visible"]
 
-    selected = np.sum(df_detection[["lssti", "lsstg", "ztfg", "ztfi", "ps1::g", "ps1::i", "ultrasat_custom"]], axis=1) >= 2
     print(f"Total of {np.sum(selected)} selected events.")
 
     selected_df = pd.concat([df_gw[selected], df_kn[selected], df_grb[["has_grb", "thetaCore", "log10_Ekin_iso", "log10_n0"]][selected]], axis=1)

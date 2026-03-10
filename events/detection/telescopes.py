@@ -92,7 +92,7 @@ class GroundTelescope:
         if not start:
             return 0, {filt: 0 for filt in self.filters}
         
-        t_epochs = np.geomspace(10, 5*365, 10) + trigger_time
+        t_epochs = np.geomspace(10, 10*365, 10) + trigger_time
         ntiles = int(np.ceil(DeltaOmega/self.fov)) + 1
         true_tile = np.random.choice(ntiles)
 
@@ -320,7 +320,7 @@ class EINSTEINPROBE():
         if not start: 
             return 0, {"X-ray-0.5-4keV": 0}
         
-        t_epochs =  np.geomspace(10, 5*365, 10) + trigger_time
+        t_epochs =  np.geomspace(10, 10*365, 10) + trigger_time
         visible = self.check_visibility(t_epochs, ra, dec)
         t_epochs[~visible] += 365/2
         t_epochs[:2] = np.minimum(trigger_time + 365/2 + 10, t_epochs[:2])
