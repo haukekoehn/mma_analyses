@@ -124,6 +124,7 @@ def add_grb_parameters(df, df_gw):
 
 
     kinetic_energy = jet_energy - gamma_energy
+    kinetic_energy = np.maximum(0., kinetic_energy)
     df["log10_Ekin_iso"] = np.log10(4*np.pi*np.vectorize(energy_gaussian)(0, df["thetaCore"], kinetic_energy))
     df["log10_n0"] = np.random.uniform(low=-5, high=0, size=df.shape[0])
 
