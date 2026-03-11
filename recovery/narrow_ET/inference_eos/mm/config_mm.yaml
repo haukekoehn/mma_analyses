@@ -5,7 +5,7 @@ eos:
   type: metamodel_cse
   ndat_metamodel: 100
   nmax_nsat: 25.0
-  nb_CSE: 8
+  nb_CSE: 6
   crust_name: DH
 tov:
   min_nsat_TOV: 0.75
@@ -18,10 +18,12 @@ likelihoods:
 - type: constraints_eos
   enabled: true
 sampler:
-  type: smc-rw
-  n_particles: 5000
-  n_mcmc_steps: 10
-  target_ess: 0.9
-  random_walk_sigma: 0.05
-  n_eos_samples: 5000
-  output_dir: ./outdir_mm/
+  type: flowmc
+  n_chains: 500
+  n_loop_training: 40
+  n_loop_production: 20
+  n_local_steps: 10
+  n_global_steps: 100
+  n_epochs: 20
+  learning_rate: 0.001
+  output_dir: ./outdir_mm_flowmc/

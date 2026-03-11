@@ -5,7 +5,7 @@ eos:
   type: metamodel_cse
   ndat_metamodel: 100
   nmax_nsat: 25.0
-  nb_CSE: 8
+  nb_CSE: 6
   crust_name: DH
 tov:
   min_nsat_TOV: 0.75

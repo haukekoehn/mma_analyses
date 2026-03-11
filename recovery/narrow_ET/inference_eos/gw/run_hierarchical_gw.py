@@ -5,12 +5,14 @@ import jax
 from jesterTOV.inference.config.parser import load_config
 from jesterTOV.inference.run_inference import setup_transform, create_sampler, run_sampling, setup_prior
 
-from jesterTOV.inference.likelihoods import HierarchicalGWLikelihood, CombinedLikelihood, ConstraintEOSLikelihood, RadioTimingLikelihood
+from jesterTOV.inference.likelihoods import PopulationGWLikelihood, CombinedLikelihood, ConstraintEOSLikelihood, RadioTimingLikelihood
 from jesterTOV.inference.population.populations import RecycledBinary
 
 config = load_config("./config_gw.yaml")
 outdir = config.sampler.output_dir
 os.makedirs(outdir, exist_ok=True)
+
+key = jax.random.key(10662)
 
 #########
 # Prior #
@@ -18,24 +20,26 @@ os.makedirs(outdir, exist_ok=True)
 
 prior = setup_prior(config)
 
-
 ##############
 # Likelihood #
 ##############
 
-transform = setup_transform(config, prior, keep_names=['mu_1', 'mu_2', 'sigma_1', 'sigma_2', 'alpha', 'm_min', 'm_max'])
+transform = setup_transform(config, prior, keep_names=['mu_1', 'mu_2', 'sigma_1', 'sigma_2', 'alpha', 'm_min', 'm_max'], fixed_params=dict(E_sat=-16.))
 
 likelihoods = []
 likelihoods.append(ConstraintEOSLikelihood())
 likelihoods.append(RadioTimingLikelihood(psr_name="J1614", mean=1.94, std=0.06))
-for src in range(0, 10):
-    likelihood = HierarchicalGWLikelihood(event_name = f"source_{src}",
-                                          model_dir = f"../gw_posteriors/source_{src}/nf",
+for src in range(0, 20):
+    key, subkey = jax.random.split(key)
+    likelihood = PopulationGWLikelihood(event_name = f"source_{src}",
+                                          model_dir = f"../../gw_posteriors/source_{src}/nf",
                                           population=RecycledBinary,
-                                          N_masses_evaluation=20_000)
+                                          pop_random_key=subkey,
+                                          N_masses_evaluation=40_000)
     likelihoods.append(likelihood)
 
 likelihood = CombinedLikelihood(likelihoods)
+
 ###########
 # Sampler #
 ###########
