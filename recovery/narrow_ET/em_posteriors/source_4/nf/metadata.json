@@ -7,18 +7,18 @@
   ],
   "filepath": "./source_4/posterior.npz",
   "flow_type": "masked_autoregressive_flow",
-  "num_epochs": 3000,
+  "num_epochs": 2719,
   "learning_rate": 0.0001,
   "max_patience": 500,
   "val_prop": 0.2,
   "standardize": true,
   "standardization_method": "zscore",
   "data_mean": [
-    -2.637000560760498,
-    -2.5233354568481445
+    -2.3439583778381348,
+    -0.8181875348091125
   ],
   "data_std": [
-    0.7786368727684021,
-    0.8618746995925903
+    0.4683067202568054,
+    0.2919303774833679
   ]
 }

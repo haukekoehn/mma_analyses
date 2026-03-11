@@ -1,4 +1,5 @@
 import os
+from typing import Iterable
 
 import numpy as np
 import pandas as pd
@@ -69,6 +70,18 @@ GRB_prior = [Uniform(xmin=47.0, xmax=57.0, naming=['log10_E0']),
 # SAMPLING     #
 ################
 
+def enforce_surrogate_param_range(params, models):
+
+    if not isinstance(models, Iterable):
+        models = [models]
+
+    for model in models:
+        for p, (pmin, pmax, _) in model.parameter_distributions.items():
+            params[p] = jnp.maximum(pmin, params[p])
+            params[p] = jnp.minimum(pmax, params[p])
+
+    return params
+
 def afterglow_peak(param_dict):
     times, mags = model_afterglow.predict(param_dict)
     return times[mags["radio-1.4GHz"].argmax()]
@@ -78,10 +91,10 @@ def analyze_event(j, param_dict, rng_key):
     param_dict.update(dict(alphaWing=2., p=2.15, log10_epsilon_e=-1., log10_epsilon_B=-3., Gamma0=500))
     param_dict["log10_E0"] = param_dict.pop("log10_Ekin_iso")
     redshift = param_dict["redshift"]
+    param_dict = enforce_surrogate_param_range(param_dict, [model_KN, model_afterglow])
 
     model = CombinedSurrogate(models=[model_KN, model_afterglow], 
                               sample_times= jnp.geomspace(0.9 * (1+redshift) * 0.2, 1.1 * (1+redshift) *  2000, 200))
-
 
     if param_dict["afterglow_detected"]:
         filters = FILTERS
@@ -143,7 +156,7 @@ def main():
 
     events = pd.read_csv("../events.dat", sep=" ")
     rng_key = jax.random.PRNGKey(567893127)
-    for j in range(6, 10):#range(0, events.shape[0]):
+    for j in range(4, 20):#range(0, events.shape[0]):
         rng_key, sub_key = jax.random.split(rng_key)
         analyze_event(j, events.iloc[j].to_dict(), sub_key)
         
