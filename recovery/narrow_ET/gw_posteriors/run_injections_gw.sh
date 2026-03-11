@@ -1,7 +1,7 @@
 #!/bin/bash
 nsrc=$(wc -l < ../events.dat)
 nsrc=$(( nsrc - 1 ))
-nsrc=10
+nsrc=20
 
 for (( src=0; src<nsrc; src++ ));
 do
