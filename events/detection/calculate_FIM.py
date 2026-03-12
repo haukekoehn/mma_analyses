@@ -35,11 +35,17 @@ def main(file):
     #np.savetxt(outfile, out, header = "snr sky_localization mass_1 mass_2 luminosity_distance theta_jn ra dec psi phase geocent_time", comments="")
 
     out = calculate_fim(file, network = Network(["ETT"]))
-    outfile = f"./outdir_FIM/{file.split('.')[0]}_ETT_gwfish.dat"
+    if "narrow" in file:
+         outfile = f"./outdir_FIM/gwfish_narrow_ETT.dat"
+    else:
+        outfile = f"./outdir_FIM/gwfish_wide_ETT.dat"
     np.savetxt(outfile, out, header = "snr sky_localization mass_1 mass_2 luminosity_distance theta_jn ra dec psi phase geocent_time", comments="")
 
     out = calculate_fim(file, network = Network(["ETT", "CE1"]))
-    outfile = f"./outdir_FIM/{file.split('.')[0]}_ETT_CE_gwfish.dat"
+    if "narrow" in file:
+         outfile = f"./outdir_FIM/gwfish_narrow_ETT_CE.dat"
+    else:
+        outfile = f"./outdir_FIM/gwfish_wide_ETT_CE.dat"
     np.savetxt(outfile, out, header = "snr sky_localization mass_1 mass_2 luminosity_distance theta_jn ra dec psi phase geocent_time", comments="")
 
 if __name__ == "__main__":
