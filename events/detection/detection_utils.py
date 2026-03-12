@@ -6,7 +6,8 @@ import pandas as pd
 import scipy.interpolate as interpolate
 import scipy.integrate as integrate
 from astropy import coordinates
-
+from astropy.utils import iers
+iers.conf.auto_max_age = None
 
 from fiesta.filters import Filter
 from fiesta.conversions import mag_app_from_mag_abs, apply_redshift
@@ -21,31 +22,73 @@ def log10_fluence(df, key):
     return fluence
 
 
-def which_telescopes_will_observe(DeltaOmega, redshift, has_CE):
+def which_telescopes_will_observe(DeltaOmega, redshift, detectors):
     start = dict(ztf=True, vr=True, pstarrs=True, ultrasat=True)
 
-    if (DeltaOmega>200) or (DeltaOmega>100 and has_CE) or redshift>0.2:
-        start["ztf"] = False
-    
-    if (DeltaOmega>50.) or (has_CE and DeltaOmega>=10.) or (has_CE and (DeltaOmega>8. and redshift>=0.2) ) or redshift>1.:
-        start["vr"] = False
-    
-    if (DeltaOmega>50.) or (DeltaOmega>30 and has_CE) or redshift>0.2:
-        start["pstarrs"] = False
+    if redshift>0.35:
+        start['ultrasat'] = False
 
-    if redshift>0.5:
-        start["ultrasat"] = False
+
+    if "CE" in detectors:
+        
+        # ZTF
+        if DeltaOmega>100 or redshift>0.2:
+            start['ztf'] = False
+        
+        # VR
+        if DeltaOmega>=10. or (DeltaOmega>7. and redshift>0.2) or redshift>1.:
+            start['vr'] = False
+        
+        # PSTARRS
+        if DeltaOmega>30 or redshift>0.2:
+            start['pstarrs'] = False
+
+    elif detectors=="ETL":
+        
+        # ZTF
+        if DeltaOmega>200. or redshift>0.2:
+            start["ztf"] = False
+
+        # VR
+        if DeltaOmega>50. or redshift>1.:
+            start["vr"] = False
+        
+        # PSTARRS
+        if DeltaOmega>50. or redshift>0.2:
+            start['pstarrs'] = False
+
+    elif detectors=="ETT":
+        # ZTF
+        if DeltaOmega>200. or redshift>0.2:
+            start["ztf"] = False
+
+        # VR
+        if DeltaOmega>100. or redshift>1.:
+            start["vr"] = False
+        
+        # PSTARRS
+        if DeltaOmega>50. or redshift>0.2:
+            start['pstarrs'] = False
+
+    else:
+        raise ValueError(f"Invalid detector {detectors}.")
 
     return start
 
-def which_telescopes_will_observe_afterglow(DeltaOmega, redshift, has_CE):
+def which_telescopes_will_observe_afterglow(DeltaOmega, redshift, detectors):
     start = dict(ska=True, dsa=True, vr=True, ep=True)
 
-    if (DeltaOmega>50.) or (DeltaOmega>10. and has_CE) or redshift>1.:
-        start["ska"] = False
-        start["dsa"] = False
-        start["vr"] = False
-        start["ep"] = False
+    if "CE" in detectors:
+        if DeltaOmega>=10. or redshift > 1.5:
+            start = dict(ska=False, dsa=False, vr=False, ep=False)
+        
+    elif detectors=="ETL":
+        if DeltaOmega>50. or redshift > 1.5:
+            start = dict(ska=False, dsa=False, vr=False, ep=False)
+    
+    elif detectors=="ETT":
+        if DeltaOmega>100. or redshift > 1.5:
+            start = dict(ska=False, dsa=False, vr=False, ep=False)
 
     return start
 
@@ -75,7 +118,7 @@ def check_afterglow_thresholds(log10_flux, times, nus):
     xray_peak = times[xray_fluence.argmax()]
     xray_detectable = xray_duration >= 7 or xray_peak <=21
 
-    return dict(radio_afterglow=int(radio_detectable), opt_afterglow=int(gband_detectable), xray_afterglow=int(xray_detectable), telt_vr=0.)
+    return dict(radio_afterglow=int(radio_detectable), opt_afterglow=int(gband_detectable), xray_afterglow=int(xray_detectable), telt_vr_afterglow=0.)
 
 
 def total_time_visible(times, visible_mask):

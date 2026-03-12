@@ -5,9 +5,8 @@ from scipy import integrate, interpolate
 import astropy.units as u
 from astropy.time import Time
 from astropy.coordinates import SkyCoord, EarthLocation, AltAz, get_sun
-import warnings
-from astropy.utils.exceptions import ErfaWarning
-warnings.simplefilter("ignore", ErfaWarning)
+from astropy.utils import iers
+iers.conf.auto_max_age = None
 
 
 from fiesta.inference.lightcurve_model import FluxModel
@@ -93,7 +92,13 @@ class GroundTelescope:
             return 0, {filt: 0 for filt in self.filters}
         
         t_epochs = np.geomspace(10, 10*365, 10) + trigger_time
+
         ntiles = int(np.ceil(DeltaOmega/self.fov)) + 1
+        if DeltaOmega/self.fov<=0.8:
+            ntiles = 1
+        if 0.8 < DeltaOmega/self.fov <=1.6:
+            ntiles = 2
+
         true_tile = np.random.choice(ntiles)
 
         total_telescope_time = 0

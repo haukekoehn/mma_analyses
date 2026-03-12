@@ -4,6 +4,8 @@ import numpy as np
 import pandas as pd
 import tqdm
 from astropy.time import Time
+from astropy.utils import iers
+iers.conf.auto_max_age = None
 from scipy.interpolate import interp1d
 
 from fiesta.filters import Filter
@@ -44,90 +46,103 @@ def main():
     else: 
         mass_dist = "wide"
     
-    if "CE" in sys.argv[2]:
-        detectors = "ET_CE"
-        has_CE = True
-    else:
-        detectors = "ET"
-        has_CE = False
-    
+    detectors = sys.argv[2].split(".")[1]
+    detectors = "_".join(detectors.split("_")[3:])
+
     outfile = f"./detection_output/{mass_dist}_{detectors}.dat"
-    prepare_outfile(outfile)
+    result_df = prepare_result_df(nrows=NBNS)
 
     for j in tqdm.tqdm(range(NBNS)):
-        observation_campaign(j, mass_dist, outfile, df_gw.iloc[j], df_FIM.iloc[j], df_kn.iloc[j], df_grb.iloc[j], has_CE)
+        result = observation_campaign(j, mass_dist, detectors, df_gw.iloc[j], df_FIM.iloc[j], df_kn.iloc[j], df_grb.iloc[j])
+        result_df.loc[j] = result
 
-def prepare_outfile(outfile):
-    with open(outfile, "w") as out:
-        out.write(f"redshift    gw_detected    grb_detected    DeltaOmega    ")
-        for key in ["telt_vr", "lsstg", "lssti", "telt_ztf", "ztfg", "ztfi", "telt_pstarrs", "ps1::g", "ps1::i", "telt_ultrasat", "ultrasat_custom"]:
-            out.write(f"{key}    ")
-        for key in ["radio_afterglow", "opt_afterglow", "xray_afterglow", "telt_vr_afterglow"]:
-            out.write(f"{key}    ")
-        for key in ["kn_visible", "grb_afg_visible", "kn_afg_visible"]:
-            out.write(f"{key}    ")
-        out.write(f" \n")
+    result_df.to_csv(outfile, sep=" ", float_format="%.3f")
 
-def observation_campaign(j, mass_dist, outfile, gw_event, fim_event, kn_event, grb_event, has_CE) -> tuple[bool, bool, float, bool, bool]:
+def prepare_result_df(nrows: int):
+
+    df = pd.DataFrame({
+        "redshift": np.zeros(nrows, dtype=np.float64),
+        "gw_detected": np.zeros(nrows, dtype=np.int64),
+        "grb_detected": np.zeros(nrows, dtype=np.int64),
+        "DeltaOmega": np.zeros(nrows, dtype=np.float64),
+        "telt_vr": np.zeros(nrows, dtype=np.float64),
+        "lsstg": np.zeros(nrows, dtype=np.int64),
+        "lssti": np.zeros(nrows, dtype=np.int64),
+        "telt_ztf": np.zeros(nrows, dtype=np.float64),
+        "ztfg": np.zeros(nrows, dtype=np.int64),
+        "ztfi": np.zeros(nrows, dtype=np.int64),
+        "telt_pstarrs": np.zeros(nrows, dtype=np.float64),
+        "ps1::g": np.zeros(nrows, dtype=np.int64),
+        "ps1::i": np.zeros(nrows, dtype=np.int64),
+        "telt_ultrasat": np.zeros(nrows, dtype=np.float64),
+        "ultrasat_custom": np.zeros(nrows, dtype=np.int64),
+        "afterglow_search": np.zeros(nrows, dtype=np.int64),
+        "radio_afterglow": np.zeros(nrows, dtype=np.int64),
+        "opt_afterglow": np.zeros(nrows, dtype=np.int64),
+        "xray_afterglow": np.zeros(nrows, dtype=np.int64),
+        "telt_vr_afterglow": np.zeros(nrows, dtype=np.float64),
+        "kn_visible": np.zeros(nrows, dtype=np.int64),
+        "grb_afg_visible": np.zeros(nrows, dtype=np.int64),
+        "kn_afg_visible": np.zeros(nrows, dtype=np.int64),
+    })
+
+    return df
+
+def observation_campaign(j, mass_dist, detectors, gw_event, fim_event, kn_event, grb_event):
     
     ################
     # GW Detection #
     ################
     
     gw_detected = (fim_event["snr"] > 12)
+    if gw_detected:
+        DeltaOmegaGW = fim_event["sky_localization"]
+    else:
+        DeltaOmegaGW = np.inf
+    
     
     #################
     # GRB Detection #
     #################
 
     grb_detected, DeltaOmegaGRB = grb_detection(grb_event)
-    DeltaOmega = min(fim_event["sky_localization"], DeltaOmegaGRB)
+    DeltaOmega = min(DeltaOmegaGW, DeltaOmegaGRB)
+
+    result = dict(redshift=gw_event["redshift"], gw_detected=int(gw_detected), grb_detected=int(grb_detected), DeltaOmega=DeltaOmega)
+
+    ########################################
+    # Check to consider follow-up campaign #
+    ########################################
 
     no_follow_up = (not gw_detected) or (DeltaOmega > 400)
 
     if no_follow_up:
-        if not gw_detected:
-            DeltaOmega = np.inf
 
-        with open(outfile, "a") as out:
-            out.write(f"{gw_event['redshift']:.3f}    {int(gw_detected)}    {int(grb_detected)}    {DeltaOmega:.2f}    ")
-            for key in ["telt_vr", "lsstg", "lssti", "telt_ztf", "ztfg", "ztfi", "telt_pstarrs", "ps1::g", "ps1::i", "telt_ultrasat", "ultrasat_custom"]:
-                out.write(f"{0}    ")
-            for key in ["radio_afterglow", "opt_afterglow", "xray_afterglow", "telt_vr_afterglow"]:
-                out.write(f"{0}    ")
-            for key in ["kn_visible", "grb_afg_visible", "kn_afg_visible"]:
-                out.write(f"{0}    ")
-            out.write(f" \n")
+        result = dict(**result, telt_vr=0., lsstg=0, lssti=0, telt_ztf=0., ztfg=0, ztfi=0, telt_pstarrs=0., telt_ultrasat=0., ultrasat_custom=0)
+        result["ps1::i"] = 0
+        result["ps1::g"] = 0
+        result = dict(**result, afterglow_search=0, radio_afterglow=0, opt_afterglow=0, xray_afterglow=0, telt_vr_afterglow=0.)
+        result = dict(**result, kn_visible=0, grb_afg_visible=0, kn_afg_visible=0)
         
-        return
+        return result
+
 
     ###################
     # UVOIR Detection #
     ###################
-    kn_results = kn_detection(gw_event, kn_event, grb_event, DeltaOmega, has_CE)
+    kn_results = kn_detection(gw_event, kn_event, grb_event, DeltaOmega, detectors)
 
     #######################
     # Afterglow Detection #
     #######################
-    afg_results = afterglow_detection(gw_event, kn_event, grb_event, DeltaOmega, kn_results, has_CE, j, mass_dist)
+    afg_results = afterglow_detection(gw_event, kn_event, grb_event, DeltaOmega, kn_results, j, mass_dist, detectors)
     
     afg_results["grb_afg_visible"] += kn_results["grb_afg_visible"]
+    del kn_results["grb_afg_visible"]
     
-    with open(outfile, "a") as out:
-        out.write(f"{gw_event['redshift']:.3f}    1    {int(grb_detected)}    {DeltaOmega:.2f}    ")
-        for key in ["telt_vr", "lsstg", "lssti", "telt_ztf", "ztfg", "ztfi", "telt_pstarrs", "ps1::g", "ps1::i", "telt_ultrasat", "ultrasat_custom"]:
-            out.write(f"{kn_results[key]}    ")
-        
-        for key in ["radio_afterglow", "opt_afterglow", "xray_afterglow", "telt_vr"]:
-            out.write(f"{afg_results[key]}    ")
-        
-        for key in ["kn_visible"]:
-            out.write(f"{int(kn_results[key])}    ")
+    result = dict(**result, **kn_results, **afg_results)
 
-        for key in ["grb_afg_visible", "kn_afg_visible"]:
-            out.write(f"{int(afg_results[key])}    ")
-
-        out.write("\n")
+    return result
 
 def grb_detection(event):
 
@@ -144,7 +159,7 @@ def grb_detection(event):
     
     return DeltaOmega < np.inf, DeltaOmega
 
-def kn_detection(gw_event, kn_event, grb_event, DeltaOmega, has_CE):
+def kn_detection(gw_event, kn_event, grb_event, DeltaOmega, detectors):
 
     trigger_time = gw_event["trigger_time"]
     dec = gw_event["dec"]
@@ -165,7 +180,7 @@ def kn_detection(gw_event, kn_event, grb_event, DeltaOmega, has_CE):
     mags_transient = apply_extinction_mag(mags_transient, params["redshift"], kn_event["Ebv"])
     times_transient += trigger_time
     
-    start = which_telescopes_will_observe(DeltaOmega, params["redshift"], has_CE)
+    start = which_telescopes_will_observe(DeltaOmega, params["redshift"], detectors)
     
     telt_ztf, detections_ztf = ztf.kilonova_campaign(start["ztf"],
                                                       trigger_time, 
@@ -209,7 +224,7 @@ def kn_detection(gw_event, kn_event, grb_event, DeltaOmega, has_CE):
     kn_results.update(detections_ultrasat)
 
     uvoir_detected = np.sum([kn_results[key] for key in ["ztfg", "ztfi", "lsstg", "lssti", "ps1::g", "ps1::i", "ultrasat_custom"]] ) >=2
-    kn_results["kn_visible"] = uvoir_detected
+    kn_results["kn_visible"] = int(uvoir_detected)
     kn_results["grb_afg_visible"] = 0
     
     if uvoir_detected and grb_event["has_grb"]:
@@ -218,7 +233,7 @@ def kn_detection(gw_event, kn_event, grb_event, DeltaOmega, has_CE):
     return kn_results
 
 
-def afterglow_detection(gw_event, kn_event, grb_event, DeltaOmega, kn_result, has_CE, j, mass_dist):
+def afterglow_detection(gw_event, kn_event, grb_event, DeltaOmega, kn_result, j, mass_dist, detectors):
     
     trigger_time = kn_event["trigger_time"]
     dec = gw_event["dec"]
@@ -254,10 +269,11 @@ def afterglow_detection(gw_event, kn_event, grb_event, DeltaOmega, kn_result, ha
 
     if uvoir_detected:
         afterglow_results = check_afterglow_thresholds(log10_flux, times, nus)
+        afterglow_results["afterglow_search"] = 0
 
     else:
 
-        start = which_telescopes_will_observe_afterglow(DeltaOmega, redshift, has_CE)
+        start = which_telescopes_will_observe_afterglow(DeltaOmega, redshift, detectors)
 
         _, detections_ska = ska.afterglow_campaign(start["ska"],
                                                    trigger_time,
@@ -292,10 +308,11 @@ def afterglow_detection(gw_event, kn_event, grb_event, DeltaOmega, kn_result, ha
                                                             nus,
                                                             log10_flux)
 
-        afterglow_results = dict(telt_vr=telt_vr/2) # divide by two because we only use one filter, little hacky
+        afterglow_results = dict(telt_vr_afterglow=telt_vr/2) # divide by two because we only use one filter, little hacky
         afterglow_results["radio_afterglow"] = sum(detections_ska.values()) + sum(detections_dsa.values())
         afterglow_results["opt_afterglow"] = detections_vr["lsstg"]
         afterglow_results["xray_afterglow"] = detections_ep["X-ray-0.5-4keV"]
+        afterglow_results["afterglow_search"] = 1
 
     
     afterglow_results = determine_afterglow_visibility(log10_flux, log10_flux_kn_afg, times-trigger_time, nus, afterglow_results, ~uvoir_detected)
