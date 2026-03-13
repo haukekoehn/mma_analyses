@@ -1,5 +1,5 @@
 [INFO] jester: Derived max_nbreak from nbreak prior: 2.0000 n_sat
-[INFO] jester: Initialized JesterTransform: EOS=MetaModel_with_CSE_EOS_model, TOV=<jesterTOV.tov.gr.GRTOVSolver object at 0x7eea95ac2150>
+[INFO] jester: Initialized JesterTransform: EOS=MetaModel_with_CSE_EOS_model, TOV=<jesterTOV.tov.gr.GRTOVSolver object at 0x7fc0fedb0b50>
 [WARNING] jester: Prior contains unused parameters: ['alpha', 'k_coll', 'm_max', 'm_min', 'mu_1', 'mu_2', 'sigma_1', 'sigma_2']. These will be preserved but not used by the transform.
 [INFO] jester: Loading NF for GW posterior source_0 from ../../gw_posteriors/source_0/nf_mm.
 [INFO] jester: Loading NF for EM posterior source_0 from ../../em_posteriors/source_0/nf.
@@ -61,95 +61,99 @@
 [INFO] jester: Loading NF for GW posterior source_19 from ../../gw_posteriors/source_19/nf_mm.
 [INFO] jester: Loading NF for EM posterior source_19 from ../../em_posteriors/source_19/nf.
 [INFO] jester: Loaded NFs for source_19.
-[INFO] jester: Initializing BlackJAX SMC sampler with random_walk kernel
-[INFO] jester: Configuration: 5000 particles, 40 MCMC steps per tempering stage
-[INFO] jester: Target ESS: 0.9
+Resources and strategies provided. Ignoring resource strategy bundles.
 [INFO] jester: Starting sampling with seed 45...
-[INFO] jester: Starting SMC sampling with random_walk kernel...
-[INFO] jester: Using random walk kernel
-[INFO] jester: Fixed sigma scaling: 0.05
-[INFO] jester: ======================================================================
-[INFO] jester: STARTING ADAPTIVE TEMPERING
-[INFO] jester: ======================================================================
-[INFO] jester: Kernel: RANDOM_WALK
-[INFO] jester: Particles: 5000
-[INFO] jester: MCMC steps per tempering: 40
-[INFO] jester: Target ESS: 90%
-[INFO] jester: Temperature progression: lambda = 0 (prior) -> 1 (posterior)
-[INFO] jester: Progress updates will be shown after each annealing step
-[INFO] jester: ======================================================================
-[INFO] jester: Running SMC loop (this may take several minutes)...
-2026-03-09 22:25:31.149298: E external/xla/xla/service/slow_operation_alarm.cc:73] 
-********************************
-[Compiling module jit_while] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
-********************************
-2026-03-09 22:26:14.147050: E external/xla/xla/service/slow_operation_alarm.cc:140] The operation took 2m42.997856879s
-
-********************************
-[Compiling module jit_while] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
-********************************
-[INFO] jester: Step    0 | λ=0.000000 | ESS= 98.9% | Accept= 67.4% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    1 | λ=0.000000 | ESS= 99.7% | Accept= 67.9% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    2 | λ=0.000000 | ESS= 99.8% | Accept= 67.3% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    3 | λ=0.000000 | ESS=100.0% | Accept= 67.7% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    4 | λ=0.000000 | ESS=100.0% | Accept= 67.6% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    5 | λ=0.000000 | ESS=100.0% | Accept= 67.4% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    6 | λ=0.000966 | ESS= 97.9% | Accept= 67.7% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    7 | λ=0.001926 | ESS= 98.4% | Accept= 67.2% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    8 | λ=0.003421 | ESS= 97.1% | Accept= 66.9% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    9 | λ=0.004704 | ESS= 98.2% | Accept= 66.7% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   10 | λ=0.006926 | ESS= 95.7% | Accept= 66.3% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   11 | λ=0.009162 | ESS= 96.5% | Accept= 66.0% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   12 | λ=0.012315 | ESS= 94.3% | Accept= 65.0% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   13 | λ=0.015792 | ESS= 93.9% | Accept= 63.8% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   14 | λ=0.019497 | ESS= 93.8% | Accept= 62.9% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   15 | λ=0.023617 | ESS= 93.2% | Accept= 62.1% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   16 | λ=0.027878 | ESS= 93.7% | Accept= 60.3% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   17 | λ=0.032617 | ESS= 93.2% | Accept= 59.2% | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   18 | λ=0.037581 | ESS= 93.8% | Accept= 57.8% | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   19 | λ=0.042873 | ESS= 94.2% | Accept= 56.6% | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   20 | λ=0.048587 | ESS= 94.6% | Accept= 55.4% | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   21 | λ=0.054866 | ESS= 94.9% | Accept= 55.0% | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   22 | λ=0.061666 | ESS= 95.3% | Accept= 54.1% | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   23 | λ=0.069118 | ESS= 95.8% | Accept= 53.9% | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   24 | λ=0.077689 | ESS= 95.7% | Accept= 52.9% | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   25 | λ=0.087315 | ESS= 95.9% | Accept= 52.0% | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   26 | λ=0.098414 | ESS= 96.0% | Accept= 50.5% | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   27 | λ=0.111308 | ESS= 95.8% | Accept= 49.3% | ███░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   28 | λ=0.126224 | ESS= 95.6% | Accept= 47.9% | ███░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   29 | λ=0.142814 | ESS= 95.7% | Accept= 45.8% | ████░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   30 | λ=0.161413 | ESS= 96.0% | Accept= 44.2% | ████░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   31 | λ=0.184305 | ESS= 95.3% | Accept= 42.1% | █████░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   32 | λ=0.209391 | ESS= 95.6% | Accept= 39.8% | ██████░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   33 | λ=0.238175 | ESS= 95.4% | Accept= 37.1% | ███████░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   34 | λ=0.270375 | ESS= 95.2% | Accept= 34.7% | ████████░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   35 | λ=0.306123 | ESS= 95.4% | Accept= 32.4% | █████████░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   36 | λ=0.348093 | ESS= 94.9% | Accept= 29.9% | ██████████░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   37 | λ=0.393413 | ESS= 95.4% | Accept= 27.2% | ███████████░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   38 | λ=0.445486 | ESS= 95.0% | Accept= 25.1% | █████████████░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   39 | λ=0.503987 | ESS= 95.0% | Accept= 23.0% | ███████████████░░░░░░░░░░░░░░░
-[INFO] jester: Step   40 | λ=0.567684 | ESS= 95.5% | Accept= 21.1% | █████████████████░░░░░░░░░░░░░
-[INFO] jester: Step   41 | λ=0.640220 | ESS= 95.4% | Accept= 19.6% | ███████████████████░░░░░░░░░░░
-[INFO] jester: Step   42 | λ=0.718197 | ESS= 95.8% | Accept= 18.1% | █████████████████████░░░░░░░░░
-[INFO] jester: Step   43 | λ=0.808531 | ESS= 95.9% | Accept= 16.6% | ████████████████████████░░░░░░
-[INFO] jester: Step   44 | λ=0.914292 | ESS= 95.6% | Accept= 15.6% | ███████████████████████████░░░
-[INFO] jester: Step   45 | λ=1.000000 | ESS= 97.6% | Accept= 13.9% | ██████████████████████████████
-[INFO] jester: Sampling complete! Runtime: 53 min 5 sec
-[INFO] jester: Generating SMC diagnostic plots...
-[INFO] jester: Saved diagnostic plot to outdir_mm/smc_diagnostics.png
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+[INFO] jester: Training summary
+[INFO] jester: ==========
+[INFO] jester: K_sat: 213.197 +/- 41.173
+[INFO] jester: Q_sat: 221.966 +/- 440.967
+[INFO] jester: Z_sat: -545.695 +/- 1139.058
+[INFO] jester: E_sym: 36.823 +/- 4.835
+[INFO] jester: L_sym: 54.859 +/- 33.702
+[INFO] jester: K_sym: -205.701 +/- 125.760
+[INFO] jester: Q_sym: 184.652 +/- 691.993
+[INFO] jester: Z_sym: -227.232 +/- 994.204
+[INFO] jester: nbreak: 0.236 +/- 0.044
+[INFO] jester: mu_1: 1.328 +/- 0.052
+[INFO] jester: mu_2: 1.486 +/- 0.282
+[INFO] jester: sigma_1: 0.037 +/- 0.009
+[INFO] jester: sigma_2: 0.149 +/- 0.081
+[INFO] jester: alpha: 0.827 +/- 0.096
+[INFO] jester: m_min: 1.139 +/- 0.035
+[INFO] jester: m_max: 1.392 +/- 0.012
+[INFO] jester: k_coll: 1.397 +/- 0.113
+[INFO] jester: n_CSE_0_u: 0.491 +/- 0.284
+[INFO] jester: cs2_CSE_0: 0.672 +/- 0.214
+[INFO] jester: n_CSE_1_u: 0.455 +/- 0.283
+[INFO] jester: cs2_CSE_1: 0.543 +/- 0.277
+[INFO] jester: n_CSE_2_u: 0.458 +/- 0.285
+[INFO] jester: cs2_CSE_2: 0.519 +/- 0.282
+[INFO] jester: n_CSE_3_u: 0.504 +/- 0.286
+[INFO] jester: cs2_CSE_3: 0.493 +/- 0.285
+[INFO] jester: n_CSE_4_u: 0.480 +/- 0.281
+[INFO] jester: cs2_CSE_4: 0.513 +/- 0.284
+[INFO] jester: n_CSE_5_u: 0.477 +/- 0.287
+[INFO] jester: cs2_CSE_5: 0.504 +/- 0.283
+[INFO] jester: cs2_CSE_6: 0.526 +/- 0.286
+[INFO] jester: Log probability: -2118763.512 +/- 205813543.094
+[INFO] jester: Local acceptance: -inf +/- nan
+[INFO] jester: Global acceptance: -inf +/- nan
+[INFO] jester: Max loss: 46.846, Min loss: 32.558
+[INFO] jester: Production summary
+[INFO] jester: ==========
+[INFO] jester: K_sat: 212.858 +/- 42.144
+[INFO] jester: Q_sat: 258.508 +/- 459.107
+[INFO] jester: Z_sat: -540.505 +/- 1144.314
+[INFO] jester: E_sym: 37.095 +/- 4.988
+[INFO] jester: L_sym: 51.286 +/- 32.943
+[INFO] jester: K_sym: -192.775 +/- 132.855
+[INFO] jester: Q_sym: 152.242 +/- 709.527
+[INFO] jester: Z_sym: -274.952 +/- 995.800
+[INFO] jester: nbreak: 0.234 +/- 0.046
+[INFO] jester: mu_1: 1.326 +/- 0.004
+[INFO] jester: mu_2: 1.476 +/- 0.290
+[INFO] jester: sigma_1: 0.036 +/- 0.003
+[INFO] jester: sigma_2: 0.142 +/- 0.084
+[INFO] jester: alpha: 0.814 +/- 0.076
+[INFO] jester: m_min: 1.143 +/- 0.032
+[INFO] jester: m_max: 1.392 +/- 0.007
+[INFO] jester: k_coll: 1.394 +/- 0.120
+[INFO] jester: n_CSE_0_u: 0.464 +/- 0.296
+[INFO] jester: cs2_CSE_0: 0.620 +/- 0.255
+[INFO] jester: n_CSE_1_u: 0.388 +/- 0.294
+[INFO] jester: cs2_CSE_1: 0.564 +/- 0.289
+[INFO] jester: n_CSE_2_u: 0.444 +/- 0.282
+[INFO] jester: cs2_CSE_2: 0.512 +/- 0.290
+[INFO] jester: n_CSE_3_u: 0.527 +/- 0.285
+[INFO] jester: cs2_CSE_3: 0.485 +/- 0.294
+[INFO] jester: n_CSE_4_u: 0.480 +/- 0.285
+[INFO] jester: cs2_CSE_4: 0.497 +/- 0.285
+[INFO] jester: n_CSE_5_u: 0.493 +/- 0.293
+[INFO] jester: cs2_CSE_5: 0.520 +/- 0.289
+[INFO] jester: cs2_CSE_6: 0.541 +/- 0.296
+[INFO] jester: Log probability: -573.724 +/- 1.769
+[INFO] jester: Local acceptance: -inf +/- nan
+[INFO] jester: Global acceptance: -inf +/- nan
+[INFO] jester: Sampling complete! Runtime: 23 min 19 sec
 [INFO] jester: Creating InferenceResult from sampler output...
-[INFO] jester: Extracting results from blackjax_smc_rw sampler
-[INFO] jester: Computed 5000 log probability values
-[INFO] jester: ============================================================
-[INFO] jester: Generating EOS from posterior samples
-[INFO] jester: ============================================================
-[INFO] jester: Generating EOS for all 5000 posterior samples
-[INFO] jester: Applying transform to 5000 samples...
-[INFO] jester: Using batch size: 1000
-[INFO] jester: TOV solve time: 11.33 s (5000 samples)
-[INFO] jester: Adding derived EOS quantities to posterior
-[INFO] jester: Added 7 derived EOS quantities
-[INFO] jester: EOS generation complete!
-[INFO] jester: ============================================================
-[INFO] jester: Saving inference results to outdir_mm/results.h5
-[INFO] jester: Successfully saved results to outdir_mm/results.h5
+[INFO] jester: Extracting results from flowmc sampler
+Traceback (most recent call last):
+  File "/work/koehn1/mma_analyses/recovery/narrow_ET/inference_eos/mm/run_hierarchical_mm.py", line 61, in <module>
+    result = run_sampling(sampler, config.seed, config, outdir)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/koehn1/jester/jesterTOV/inference/run_inference.py", line 448, in run_sampling
+    result = InferenceResult.from_sampler(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/koehn1/jester/jesterTOV/inference/result.py", line 168, in from_sampler
+    state = sampler.sampler.get_sampler_state(training=False)  # type: ignore[union-attr]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Sampler' object has no attribute 'get_sampler_state'
+srun: error: hgc02: task 0: Exited with exit code 1
