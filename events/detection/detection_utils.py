@@ -79,7 +79,7 @@ def which_telescopes_will_observe_afterglow(DeltaOmega, redshift, detectors):
     start = dict(ska=True, dsa=True, vr=True, ep=True)
 
     if "CE" in detectors:
-        if DeltaOmega>=10. or redshift > 1.5:
+        if DeltaOmega>10. or redshift > 1.5:
             start = dict(ska=False, dsa=False, vr=False, ep=False)
         
     elif detectors=="ETL":
