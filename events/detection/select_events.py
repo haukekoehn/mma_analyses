@@ -3,17 +3,16 @@ import sys
 import numpy as np
 import pandas as pd
 
-from scipy.interpolate import interp1d
 
-from fiesta.filters import Filter
-from fiesta.conversions import apply_redshift
-from fiesta.inference.lightcurve_model import FluxModel, CombinedSurrogate
-from fiesta.extinction import extinctionFactorP92SMC
-
-file_lists = {"narrow_ET": ["../gw/gw_params_narrow.dat", "../kilonova/kn_params_narrow.dat", "../grb/grb_params_narrow.dat", "./detection_output/narrow_ET.dat"],
-         "narrow_ET_CE": ["../gw/gw_params_narrow.dat", "../kilonova/kn_params_narrow.dat", "../grb/grb_params_narrow.dat", "./detection_output/narrow_ET_CE.dat"],
-         "wide_ET": ["../gw/gw_params_wide.dat", "../kilonova/kn_params_wide.dat", "../grb/grb_params_wide.dat", "./detection_output/wide_ET.dat"],
-         "wide_ET_CE": ["../gw/gw_params_wide.dat", "../kilonova/kn_params_wide.dat", "../grb/grb_params_wide.dat", "./detection_output/wide_ET_CE.dat"],
+file_lists = {
+         "narrow_ETT": ["../gw/gw_params_narrow.dat", "../kilonova/kn_params_narrow.dat", "../grb/grb_params_narrow.dat", "./detection_output/narrow_ETT.dat"],
+         "narrow_ETL": ["../gw/gw_params_narrow.dat", "../kilonova/kn_params_narrow.dat", "../grb/grb_params_narrow.dat", "./detection_output/narrow_ETL.dat"],
+         "narrow_ETT_CE": ["../gw/gw_params_narrow.dat", "../kilonova/kn_params_narrow.dat", "../grb/grb_params_narrow.dat", "./detection_output/narrow_ETT_CE.dat"],
+         "narrow_ETL_CE": ["../gw/gw_params_narrow.dat", "../kilonova/kn_params_narrow.dat", "../grb/grb_params_narrow.dat", "./detection_output/narrow_ETL_CE.dat"],
+         "wide_ETT": ["../gw/gw_params_wide.dat", "../kilonova/kn_params_wide.dat", "../grb/grb_params_wide.dat", "./detection_output/wide_ETT.dat"],         
+         "wide_ETL": ["../gw/gw_params_wide.dat", "../kilonova/kn_params_wide.dat", "../grb/grb_params_wide.dat", "./detection_output/wide_ETL.dat"],
+         "wide_ETT_CE": ["../gw/gw_params_wide.dat", "../kilonova/kn_params_wide.dat", "../grb/grb_params_wide.dat", "./detection_output/wide_ETT_CE.dat"],
+         "wide_ETL_CE": ["../gw/gw_params_wide.dat", "../kilonova/kn_params_wide.dat", "../grb/grb_params_wide.dat", "./detection_output/wide_ETL_CE.dat"],
         }
 
 def main():
@@ -30,7 +29,7 @@ def main():
     df_detection = pd.read_csv(files[3], sep=" ")
     
    
-    selected = df_detection["kn_visible"]
+    selected = df_detection["kn_visible"].astype(bool)
 
     print(f"Total of {np.sum(selected)} selected events.")
 
