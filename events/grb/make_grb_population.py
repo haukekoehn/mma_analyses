@@ -75,8 +75,9 @@ def energy_gamma_iso(gamma_energy, thetaCore, iota, redshift):
     fermi_gbm = integrate_flux_density(F_nu, nu_obs, 8, 40_000)
     swift_bat = integrate_flux_density(F_nu, nu_obs, 15, 150)
     gecam = integrate_flux_density(F_nu, nu_obs, 6, 5000)
+    eclair = integrate_flux_density(F_nu, nu_obs, 4, 150)
     
-    return np.log10(fermi_gbm), np.log10(swift_bat), np.log10(gecam)
+    return np.log10(fermi_gbm), np.log10(swift_bat), np.log10(gecam), np.log10(eclair)
 
 def log10_fluence(df, key):
     fluence = df[key] + np.log10( (1+df['redshift']) / (4*np.pi*df["luminosity_distance"]**2 * Mpc_to_cm**2))
@@ -89,14 +90,14 @@ def calculate_Egamma_iso(gamma_energy, df):
     )
 
     results = np.array(results)
-    return results[:, 0], results[:, 1], results[:, 2]
+    return results[:, 0], results[:, 1], results[:, 2], results[:, 3]
 
 def _worker(j, gamma_energy, df):
     np.seterr(divide = 'ignore') 
 
     if df.loc[j, "has_grb"]:
         return energy_gamma_iso(gamma_energy[j], df.loc[j, "thetaCore"], df.loc[j, "inclination_EM"], df.loc[j, "redshift"])
-    return 0.0, 0.0, 0.0
+    return 0.0, 0.0, 0.0, 0.0
 
 
 def add_grb_parameters(df, df_gw):
@@ -117,10 +118,11 @@ def add_grb_parameters(df, df_gw):
     df["eta_gamma"] = np.random.uniform(low=0.01, high=0.15, size=df.shape[0])
 
     gamma_energy = df["eta_gamma"]* jet_energy
-    fermi_gbm, swift_bat, gecam = calculate_Egamma_iso(gamma_energy, df)
+    fermi_gbm, swift_bat, gecam, eclair = calculate_Egamma_iso(gamma_energy, df)
     df["log10_Egamma_fermi_gbm"] = fermi_gbm
     df["log10_Egamma_swift_bat"] = swift_bat
     df["log10_Egamma_gecam"] = gecam
+    df["log10_Egamma_eclair"] = eclair
 
 
     kinetic_energy = jet_energy - gamma_energy
@@ -135,10 +137,12 @@ def add_detections(df):
     log10_fermi_fluence = log10_fluence(df, "log10_Egamma_fermi_gbm")
     log10_swift_fluence = log10_fluence(df, "log10_Egamma_swift_bat")
     log10_gecam_fluence = log10_fluence(df, "log10_Egamma_gecam")
+    log10_eclair_fluence = log10_fluence(df, "log10_Egamma_eclair")
     
     df["fermi_detected"] = (log10_fermi_fluence > np.log10(2e-7)) & (np.random.uniform(size=df.shape[0]) < 0.6) & df["has_grb"].astype(bool) 
     df["swift_detected"] = (log10_swift_fluence > np.log10(2e-8)) & (np.random.uniform(size=df.shape[0]) < 0.1) & df["has_grb"].astype(bool)
-    df["gecam_detected"] = (log10_gecam_fluence > np.log10(2e-8)) & (np.random.uniform(size=df.shape[0]) < 0.8) & df["has_grb"].astype(bool) 
+    df["gecam_detected"] = (log10_gecam_fluence > np.log10(7e-8)) & (np.random.uniform(size=df.shape[0]) < 0.8) & df["has_grb"].astype(bool)
+    df["eclair_detected"] = (log10_eclair_fluence > np.log10(7.2e-8)) & (np.random.uniform(size=df.shape[0]) < 0.14) & df["has_grb"].astype(bool)
     
     return df
 
