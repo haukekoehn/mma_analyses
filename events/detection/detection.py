@@ -13,7 +13,7 @@ from fiesta.conversions import apply_redshift
 from fiesta.inference.lightcurve_model import FluxModel, CombinedSurrogate
 from fiesta.extinction import extinctionFactorP92SMC
 
-from telescopes import ztf, vr, pstarrs, ultrasat, ultrasat_filter, ska, dsa, einsteinprobe
+from telescopes import ztf, vr, pstarrs, ultrasat, ultrasat_filter, ska, dsa, einsteinprobe, roman
 from detection_utils import (which_telescopes_will_observe, 
                              check_afterglow_thresholds, 
                              which_telescopes_will_observe_afterglow, 
@@ -26,8 +26,8 @@ from detection_utils import (which_telescopes_will_observe,
 Mpc_to_cm = 3.8057e24
 np.random.seed(671938)
 
-model_KN = FluxModel(name="Bu2026_MLP", filters=["ztfg", "ztfi", "lsstg", "lssti", "ps1::g", "ps1::i"])
-model_afterglow = FluxModel(name="pbag_gaussian_CVAE", filters=["ztfg", "ztfi", "lsstg", "lssti", "ps1::g", "ps1::i", "radio-1.4GHz", "X-ray-1keV"])
+model_KN = FluxModel(name="Bu2026_MLP", filters=["ztfg", "ztfi", "lsstg", "lssti", "ps1::g", "ps1::i", "f158", "f213"])
+model_afterglow = FluxModel(name="pbag_gaussian_CVAE", filters=["ztfg", "ztfi", "lsstg", "lssti", "ps1::g", "ps1::i", "f158", "f213", "radio-1.4GHz", "X-ray-1keV"])
 model = CombinedSurrogate(models = [model_KN, model_afterglow], sample_times=np.geomspace(0.2, 2000, 200))
 model.add_filter(ultrasat_filter)
 
@@ -74,6 +74,9 @@ def prepare_result_df(nrows: int):
         "telt_pstarrs": np.zeros(nrows, dtype=np.float64),
         "ps1::g": np.zeros(nrows, dtype=np.int64),
         "ps1::i": np.zeros(nrows, dtype=np.int64),
+        "telt_roman": np.zeros(nrows, dtype=np.float64),
+        "f158": np.zeros(nrows, dtype=np.int64),
+        "f213": np.zeros(nrows, dtype=np.int64),
         "telt_ultrasat": np.zeros(nrows, dtype=np.float64),
         "ultrasat_custom": np.zeros(nrows, dtype=np.int64),
         "afterglow_search": np.zeros(nrows, dtype=np.int64),
@@ -118,7 +121,7 @@ def observation_campaign(j, mass_dist, detectors, gw_event, fim_event, kn_event,
 
     if no_follow_up:
 
-        result = dict(**result, telt_vr=0., lsstg=0, lssti=0, telt_ztf=0., ztfg=0, ztfi=0, telt_pstarrs=0., telt_ultrasat=0., ultrasat_custom=0)
+        result = dict(**result, telt_vr=0., lsstg=0, lssti=0, telt_ztf=0., ztfg=0, ztfi=0, telt_roman=0., f158=0, f213=0, telt_pstarrs=0., telt_ultrasat=0., ultrasat_custom=0)
         result["ps1::i"] = 0
         result["ps1::g"] = 0
         result = dict(**result, afterglow_search=0, radio_afterglow=0, opt_afterglow=0, xray_afterglow=0, telt_vr_afterglow=0.)
@@ -130,7 +133,7 @@ def observation_campaign(j, mass_dist, detectors, gw_event, fim_event, kn_event,
     ###################
     # UVOIR Detection #
     ###################
-    kn_results = kn_detection(gw_event, kn_event, grb_event, DeltaOmega, detectors)
+    kn_results = kn_detection(gw_event, kn_event, grb_event, DeltaOmega, grb_detected, detectors)
 
     #######################
     # Afterglow Detection #
@@ -156,10 +159,12 @@ def grb_detection(event):
         DeltaOmega = 10
     if event["swift_detected"]:
         DeltaOmega = 0.1
+    if event["eclair_detected"]:
+        DeltaOmega = 0.1
     
     return DeltaOmega < np.inf, DeltaOmega
 
-def kn_detection(gw_event, kn_event, grb_event, DeltaOmega, detectors):
+def kn_detection(gw_event, kn_event, grb_event, DeltaOmega, grb_detected, detectors):
 
     trigger_time = gw_event["trigger_time"]
     dec = gw_event["dec"]
@@ -180,7 +185,7 @@ def kn_detection(gw_event, kn_event, grb_event, DeltaOmega, detectors):
     mags_transient = apply_extinction_mag(mags_transient, params["redshift"], kn_event["Ebv"])
     times_transient += trigger_time
     
-    start = which_telescopes_will_observe(DeltaOmega, params["redshift"], detectors)
+    start = which_telescopes_will_observe(DeltaOmega, params["redshift"], grb_detected, detectors)
     
     telt_ztf, detections_ztf = ztf.kilonova_campaign(start["ztf"],
                                                       trigger_time, 
@@ -206,6 +211,14 @@ def kn_detection(gw_event, kn_event, grb_event, DeltaOmega, detectors):
                                                                   times_transient, 
                                                                   mags_transient)
 
+    telt_roman, detections_roman = roman.kilonova_campaign(start["roman"],
+                                                                  trigger_time, 
+                                                                  dec, 
+                                                                  ra, 
+                                                                  DeltaOmega, 
+                                                                  times_transient, 
+                                                                  mags_transient)                                                
+
     telt_ultrasat, detections_ultrasat = ultrasat.kilonova_campaign(start["ultrasat"],
                                                                      trigger_time, 
                                                                      dec, 
@@ -217,13 +230,15 @@ def kn_detection(gw_event, kn_event, grb_event, DeltaOmega, detectors):
     kn_results= dict(telt_ztf=telt_ztf,
                      telt_vr=telt_vr,
                      telt_pstarrs=telt_pstarrs,
+                     telt_roman=telt_roman,
                      telt_ultrasat=telt_ultrasat)
     kn_results.update(detections_ztf)
     kn_results.update(detections_vr)
     kn_results.update(detections_pstarrs)
     kn_results.update(detections_ultrasat)
+    kn_results.update(detections_roman)
 
-    uvoir_detected = np.sum([kn_results[key] for key in ["ztfg", "ztfi", "lsstg", "lssti", "ps1::g", "ps1::i", "ultrasat_custom"]] ) >=2
+    uvoir_detected = np.sum([kn_results[key] for key in ["ztfg", "ztfi", "lsstg", "lssti", "ps1::g", "ps1::i", "f158", "f213", "ultrasat_custom"]] ) >=2
     kn_results["kn_visible"] = int(uvoir_detected)
     kn_results["grb_afg_visible"] = 0
     

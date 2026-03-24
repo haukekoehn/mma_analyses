@@ -22,56 +22,68 @@ def log10_fluence(df, key):
     return fluence
 
 
-def which_telescopes_will_observe(DeltaOmega, redshift, detectors):
-    start = dict(ztf=True, vr=True, pstarrs=True, ultrasat=True)
+def which_telescopes_will_observe(DeltaOmega, redshift, grb_detected: bool, gw_detectors):
+    if grb_detected:
+        start = dict(
+            ultrasat = 0.2 >= redshift, # 1000 Mpc
+            ztf = 0.2 >= redshift, # 1000 Mpc
+            pstarrs = 0.5 >= redshift, # 3000 Mpc
+            vr = 1 >= redshift, # 7000 Mpc
+            roman = 0.5>=redshift # 3000 Mpc
+        )    
+    else:
+        start = dict(
+            ultrasat = 0.105 >= redshift, # 500 Mpc
+            ztf = 0.085 >= redshift, # 400 Mpc
+            pstarrs = 0.2 >= redshift, # 1000 Mpc
+            vr = 0.65 >= redshift, # 4000 Mpc
+            roman = 0.36>=redshift # 2000 Mpc
+        )    
 
-    if redshift>0.35:
-        start['ultrasat'] = False
-
-
-    if "CE" in detectors:
-        
+    if "CE" in gw_detectors:
         # ZTF
-        if DeltaOmega>100 or redshift>0.2:
-            start['ztf'] = False
-        
+        if DeltaOmega > 100:
+            start['ztf'] &= False
         # VR
-        if DeltaOmega>=10. or (DeltaOmega>7. and redshift>0.2) or redshift>1.:
-            start['vr'] = False
-        
+        if DeltaOmega > 10. or (DeltaOmega > 7. and redshift > 0.2):
+            start['vr'] &= False
         # PSTARRS
-        if DeltaOmega>30 or redshift>0.2:
-            start['pstarrs'] = False
+        if DeltaOmega > 30:
+            start['pstarrs'] &= False
+        # ROMAN
+        if DeltaOmega > 1:
+            start['roman'] &= False
 
-    elif detectors=="ETL":
-        
+    elif gw_detectors=="ETL":
         # ZTF
-        if DeltaOmega>200. or redshift>0.2:
-            start["ztf"] = False
-
+        if DeltaOmega > 200:
+            start["ztf"] &= False
         # VR
-        if DeltaOmega>50. or redshift>1.:
-            start["vr"] = False
-        
+        if DeltaOmega > 50:
+            start["vr"] &= False
         # PSTARRS
-        if DeltaOmega>50. or redshift>0.2:
-            start['pstarrs'] = False
+        if DeltaOmega > 50:
+            start['pstarrs'] &= False
+        # ROMAN
+        if DeltaOmega > 10:
+            start['roman'] &= False
 
-    elif detectors=="ETT":
+    elif gw_detectors=="ETT":
         # ZTF
-        if DeltaOmega>200. or redshift>0.2:
-            start["ztf"] = False
-
+        if DeltaOmega > 200.:
+            start["ztf"] &= False
         # VR
-        if DeltaOmega>100. or redshift>1.:
-            start["vr"] = False
-        
+        if DeltaOmega > 100.:
+            start["vr"] &= False
         # PSTARRS
-        if DeltaOmega>50. or redshift>0.2:
-            start['pstarrs'] = False
+        if DeltaOmega > 50:
+            start['pstarrs'] &= False
+        # ROMAN
+        if DeltaOmega > 10:
+            start['roman'] &= False
 
     else:
-        raise ValueError(f"Invalid detector {detectors}.")
+        raise ValueError(f"Invalid GW detector {gw_detectors}.")
 
     return start
 
@@ -124,7 +136,7 @@ def check_afterglow_thresholds(log10_flux, times, nus):
 def total_time_visible(times, visible_mask):
     y = np.zeros_like(times)
     y[visible_mask] = 1
-    return np.trapz(y=y, x=times)
+    return np.trapezoid(y=y, x=times)
 
 def check_surrogate_param_range(params, models):
 

@@ -289,6 +289,95 @@ class ULTRASAT:
 
         return tobs[-1]+ self.exposure_time + self.dead_time, ntiles*self.exposure_time, detection
     
+class ROMAN:
+
+    def __init__(self,
+                 fov: float = 0.28,
+                 thresholds = {"f158": 24.9, "f213": 23.7},
+                 exposure_time = 60,
+                 dead_time = 60) -> None:
+        
+        self.name = "roman"
+        self.fov = fov
+        self.thr = thresholds
+        self.filters = list(thresholds.keys())
+        self.exposure_time = exposure_time / (24*3600)
+        self.dead_time = dead_time / (24*3600)
+        self.instant_coverage = 0.51
+        self.max_coverage = 0.75 # based on sky access limitations
+    
+    def kilonova_campaign(self,
+                          start: bool,
+                          trigger_time, 
+                          dec, 
+                          ra, 
+                          DeltaOmega, 
+                          times_transient, 
+                          mags_transient):
+        
+        if not start:
+            return 0, {filt: 0 for filt in self.filters}
+        
+        ntiles = int(np.ceil(DeltaOmega/self.fov)) + 1
+        true_tile = np.random.choice(ntiles)
+      
+        time, telescope_time, detections = self.target_epoch(trigger_time + 12/24, ntiles, true_tile, dec, ra, times_transient, mags_transient)
+        time, telescope_time_2, detections_2 = self.target_epoch(time + 3, ntiles, true_tile, dec, ra, times_transient, mags_transient)
+
+        total_telescope_time = telescope_time + telescope_time_2
+        total_detections = {key: detections[key] + detections_2[key] for key in detections}
+        return total_telescope_time, total_detections
+        
+    def target_epoch(self,
+                     start_time,
+                     ntiles: int, 
+                     true_tile: int,
+                     dec: float,
+                     ra: float,
+                     times_transient: np.ndarray,
+                     mags_transient: dict[str, np.ndarray])-> dict[str, bool]:
+        
+        detections = {filt: 0 for filt in self.filters}
+        telescope_time = 0
+
+        for filt in self.filters:
+            t_obs = self.get_tiling_times(start_time, dec, ra, ntiles)
+            if t_obs.size==0:
+                return start_time, 0, detections
+            
+            mag_obs = np.interp(t_obs[true_tile], times_transient, mags_transient[filt])
+
+            if mag_obs < self.thr[filt]:
+                detections[filt] += 1
+
+            telescope_time += ntiles*self.exposure_time + self.dead_time
+            time = t_obs[-1] + self.exposure_time + self.dead_time
+
+        return time, telescope_time, detections
+    
+    def get_tiling_times(self,
+                         start_time: float,
+                         dec: float,
+                         ra: float,
+                         ntiles: float) -> np.ndarray:
+
+        possible_times = np.arange(start_time, start_time+2, 2/24)
+        visible = self.check_visibility(possible_times, ra, dec)
+
+        if not np.any(visible):
+            return np.array([])
+        else:
+            return possible_times[visible][0] + np.linspace(0, (ntiles-1)*self.exposure_time, ntiles)
+    
+    def check_visibility(self, time, ra, dec):
+        mjd = Time(time, format="mjd")
+        sun_coords = get_sun(mjd)
+        sun_theta = np.pi/2 - sun_coords.dec.rad
+        sun_phi = sun_coords.ra.rad
+        theta = np.pi/2 - dec
+        cos_alpha = np.cos(sun_phi) * np.sin(sun_theta) * np.cos(ra) * np.sin(theta) + np.sin(sun_phi) * np.sin(sun_theta) * np.sin(ra) * np.sin(theta) + np.cos(sun_theta) * np.cos(theta)
+        return  (np.cos(np.deg2rad(126))< cos_alpha) & (cos_alpha < np.cos(np.deg2rad(54)))  # Pitch off sun line
+    
 
 class RadioTelescope(GroundTelescope):
 
@@ -380,6 +469,7 @@ pstarrs = GroundTelescope("pstarrs",
                           dead_time=100,
                           thresholds={"ps1::g": 24, "ps1::i": 24})
 
+roman = ROMAN()
 ultrasat = ULTRASAT()
 
 
