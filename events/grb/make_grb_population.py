@@ -171,7 +171,8 @@ def main():
               "log10_n0",
               "fermi_detected",
               "swift_detected",
-              "gecam_detected", 
+              "gecam_detected",
+              "eclair_detected",
               "redshift", 
               "luminosity_distance", 
               "prompt_collapse"]
