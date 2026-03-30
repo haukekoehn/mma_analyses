@@ -1,99 +1,0 @@
-10:48 bilby INFO    : Waveform generator instantiated: WaveformGenerator(duration=5367.0, sampling_frequency=4096, start_time=0, frequency_domain_source_model=bilby.gw.source.lal_binary_neutron_star, time_domain_source_model=None, parameter_conversion=bilby.gw.conversion.convert_to_lal_binary_neutron_star_parameters, waveform_arguments={'waveform_approximant': 'IMRPhenomXAS_NRTidalv3', 'reference_frequency': 5.0, 'minimum_frequency': 5.0})
-10:48 bilby INFO    : Injected signal in ETL1:
-10:48 bilby INFO    :   optimal SNR = 8.00
-10:48 bilby INFO    :   matched filter SNR = 7.71-0.26j
-10:48 bilby INFO    :   chirp_mass = 1.4385447168127181
-10:48 bilby INFO    :   mass_ratio = 0.91936577069281
-10:48 bilby INFO    :   chi_1 = 0.006334722015577
-10:48 bilby INFO    :   chi_2 = 0.0
-10:48 bilby INFO    :   lambda_1 = 563.9163662098997
-10:48 bilby INFO    :   lambda_2 = 920.5997189836124
-10:48 bilby INFO    :   theta_jn = 0.684374875018785
-10:48 bilby INFO    :   luminosity_distance = 1676.4729582063676
-10:48 bilby INFO    :   phase = 4.984962811063911
-10:48 bilby INFO    :   psi = 0.631616026987864
-10:48 bilby INFO    :   ra = 4.395211494767987
-10:48 bilby INFO    :   dec = 0.6704511970996195
-10:48 bilby INFO    :   geocent_time = 2227748950.5787435
-10:49 bilby INFO    : Injected signal in ETL2:
-10:49 bilby INFO    :   optimal SNR = 7.51
-10:49 bilby INFO    :   matched filter SNR = 7.49-0.25j
-10:49 bilby INFO    :   chirp_mass = 1.4385447168127181
-10:49 bilby INFO    :   mass_ratio = 0.91936577069281
-10:49 bilby INFO    :   chi_1 = 0.006334722015577
-10:49 bilby INFO    :   chi_2 = 0.0
-10:49 bilby INFO    :   lambda_1 = 563.9163662098997
-10:49 bilby INFO    :   lambda_2 = 920.5997189836124
-10:49 bilby INFO    :   theta_jn = 0.684374875018785
-10:49 bilby INFO    :   luminosity_distance = 1676.4729582063676
-10:49 bilby INFO    :   phase = 4.984962811063911
-10:49 bilby INFO    :   psi = 0.631616026987864
-10:49 bilby INFO    :   ra = 4.395211494767987
-10:49 bilby INFO    :   dec = 0.6704511970996195
-10:49 bilby INFO    :   geocent_time = 2227748950.5787435
-10:49 bilby INFO    : Waveform generator instantiated: WaveformGenerator(duration=5367.0, sampling_frequency=4096, start_time=0, frequency_domain_source_model=bilby.gw.source.binary_neutron_star_frequency_sequence, time_domain_source_model=None, parameter_conversion=bilby.gw.conversion.convert_to_lal_binary_neutron_star_parameters, waveform_arguments={'waveform_approximant': 'IMRPhenomXAS_NRTidalv3', 'reference_frequency': 5.0})
-10:49 bilby INFO    : Distance marginalisation file source_8/.distance_marginalization_lookup.npz does not exist
-10:49 bilby INFO    : Building lookup table for distance marginalisation.
-  0%|          | 0/400 [00:00<?, ?it/s]  0%|          | 2/400 [00:00<00:22, 17.98it/s]  1%|          | 4/400 [00:00<00:21, 18.01it/s]  2%|▏         | 6/400 [00:00<00:21, 18.01it/s]  2%|▏         | 8/400 [00:00<00:21, 18.01it/s]  2%|▎         | 10/400 [00:00<00:21, 18.00it/s]  3%|▎         | 12/400 [00:00<00:21, 18.00it/s]  4%|▎         | 14/400 [00:00<00:21, 18.00it/s]  4%|▍         | 16/400 [00:00<00:21, 18.00it/s]  4%|▍         | 18/400 [00:01<00:21, 17.99it/s]  5%|▌         | 20/400 [00:01<00:21, 18.00it/s]  6%|▌         | 22/400 [00:01<00:21, 17.91it/s]  6%|▌         | 24/400 [00:01<00:20, 17.93it/s]  6%|▋         | 26/400 [00:01<00:20, 17.95it/s]  7%|▋         | 28/400 [00:01<00:20, 17.99it/s]  8%|▊         | 30/400 [00:01<00:20, 17.98it/s]  8%|▊         | 32/400 [00:01<00:20, 17.99it/s]  8%|▊         | 34/400 [00:01<00:20, 17.99it/s]  9%|▉         | 36/400 [00:02<00:20, 17.99it/s] 10%|▉         | 38/400 [00:02<00:20, 17.99it/s] 10%|█         | 40/400 [00:02<00:20, 18.00it/s] 10%|█         | 42/400 [00:02<00:19, 17.99it/s] 11%|█         | 44/400 [00:02<00:19, 18.00it/s] 12%|█▏        | 46/400 [00:02<00:19, 18.00it/s] 12%|█▏        | 48/400 [00:02<00:19, 18.00it/s] 12%|█▎        | 50/400 [00:02<00:19, 18.02it/s] 13%|█▎        | 52/400 [00:02<00:19, 18.01it/s] 14%|█▎        | 54/400 [00:03<00:19, 17.92it/s] 14%|█▍        | 56/400 [00:03<00:19, 17.95it/s] 14%|█▍        | 58/400 [00:03<00:19, 17.95it/s] 15%|█▌        | 60/400 [00:03<00:18, 17.97it/s] 16%|█▌        | 62/400 [00:03<00:18, 17.97it/s] 16%|█▌        | 64/400 [00:03<00:18, 17.96it/s] 16%|█▋        | 66/400 [00:03<00:18, 17.98it/s] 17%|█▋        | 68/400 [00:03<00:18, 18.02it/s] 18%|█▊        | 70/400 [00:03<00:18, 18.03it/s] 18%|█▊        | 72/400 [00:04<00:18, 18.02it/s] 18%|█▊        | 74/400 [00:04<00:18, 18.02it/s] 19%|█▉        | 76/400 [00:04<00:18, 17.99it/s] 20%|█▉        | 78/400 [00:04<00:17, 18.01it/s] 20%|██        | 80/400 [00:04<00:17, 18.02it/s] 20%|██        | 82/400 [00:04<00:17, 18.02it/s] 21%|██        | 84/400 [00:04<00:17, 18.03it/s] 22%|██▏       | 86/400 [00:04<00:17, 18.02it/s] 22%|██▏       | 88/400 [00:04<00:17, 18.04it/s] 22%|██▎       | 90/400 [00:05<00:17, 18.06it/s] 23%|██▎       | 92/400 [00:05<00:17, 18.07it/s] 24%|██▎       | 94/400 [00:05<00:16, 18.04it/s] 24%|██▍       | 96/400 [00:05<00:16, 18.06it/s] 24%|██▍       | 98/400 [00:05<00:16, 18.09it/s] 25%|██▌       | 100/400 [00:05<00:16, 18.11it/s] 26%|██▌       | 102/400 [00:05<00:16, 18.14it/s] 26%|██▌       | 104/400 [00:05<00:16, 18.15it/s] 26%|██▋       | 106/400 [00:05<00:16, 18.17it/s] 27%|██▋       | 108/400 [00:05<00:16, 18.20it/s] 28%|██▊       | 110/400 [00:06<00:15, 18.24it/s] 28%|██▊       | 112/400 [00:06<00:15, 18.27it/s] 28%|██▊       | 114/400 [00:06<00:15, 18.30it/s] 29%|██▉       | 116/400 [00:06<00:15, 18.34it/s] 30%|██▉       | 118/400 [00:06<00:15, 18.36it/s] 30%|███       | 120/400 [00:06<00:15, 18.38it/s] 30%|███       | 122/400 [00:06<00:15, 18.39it/s] 31%|███       | 124/400 [00:06<00:14, 18.42it/s] 32%|███▏      | 126/400 [00:06<00:14, 18.44it/s] 32%|███▏      | 128/400 [00:07<00:14, 18.46it/s] 32%|███▎      | 130/400 [00:07<00:14, 18.49it/s] 33%|███▎      | 132/400 [00:07<00:14, 18.51it/s] 34%|███▎      | 134/400 [00:07<00:14, 18.55it/s] 34%|███▍      | 136/400 [00:07<00:14, 18.56it/s] 34%|███▍      | 138/400 [00:07<00:14, 18.59it/s] 35%|███▌      | 140/400 [00:07<00:13, 18.60it/s] 36%|███▌      | 142/400 [00:07<00:13, 18.62it/s] 36%|███▌      | 144/400 [00:07<00:13, 18.64it/s] 36%|███▋      | 146/400 [00:08<00:13, 18.65it/s] 37%|███▋      | 148/400 [00:08<00:13, 18.68it/s] 38%|███▊      | 150/400 [00:08<00:13, 18.71it/s] 38%|███▊      | 152/400 [00:08<00:13, 18.74it/s] 38%|███▊      | 154/400 [00:08<00:13, 18.76it/s] 39%|███▉      | 156/400 [00:08<00:12, 18.79it/s] 40%|███▉      | 158/400 [00:08<00:12, 18.79it/s] 40%|████      | 160/400 [00:08<00:12, 18.81it/s] 40%|████      | 162/400 [00:08<00:12, 18.82it/s] 41%|████      | 164/400 [00:09<00:12, 18.83it/s] 42%|████▏     | 166/400 [00:09<00:12, 18.85it/s] 42%|████▏     | 168/400 [00:09<00:12, 18.84it/s] 42%|████▎     | 170/400 [00:09<00:12, 18.83it/s] 43%|████▎     | 172/400 [00:09<00:12, 18.83it/s] 44%|████▎     | 174/400 [00:09<00:12, 18.82it/s] 44%|████▍     | 176/400 [00:09<00:11, 18.80it/s] 44%|████▍     | 178/400 [00:09<00:11, 18.78it/s] 45%|████▌     | 180/400 [00:09<00:11, 18.75it/s] 46%|████▌     | 182/400 [00:09<00:11, 18.71it/s] 46%|████▌     | 184/400 [00:10<00:11, 18.65it/s] 46%|████▋     | 186/400 [00:10<00:11, 18.58it/s] 47%|████▋     | 188/400 [00:10<00:11, 18.55it/s] 48%|████▊     | 190/400 [00:10<00:11, 18.48it/s] 48%|████▊     | 192/400 [00:10<00:11, 18.43it/s] 48%|████▊     | 194/400 [00:10<00:11, 18.36it/s] 49%|████▉     | 196/400 [00:10<00:11, 18.30it/s] 50%|████▉     | 198/400 [00:10<00:11, 18.20it/s] 50%|█████     | 200/400 [00:10<00:11, 18.11it/s] 50%|█████     | 202/400 [00:11<00:10, 18.01it/s] 51%|█████     | 204/400 [00:11<00:10, 17.91it/s] 52%|█████▏    | 206/400 [00:11<00:10, 17.81it/s] 52%|█████▏    | 208/400 [00:11<00:10, 17.69it/s] 52%|█████▎    | 210/400 [00:11<00:10, 17.56it/s] 53%|█████▎    | 212/400 [00:11<00:10, 17.42it/s] 54%|█████▎    | 214/400 [00:11<00:10, 17.27it/s] 54%|█████▍    | 216/400 [00:11<00:10, 17.12it/s] 55%|█████▍    | 218/400 [00:11<00:10, 16.95it/s] 55%|█████▌    | 220/400 [00:12<00:10, 16.80it/s] 56%|█████▌    | 222/400 [00:12<00:10, 16.63it/s] 56%|█████▌    | 224/400 [00:12<00:10, 16.48it/s] 56%|█████▋    | 226/400 [00:12<00:10, 16.32it/s] 57%|█████▋    | 228/400 [00:12<00:10, 16.16it/s] 57%|█████▊    | 230/400 [00:12<00:10, 16.02it/s] 58%|█████▊    | 232/400 [00:12<00:10, 15.86it/s] 58%|█████▊    | 234/400 [00:12<00:10, 15.73it/s] 59%|█████▉    | 236/400 [00:13<00:10, 15.62it/s] 60%|█████▉    | 238/400 [00:13<00:10, 15.49it/s] 60%|██████    | 240/400 [00:13<00:10, 15.37it/s] 60%|██████    | 242/400 [00:13<00:10, 15.26it/s] 61%|██████    | 244/400 [00:13<00:10, 15.17it/s] 62%|██████▏   | 246/400 [00:13<00:10, 15.10it/s] 62%|██████▏   | 248/400 [00:13<00:10, 15.03it/s] 62%|██████▎   | 250/400 [00:14<00:10, 14.95it/s] 63%|██████▎   | 252/400 [00:14<00:09, 14.90it/s] 64%|██████▎   | 254/400 [00:14<00:09, 14.84it/s] 64%|██████▍   | 256/400 [00:14<00:09, 14.80it/s] 64%|██████▍   | 258/400 [00:14<00:09, 14.74it/s] 65%|██████▌   | 260/400 [00:14<00:09, 14.71it/s] 66%|██████▌   | 262/400 [00:14<00:09, 14.67it/s] 66%|██████▌   | 264/400 [00:15<00:09, 14.64it/s] 66%|██████▋   | 266/400 [00:15<00:09, 14.62it/s] 67%|██████▋   | 268/400 [00:15<00:09, 14.59it/s] 68%|██████▊   | 270/400 [00:15<00:08, 14.57it/s] 68%|██████▊   | 272/400 [00:15<00:08, 14.56it/s] 68%|██████▊   | 274/400 [00:15<00:08, 14.55it/s] 69%|██████▉   | 276/400 [00:15<00:08, 14.55it/s] 70%|██████▉   | 278/400 [00:15<00:08, 14.52it/s] 70%|███████   | 280/400 [00:16<00:08, 14.52it/s] 70%|███████   | 282/400 [00:16<00:08, 14.50it/s] 71%|███████   | 284/400 [00:16<00:08, 14.50it/s] 72%|███████▏  | 286/400 [00:16<00:07, 14.49it/s] 72%|███████▏  | 288/400 [00:16<00:07, 14.49it/s] 72%|███████▎  | 290/400 [00:16<00:07, 14.49it/s] 73%|███████▎  | 292/400 [00:16<00:07, 14.49it/s] 74%|███████▎  | 294/400 [00:17<00:07, 14.47it/s] 74%|███████▍  | 296/400 [00:17<00:07, 14.47it/s] 74%|███████▍  | 298/400 [00:17<00:07, 14.48it/s] 75%|███████▌  | 300/400 [00:17<00:06, 14.49it/s] 76%|███████▌  | 302/400 [00:17<00:06, 14.49it/s] 76%|███████▌  | 304/400 [00:17<00:06, 14.49it/s] 76%|███████▋  | 306/400 [00:17<00:06, 14.48it/s] 77%|███████▋  | 308/400 [00:18<00:06, 14.48it/s] 78%|███████▊  | 310/400 [00:18<00:06, 14.49it/s] 78%|███████▊  | 312/400 [00:18<00:06, 14.49it/s] 78%|███████▊  | 314/400 [00:18<00:05, 14.47it/s] 79%|███████▉  | 316/400 [00:18<00:05, 14.49it/s] 80%|███████▉  | 318/400 [00:18<00:05, 14.47it/s] 80%|████████  | 320/400 [00:18<00:05, 14.47it/s] 80%|████████  | 322/400 [00:19<00:05, 14.46it/s] 81%|████████  | 324/400 [00:19<00:05, 14.47it/s] 82%|████████▏ | 326/400 [00:19<00:05, 14.47it/s] 82%|████████▏ | 328/400 [00:19<00:04, 14.47it/s] 82%|████████▎ | 330/400 [00:19<00:04, 14.47it/s] 83%|████████▎ | 332/400 [00:19<00:04, 14.48it/s] 84%|████████▎ | 334/400 [00:19<00:04, 14.48it/s] 84%|████████▍ | 336/400 [00:19<00:04, 14.49it/s] 84%|████████▍ | 338/400 [00:20<00:04, 14.49it/s] 85%|████████▌ | 340/400 [00:20<00:04, 14.48it/s] 86%|████████▌ | 342/400 [00:20<00:04, 14.48it/s] 86%|████████▌ | 344/400 [00:20<00:03, 14.47it/s] 86%|████████▋ | 346/400 [00:20<00:03, 14.47it/s] 87%|████████▋ | 348/400 [00:20<00:03, 14.47it/s] 88%|████████▊ | 350/400 [00:20<00:03, 14.46it/s] 88%|████████▊ | 352/400 [00:21<00:03, 14.46it/s] 88%|████████▊ | 354/400 [00:21<00:03, 14.46it/s] 89%|████████▉ | 356/400 [00:21<00:03, 14.46it/s] 90%|████████▉ | 358/400 [00:21<00:02, 14.46it/s] 90%|█████████ | 360/400 [00:21<00:02, 14.46it/s] 90%|█████████ | 362/400 [00:21<00:02, 14.46it/s] 91%|█████████ | 364/400 [00:21<00:02, 14.47it/s] 92%|█████████▏| 366/400 [00:22<00:02, 14.47it/s] 92%|█████████▏| 368/400 [00:22<00:02, 14.47it/s] 92%|█████████▎| 370/400 [00:22<00:02, 14.47it/s] 93%|█████████▎| 372/400 [00:22<00:01, 14.47it/s] 94%|█████████▎| 374/400 [00:22<00:01, 14.46it/s] 94%|█████████▍| 376/400 [00:22<00:01, 14.47it/s] 94%|█████████▍| 378/400 [00:22<00:01, 14.44it/s] 95%|█████████▌| 380/400 [00:23<00:01, 14.45it/s] 96%|█████████▌| 382/400 [00:23<00:01, 14.45it/s] 96%|█████████▌| 384/400 [00:23<00:01, 14.46it/s] 96%|█████████▋| 386/400 [00:23<00:00, 14.46it/s] 97%|█████████▋| 388/400 [00:23<00:00, 14.46it/s] 98%|█████████▊| 390/400 [00:23<00:00, 14.47it/s] 98%|█████████▊| 392/400 [00:23<00:00, 14.49it/s] 98%|█████████▊| 394/400 [00:23<00:00, 14.48it/s] 99%|█████████▉| 396/400 [00:24<00:00, 14.48it/s]100%|█████████▉| 398/400 [00:24<00:00, 14.47it/s]100%|██████████| 400/400 [00:24<00:00, 14.47it/s]100%|██████████| 400/400 [00:24<00:00, 16.39it/s]
-10:49 bilby INFO    : The total frequency range is divided into 12 bands with frequency intervals of 1/5367.0 Hz, 1/2683.5 Hz, 1/1341.75 Hz, 1/670.875 Hz, 1/335.4375 Hz, 1/167.71875 Hz, 1/83.859375 Hz, 1/41.9296875 Hz, 1/20.96484375 Hz, 1/10.482421875 Hz, 1/5.2412109375 Hz, 1/2.62060546875 Hz.
-10:49 bilby INFO    : The number of frequency points where waveforms are evaluated is 28464.
-10:49 bilby INFO    : The speed-up gain of multi-banding is 385.2157462057336.
-10:49 bilby INFO    : Pre-computing linear coefficients for ETL1
-10:49 bilby INFO    : Pre-computing linear coefficients for ETL2
-10:49 bilby INFO    : Linear-interpolation algorithm is used for (h, h).
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 0-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 1-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 2-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 3-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 4-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 5-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 6-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 7-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 8-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 9-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 10-th band
-10:49 bilby INFO    : Pre-computing quadratic coefficients for the 11-th band
-10:49 bilby INFO    : Running for label 'source_8', output will be saved to 'source_8'
-10:49 bilby INFO    : Analysis priors:
-10:49 bilby INFO    : mass_ratio=bilby.gw.prior.UniformInComponentsMassRatio(minimum=0.4, maximum=1, name='mass_ratio', latex_label='$q$', unit=None, boundary=None, equal_mass=False)
-10:49 bilby INFO    : chi_1=bilby.gw.prior.AlignedSpin(a_prior=Uniform(minimum=0, maximum=0.2, name=None, latex_label=None, unit=None, boundary=None), z_prior=Uniform(minimum=-1, maximum=1, name=None, latex_label=None, unit=None, boundary=None), name='chi_1', latex_label='$\\chi_1$', unit=None, boundary=None, minimum=-0.2, maximum=0.2, num_interp=100000)
-10:49 bilby INFO    : chi_2=bilby.gw.prior.AlignedSpin(a_prior=Uniform(minimum=0, maximum=0.2, name=None, latex_label=None, unit=None, boundary=None), z_prior=Uniform(minimum=-1, maximum=1, name=None, latex_label=None, unit=None, boundary=None), name='chi_2', latex_label='$\\chi_2$', unit=None, boundary=None, minimum=-0.2, maximum=0.2, num_interp=100000)
-10:49 bilby INFO    : lambda_1=Uniform(minimum=0, maximum=5000, name='lambda_1', latex_label='$\\Lambda_1$', unit=None, boundary=None)
-10:49 bilby INFO    : lambda_2=Uniform(minimum=0, maximum=5000, name='lambda_2', latex_label='$\\Lambda_2$', unit=None, boundary=None)
-10:49 bilby INFO    : psi=Uniform(minimum=0, maximum=3.141592653589793, name='psi', latex_label='$\\psi$', unit=None, boundary='periodic')
-10:49 bilby INFO    : theta_jn=Sine(minimum=0, maximum=3.141592653589793, name='theta_jn', latex_label='$\\theta_{JN}$', unit=None, boundary=None)
-10:49 bilby INFO    : chirp_mass=bilby.gw.prior.UniformInComponentsChirpMass(minimum=np.float64(1.428544716812718), maximum=np.float64(1.4485447168127181), name='chirp_mass', latex_label='$\\mathcal{M}$', unit=None, boundary=None)
-10:49 bilby INFO    : geocent_time=Uniform(minimum=2227748950.4787436, maximum=2227748950.6787434, name='geocent_time', latex_label='$t_c$', unit=None, boundary=None)
-10:49 bilby INFO    : mass_1=Constraint(minimum=0.5, maximum=3, name='mass_1', latex_label='$m_1$', unit=None)
-10:49 bilby INFO    : mass_2=Constraint(minimum=0.5, maximum=3, name='mass_2', latex_label='$m_2$', unit=None)
-10:49 bilby INFO    : phase=0.0
-10:49 bilby INFO    : luminosity_distance=5081.994536908556
-10:49 bilby INFO    : ra=4.395211494767987
-10:49 bilby INFO    : dec=0.6704511970996195
-10:49 bilby INFO    : Analysis likelihood class: <class 'nmma.gw.gw_likelihood.GravitationalWaveTransientLikelihood'>
-10:49 bilby INFO    : Analysis likelihood noise evidence: -21935634.7706391
-10:49 bilby INFO    : Single likelihood evaluation took 1.014e-02 s
-10:49 bilby INFO    : Using sampler Dynesty with kwargs {'nlive': 1024, 'bound': 'live', 'sample': 'acceptance-walk', 'periodic': None, 'reflective': None, 'update_interval': 600, 'first_update': None, 'npdim': None, 'rstate': None, 'queue_size': 192, 'pool': None, 'use_pool': None, 'live_points': None, 'logl_args': None, 'logl_kwargs': None, 'ptform_args': None, 'ptform_kwargs': None, 'gradient': None, 'grad_args': None, 'grad_kwargs': None, 'compute_jac': False, 'enlarge': None, 'bootstrap': None, 'walks': 100, 'facc': 0.2, 'slices': None, 'fmove': 0.9, 'max_move': 100, 'update_func': None, 'ncdim': None, 'blob': False, 'save_history': False, 'history_filename': None, 'maxiter': None, 'maxcall': None, 'dlogz': 0.1, 'logl_max': inf, 'n_effective': None, 'add_live': True, 'print_progress': True, 'print_func': <bound method Dynesty._print_func of <bilby.core.sampler.dynesty.Dynesty object at 0x7ff57bb8a290>>, 'save_bounds': False, 'checkpoint_file': None, 'checkpoint_every': 60, 'resume': False, 'seed': None}
-10:49 bilby INFO    : Global meta data was removed from the result object for compatibility. Use the `BILBY_INCLUDE_GLOBAL_METADATA` environment variable to include it. This behaviour will be removed in a future release. For more details see: https://bilby-dev.github.io/bilby/faq.html#global-meta-data
-10:49 bilby INFO    : Checkpoint every check_point_delta_t = 1800s
-10:49 bilby INFO    : Using dynesty version 2.1.5
-10:49 bilby INFO    : Using the bilby-implemented acceptance-walk sampling with an average of 60 accepted steps per MCMC and maximum length 5000
-10:49 bilby INFO    : Setting up multiproccesing pool with 192 processes
-10:49 bilby INFO    : Resume file source_8/source_8_resume.pickle does not exist.
-10:49 bilby INFO    : Generating initial points from the prior
-11:20 bilby INFO    : Written checkpoint file source_8/source_8_resume.pickle
-11:50 bilby INFO    : Written checkpoint file source_8/source_8_resume.pickle
-11:56 bilby INFO    : Written checkpoint file source_8/source_8_resume.pickle
-11:56 bilby INFO    : Starting to close worker pool.
-11:56 bilby INFO    : Finished closing worker pool.
-11:56 bilby INFO    : Rejection sampling nested samples to obtain 4466 posterior samples
-11:56 bilby INFO    : Sampling time: 1:06:36.925508
-11:56 bilby INFO    : Summary of results:
-nsamples: 4466
-ln_noise_evidence: -21935634.771
-ln_evidence: -21935603.007 +/-  0.162
-ln_bayes_factor: 31.764 +/-  0.162
-
-11:56 bilby INFO    : Reconstructing marginalised parameters.
-11:56 bilby WARNING : Likelihood has no outdir and label attribute: caching disabled
-11:56 bilby INFO    : Using a pool with size 192 for nsamples=4466
