@@ -1,0 +1,3510 @@
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False
