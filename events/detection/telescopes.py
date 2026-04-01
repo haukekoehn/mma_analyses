@@ -32,6 +32,7 @@ class GroundTelescope:
         self.filters = list(thresholds.keys())
         self.exposure_time = exposure_time / (24*3600)
         self.dead_time = dead_time / (24*3600)
+        self.detection_point = np.inf
     
     def kilonova_campaign(self,
                     start: bool,
@@ -54,6 +55,9 @@ class GroundTelescope:
 
         for epoch, delta_t in enumerate([0., 1/3, 1/2]):
             time, telescope_time, detections = self.target_epoch(time+delta_t, ntiles, true_tile, dec, ra, times_transient, mags_transient)
+
+            if np.any(detections.values()):
+                self.detection_point = np.minimum(self.detection_point, time-trigger_time)
             
             total_telescope_time += telescope_time
             for filt in self.filters: 
@@ -240,6 +244,7 @@ class ULTRASAT:
         self.dead_time = dead_time / (24*3600)
         self.instant_coverage = 0.51
         self.max_coverage = 0.75 # based on sky access limitations
+        self.detection_point = np.inf
     
     def kilonova_campaign(self,
                            start: bool,
@@ -259,11 +264,13 @@ class ULTRASAT:
         alpha = np.random.uniform()
         if alpha < self.instant_coverage:
             time, telescope_time, detections = self.target_epoch(trigger_time + 0.25/24, ntiles, true_tile, dec, ra, times_transient, mags_transient)
+            self.detection_point = time - trigger_time
             return telescope_time, detections
         
         alpha = np.random.uniform()
         if alpha < self.max_coverage:
             time, telescope_time, detections = self.target_epoch(trigger_time + 3/24, ntiles, true_tile, dec, ra, times_transient, mags_transient)
+            self.detection_point = time - trigger_time
             return telescope_time, detections
         else: 
             return 0, {filt: 0 for filt in self.filters}
@@ -305,6 +312,7 @@ class ROMAN:
         self.dead_time = dead_time / (24*3600)
         self.instant_coverage = 0.51
         self.max_coverage = 0.75 # based on sky access limitations
+        self.detection_point = np.inf
     
     def kilonova_campaign(self,
                           start: bool,
@@ -322,7 +330,11 @@ class ROMAN:
         true_tile = np.random.choice(ntiles)
       
         time, telescope_time, detections = self.target_epoch(trigger_time + 12/24, ntiles, true_tile, dec, ra, times_transient, mags_transient)
+        if np.any(detections.values()):
+            self.detection_point = np.minimum(self.detection_point, time)
         time, telescope_time_2, detections_2 = self.target_epoch(time + 3, ntiles, true_tile, dec, ra, times_transient, mags_transient)
+        if np.any(detections_2.values()):
+            self.detection_point = np.minimum(self.detection_point, time)
 
         total_telescope_time = telescope_time + telescope_time_2
         total_detections = {key: detections[key] + detections_2[key] for key in detections}

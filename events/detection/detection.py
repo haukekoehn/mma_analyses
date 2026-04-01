@@ -63,6 +63,7 @@ def prepare_result_df(nrows: int):
     df = pd.DataFrame({
         "redshift": np.zeros(nrows, dtype=np.float64),
         "gw_detected": np.zeros(nrows, dtype=np.int64),
+        "snr": np.zeros(nrows, dtype=np.float64),
         "grb_detected": np.zeros(nrows, dtype=np.int64),
         "DeltaOmega": np.zeros(nrows, dtype=np.float64),
         "telt_vr": np.zeros(nrows, dtype=np.float64),
@@ -111,7 +112,7 @@ def observation_campaign(j, mass_dist, detectors, gw_event, fim_event, kn_event,
     grb_detected, DeltaOmegaGRB = grb_detection(grb_event)
     DeltaOmega = min(DeltaOmegaGW, DeltaOmegaGRB)
 
-    result = dict(redshift=gw_event["redshift"], gw_detected=int(gw_detected), grb_detected=int(grb_detected), DeltaOmega=DeltaOmega)
+    result = dict(redshift=gw_event["redshift"], gw_detected=int(gw_detected), snr=fim_event["snr"], grb_detected=int(grb_detected), DeltaOmega=DeltaOmega)
 
     ########################################
     # Check to consider follow-up campaign #
@@ -238,6 +239,9 @@ def kn_detection(gw_event, kn_event, grb_event, DeltaOmega, grb_detected, detect
     kn_results.update(detections_ultrasat)
     kn_results.update(detections_roman)
 
+    # detection time
+    kn_results["detection_time"] = min([telescope.detection_point for telescope in [ztf, vr, pstarrs, roman, ultrasat]])
+
     uvoir_detected = np.sum([kn_results[key] for key in ["ztfg", "ztfi", "lsstg", "lssti", "ps1::g", "ps1::i", "f158", "f213", "ultrasat_custom"]] ) >=2
     kn_results["kn_visible"] = int(uvoir_detected)
     kn_results["grb_afg_visible"] = 0
@@ -283,7 +287,7 @@ def afterglow_detection(gw_event, kn_event, grb_event, DeltaOmega, kn_result, j,
     uvoir_detected = np.sum([kn_result[key] for key in ["lssti", "lsstg", "ultrasat_custom", "ztfg", "ztfi", "ps1::g", "ps1::i"]]) >=2
 
     if uvoir_detected:
-        afterglow_results = check_afterglow_thresholds(log10_flux, times, nus)
+        afterglow_results = check_afterglow_thresholds(log10_flux, times - trigger_time, nus, kn_result["detection_time"])
         afterglow_results["afterglow_search"] = 0
 
     else:

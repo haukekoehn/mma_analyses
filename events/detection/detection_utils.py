@@ -104,7 +104,11 @@ def which_telescopes_will_observe_afterglow(DeltaOmega, redshift, detectors):
 
     return start
 
-def check_afterglow_thresholds(log10_flux, times, nus):
+def check_afterglow_thresholds(log10_flux, times, nus, start_time):
+
+    mask = times >= start_time
+    times = times[mask]
+    log10_flux = log10_flux[:, mask].reshape(len(nus), len(times))
     
     # radio 
     radio_filt = Filter("radio-1.4GHz")
@@ -114,12 +118,12 @@ def check_afterglow_thresholds(log10_flux, times, nus):
     radio_detectable = radio_duration >= 7 or radio_peak <=21
 
     
-    # iband
+    # gband
     gband = Filter("lsstg")
     mag_g = gband.get_mag(10**log10_flux, nus)
     gband_duration = total_time_visible(times, mag_g <= 29)
     gband_peak = times[mag_g.argmin()]
-    gband_detectable = gband_duration >= 7 or gband_peak<=21
+    gband_detectable = (gband_duration >= 7 or gband_peak<=21) and gband_peak >= 10
 
     
     # xray
@@ -196,7 +200,7 @@ def predict_kilonova_afterglow(j, mass_dist, params):
     
     times_kn_afg, nus_kn_afg, flux = apply_redshift(flux, times_kn_afg, nus_kn_afg, params["redshift"])
 
-    times = np.geomspace(10, 365*10, 250)
+    times = np.geomspace(1, 365*10, 250)
     nus = np.geomspace(1e9, 2e18, 200)
 
     log10_flux = interpolate.interp1d(np.log10(nus_kn_afg), np.log10(flux), 
