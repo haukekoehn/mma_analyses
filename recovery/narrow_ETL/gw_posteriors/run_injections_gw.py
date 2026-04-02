@@ -27,6 +27,7 @@ parser.add_argument("--distance-marginalization", help="whether to perform dista
 #####PARSING########
 
 minimum_frequency = 5.
+maximum_frequency = 2048.
 reference_frequency = 5.
 sampling_frequency = 4096
 
@@ -47,11 +48,9 @@ def main():
     MCHIRP = bilby.gw.conversion.component_masses_to_chirp_mass(event['mass_1'], event["mass_2"])
     event["mass_ratio"] = event["mass_2"] / event["mass_1"]
     event["chirp_mass"] = MCHIRP
-    event["lambda_tilde"] = bilby.gw.conversion.lambda_1_lambda_2_to_lambda_tilde(event['lambda_1'], event['lambda_2'], event['mass_1'], event['mass_2'])
-    event["delta_lambda_tilde"] = bilby.gw.conversion.lambda_1_lambda_2_to_delta_lambda_tilde(event['lambda_1'], event['lambda_2'], event['mass_1'], event['mass_2'])
        
-    duration = bilby.gw.utils.calculate_time_to_merger(frequency = minimum_frequency, mass_1 = event['mass_1'], mass_2 = event['mass_2'], chi=CHIEFF, safety=1.1)
-    duration = int(duration) + 1.
+    duration = bilby.gw.utils.calculate_time_to_merger(frequency = minimum_frequency, mass_1 = event['mass_1'], mass_2 = event['mass_2'], chi=CHIEFF, safety=1.3)
+    duration = int(duration) + 2.
 
     injection_parameters = event[["chirp_mass", "mass_ratio", "chi_1", "chi_2", "lambda_1", "lambda_2", "theta_jn", "luminosity_distance", "phase", "psi", "ra", "dec", "geocent_time"]].to_dict()
 
@@ -70,15 +69,15 @@ def main():
     # INTERFEROMETERS #
     ###################
     
-    ifos = bilby.gw.detector.InterferometerList(["ETL1", "ETL2"])     
+    ifos = bilby.gw.detector.InterferometerList(["ETL1", "ETL2"])
+    for ifo in ifos:
+        ifo.minimum_frequency = minimum_frequency
+        ifo.maximum_frequency = maximum_frequency 
     
     ifos.set_strain_data_from_power_spectral_densities(sampling_frequency=sampling_frequency,
                                                        duration=duration,
                                                        start_time=injection_parameters["geocent_time"] - duration + 2)
     ifos.inject_signal(waveform_generator=waveform_generator, parameters=injection_parameters)
-    
-    for ifo in ifos:
-        ifo.minimum_frequency = minimum_frequency
 
 
     #########################
@@ -87,6 +86,11 @@ def main():
 
     priors = bilby.core.prior.PriorDict(filename='./bns.prior')
     priors['chirp_mass'] = bilby.gw.prior.UniformInComponentsChirpMass(name='chirp_mass', minimum=MCHIRP-0.01, maximum=MCHIRP+0.01)
+    
+    # more efficient sampling for high mass ratios
+    if injection_parameters["mass_ratio"]>=0.9:
+        priors["mass_ratio"] = bilby.gw.prior.UniformInComponentsMassRatio(name="mass_ratio", minimum=0.4, maximum=1., equal_mass=True)
+    
     priors["geocent_time"] = bilby.gw.prior.Uniform(name='geocent_time', minimum=injection_parameters["geocent_time"]-0.1, maximum=injection_parameters["geocent_time"]+0.1)
     priors["ra"] = injection_parameters["ra"]
     priors["dec"] = injection_parameters["dec"]
@@ -112,7 +116,8 @@ def main():
         distance_marginalization_lookup_table = args.outdir + "/.distance_marginalization_lookup.npz",
         phase_marginalization=True,
         time_reference="geocent_time",
-        reference_frame="sky"
+        reference_frame="sky",
+        accuracy_factor=5,
     )
 
     ############
@@ -123,11 +128,11 @@ def main():
     result = bilby.run_sampler(
         likelihood=likelihood,
         priors=priors,
-        sampler="dynesty", 
+        sampler="dynesty",
         nlive=1024,
         naccept=60,
         npool=192,
-        check_point_plot=True,
+        check_point_plot=False,
         check_point_delta_t=1800,
         print_method='interval-60',
         sample='acceptance-walk',
@@ -152,6 +157,24 @@ def main():
 
     if args.plot:
         result.plot_corner()
+
+        fig, ax = plt.subplots(1, 1, figsize=(8,6))
+        bins = np.linspace(0.9, 2.5, 100)
+
+        posterior = np.load(os.path.join(args.outdir, "posterior.npz"))
+        ax.hist(posterior["mass_1_source"], bins=bins, density=True, color="blue", histtype="step")
+        ax.hist(posterior["mass_2_source"], bins=bins, density=True, color="orange", histtype="step")
+
+        posterior_mm = np.load(os.path.join(args.outdir, "posterior_mm.npz"))
+        ax.hist(posterior_mm["mass_1_source"], bins=bins, density=True, color="lightskyblue", histtype="step")
+        ax.hist(posterior_mm["mass_2_source"], bins=bins, density=True, color="bisque", histtype="step")
+
+        mass_1_source = event["mass_1"] / (1 + event["redshift"])
+        mass_2_source = event["mass_2"] / (1 + event["redshift"])
+        ax.vlines([mass_1_source, mass_2_source], *ax.get_ylim(), color="red")
+        ax.set_xlabel("$m$ in source frame")
+
+        fig.savefig(os.path.join(args.outdir, "mass_posterior.pdf"), dpi=200, bbox_inches="tight")
     
 if __name__=="__main__":
     main()

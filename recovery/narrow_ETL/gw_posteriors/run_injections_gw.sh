@@ -10,12 +10,12 @@ do
 #!/bin/bash
 #SBATCH -J gw_narrow_ETL_${src}
 #SBATCH -o ./source_${src}/log
-#SBATCH -e ./source_${src}/err
+#SBATCH -e ./source_${src}/log
 #SBATCH --nodes 1
 #SBATCH --ntasks-per-node 1
 #SBATCH --cpus-per-task 192
 #SBATCH -p cpu
-#SBATCH --time=24:00:00
+#SBATCH --time=12:00:00
 
 eval "\$(conda shell.bash hook)"  # Initialize Conda in the script
 conda activate nmma_x_fiesta
