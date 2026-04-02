@@ -109,7 +109,7 @@ def add_grb_parameters(df, df_gw):
     print("Number of BNSs with BH remnant: ", np.sum(has_BH))
 
     jet_energy = eta(df["chi_BH"])*(10**df["log10_mdisk"] - 10**df["log10_mej_wind"])* msol_to_erg / 2 # divide by 2 for counter jet
-    breakout_energy = 0.05 * 0.78**2 *(10**df["log10_mej_dyn"]/2 *df["v_ej_dyn"]**2 + 10**df["log10_mej_wind"]/2 * df["v_ej_wind"]**2) * msol_to_erg / 2
+    breakout_energy = 0.05 * 0.4**2 *(10**df["log10_mej_dyn"]/2 *df["v_ej_dyn"]**2 ) * msol_to_erg
     jet_energy -= breakout_energy
     
     print("Number of BNSs with BHs and sufficient jet energy:", np.sum(has_BH & (jet_energy > 0)))
