@@ -1,6 +1,6 @@
 {
-  "n_samples_total": 4951,
-  "n_samples_used": 4951,
+  "n_samples_total": 3949,
+  "n_samples_used": 3949,
   "parameter_names": [
     "mass_1_source",
     "mass_2_source",
@@ -9,22 +9,22 @@
   ],
   "filepath": "./source_37/posterior_mm.npz",
   "flow_type": "masked_autoregressive_flow",
-  "num_epochs": 1323,
+  "num_epochs": 1124,
   "learning_rate": 0.0001,
   "max_patience": 500,
   "val_prop": 0.2,
   "standardize": true,
   "standardization_method": "zscore",
   "data_mean": [
-    1.381180130306902,
-    1.2365965813389712,
-    537.2148996871921,
-    600.9607594650688
+    1.5535605337895309,
+    1.2106629137082614,
+    949.607210000987,
+    1722.259947340823
   ],
   "data_std": [
-    0.04722757965623753,
-    0.04063675864026541,
-    215.99160578802312,
-    307.50998332953895
+    0.12504747668098642,
+    0.0891911433417166,
+    664.7415265185393,
+    1147.9828548829641
   ]
 }

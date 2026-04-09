@@ -4,8 +4,6 @@ mass_ratio = bilby.gw.prior.UniformInComponentsMassRatio(name='mass_ratio', mini
 chi_1 = bilby.gw.prior.AlignedSpin(name='chi_1', a_prior=Uniform(minimum=0, maximum=0.2))
 chi_2 = bilby.gw.prior.AlignedSpin(name='chi_2', a_prior=Uniform(minimum=0, maximum=0.2))
 
-#lambda_tilde = Uniform(name="lambda_tilde", minimum=0, maximum=5000)
-#delta_lambda_tilde = Uniform(name="delta_lambda_tilde", minimum=-500, maximum=1000)
 lambda_1 = Uniform(name="lambda_1", minimum=0, maximum=5000)
 lambda_2 = Uniform(name="lambda_2", minimum=0, maximum=5000)
 

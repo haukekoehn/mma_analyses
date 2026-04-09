@@ -19,7 +19,7 @@ parser.add_argument("--source", help="integer, which source from events.dat to u
 parser.add_argument("--outdir", help="outdir for the result files", required=True)
 
 parser.add_argument("--plot", help="whether to make plots, defaults to True", default=True)
-parser.add_argument("--random-seed", help="bilby random seed", default=4576892)
+parser.add_argument("--random-seed", help="bilby random seed", default=4576892, type=int)
 parser.add_argument("--distance-marginalization", help="whether to perform distance marginalization. Defaults to True.", default=True)
 
 ###################

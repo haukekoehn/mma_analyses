@@ -1,14 +1,13 @@
 #!/bin/bash
 nsrc=$(ls -lah . | grep "source" | wc -l)
-nsrc=93
 
 for ((src=0; src<nsrc; src++));
 do
 
-    sbatch --dependency=afterany:$((84285+src)) <<SBATCH_EOF
+    sbatch <<SBATCH_EOF
 #!/bin/bash
 
-#SBATCH -J nf_narrow_ET_${src}
+#SBATCH -J nf_narrow_ETL_${src}
 #SBATCH -o ./source_${src}/log_nf
 #SBATCH -e ./source_${src}/log_nf
 
@@ -18,7 +17,7 @@ do
 #SBATCH --gres=gpu:1
 #SBATCH --mem-per-gpu=80G
 
-#SBATCH --time=10:00:00
+#SBATCH --time=01:00:00
 
 eval "\$(conda shell.bash hook)"  # Initialize Conda in the script
 conda activate nmma_x_fiesta
@@ -73,10 +72,10 @@ rm ./nf_config_${src}.yaml
 SBATCH_EOF
 
 
-sbatch --dependency=afterany:$((84285+src)) <<SBATCH_EOF
+sbatch <<SBATCH_EOF
 #!/bin/bash
 
-#SBATCH -J nf_mm_narrow_ET_${src}
+#SBATCH -J nf_mm_narrow_ETL_${src}
 #SBATCH -o ./source_${src}/log_nf_mm
 #SBATCH -e ./source_${src}/log_nf_mm
 
@@ -86,7 +85,7 @@ sbatch --dependency=afterany:$((84285+src)) <<SBATCH_EOF
 #SBATCH --gres=gpu:1
 #SBATCH --mem-per-gpu=80G
 
-#SBATCH --time=10:00:00
+#SBATCH --time=01:00:00
 
 eval "\$(conda shell.bash hook)"  # Initialize Conda in the script
 conda activate nmma_x_fiesta
