@@ -1,0 +1,12 @@
+**.pickle
+**.hdf5
+**.pkl
+**.h5
+**.hdf5.old
+**.npz
+**.png
+**.pdf
+**err
+**log
+**log_nf
+experiments*

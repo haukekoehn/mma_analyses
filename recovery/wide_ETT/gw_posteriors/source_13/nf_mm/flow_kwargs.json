@@ -1,0 +1,27 @@
+{
+  "flow_type": "masked_autoregressive_flow",
+  "nn_depth": 4,
+  "nn_block_dim": 8,
+  "nn_width": 50,
+  "flow_layers": 1,
+  "invert": true,
+  "cond_dim": null,
+  "seed": 0,
+  "standardize": true,
+  "standardization_method": "zscore",
+  "transformer_type": "rational_quadratic_spline",
+  "transformer_knots": 10,
+  "transformer_interval": 5.0,
+  "data_mean": [
+    1.3292089431691603,
+    1.1044610824614092,
+    729.2510717413602,
+    936.6784288082913
+  ],
+  "data_std": [
+    0.07852487690745015,
+    0.061315125173934365,
+    378.505488692826,
+    577.3482912952235
+  ]
+}
