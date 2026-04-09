@@ -1,0 +1,30 @@
+{
+  "n_samples_total": 4990,
+  "n_samples_used": 4990,
+  "parameter_names": [
+    "mass_1_source",
+    "mass_2_source",
+    "lambda_1",
+    "lambda_2"
+  ],
+  "filepath": "./source_34/posterior.npz",
+  "flow_type": "masked_autoregressive_flow",
+  "num_epochs": 937,
+  "learning_rate": 0.0001,
+  "max_patience": 500,
+  "val_prop": 0.2,
+  "standardize": true,
+  "standardization_method": "zscore",
+  "data_mean": [
+    1.507345534692443,
+    1.3163448049677053,
+    390.37193649747064,
+    527.2547349387576
+  ],
+  "data_std": [
+    0.0951838565704586,
+    0.07973838922403437,
+    339.2464753232074,
+    426.35541566022977
+  ]
+}
