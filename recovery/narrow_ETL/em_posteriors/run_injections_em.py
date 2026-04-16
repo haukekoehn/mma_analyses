@@ -8,8 +8,7 @@ import jax
 import jax.numpy as jnp
 import scipy.integrate as integrate
 
-from fiesta.inference.prior import Uniform, Constraint, Sine, UniformSourceFrame, Normal
-from fiesta.inference.prior_dict import ConstrainedPrior
+from fiesta.inference.prior import Uniform, Constraint, Sine, UniformSourceFrame, Normal, ConstrainedPrior
 from fiesta.inference.fiesta import Fiesta
 from fiesta.inference.likelihood import EMLikelihood
 from fiesta.inference.lightcurve_model import FluxModel, CombinedSurrogate
@@ -99,20 +98,17 @@ def analyze_event(j, param_dict, rng_key):
     if param_dict["afterglow_detected"]:
         filters = FILTERS
         tpeak = afterglow_peak(param_dict)
-        tmax = max(10., 1.5 * tpeak)
-        tmax = min(1.1 * (1+redshift) *  2000 - 1, tmax)
         N_datapoints = 50
     else:
         filters = FILTERS_KN
-        tmax = 10.
         N_datapoints = 25
-    
-    
+
+
     injection = InjectionSurrogate(model=model,
                                     filters=filters,
                                     trigger_time=param_dict['trigger_time'],
                                     tmin=0.5,
-                                    tmax=tmax,
+                                    tmax=10.,
                                     N_datapoints=N_datapoints,
                                     error_budget=0.1,
                                     nondetections=True,
@@ -120,12 +116,12 @@ def analyze_event(j, param_dict, rng_key):
     injection.create_injection(param_dict)
             
     likelihood = EMLikelihood(model,
-                                injection.data,
-                                tmin=0.5,
-                                tmax = 14.0,
-                                trigger_time=param_dict["trigger_time"],
-                                detection_limit = None,
-                                )
+                              injection.data,
+                              data_tmin=0.5,
+                              data_tmax = 10.,
+                              trigger_time=param_dict["trigger_time"],
+                              detection_limit = None,
+                            )
         
     # Save for postprocessing
     outdir = f"./source_{j}"
@@ -135,10 +131,9 @@ def analyze_event(j, param_dict, rng_key):
     fiesta = Fiesta(likelihood,
                     prior,
                     n_chains = 500,
-                    n_loop_training = 7,
-                    n_loop_production = 3,
-                    num_layers = 4,
-                    hidden_size = [64, 64],
+                    n_training_loops = 7,
+                    n_production_loops = 3,
+                    rq_spline_n_layers = 4,
                     n_epochs = 20,
                     n_local_steps = 50,
                     n_global_steps = 200,
@@ -155,12 +150,15 @@ def analyze_event(j, param_dict, rng_key):
 def main():
 
     events = pd.read_csv("../events.dat", sep=" ")
-    rng_key = jax.random.PRNGKey(567893127)
-    for j in range(0, events.shape[0]):
+    rng_key = jax.random.PRNGKey(68191)
+    for j in range(events.shape[0]):
         rng_key, sub_key = jax.random.split(rng_key)
         try:
             analyze_event(j, events.iloc[j].to_dict(), sub_key)
         except:
+            print("\n \n")
+            print(f"DID NOT WORK FOR SOURCE {j}.")
+            print("\n \n")
             continue
         
 

@@ -1,24 +1,27 @@
 {
-  "n_samples_total": 1875000,
-  "n_samples_used": 49343,
+  "n_samples_total": 375000,
+  "n_samples_used": 28847,
   "parameter_names": [
-    "log10_mej_dyn",
     "log10_mej_wind"
   ],
   "filepath": "./source_62/posterior.npz",
-  "flow_type": "masked_autoregressive_flow",
-  "num_epochs": 3000,
+  "flow_type": "block_neural_autoregressive_flow",
+  "num_epochs": 500,
   "learning_rate": 0.0001,
   "max_patience": 500,
   "val_prop": 0.2,
   "standardize": true,
   "standardization_method": "zscore",
   "data_mean": [
-    -2.392590045928955,
-    -1.0021201372146606
+    -0.8031831979751587
   ],
   "data_std": [
-    0.7645368576049805,
-    0.38541144132614136
+    0.17489169538021088
+  ],
+  "cond_data_mean": [
+    -2.1515910625457764
+  ],
+  "cond_data_std": [
+    0.28212910890579224
   ]
 }
