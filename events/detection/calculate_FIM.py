@@ -26,12 +26,30 @@ def calculate_fim(file, network):
 
 def main(file):
 
+
+    out = calculate_fim(file, network = Network(["ETT"]))
+    if "narrow" in file:
+         outfile = f"./outdir_FIM/gwfish_narrow_ETT.dat"
+    else:
+        outfile = f"./outdir_FIM/gwfish_wide_ETT.dat"
+    np.savetxt(outfile, out, header = "snr sky_localization mass_1 mass_2 luminosity_distance theta_jn ra dec psi phase geocent_time", comments="")
+
+
+    out = calculate_fim(file, network = Network(["ETL1", "ETL2"]))
+    if "narrow" in file:
+         outfile = f"./outdir_FIM/gwfish_narrow_ETL.dat"
+    else:
+        outfile = f"./outdir_FIM/gwfish_wide_ETL.dat"
+    np.savetxt(outfile, out, header = "snr sky_localization mass_1 mass_2 luminosity_distance theta_jn ra dec psi phase geocent_time", comments="")
+
+
     out = calculate_fim(file, network = Network(["ETT", "CE"]))
     if "narrow" in file:
          outfile = f"./outdir_FIM/gwfish_narrow_ETT_CE.dat"
     else:
         outfile = f"./outdir_FIM/gwfish_wide_ETT_CE.dat"
     np.savetxt(outfile, out, header = "snr sky_localization mass_1 mass_2 luminosity_distance theta_jn ra dec psi phase geocent_time", comments="")
+
 
     out = calculate_fim(file, network = Network(["ETL1", "ETL2", "CE"]))
     if "narrow" in file:

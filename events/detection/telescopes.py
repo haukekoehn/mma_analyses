@@ -213,7 +213,7 @@ class GroundTelescope:
         mjd = Time(time, format="mjd")
         altaz_frame = AltAz(obstime=mjd, location=self.loc)
         
-        target = SkyCoord(ra=ra*u.deg, dec=dec*u.deg, frame='icrs')
+        target = SkyCoord(ra=ra*u.rad, dec=dec*u.rad, frame='icrs')
         sun_coords = get_sun(mjd).transform_to(altaz_frame)
         sky_coords = target.transform_to(altaz_frame)
 
@@ -403,7 +403,7 @@ class RadioTelescope(GroundTelescope):
         mjd = Time(time, format="mjd")
         altaz_frame = AltAz(obstime=mjd, location=self.loc)
         
-        target = SkyCoord(ra=ra*u.deg, dec=dec*u.deg, frame='icrs')
+        target = SkyCoord(ra=ra*u.rad, dec=dec*u.rad, frame='icrs')
         sky_coords = target.transform_to(altaz_frame)
 
         return sky_coords.alt.degree > 20.
