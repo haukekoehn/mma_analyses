@@ -1,25 +1,29 @@
+import time
+from multiprocessing import Pool
+from functools import partial
+
 import numpy as np
 np.random.seed(1895)
 import pandas as pd
 
-from astropy import Time
+from astropy.time import Time
 from scipy.stats import stats
 
 import bilby
-from nmma.core.conversion import luminosity_distance_to_redshift
+from bilby.gw.conversion import luminosity_distance_to_redshift
 
 from GWFish.modules.detection import Network
 from GWFish.modules.fishermatrix import compute_network_errors
 from GWFish.modules.fishermatrix import sky_localization_percentile_factor
-from GWFish.utilities import get_snr
+from GWFish.modules.utilities import get_snr
 
-from nmma.core.conversion import BNSEjectaFitting
+#from nmma.core.conversion import BNSEjectaFitting
 
-from fiesta.inference import FluxModel
-model_KN = FluxModel(name='Bu2026_MLP', filters=["lsstg", "lssti"])
+#from fiesta.inference import FluxModel
+#model_KN = FluxModel(name='Bu2026_MLP', filters=["lsstg", "lssti"])
 
 
-m_val, r_val, l_val = np.loadtxt("./eos/RMF3_MRL.dat", unpack=True)
+m_val, r_val, l_val = np.loadtxt("../eos/RMF3_MRL.dat", unpack=True)
 mtov = m_val.max()
 r16 = np.interp(1.6, m_val, r_val)
 
@@ -37,7 +41,7 @@ def draw_BNSs(size: int):
     df["lambda_1"] = np.interp(df["mass_1_source"], m_val, l_val)
     df["lambda_2"] = np.interp(df["mass_2_source"], m_val, l_val)
 
-    df["luminosity_distance"] = bilby.gw.prior.UniformSourceFrame(name="luminosity_distance", minimum=40, maximum=5000).sample(size)
+    df["luminosity_distance"] = 100.0 # bilby.gw.prior.UniformSourceFrame(name="luminosity_distance", minimum=40, maximum=5000).sample(size)
     df["redshift"] = luminosity_distance_to_redshift(df["luminosity_distance"])
 
     df["mass_1"] = (1+df["redshift"]) * df["mass_1_source"]
@@ -59,22 +63,43 @@ def add_observational_BNS_parameters(df):
     
     return df
 
-def calculate_SNRs(df, detector:str):
+def compute_chunk(df_chunk, network):
+    cols = ["mass_1", "mass_2", "luminosity_distance", "theta_jn",
+        "ra", "dec", "psi", "phase", "geocent_time"]
     
-    events = df[["mass_1", "mass_2", "luminosity_distance", "theta_jn", "ra", "dec", "psi", "phase", "geocent_time"]]
-    network = Network([detector])
+    events = df_chunk[cols]
+    breakpoint()
+    return get_snr(events, network, waveform_model="IMRPhenomXAS_NRTidalv3")["network"].to_numpy()
 
-    df["snr"] = get_snr(events, network, waveform_model="IMRPhenomXAS_NRTidalv3")["network"]
-                  
+def parallel_snr(df, detectors: list[str], nprocs=1):
+        
+        chunks = np.array_split(df, nprocs)
+        network = Network(detectors)
+        #compute = partial(compute_chunk, network=network)
+
+        compute_chunk(df, network=network)
+        #with Pool(nprocs) as pool:
+        #    results = pool.map(compute, chunks)
+        
+        result = np.concatenate(results)
+
+        df["snr"] = result
+
+        return df
+
+def calculate_SNRs(df, detectors: list[str]):
+    
+    df = parallel_snr(df, detectors)
+
     return df
 
 
-def calculate_sky_loc(df, detector: str):
+def calculate_sky_loc(df, detectors: list[str]):
     
     mask = df["snr"] >= 12
     df["DeltaOmega"] = np.inf * np.ones(df.shape[0])
     events = df.loc[mask, ["mass_1", "mass_2", "luminosity_distance", "theta_jn", "ra", "dec", "psi", "phase", "geocent_time"]]
-    network = Network([detector])
+    network = Network(detectors)
 
     detected, snr, errors, sky_localization = compute_network_errors(
         network,
@@ -187,7 +212,7 @@ def determine_mm_detection(df, network: str):
     detection = df["snr"] > 12
 
     DeltaOmega_thr = 50 if network=="ETL" else 100
-    df[""]
+
     detection &= df["DeltaOmega"] < DeltaOmega_thr
 
 
@@ -199,15 +224,27 @@ def generate_training_data(detector:str, size: int=10_000):
 
     df["gw_detected"] = df["snr"] >= 12
 
+    return df
+
 
 def main():
-    
-    df_ETL = generate_training_data("ETL", size=10_000)
+
+
+    start = time.time()
+    df_ETL = generate_training_data(["ETL1", "ETL2"], size=5_000)
     df_ETL.to_csv("./training_data/train_ETL.dat", sep=" ")
+    end = time.time()
 
-    df_ETT = generate_training_data("ETT", size=10_000)
+    print(f"ETL done, took {end-start} seconds.")
+
+    start = time.time()
+    df_ETT = generate_training_data(["ETT"], size=5_000)
     df_ETT.to_csv("./training_data/train_ETT.dat", sep=" ")
+    end = time.time()
 
-    
+    print(f"ETT done, took {end-start} seconds.")
 
+
+if __name__=="__main__":
+    main()
 
