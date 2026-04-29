@@ -1,0 +1,150 @@
+[INFO] jester: Derived max_nbreak from nbreak prior: 2.0000 n_sat
+[INFO] jester: Initialized JesterTransform: EOS=MetaModel_with_CSE_EOS_model, TOV=<jesterTOV.tov.gr.GRTOVSolver object at 0x7f2e7a46a2d0>
+[INFO] jester:   Fixed parameters: {'E_sat': -16.0}
+[WARNING] jester: Prior contains non-EOS parameters: ['alpha', 'm_max', 'm_min']. These will be preserved but only used if the transform has a population function.
+[INFO] jester: Loading NF model for source_0 from ../../gw_posteriors/source_0/nf
+[INFO] jester: Loaded NF model for source_0
+[INFO] jester: Loading NF model for source_1 from ../../gw_posteriors/source_1/nf
+[INFO] jester: Loaded NF model for source_1
+[INFO] jester: Loading NF model for source_2 from ../../gw_posteriors/source_2/nf
+[INFO] jester: Loaded NF model for source_2
+[INFO] jester: Loading NF model for source_3 from ../../gw_posteriors/source_3/nf
+[INFO] jester: Loaded NF model for source_3
+[INFO] jester: Loading NF model for source_4 from ../../gw_posteriors/source_4/nf
+[INFO] jester: Loaded NF model for source_4
+[INFO] jester: Loading NF model for source_5 from ../../gw_posteriors/source_5/nf
+[INFO] jester: Loaded NF model for source_5
+[INFO] jester: Loading NF model for source_6 from ../../gw_posteriors/source_6/nf
+[INFO] jester: Loaded NF model for source_6
+[INFO] jester: Loading NF model for source_7 from ../../gw_posteriors/source_7/nf
+[INFO] jester: Loaded NF model for source_7
+[INFO] jester: Loading NF model for source_8 from ../../gw_posteriors/source_8/nf
+[INFO] jester: Loaded NF model for source_8
+[INFO] jester: Loading NF model for source_9 from ../../gw_posteriors/source_9/nf
+[INFO] jester: Loaded NF model for source_9
+[INFO] jester: Loading NF model for source_10 from ../../gw_posteriors/source_10/nf
+[INFO] jester: Loaded NF model for source_10
+[INFO] jester: Loading NF model for source_11 from ../../gw_posteriors/source_11/nf
+[INFO] jester: Loaded NF model for source_11
+[INFO] jester: Loading NF model for source_12 from ../../gw_posteriors/source_12/nf
+[INFO] jester: Loaded NF model for source_12
+[INFO] jester: Loading NF model for source_13 from ../../gw_posteriors/source_13/nf
+[INFO] jester: Loaded NF model for source_13
+[INFO] jester: Loading NF model for source_14 from ../../gw_posteriors/source_14/nf
+[INFO] jester: Loaded NF model for source_14
+[INFO] jester: Loading NF model for source_15 from ../../gw_posteriors/source_15/nf
+[INFO] jester: Loaded NF model for source_15
+[INFO] jester: Loading NF model for source_16 from ../../gw_posteriors/source_16/nf
+[INFO] jester: Loaded NF model for source_16
+[INFO] jester: Loading NF model for source_17 from ../../gw_posteriors/source_17/nf
+[INFO] jester: Loaded NF model for source_17
+[INFO] jester: Loading NF model for source_18 from ../../gw_posteriors/source_18/nf
+[INFO] jester: Loaded NF model for source_18
+[INFO] jester: Loading NF model for source_19 from ../../gw_posteriors/source_19/nf
+[INFO] jester: Loaded NF model for source_19
+[INFO] jester: Loading NF model for source_20 from ../../gw_posteriors/source_20/nf
+[INFO] jester: Loaded NF model for source_20
+[INFO] jester: Loading NF model for source_21 from ../../gw_posteriors/source_21/nf
+[INFO] jester: Loaded NF model for source_21
+[INFO] jester: Loading NF model for source_22 from ../../gw_posteriors/source_22/nf
+[INFO] jester: Loaded NF model for source_22
+[INFO] jester: Loading NF model for source_23 from ../../gw_posteriors/source_23/nf
+[INFO] jester: Loaded NF model for source_23
+[INFO] jester: Loading NF model for source_24 from ../../gw_posteriors/source_24/nf
+[INFO] jester: Loaded NF model for source_24
+[INFO] jester: Loading NF model for source_25 from ../../gw_posteriors/source_25/nf
+[INFO] jester: Loaded NF model for source_25
+[INFO] jester: Loading NF model for source_26 from ../../gw_posteriors/source_26/nf
+[INFO] jester: Loaded NF model for source_26
+[INFO] jester: Loading NF model for source_27 from ../../gw_posteriors/source_27/nf
+[INFO] jester: Loaded NF model for source_27
+[INFO] jester: Initializing BlackJAX SMC sampler with random_walk kernel
+[INFO] jester: Configuration: 7000 particles, 10 MCMC steps per tempering stage
+[INFO] jester: Target ESS: 0.9
+[INFO] jester: Starting sampling with seed 45...
+[INFO] jester: Starting SMC sampling with random_walk kernel...
+[INFO] jester: Using random walk kernel
+[INFO] jester: Fixed sigma scaling: 0.05
+[INFO] jester: ======================================================================
+[INFO] jester: STARTING ADAPTIVE TEMPERING
+[INFO] jester: ======================================================================
+[INFO] jester: Kernel: RANDOM_WALK
+[INFO] jester: Particles: 7000
+[INFO] jester: MCMC steps per tempering: 10
+[INFO] jester: Target ESS: 90%
+[INFO] jester: Temperature progression: lambda = 0 (prior) -> 1 (posterior)
+[INFO] jester: Progress updates will be shown after each annealing step
+[INFO] jester: ======================================================================
+[INFO] jester: Running SMC loop (this may take several minutes)...
+2026-04-17 01:12:02.938782: E external/xla/xla/service/slow_operation_alarm.cc:73] 
+********************************
+[Compiling module jit_while] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+2026-04-17 01:13:22.866055: E external/xla/xla/service/slow_operation_alarm.cc:140] The operation took 3m19.927399161s
+
+********************************
+[Compiling module jit_while] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+[INFO] jester: Step    0 | λ=0.000000 | ESS= 98.9% | Accept= 75.2% | logZ=  -0.016 | t=00:06:07 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    1 | λ=0.000000 | ESS= 99.6% | Accept= 75.1% | logZ=  -0.023 | t=00:06:48 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    2 | λ=0.000000 | ESS= 99.9% | Accept= 75.0% | logZ=  -0.024 | t=00:07:28 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    3 | λ=0.000000 | ESS=100.0% | Accept= 75.0% | logZ=  -0.025 | t=00:08:09 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    4 | λ=0.000000 | ESS=100.0% | Accept= 75.3% | logZ=  -0.025 | t=00:08:50 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    5 | λ=0.000000 | ESS=100.0% | Accept= 75.4% | logZ=  -0.025 | t=00:09:30 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    6 | λ=0.000332 | ESS= 94.7% | Accept= 74.8% | logZ=  -0.345 | t=00:10:11 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    7 | λ=0.000664 | ESS= 96.3% | Accept= 74.6% | logZ=  -0.610 | t=00:10:50 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    8 | λ=0.001035 | ESS= 97.0% | Accept= 74.5% | logZ=  -0.862 | t=00:11:30 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    9 | λ=0.001477 | ESS= 97.3% | Accept= 74.4% | logZ=  -1.125 | t=00:12:10 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   10 | λ=0.001995 | ESS= 97.6% | Accept= 74.1% | logZ=  -1.398 | t=00:12:50 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   11 | λ=0.002606 | ESS= 97.9% | Accept= 74.1% | logZ=  -1.690 | t=00:13:31 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   12 | λ=0.003347 | ESS= 98.0% | Accept= 74.2% | logZ=  -2.017 | t=00:14:11 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   13 | λ=0.004287 | ESS= 98.0% | Accept= 73.9% | logZ=  -2.404 | t=00:14:51 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   14 | λ=0.005426 | ESS= 98.1% | Accept= 74.3% | logZ=  -2.845 | t=00:15:31 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   15 | λ=0.006897 | ESS= 98.0% | Accept= 74.3% | logZ=  -3.385 | t=00:16:11 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   16 | λ=0.008724 | ESS= 97.9% | Accept= 74.2% | logZ=  -4.030 | t=00:16:51 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   17 | λ=0.010964 | ESS= 97.8% | Accept= 74.4% | logZ=  -4.793 | t=00:17:31 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   18 | λ=0.013655 | ESS= 97.7% | Accept= 74.2% | logZ=  -5.680 | t=00:18:11 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   19 | λ=0.017484 | ESS= 96.7% | Accept= 74.3% | logZ=  -6.903 | t=00:18:52 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   20 | λ=0.021914 | ESS= 96.7% | Accept= 73.4% | logZ=  -8.276 | t=00:19:32 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   21 | λ=0.027254 | ESS= 96.4% | Accept= 73.7% | logZ=  -9.886 | t=00:20:12 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   22 | λ=0.033504 | ESS= 96.3% | Accept= 73.3% | logZ= -11.723 | t=00:20:53 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   23 | λ=0.041125 | ESS= 95.9% | Accept= 73.4% | logZ= -13.913 | t=00:21:33 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   24 | λ=0.049900 | ESS= 96.0% | Accept= 72.5% | logZ= -16.383 | t=00:22:14 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   25 | λ=0.060056 | ESS= 96.1% | Accept= 72.3% | logZ= -19.190 | t=00:22:55 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   26 | λ=0.071877 | ESS= 96.1% | Accept= 71.8% | logZ= -22.407 | t=00:23:35 | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   27 | λ=0.085129 | ESS= 96.3% | Accept= 71.1% | logZ= -25.966 | t=00:24:16 | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   28 | λ=0.100265 | ESS= 96.4% | Accept= 70.7% | logZ= -29.987 | t=00:24:57 | ███░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   29 | λ=0.117869 | ESS= 96.4% | Accept= 70.1% | logZ= -34.618 | t=00:25:37 | ███░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   30 | λ=0.137932 | ESS= 96.6% | Accept= 69.3% | logZ= -39.853 | t=00:26:18 | ████░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   31 | λ=0.162287 | ESS= 96.2% | Accept= 68.7% | logZ= -46.163 | t=00:26:59 | ████░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   32 | λ=0.188817 | ESS= 96.7% | Accept= 67.8% | logZ= -52.994 | t=00:27:39 | █████░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   33 | λ=0.221271 | ESS= 96.4% | Accept= 66.9% | logZ= -61.308 | t=00:28:19 | ██████░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   34 | λ=0.257857 | ESS= 96.6% | Accept= 66.1% | logZ= -70.636 | t=00:28:59 | ███████░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   35 | λ=0.299689 | ESS= 96.7% | Accept= 65.1% | logZ= -81.261 | t=00:29:40 | ████████░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   36 | λ=0.349912 | ESS= 96.5% | Accept= 63.9% | logZ= -93.975 | t=00:30:20 | ██████████░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   37 | λ=0.406811 | ESS= 96.6% | Accept= 62.7% | logZ=-108.338 | t=00:31:01 | ████████████░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   38 | λ=0.478280 | ESS= 96.2% | Accept= 61.6% | logZ=-126.330 | t=00:31:42 | ██████████████░░░░░░░░░░░░░░░░
+[INFO] jester: Step   39 | λ=0.558446 | ESS= 96.2% | Accept= 60.2% | logZ=-146.467 | t=00:32:23 | ████████████████░░░░░░░░░░░░░░
+[INFO] jester: Step   40 | λ=0.642558 | ESS= 97.0% | Accept= 58.7% | logZ=-167.552 | t=00:33:04 | ███████████████████░░░░░░░░░░░
+[INFO] jester: Step   41 | λ=0.753931 | ESS= 95.9% | Accept= 56.9% | logZ=-195.427 | t=00:33:46 | ██████████████████████░░░░░░░░
+[INFO] jester: Step   42 | λ=0.879579 | ESS= 96.1% | Accept= 55.0% | logZ=-226.826 | t=00:34:27 | ██████████████████████████░░░░
+[INFO] jester: Step   43 | λ=1.000000 | ESS= 97.1% | Accept= 53.3% | logZ=-256.879 | t=00:35:09 | ██████████████████████████████
+[INFO] jester: Sampling complete! Runtime: 35 min 9 sec
+[INFO] jester: Generating SMC diagnostic plots...
+[INFO] jester: Saved diagnostic plot to outdir_gw/smc_diagnostics.png
+[INFO] jester: Creating InferenceResult from sampler output...
+[INFO] jester: Extracting results from blackjax_smc_rw sampler
+[INFO] jester: Computed 7000 log probability values
+[INFO] jester: ============================================================
+[INFO] jester: Generating EOS from posterior samples
+[INFO] jester: ============================================================
+[INFO] jester: Generating EOS for all 7000 posterior samples
+[INFO] jester: Applying transform to 7000 samples...
+[INFO] jester: Using batch size: 1000
+[INFO] jester: TOV solve time: 13.18 s (7000 samples)
+[INFO] jester: Adding derived EOS quantities to posterior
+[INFO] jester: Added 7 derived EOS quantities
+[INFO] jester: EOS generation complete!
+[INFO] jester: ============================================================
+[INFO] jester: Saving inference results to outdir_gw/results.h5
+[INFO] jester: Successfully saved results to outdir_gw/results.h5

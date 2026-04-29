@@ -1,0 +1,214 @@
+[INFO] jester: Derived max_nbreak from nbreak prior: 2.0000 n_sat
+[INFO] jester: Initialized JesterTransform: EOS=MetaModel_with_CSE_EOS_model, TOV=<jesterTOV.tov.gr.GRTOVSolver object at 0x7f1ee0502ed0>
+[INFO] jester:   Fixed parameters: {'E_sat': -16.0}
+[WARNING] jester: Prior contains non-EOS parameters: ['alpha', 'k_coll', 'm_max', 'm_min']. These will be preserved but only used if the transform has a population function.
+[INFO] jester: Loading NF for GW posterior source_0 from ../../gw_posteriors/source_0/nf_mm.
+[INFO] jester: Loading EM posterior source_0 from ../../em_posteriors/source_0/nf.
+[INFO] jester: Loaded NFs for source_0.
+[INFO] jester: Loading NF for GW posterior source_1 from ../../gw_posteriors/source_1/nf_mm.
+[INFO] jester: Loading EM posterior source_1 from ../../em_posteriors/source_1/nf.
+[INFO] jester: Loaded NFs for source_1.
+[INFO] jester: Loading NF for GW posterior source_2 from ../../gw_posteriors/source_2/nf_mm.
+[INFO] jester: Loading EM posterior source_2 from ../../em_posteriors/source_2/nf.
+[INFO] jester: Loaded NFs for source_2.
+[INFO] jester: Loading NF for GW posterior source_3 from ../../gw_posteriors/source_3/nf_mm.
+[INFO] jester: Loading EM posterior source_3 from ../../em_posteriors/source_3/nf.
+[INFO] jester: Loaded NFs for source_3.
+[INFO] jester: Loading NF for GW posterior source_4 from ../../gw_posteriors/source_4/nf_mm.
+[INFO] jester: Loading EM posterior source_4 from ../../em_posteriors/source_4/nf.
+[INFO] jester: Loaded NFs for source_4.
+[INFO] jester: Loading NF for GW posterior source_5 from ../../gw_posteriors/source_5/nf_mm.
+[INFO] jester: Loading EM posterior source_5 from ../../em_posteriors/source_5/nf.
+[INFO] jester: Loaded NFs for source_5.
+[INFO] jester: Loading NF for GW posterior source_6 from ../../gw_posteriors/source_6/nf_mm.
+[INFO] jester: Loading EM posterior source_6 from ../../em_posteriors/source_6/nf.
+[INFO] jester: Loaded NFs for source_6.
+[INFO] jester: Loading NF for GW posterior source_7 from ../../gw_posteriors/source_7/nf_mm.
+[INFO] jester: Loading EM posterior source_7 from ../../em_posteriors/source_7/nf.
+[INFO] jester: Loaded NFs for source_7.
+[INFO] jester: Loading NF for GW posterior source_8 from ../../gw_posteriors/source_8/nf_mm.
+[INFO] jester: Loading EM posterior source_8 from ../../em_posteriors/source_8/nf.
+[INFO] jester: Loaded NFs for source_8.
+[INFO] jester: Loading NF for GW posterior source_9 from ../../gw_posteriors/source_9/nf_mm.
+[INFO] jester: Loading EM posterior source_9 from ../../em_posteriors/source_9/nf.
+[INFO] jester: Loaded NFs for source_9.
+[INFO] jester: Loading NF for GW posterior source_10 from ../../gw_posteriors/source_10/nf_mm.
+[INFO] jester: Loading EM posterior source_10 from ../../em_posteriors/source_10/nf.
+[INFO] jester: Loaded NFs for source_10.
+[INFO] jester: Loading NF for GW posterior source_11 from ../../gw_posteriors/source_11/nf_mm.
+[INFO] jester: Loading EM posterior source_11 from ../../em_posteriors/source_11/nf.
+[INFO] jester: Loaded NFs for source_11.
+[INFO] jester: Loading NF for GW posterior source_12 from ../../gw_posteriors/source_12/nf_mm.
+[INFO] jester: Loading EM posterior source_12 from ../../em_posteriors/source_12/nf.
+[INFO] jester: Loaded NFs for source_12.
+[INFO] jester: Loading NF for GW posterior source_13 from ../../gw_posteriors/source_13/nf_mm.
+[INFO] jester: Loading EM posterior source_13 from ../../em_posteriors/source_13/nf.
+[INFO] jester: Loaded NFs for source_13.
+[INFO] jester: Loading NF for GW posterior source_14 from ../../gw_posteriors/source_14/nf_mm.
+[INFO] jester: Loading EM posterior source_14 from ../../em_posteriors/source_14/nf.
+[INFO] jester: Loaded NFs for source_14.
+[INFO] jester: Loading NF for GW posterior source_15 from ../../gw_posteriors/source_15/nf_mm.
+[INFO] jester: Loading EM posterior source_15 from ../../em_posteriors/source_15/nf.
+[INFO] jester: Loaded NFs for source_15.
+[INFO] jester: Loading NF for GW posterior source_16 from ../../gw_posteriors/source_16/nf_mm.
+[INFO] jester: Loading EM posterior source_16 from ../../em_posteriors/source_16/nf.
+[INFO] jester: Loaded NFs for source_16.
+[INFO] jester: Loading NF for GW posterior source_17 from ../../gw_posteriors/source_17/nf_mm.
+[INFO] jester: Loading EM posterior source_17 from ../../em_posteriors/source_17/nf.
+[INFO] jester: Loaded NFs for source_17.
+[INFO] jester: Loading NF for GW posterior source_18 from ../../gw_posteriors/source_18/nf_mm.
+[INFO] jester: Loading EM posterior source_18 from ../../em_posteriors/source_18/nf.
+[INFO] jester: Loaded NFs for source_18.
+[INFO] jester: Loading NF for GW posterior source_19 from ../../gw_posteriors/source_19/nf_mm.
+[INFO] jester: Loading EM posterior source_19 from ../../em_posteriors/source_19/nf.
+[INFO] jester: Loaded NFs for source_19.
+[INFO] jester: Loading NF for GW posterior source_20 from ../../gw_posteriors/source_20/nf_mm.
+[INFO] jester: Loading EM posterior source_20 from ../../em_posteriors/source_20/nf.
+[INFO] jester: Loaded NFs for source_20.
+[INFO] jester: Loading NF for GW posterior source_21 from ../../gw_posteriors/source_21/nf_mm.
+[INFO] jester: Loading EM posterior source_21 from ../../em_posteriors/source_21/nf.
+[INFO] jester: Loaded NFs for source_21.
+[INFO] jester: Loading NF for GW posterior source_22 from ../../gw_posteriors/source_22/nf_mm.
+[INFO] jester: Loading EM posterior source_22 from ../../em_posteriors/source_22/nf.
+[INFO] jester: Loaded NFs for source_22.
+[INFO] jester: Loading NF for GW posterior source_23 from ../../gw_posteriors/source_23/nf_mm.
+[INFO] jester: Loading EM posterior source_23 from ../../em_posteriors/source_23/nf.
+[INFO] jester: Loaded NFs for source_23.
+[INFO] jester: Loading NF for GW posterior source_24 from ../../gw_posteriors/source_24/nf_mm.
+[INFO] jester: Loading EM posterior source_24 from ../../em_posteriors/source_24/nf.
+[INFO] jester: Loaded NFs for source_24.
+[INFO] jester: Loading NF for GW posterior source_25 from ../../gw_posteriors/source_25/nf_mm.
+[INFO] jester: Loading EM posterior source_25 from ../../em_posteriors/source_25/nf.
+[INFO] jester: Loaded NFs for source_25.
+[INFO] jester: Loading NF for GW posterior source_26 from ../../gw_posteriors/source_26/nf_mm.
+[INFO] jester: Loading EM posterior source_26 from ../../em_posteriors/source_26/nf.
+[INFO] jester: Loaded NFs for source_26.
+[INFO] jester: Loading NF for GW posterior source_27 from ../../gw_posteriors/source_27/nf_mm.
+[INFO] jester: Loading EM posterior source_27 from ../../em_posteriors/source_27/nf.
+[INFO] jester: Loaded NFs for source_27.
+[INFO] jester: Loading NF for GW posterior source_28 from ../../gw_posteriors/source_28/nf_mm.
+[INFO] jester: Loading EM posterior source_28 from ../../em_posteriors/source_28/nf.
+[INFO] jester: Loaded NFs for source_28.
+[INFO] jester: Loading NF for GW posterior source_29 from ../../gw_posteriors/source_29/nf_mm.
+[INFO] jester: Loading EM posterior source_29 from ../../em_posteriors/source_29/nf.
+[INFO] jester: Loaded NFs for source_29.
+[INFO] jester: Loading NF for GW posterior source_30 from ../../gw_posteriors/source_30/nf_mm.
+[INFO] jester: Loading EM posterior source_30 from ../../em_posteriors/source_30/nf.
+[INFO] jester: Loaded NFs for source_30.
+[INFO] jester: Loading NF for GW posterior source_31 from ../../gw_posteriors/source_31/nf_mm.
+[INFO] jester: Loading EM posterior source_31 from ../../em_posteriors/source_31/nf.
+[INFO] jester: Loaded NFs for source_31.
+[INFO] jester: Loading NF for GW posterior source_32 from ../../gw_posteriors/source_32/nf_mm.
+[INFO] jester: Loading EM posterior source_32 from ../../em_posteriors/source_32/nf.
+[INFO] jester: Loaded NFs for source_32.
+[INFO] jester: Loading NF for GW posterior source_33 from ../../gw_posteriors/source_33/nf_mm.
+[INFO] jester: Loading EM posterior source_33 from ../../em_posteriors/source_33/nf.
+[INFO] jester: Loaded NFs for source_33.
+[INFO] jester: Loading NF for GW posterior source_34 from ../../gw_posteriors/source_34/nf_mm.
+[INFO] jester: Loading EM posterior source_34 from ../../em_posteriors/source_34/nf.
+[INFO] jester: Loaded NFs for source_34.
+[INFO] jester: Loading NF for GW posterior source_35 from ../../gw_posteriors/source_35/nf_mm.
+[INFO] jester: Loading EM posterior source_35 from ../../em_posteriors/source_35/nf.
+[INFO] jester: Loaded NFs for source_35.
+[INFO] jester: Loading NF for GW posterior source_36 from ../../gw_posteriors/source_36/nf_mm.
+[INFO] jester: Loading EM posterior source_36 from ../../em_posteriors/source_36/nf.
+[INFO] jester: Loaded NFs for source_36.
+[INFO] jester: Loading NF for GW posterior source_37 from ../../gw_posteriors/source_37/nf_mm.
+[INFO] jester: Loading EM posterior source_37 from ../../em_posteriors/source_37/nf.
+[INFO] jester: Loaded NFs for source_37.
+[INFO] jester: Loading NF for GW posterior source_38 from ../../gw_posteriors/source_38/nf_mm.
+[INFO] jester: Loading EM posterior source_38 from ../../em_posteriors/source_38/nf.
+[INFO] jester: Loaded NFs for source_38.
+[INFO] jester: Loading NF for GW posterior source_39 from ../../gw_posteriors/source_39/nf_mm.
+[INFO] jester: Loading EM posterior source_39 from ../../em_posteriors/source_39/nf.
+[INFO] jester: Loaded NFs for source_39.
+[INFO] jester: Loading NF for GW posterior source_40 from ../../gw_posteriors/source_40/nf_mm.
+[INFO] jester: Loading EM posterior source_40 from ../../em_posteriors/source_40/nf.
+[INFO] jester: Loaded NFs for source_40.
+[INFO] jester: Loading NF for GW posterior source_41 from ../../gw_posteriors/source_41/nf_mm.
+[INFO] jester: Loading EM posterior source_41 from ../../em_posteriors/source_41/nf.
+[INFO] jester: Loaded NFs for source_41.
+[INFO] jester: Loading NF for GW posterior source_42 from ../../gw_posteriors/source_42/nf_mm.
+[INFO] jester: Loading EM posterior source_42 from ../../em_posteriors/source_42/nf.
+[INFO] jester: Loaded NFs for source_42.
+[INFO] jester: Initializing BlackJAX SMC sampler with random_walk kernel
+[INFO] jester: Configuration: 7000 particles, 10 MCMC steps per tempering stage
+[INFO] jester: Target ESS: 0.9
+[INFO] jester: Starting sampling with seed 47...
+[INFO] jester: Starting SMC sampling with random_walk kernel...
+[INFO] jester: Using random walk kernel
+[INFO] jester: Fixed sigma scaling: 0.05
+[INFO] jester: ======================================================================
+[INFO] jester: STARTING ADAPTIVE TEMPERING
+[INFO] jester: ======================================================================
+[INFO] jester: Kernel: RANDOM_WALK
+[INFO] jester: Particles: 7000
+[INFO] jester: MCMC steps per tempering: 10
+[INFO] jester: Target ESS: 90%
+[INFO] jester: Temperature progression: lambda = 0 (prior) -> 1 (posterior)
+[INFO] jester: Progress updates will be shown after each annealing step
+[INFO] jester: ======================================================================
+[INFO] jester: Running SMC loop (this may take several minutes)...
+2026-04-22 15:49:30.132228: E external/xla/xla/service/slow_operation_alarm.cc:73] 
+********************************
+[Compiling module jit_while] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+2026-04-22 15:55:56.594169: E external/xla/xla/service/slow_operation_alarm.cc:140] The operation took 8m26.46205563s
+
+********************************
+[Compiling module jit_while] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
+********************************
+[INFO] jester: Step    0 | λ=0.000000 | ESS= 98.8% | Accept= 73.6% | logZ=  -0.017 | t=00:33:55 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    1 | λ=0.000000 | ESS= 99.7% | Accept= 74.5% | logZ=  -0.022 | t=00:54:49 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    2 | λ=0.000000 | ESS= 99.9% | Accept= 73.5% | logZ=  -0.024 | t=01:15:43 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    3 | λ=0.000000 | ESS=100.0% | Accept= 74.3% | logZ=  -0.024 | t=01:36:38 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    4 | λ=0.000000 | ESS=100.0% | Accept= 74.7% | logZ=  -0.024 | t=01:57:32 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    5 | λ=0.000061 | ESS= 94.6% | Accept= 74.3% | logZ=  -0.302 | t=02:18:25 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    6 | λ=0.000122 | ESS= 96.3% | Accept= 74.4% | logZ=  -0.527 | t=02:39:19 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    7 | λ=0.000192 | ESS= 96.8% | Accept= 74.0% | logZ=  -0.736 | t=03:00:16 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    8 | λ=0.000272 | ESS= 97.2% | Accept= 74.0% | logZ=  -0.938 | t=03:21:13 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    9 | λ=0.000364 | ESS= 97.5% | Accept= 73.1% | logZ=  -1.139 | t=03:42:08 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   10 | λ=0.000474 | ESS= 97.8% | Accept= 73.7% | logZ=  -1.347 | t=04:03:03 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   11 | λ=0.000601 | ESS= 98.1% | Accept= 73.0% | logZ=  -1.560 | t=04:23:59 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   12 | λ=0.000750 | ESS= 98.3% | Accept= 74.0% | logZ=  -1.786 | t=04:44:57 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   13 | λ=0.000937 | ESS= 98.3% | Accept= 73.7% | logZ=  -2.046 | t=05:05:54 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   14 | λ=0.001195 | ESS= 97.8% | Accept= 73.9% | logZ=  -2.377 | t=05:26:51 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   15 | λ=0.001505 | ESS= 97.7% | Accept= 73.1% | logZ=  -2.745 | t=05:47:46 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   16 | λ=0.001896 | ESS= 97.4% | Accept= 73.9% | logZ=  -3.176 | t=06:08:43 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   17 | λ=0.002318 | ESS= 97.6% | Accept= 73.6% | logZ=  -3.614 | t=06:29:40 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   18 | λ=0.002912 | ESS= 96.4% | Accept= 73.2% | logZ=  -4.192 | t=06:50:36 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   19 | λ=0.003608 | ESS= 96.0% | Accept= 72.8% | logZ=  -4.823 | t=07:11:32 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   20 | λ=0.004417 | ESS= 95.8% | Accept= 72.2% | logZ=  -5.506 | t=07:32:28 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   21 | λ=0.005316 | ESS= 95.9% | Accept= 71.7% | logZ=  -6.213 | t=07:53:23 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   22 | λ=0.006379 | ESS= 95.5% | Accept= 71.3% | logZ=  -6.996 | t=08:14:18 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   23 | λ=0.007541 | ESS= 95.9% | Accept= 70.1% | logZ=  -7.800 | t=08:35:15 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   24 | λ=0.008900 | ESS= 95.8% | Accept= 70.3% | logZ=  -8.687 | t=08:56:10 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   25 | λ=0.010437 | ESS= 96.0% | Accept= 69.8% | logZ=  -9.638 | t=09:17:05 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   26 | λ=0.012198 | ESS= 96.2% | Accept= 68.9% | logZ= -10.678 | t=09:38:01 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   27 | λ=0.014222 | ESS= 96.4% | Accept= 68.0% | logZ= -11.823 | t=09:58:58 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   28 | λ=0.016532 | ESS= 96.5% | Accept= 67.0% | logZ= -13.085 | t=10:19:55 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   29 | λ=0.019190 | ESS= 96.6% | Accept= 66.2% | logZ= -14.493 | t=10:40:51 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   30 | λ=0.022346 | ESS= 96.4% | Accept= 65.3% | logZ= -16.122 | t=11:01:45 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   31 | λ=0.026128 | ESS= 96.3% | Accept= 64.0% | logZ= -18.030 | t=11:22:41 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   32 | λ=0.030546 | ESS= 96.1% | Accept= 62.4% | logZ= -20.209 | t=11:43:36 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   33 | λ=0.035507 | ESS= 96.4% | Accept= 60.5% | logZ= -22.608 | t=12:04:33 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   34 | λ=0.041101 | ESS= 96.4% | Accept= 58.7% | logZ= -25.269 | t=12:25:29 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   35 | λ=0.047947 | ESS= 95.8% | Accept= 57.3% | logZ= -28.479 | t=12:46:24 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   36 | λ=0.055423 | ESS= 96.3% | Accept= 55.4% | logZ= -31.937 | t=13:07:21 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   37 | λ=0.064422 | ESS= 96.0% | Accept= 53.7% | logZ= -36.049 | t=13:28:17 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   38 | λ=0.075040 | ESS= 95.9% | Accept= 51.6% | logZ= -40.852 | t=13:49:13 | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   39 | λ=0.086983 | ESS= 96.1% | Accept= 49.8% | logZ= -46.202 | t=14:10:10 | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   40 | λ=0.100347 | ESS= 96.4% | Accept= 47.7% | logZ= -52.142 | t=14:31:07 | ███░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   41 | λ=0.116975 | ESS= 95.7% | Accept= 45.6% | logZ= -59.482 | t=14:52:04 | ███░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   42 | λ=0.135542 | ESS= 95.8% | Accept= 43.5% | logZ= -67.630 | t=15:13:00 | ████░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   43 | λ=0.156957 | ESS= 95.7% | Accept= 40.9% | logZ= -76.975 | t=15:33:57 | ████░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   44 | λ=0.180748 | ESS= 95.8% | Accept= 39.0% | logZ= -87.303 | t=15:54:54 | █████░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   45 | λ=0.208688 | ESS= 95.5% | Accept= 36.7% | logZ= -99.378 | t=16:15:50 | ██████░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   46 | λ=0.241868 | ESS= 94.9% | Accept= 34.7% | logZ=-113.656 | t=16:36:46 | ███████░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   47 | λ=0.278967 | ESS= 94.7% | Accept= 31.9% | logZ=-129.561 | t=16:57:43 | ████████░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   48 | λ=0.319279 | ESS= 94.7% | Accept= 29.8% | logZ=-146.781 | t=17:18:38 | █████████░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   49 | λ=0.365189 | ESS= 94.3% | Accept= 27.5% | logZ=-166.328 | t=17:39:33 | ██████████░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   50 | λ=0.415908 | ESS= 94.1% | Accept= 25.4% | logZ=-187.857 | t=18:00:29 | ████████████░░░░░░░░░░░░░░░░░░
+slurmstepd-hgc01: error: *** STEP 90624.0 ON hgc01 CANCELLED AT 2026-04-23T10:02:27 DUE TO JOB REQUEUE ***
+slurmstepd-hgc01: error: *** JOB 90624 ON hgc01 CANCELLED AT 2026-04-23T10:02:27 DUE TO JOB REQUEUE ***
+srun: Job step aborted: Waiting up to 62 seconds for job step to finish.

@@ -83,6 +83,40 @@ def RecycledBinary(m_arr, params):
 
 def MassRatioPowerLaw(m_arr, params):
 
+    m_min = params["m_min"]
+    m_max = params["m_max"]
+    alpha = params["alpha"]
+
+    if alpha != 1:
+        normalization_constant = (1+alpha) * (
+            m_max**2/2 
+            + (1+alpha)/(2*(1-alpha))*m_min**2 
+            - (m_min**(alpha+1) * m_max**(1-alpha)) / (1-alpha) 
+        )**(-1)
+
+        pdf_m2 = np.where(
+            (m_arr >= m_min) & (m_arr <= m_max),
+            normalization_constant * m_arr**alpha * (m_max**(1-alpha) - m_arr**(1-alpha)) / (1-alpha),
+            0
+        )
+
+    else: 
+        normalization_constant = (alpha+1) * (
+            0.5 *(m_max**2 - m_min**2)
+            - m_min**(alpha+1) * np.log(m_max/m_min)
+        )**(-1)
+        pdf_m2 = np.where(
+            (m_arr >= m_min) & (m_arr <= m_max),
+            normalization_constant * m_arr**alpha * np.log(m_max/m_arr),
+            0
+        )
+    
+    pdf_m1 = np.where(
+            (m_arr >= m_min) & (m_arr <= m_max),
+            normalization_constant * (m_arr**(1+alpha)-m_min**(1+alpha)) / (alpha+1) * m_arr**(-alpha),
+            0
+    )
+
     return pdf_m1, pdf_m2
 
 
@@ -165,7 +199,7 @@ def plot_pressure(ax, posterior, color):
 def plot_pop(ax, posterior, color):
 
     best_ind = posterior["log_prob"].argmax()
-    x = np.linspace(1, 2, 100) # masses to plot for
+    x = np.linspace(1, 2.1, 100) # masses to plot for
 
     if "mu_1" in posterior:
         pop_model = RecycledBinary
@@ -190,7 +224,7 @@ def plot_pop(ax, posterior, color):
     ax[0].plot(x, pdf_m1_truth, color="red", zorder=3)
     ax[0].set_xlabel("$m_1$ [$M_\\odot$]", fontsize=fontsize)
     ax[0].set_ylabel("pop. density", fontsize=fontsize)
-    ax[0].set(xlim=(1, 2), yscale="log", ylim=(0.1, 20))
+    ax[0].set(xlim=(1, 2.1), yscale="log", ylim=(0.1, quantiles_m1.max() * 2))
 
     # plot m2
     x, quantiles_m2, _ = get_quantiles(x, X, Y_pdf_m2, posterior["weights"])
@@ -198,7 +232,7 @@ def plot_pop(ax, posterior, color):
     ax[1].plot(x, pdf_m2_truth, color="red", zorder=3)
     ax[1].set_xlabel("$m_2$ [$M_\\odot$]", fontsize=fontsize)
     ax[1].set_ylabel("pop. density", fontsize=fontsize)
-    ax[1].set(xlim=(1, 2), yscale="log", ylim=(0.1, 20))
+    ax[1].set(xlim=(1, 2.1), yscale="log", ylim=(0.1, quantiles_m2.max() * 2))
 
 
 def main(directory: str):

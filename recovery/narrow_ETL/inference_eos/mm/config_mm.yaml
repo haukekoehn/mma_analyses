@@ -17,8 +17,8 @@ prior:
 multimessenger: True
 population:
   name: RecycledBinary
-  N_masses_evaluation: 1000
-  pop_random_key: 202509820
+  N_masses_evaluation: 2000
+  pop_random_key: 464902364
 likelihoods:
 - type: constraints_eos
   enabled: true

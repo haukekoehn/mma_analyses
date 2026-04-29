@@ -1,30 +1,30 @@
 {
-  "n_samples_total": 4407,
-  "n_samples_used": 4407,
+  "n_samples_total": 4231,
+  "n_samples_used": 4231,
   "parameter_names": [
     "mass_1_source",
     "mass_2_source",
     "lambda_1",
     "lambda_2"
   ],
-  "filepath": "./source_4/posterior.npz",
+  "filepath": "./source_6/posterior.npz",
   "flow_type": "masked_autoregressive_flow",
-  "num_epochs": 1237,
+  "num_epochs": 1320,
   "learning_rate": 0.0001,
   "max_patience": 500,
   "val_prop": 0.2,
   "standardize": true,
   "standardization_method": "zscore",
   "data_mean": [
-    1.6522211824761988,
-    1.336010244494629,
-    1534.2225615094992,
-    1883.8559884993927
+    1.4248278573067787,
+    1.1617221943608407,
+    650.7251093789123,
+    978.5027215924822
   ],
   "data_std": [
-    0.15228830675609586,
-    0.11713945296754177,
-    1019.0226746390194,
-    1268.0783947395805
+    0.10723880334965406,
+    0.08421724352204228,
+    450.57974660537894,
+    708.3380867520615
   ]
 }

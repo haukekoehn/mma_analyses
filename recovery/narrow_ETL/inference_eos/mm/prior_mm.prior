@@ -14,7 +14,7 @@ sigma_1 = UniformPrior(0.01, 0.1, parameter_names=["sigma_1"])
 sigma_2 = UniformPrior(0.01, 0.2, parameter_names=["sigma_2"])
 alpha = UniformPrior(0.3, 1, parameter_names=["alpha"])
 
-m_min = UniformPrior(1, 1.5, parameter_names=["m_min"])
-m_max = UniformPrior(1., 1.5, parameter_names=["m_max"])
+m_min = UniformPrior(1., 1.25, parameter_names=["m_min"])
+m_max = UniformPrior(1.25, 1.5, parameter_names=["m_max"])
 
 k_coll = UniformPrior(1.2, 1.6, parameter_names=["k_coll"])

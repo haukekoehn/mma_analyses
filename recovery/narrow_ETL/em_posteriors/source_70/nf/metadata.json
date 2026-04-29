@@ -4,7 +4,7 @@
   "parameter_names": [
     "log10_mej_wind"
   ],
-  "filepath": "./source_70/posterior.npz",
+  "filepath": "./source_74/posterior.npz",
   "flow_type": "block_neural_autoregressive_flow",
   "num_epochs": 500,
   "learning_rate": 0.0001,
@@ -13,15 +13,15 @@
   "standardize": true,
   "standardization_method": "zscore",
   "data_mean": [
-    -1.1703715324401855
+    -1.0598911046981812
   ],
   "data_std": [
-    0.24504485726356506
+    0.18212798237800598
   ],
   "cond_data_mean": [
-    -2.743767023086548
+    -2.44008207321167
   ],
   "cond_data_std": [
-    0.4952109754085541
+    0.4312126934528351
   ]
 }
