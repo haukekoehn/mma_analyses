@@ -102,7 +102,7 @@ def analyze_event(j, param_dict, rng_key):
         N_datapoints = 50
     else:
         filters = FILTERS_KN
-        N_datapoints = 50
+        N_datapoints = 25
 
 
     injection = InjectionSurrogate(model=model,
@@ -151,8 +151,8 @@ def analyze_event(j, param_dict, rng_key):
 def main():
 
     events = pd.read_csv("../events.dat", sep=" ")
-    rng_key = jax.random.PRNGKey(32903)
-    for j in range(0, events.shape[0]):
+    rng_key = jax.random.PRNGKey(57892)
+    for j in range(events.shape[0]):
         rng_key, sub_key = jax.random.split(rng_key)
         try:
             analyze_event(j, events.iloc[j].to_dict(), sub_key)
