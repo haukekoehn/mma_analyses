@@ -206,7 +206,7 @@ def plot_pop(ax, posterior, color):
         truths = dict(mu_1=1.34, mu_2=1.43, sigma_1=0.02, sigma_2=0.15, alpha=0.68, m_min=1.16, m_max=1.42, k_coll=1.3)
     else:
         pop_model = MassRatioPowerLaw
-        truths = dict(m_min=1.1, m_max=2.1, alpha=2.0, k_coll=1.3)
+        truths = dict(m_min=1.1, m_max=2.0, alpha=2.0, k_coll=1.3)
     
     X = np.tile(x, (posterior["log_prob"].shape[0], 1))
     Y_pdf_m1 = np.zeros_like(X)
@@ -244,6 +244,7 @@ def main(directory: str):
 
     posterior_gw = load_posterior(directory / "inference_eos" / "gw" / "outdir_gw" / "results.h5")
     posterior_mm = load_posterior(directory / "inference_eos" / "mm" / "outdir_mm" / "results.h5")
+    #posterior_mm_full = load_posterior(directory / "inference_eos" / "mm_full" / "outdir_mm" / "results.h5")
 
     fig, ax = plt.subplots(5, 1, figsize=(5, 22))
     fig.subplots_adjust(hspace=0.2)
@@ -251,15 +252,18 @@ def main(directory: str):
 
     plot_ml(ax[0], posterior_gw, color="purple")
     plot_ml(ax[0], posterior_mm, color="orange")
+    #plot_ml(ax[0], posterior_mm_full, color="salmon")
 
     plot_mr(ax[1], posterior_gw, color="purple")
     plot_mr(ax[1], posterior_mm, color="orange")
+    #plot_mr(ax[1], posterior_mm_full, color="salmon")
 
     plot_pressure(ax[2], posterior_gw, color="purple")
     plot_pressure(ax[2], posterior_mm, color="orange")
     
     plot_pop(ax[3:], posterior_gw, color="purple")
     plot_pop(ax[3:], posterior_mm, color="orange")
+    #plot_pop(ax[3:], posterior_mm_full, color="salmon")
 
     fig.savefig(f"{name}.pdf", dpi=250, bbox_inches="tight")
 
