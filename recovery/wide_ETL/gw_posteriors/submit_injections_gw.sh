@@ -2,8 +2,7 @@
 nsrc=$(wc -l < ../events.dat)
 nsrc=$(( nsrc - 1 ))
 
-#for (( src=0; src<nsrc; src++ ));
-for src in {2,27};
+for (( src=0; src<nsrc; src++ ));
 do
 
 
@@ -27,7 +26,7 @@ export OMP_NUM_THREADS=1
 
 mkdir -p source_${src}
 
-srun python run_injections_gw.py --source ${src} --outdir source_${src} --random-seed 1764
+srun python run_injections_gw.py --source ${src} --outdir source_${src} --random-seed 148596
 EOF
 
 done
