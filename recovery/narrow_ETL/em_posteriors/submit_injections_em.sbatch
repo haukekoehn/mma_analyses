@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J narrow_ET_em
+#SBATCH -J narrow_ETL_em
 #SBATCH -o ./log
 #SBATCH -e ./log
 
