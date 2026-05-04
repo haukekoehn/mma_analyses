@@ -3,6 +3,7 @@ nsrc=$(wc -l < ../events.dat)
 nsrc=$(( nsrc - 1 ))
 
 for (( src=0; src<nsrc; src++ ));
+#while read -r src;
 do
 
 
@@ -26,7 +27,7 @@ export OMP_NUM_THREADS=1
 
 mkdir -p source_${src}
 
-srun python run_injections_gw.py --source ${src} --outdir source_${src} --random-seed 4243934
+srun python run_injections_gw.py --source ${src} --outdir source_${src} --random-seed 516784
 EOF
 
-done
+done #< ../missing_events.dat
