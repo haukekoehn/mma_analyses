@@ -49,7 +49,7 @@ KN_prior = [
             Uniform(xmin=-4., xmax=-0.55, naming=["log10_mej_wind"]),
             Uniform(xmin=0.05, xmax=0.15, naming=["v_ej_wind"]),
             Uniform(xmin=0.2, xmax=0.4, naming=["Ye_wind"]),
-            UniformSourceFrame(dmin=40.0, dmax=8000.0, naming=["luminosity_distance"])
+            UniformSourceFrame(dmin=40.0, dmax=8000, naming=["luminosity_distance"])
 ]
 
 GRB_prior = [Uniform(xmin=47.0, xmax=57.0, naming=['log10_E0']),
@@ -101,7 +101,7 @@ def analyze_event(j, param_dict, rng_key):
         N_datapoints = 50
     else:
         filters = FILTERS_KN
-        N_datapoints = 50
+        N_datapoints = 25
 
 
     injection = InjectionSurrogate(model=model,
@@ -151,7 +151,7 @@ def main():
 
     events = pd.read_csv("../events.dat", sep=" ")
     rng_key = jax.random.PRNGKey(618920)
-    for j in [0]: #range(0, events.shape[0]):
+    for j in range(events.shape[0]):
         rng_key, sub_key = jax.random.split(rng_key)
         try:
             analyze_event(j, events.iloc[j].to_dict(), sub_key)
