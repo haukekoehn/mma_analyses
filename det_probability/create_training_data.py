@@ -3,13 +3,12 @@ from multiprocessing import Pool
 from functools import partial
 
 import numpy as np
-np.random.seed(1895)
+np.random.seed(678920)
 import pandas as pd
 
 from astropy.time import Time
 from scipy.stats import stats
 
-import bilby
 from bilby.gw.conversion import luminosity_distance_to_redshift
 
 from GWFish.modules.detection import Network
@@ -68,18 +67,18 @@ def compute_chunk(df_chunk, network):
         "ra", "dec", "psi", "phase", "geocent_time"]
     
     events = df_chunk[cols]
-    breakpoint()
+    #breakpoint()
     return get_snr(events, network, waveform_model="IMRPhenomXAS_NRTidalv3")["network"].to_numpy()
 
-def parallel_snr(df, detectors: list[str], nprocs=1):
+def parallel_snr(df, detectors: list[str], nprocs=24):
         
         chunks = np.array_split(df, nprocs)
         network = Network(detectors)
-        #compute = partial(compute_chunk, network=network)
+        compute = partial(compute_chunk, network=network)
 
-        compute_chunk(df, network=network)
-        #with Pool(nprocs) as pool:
-        #    results = pool.map(compute, chunks)
+        #compute_chunk(df, network=network)
+        with Pool(nprocs) as pool:
+            results = pool.map(compute, chunks)
         
         result = np.concatenate(results)
 
@@ -231,17 +230,17 @@ def main():
 
 
     start = time.time()
-    df_ETL = generate_training_data(["ETL1", "ETL2"], size=5_000)
+    df_ETL = generate_training_data(["ETL1", "ETL2"], size=1_000_000)
     df_ETL.to_csv("./training_data/train_ETL.dat", sep=" ")
     end = time.time()
 
     print(f"ETL done, took {end-start} seconds.")
 
     start = time.time()
-    df_ETT = generate_training_data(["ETT"], size=5_000)
+    df_ETT = generate_training_data(["ETT"], size=1_000_000)
     df_ETT.to_csv("./training_data/train_ETT.dat", sep=" ")
     end = time.time()
-
+    
     print(f"ETT done, took {end-start} seconds.")
 
 

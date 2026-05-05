@@ -206,7 +206,7 @@ def main(file: str):
         input_ndim= train_X.shape[1],
         learning_rate=1e-2,
         nb_epochs=2000,
-        batch_size=2**16,
+        batch_size=500,
         optimizer="sgd"
     )
 
@@ -246,5 +246,5 @@ def main(file: str):
 
 
 if __name__=="__main__":
-    main("./training_data/train_ETL.dat")
+    #main("./training_data/train_ETL.dat")
     main("./training_data/train_ETT.dat")
