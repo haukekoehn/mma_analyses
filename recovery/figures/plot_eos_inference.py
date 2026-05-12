@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import sys
+from copy import deepcopy
 
 import h5py
 import numpy as np
@@ -135,70 +136,100 @@ def get_quantiles(xs, x_val, y_val, weights, alphas=[0.025, 0.16, 0.5, 0.84, 0.9
     return xs, quantiles, alphas
 
 
-def plot_quantiles(ax, x, quantiles, color, fillx: bool= False):
+def plot_quantiles(ax, x, quantiles, color, fillx: bool= False, plot_median=True, alpha=0.15):
 
     if fillx:
-        ax.fill_betweenx(x, quantiles[:, 0], quantiles[:, 4], color=color, alpha=0.15)
+        ax.fill_betweenx(x, quantiles[:, 0], quantiles[:, 4], color=color, alpha=alpha)
         #ax.plot(quantiles[:, 1], x, color=color, linestyle="dashed")
         #ax.plot(quantiles[:, 3], x, color=color, linestyle="dashed")
-        ax.plot(quantiles[:, 2], x, color=color)
+        ax.plot(quantiles[:, 2], x, color=color) if plot_median else None
     else:
-        ax.fill_between(x, quantiles[:, 0], quantiles[:, 4], color=color, alpha=0.15)
+        ax.fill_between(x, quantiles[:, 0], quantiles[:, 4], color=color, alpha=alpha)
         #ax.plot(x, quantiles[:, 1], color=color, linestyle="dashed")
         #ax.plot(x, quantiles[:, 3], color=color, linestyle="dashed")
-        ax.plot(x, quantiles[:, 2], color=color)
+        ax.plot(x, quantiles[:, 2], color=color) if plot_median else None
     
 
-def plot_mr(ax, posterior, color, ):
+def plot_mr(ax, posterior, color, plot_bestfit=True, alpha=0.15):
 
-    best_ind = posterior["log_prob"].argmax()
+    best_ind = (posterior["log_prob"] +  np.log(posterior["weights"])).argmax()
     x = np.linspace(1, 2.5, 100) # masses to plot for
 
     x, quantiles, _ = get_quantiles(x, posterior["masses_EOS"], posterior["radii_EOS"], posterior["weights"])
-    plot_quantiles(ax, x, quantiles, color, fillx=True)
+    plot_quantiles(ax, x, quantiles, color, fillx=True, plot_median=not plot_bestfit, alpha=alpha)
+
+    # plot best fit 
+    if plot_bestfit:
+        ax.plot(posterior["radii_EOS"][best_ind], posterior["masses_EOS"][best_ind], color=color, linestyle="solid")
 
     # plot truth
     ax.plot(r_eos, m_eos, color="red", zorder=3)
-    #ax.plot(eos_posterior["radii_EOS"][best_ind], eos_posterior["masses_EOS"][best_ind], color=color, linestyle="solid")
     
-    ax.set_ylabel("$M$ [$M_\\odot$]", fontsize=fontsize)
+    ax.set_ylabel("$M$ [$M_\\odot$]", fontsize=fontsize, labelpad=2)
     ax.set_xlabel("$R$ [km]", fontsize=fontsize)
     ax.set(ylim=(1, 2.25), xlim=(10.5, 13))
 
-def plot_ml(ax, posterior, color):
+def plot_mr_nofill(ax, posterior, color, plot_bestfit=True, alpha=0.15):
 
-    best_ind = posterior["log_prob"].argmax()
+    best_ind = (posterior["log_prob"] +  np.log(posterior["weights"])).argmax()
+    x = np.linspace(1, 2.5, 100) # masses to plot for
+
+    x, quantiles, _ = get_quantiles(x, posterior["masses_EOS"], posterior["radii_EOS"], posterior["weights"])
+    ax.plot(quantiles[:,0], x, color=color, linestyle="dashed")
+    ax.plot(quantiles[:,4], x, color=color, linestyle="dashed")
+
+    # plot best fit 
+    if plot_bestfit:
+        ax.plot(posterior["radii_EOS"][best_ind], posterior["masses_EOS"][best_ind], color=color, linestyle="solid")
+
+    # plot truth
+    ax.plot(r_eos, m_eos, color="red", zorder=3)
+    
+    ax.set_ylabel("$M$ [$M_\\odot$]", fontsize=fontsize, labelpad=2)
+    ax.set_xlabel("$R$ [km]", fontsize=fontsize)
+    ax.set(ylim=(1, 2.25), xlim=(10.5, 13))
+
+def plot_ml(ax, posterior, color, plot_bestfit=True):
+
+    best_ind = (posterior["log_prob"] +  np.log(posterior["weights"])).argmax()
     x = np.linspace(1, 2.5, 100) # masses to plot for
 
     x, quantiles, _ = get_quantiles(x, posterior["masses_EOS"], posterior["lambdas_EOS"], posterior["weights"])
-    plot_quantiles(ax, x, quantiles, color, fillx=True)
+    plot_quantiles(ax, x, quantiles, color, fillx=True, plot_median=not plot_bestfit)
 
+    # plot best fit 
+    if plot_bestfit:
+        ax.plot(posterior["lambdas_EOS"][best_ind], posterior["masses_EOS"][best_ind], color=color, linestyle="solid")
     # plot truth
     ax.plot(l_eos, m_eos, color="red", zorder=3)
     
-    ax.set_ylabel("$M$ [$M_\\odot$]", fontsize=fontsize)
+    ax.set_ylabel("$M$ [$M_\\odot$]", fontsize=fontsize, labelpad=2)
     ax.set_xlabel("$\\Lambda$", fontsize=fontsize)
     ax.set(ylim=(1, 2), xscale="log", xlim=(20, 2e3))
 
-def plot_pressure(ax, posterior, color):
+def plot_pressure(ax, posterior, color, plot_bestfit=True):
 
-    best_ind = posterior["log_prob"].argmax()
+    best_ind = (posterior["log_prob"] +  np.log(posterior["weights"])).argmax()
     x = np.linspace(0.08, 1.6, 100) # densities to plot for
 
     x, quantiles, _ = get_quantiles(x, posterior["densities_EOS"], posterior["pressures_EOS"], posterior["weights"])
-    plot_quantiles(ax, x/0.16, quantiles, color)
+    plot_quantiles(ax, x/0.16, quantiles, color, plot_median=not plot_bestfit)
+
+    # plot best fit 
+    if plot_bestfit:
+        ax.plot(posterior["densities_EOS"][best_ind] / 0.16, posterior["pressures_EOS"][best_ind], color=color, linestyle="solid")
 
     # plot truth
     ax.plot(n_eos/0.16, p_eos, color="red", zorder=3)
 
-    ax.set_ylabel("$p$ [MeV fm$^{-3}$]", fontsize=fontsize)
+    ax.set_ylabel("$p$ [MeV fm$^{-3}$]", fontsize=fontsize, labelpad=-2)
     ax.set_xlabel("$n$ [$n_{\\mathrm{sat}}$]", fontsize=fontsize)
     ax.set(xlim=(0.5, 8), yscale="log", ylim=(0.1, 2e3))
 
 
-def plot_pop(ax, posterior, color):
+def plot_pop(ax, posterior, color, plot_bestfit=False):
 
-    best_ind = posterior["log_prob"].argmax()
+    best_ind = (posterior["log_prob"] + np.log(posterior["weights"])).argmax()
     x = np.linspace(1, 2.1, 100) # masses to plot for
 
     if "mu_1" in posterior:
@@ -217,22 +248,131 @@ def plot_pop(ax, posterior, color):
         Y_pdf_m1[j], Y_pdf_m2[j] = pop_model(X[j], sample_point)
 
     pdf_m1_truth, pdf_m2_truth = pop_model(x, truths)
+    pdf_m1_bestfit, pdf_m2_bestfit = pop_model(x, {key: val[best_ind] for key, val in posterior.items()})
 
     # plot m1
     x, quantiles_m1, _ = get_quantiles(x, X, Y_pdf_m1, posterior["weights"])
-    plot_quantiles(ax[0], x, quantiles_m1, color)
+    plot_quantiles(ax[0], x, quantiles_m1, color, plot_median=not plot_bestfit)
+    ax[0].plot(x, pdf_m1_bestfit) if plot_bestfit else None
     ax[0].plot(x, pdf_m1_truth, color="red", zorder=3)
     ax[0].set_xlabel("$m_1$ [$M_\\odot$]", fontsize=fontsize)
-    ax[0].set_ylabel("pop. density", fontsize=fontsize)
+    ax[0].set_ylabel("pop. density", fontsize=fontsize, labelpad=-4)
     ax[0].set(xlim=(1, 2.1), yscale="log", ylim=(0.1, quantiles_m1.max() * 2))
 
     # plot m2
     x, quantiles_m2, _ = get_quantiles(x, X, Y_pdf_m2, posterior["weights"])
-    plot_quantiles(ax[1], x, quantiles_m2, color)
+    plot_quantiles(ax[1], x, quantiles_m2, color, plot_median=not plot_bestfit)
+    ax[1].plot(x, pdf_m2_bestfit) if plot_bestfit else None
     ax[1].plot(x, pdf_m2_truth, color="red", zorder=3)
     ax[1].set_xlabel("$m_2$ [$M_\\odot$]", fontsize=fontsize)
-    ax[1].set_ylabel("pop. density", fontsize=fontsize)
+    ax[1].set_ylabel("pop. density", fontsize=fontsize, labelpad=-4)
     ax[1].set(xlim=(1, 2.1), yscale="log", ylim=(0.1, quantiles_m2.max() * 2))
+
+def plot_pop_nofill(ax, posterior, color, plot_bestfit=False):
+
+    best_ind = (posterior["log_prob"] + np.log(posterior["weights"])).argmax()
+    x = np.linspace(1, 2.1, 100) # masses to plot for
+
+    if "mu_1" in posterior:
+        pop_model = RecycledBinary
+        truths = dict(mu_1=1.34, mu_2=1.43, sigma_1=0.02, sigma_2=0.15, alpha=0.68, m_min=1.16, m_max=1.42, k_coll=1.3)
+    else:
+        pop_model = MassRatioPowerLaw
+        truths = dict(m_min=1.1, m_max=2.0, alpha=2.0, k_coll=1.3)
+    
+    X = np.tile(x, (posterior["log_prob"].shape[0], 1))
+    Y_pdf_m1 = np.zeros_like(X)
+    Y_pdf_m2 = np.zeros_like(X)
+
+    for j in range(Y_pdf_m1.shape[0]):
+        sample_point = {key: val[j] for key, val in posterior.items()}
+        Y_pdf_m1[j], Y_pdf_m2[j] = pop_model(X[j], sample_point)
+
+    pdf_m1_truth, pdf_m2_truth = pop_model(x, truths)
+    pdf_m1_bestfit, pdf_m2_bestfit = pop_model(x, {key: val[best_ind] for key, val in posterior.items()})
+
+    # plot m1
+    x, quantiles_m1, _ = get_quantiles(x, X, Y_pdf_m1, posterior["weights"])
+    ax[0].plot(x, quantiles_m1[:, 0], color=color, linestyle="dashed")
+    ax[0].plot(x, quantiles_m1[:, 4], color=color, linestyle="dashed")
+    ax[0].plot(x, pdf_m1_bestfit) if plot_bestfit else None
+    ax[0].plot(x, pdf_m1_truth, color="red", zorder=3)
+    ax[0].set_xlabel("$m_1$ [$M_\\odot$]", fontsize=fontsize)
+    ax[0].set_ylabel("pop. density", fontsize=fontsize, labelpad=-4)
+    ax[0].set(xlim=(1, 2.1), yscale="log", ylim=(0.1, quantiles_m1.max() * 2))
+
+    # plot m2
+    x, quantiles_m2, _ = get_quantiles(x, X, Y_pdf_m2, posterior["weights"])
+    ax[1].plot(x, quantiles_m2[:, 0], color=color, linestyle="dashed")
+    ax[1].plot(x, quantiles_m2[:, 4], color=color, linestyle="dashed")
+    ax[1].plot(x, pdf_m2_bestfit) if plot_bestfit else None
+    ax[1].plot(x, pdf_m2_truth, color="red", zorder=3)
+    ax[1].set_xlabel("$m_2$ [$M_\\odot$]", fontsize=fontsize)
+    ax[1].set_ylabel("pop. density", fontsize=fontsize, labelpad=-4)
+    ax[1].set(xlim=(1, 2.1), yscale="log", ylim=(0.1, quantiles_m2.max() * 2))
+
+def corner_plot(posterior, parameter_names, fig=None, color="purple"):
+
+    if fig is None:
+        n_params = len(parameter_names)
+        fig, _ = plt.subplots(n_params, n_params, figsize=(10/7*n_params, 10/7*n_params))
+
+    if "mu_1" in posterior:
+        pop_model = RecycledBinary
+        truths = dict(mu_1=1.34, mu_2=1.43, sigma_1=0.02, sigma_2=0.15, alpha=0.68, m_min=1.16, m_max=1.42, k_coll=1.3)
+    else:
+        pop_model = MassRatioPowerLaw
+        truths = dict(m_min=1.1, m_max=2.0, alpha=2.0, k_coll=1.3)
+
+    labels = [latex_labels.get(p,p) for p in parameter_names]
+
+    data = {p: posterior[p] for p in parameter_names}
+
+    corner.corner(data,
+                  weights=posterior['weights'],
+                  smooth=True, 
+                  levels=[0.68, 0.95],
+                  fig=fig, 
+                  plot_density=False,
+                  fill_contours=True,
+                  plot_datapoints=False,
+                  truths=truths,
+                  color=color,
+                  truth_color="red",
+                  labels=labels,
+                  hist_kwargs=dict(density=True))
+    
+    return fig
+
+def r14_confidence_interval(posterior):
+    x = np.linspace(1, 2.5, 100) # masses to plot for
+    x, quantiles, _ = get_quantiles(x, posterior["masses_EOS"], posterior["radii_EOS"], posterior["weights"])
+
+    lower = np.interp(1.4, x, quantiles[:, 0])
+    median = np.interp(1.4, x, quantiles[:, 2])
+    upper = np.interp(1.4, x, quantiles[:, 4])
+    plus = upper-median
+    minus = median-lower
+
+    return f"{{{median:.2f}}}^{{+{plus:.2f}}}_{{-{minus:.2f}}}"
+
+def mtov_confidence_interval(posterior):
+
+    mtovs = np.max(posterior["masses_EOS"], axis=1)
+    lower, median, upper = np.quantile(mtovs, [0.025, 0.5, 0.975], weights=posterior["weights"], method="inverted_cdf")
+    plus = upper-median
+    minus = median-lower
+    return f"{{{median:.2f}}}^{{+{plus:.2f}}}_{{-{minus:.2f}}}"
+
+def plot_all(fig, ax, posterior, color):
+
+
+    plot_ml(ax[0], posterior, color)
+    plot_mr(ax[1], posterior, color)
+    plot_pressure(ax[2], posterior, color)
+    plot_pop(ax[3:], posterior, color)
+
+    return fig, ax
 
 
 def main(directory: str):
@@ -243,27 +383,27 @@ def main(directory: str):
     events = pd.read_csv(directory / "events.dat", sep=" ")
 
     posterior_gw = load_posterior(directory / "inference_eos" / "gw" / "outdir_gw" / "results.h5")
+    posterior_gw_unweighed = deepcopy(posterior_gw)
+    posterior_gw_unweighed['weights'] = np.full((7000,), 1/7000) 
+
     posterior_mm = load_posterior(directory / "inference_eos" / "mm" / "outdir_mm" / "results.h5")
-    #posterior_mm_full = load_posterior(directory / "inference_eos" / "mm_full" / "outdir_mm" / "results.h5")
+    posterior_mm_unweighed = deepcopy(posterior_mm)
+    posterior_mm_unweighed['weights'] = np.full((7000,), 1/7000) 
+
+    posterior_mm_full = load_posterior(directory / "inference_eos" / "mm_full" / "outdir_mm" / "results.h5")
+    posterior_mm_full_unweighed = deepcopy(posterior_mm_full)
+    posterior_mm_full_unweighed['weights'] = np.full((7000,), 1/7000)
+
+    posterior_mm_cheating = load_posterior(directory / "inference_eos" / "mm_cheating" / "outdir_mm" / "results.h5") 
+    posterior_mm_cheating_unweighed = deepcopy(posterior_mm_cheating)
+    posterior_mm_cheating_unweighed['weights'] = np.full((7000,), 1/7000)
+
 
     fig, ax = plt.subplots(5, 1, figsize=(5, 22))
     fig.subplots_adjust(hspace=0.2)
 
-
-    plot_ml(ax[0], posterior_gw, color="purple")
-    plot_ml(ax[0], posterior_mm, color="orange")
-    #plot_ml(ax[0], posterior_mm_full, color="salmon")
-
-    plot_mr(ax[1], posterior_gw, color="purple")
-    plot_mr(ax[1], posterior_mm, color="orange")
-    #plot_mr(ax[1], posterior_mm_full, color="salmon")
-
-    plot_pressure(ax[2], posterior_gw, color="purple")
-    plot_pressure(ax[2], posterior_mm, color="orange")
-    
-    plot_pop(ax[3:], posterior_gw, color="purple")
-    plot_pop(ax[3:], posterior_mm, color="orange")
-    #plot_pop(ax[3:], posterior_mm_full, color="salmon")
+    fig, ax = plot_all(fig, ax, posterior_gw, color="purple")
+    fig, ax = plot_all(fig, ax, posterior_gw_unweighed, color="blue")
 
     fig.savefig(f"{name}.pdf", dpi=250, bbox_inches="tight")
 
