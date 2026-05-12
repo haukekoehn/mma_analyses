@@ -12,7 +12,7 @@ mu_1 = UniformPrior(1, 2, parameter_names=["mu_1"])
 mu_2 = UniformPrior(1, 2, parameter_names=["mu_2"])
 sigma_1 = UniformPrior(0.01, 0.2, parameter_names=["sigma_1"])
 sigma_2 = UniformPrior(0.01, 0.2, parameter_names=["sigma_2"])
-alpha = UniformPrior(0.1, 1, parameter_names=["alpha"])
+alpha = UniformPrior(0.3, 1, parameter_names=["alpha"])
 
 m_min = UniformPrior(1, 1.25, parameter_names=["m_min"])
 m_max = UniformPrior(1.25, 1.5, parameter_names=["m_max"])
