@@ -58,12 +58,12 @@ def load_posterior(file):
 def double_gaussian_pdf(x, params):
     first_peak = np.exp(-0.5 * (x-params["mu_1"])**2 / params["sigma_1"]**2) * 1/np.sqrt(2*np.pi*params["sigma_1"]**2)
     second_peak = np.exp(-0.5 * (x-params["mu_2"])**2 / params["sigma_2"]**2) * 1/np.sqrt(2*np.pi*params["sigma_2"]**2)
-    return (1-params["alpha"]) * first_peak + params["alpha"] * second_peak
+    return params["alpha"] * first_peak + (1 - params["alpha"]) * second_peak
 
 def double_gaussian_cdf(x, params):
     first_peak = stats.norm.cdf(x, loc=params["mu_1"], scale=params["sigma_1"])
     second_peak = stats.norm.cdf(x, loc=params["mu_2"], scale=params["sigma_2"])
-    return (1-params["alpha"]) * first_peak + params["alpha"] * second_peak
+    return params["alpha"] * first_peak + (1 - params["alpha"]) * second_peak
 
 def uniform_pdf(x, params):
     return np.where((x<params["m_max"]) & (x>params["m_min"]), 1/(params["m_max"]-params["m_min"]), 0)
