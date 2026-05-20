@@ -53,7 +53,7 @@ KN_prior = [
 ]
 
 GRB_prior = [Uniform(xmin=47.0, xmax=57.0, naming=['log10_E0']),
-             Uniform(xmin=0.01, xmax=np.pi/5, naming=['thetaCore']),
+             Uniform(xmin=0.01, xmax=0.2, naming=['thetaCore']),
              Uniform(xmin = 0.2, xmax = 3.5, naming= ["alphaWing"]),
              Constraint(xmin = 0, xmax = np.pi/2, naming = ["thetaWing"]),
              Uniform(xmin=-6.0, xmax=2.0, naming=['log10_n0']),
@@ -126,7 +126,7 @@ def analyze_event(j, param_dict, rng_key):
     # Save for postprocessing
     outdir = f"./source_{j}"
 
-    prior = ConstrainedPrior([*KN_prior, Normal(mu=param_dict["redshift"], sigma=0.01*param_dict["redshift"], naming=["redshift"]), *GRB_prior], conversion_function)
+    prior = ConstrainedPrior([*KN_prior, Normal(mu=param_dict["redshift_measured"], sigma=0.01*param_dict["redshift"], naming=["redshift"]), *GRB_prior], conversion_function)
 
     fiesta = Fiesta(likelihood,
                     prior,
