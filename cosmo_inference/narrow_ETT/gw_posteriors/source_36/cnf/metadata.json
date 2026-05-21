@@ -1,0 +1,37 @@
+{
+  "n_samples_total": 3937,
+  "n_samples_used": 3937,
+  "parameter_names": [
+    "lambda_1",
+    "lambda_2",
+    "luminosity_distance"
+  ],
+  "filepath": "../../../eos_inference/narrow_ETT/gw_posteriors/source_36/posterior_mm.npz",
+  "flow_type": "block_neural_autoregressive_flow",
+  "num_epochs": 1000,
+  "learning_rate": 0.0001,
+  "max_patience": 500,
+  "val_prop": 0.2,
+  "standardize": true,
+  "standardization_method": "zscore",
+  "data_mean": [
+    510.3642450055709,
+    740.3744599516107,
+    1695.858518016339
+  ],
+  "data_std": [
+    328.67586310098955,
+    474.09498142581987,
+    249.45079275620057
+  ],
+  "cond_data_mean": [
+    2.014323328550895,
+    1.7142628401258695,
+    0.8164415106185998
+  ],
+  "cond_data_std": [
+    0.11679334448457533,
+    0.09203847132269682,
+    0.1333919099389879
+  ]
+}

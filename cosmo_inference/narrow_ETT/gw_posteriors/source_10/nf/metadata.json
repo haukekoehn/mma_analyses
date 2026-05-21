@@ -1,0 +1,27 @@
+{
+  "n_samples_total": 5998,
+  "n_samples_used": 5998,
+  "parameter_names": [
+    "mass_1",
+    "mass_2",
+    "cos_theta_jn"
+  ],
+  "filepath": "../../../eos_inference/narrow_ETT/gw_posteriors/source_10/posterior_mm.npz",
+  "flow_type": "masked_autoregressive_flow",
+  "num_epochs": 3000,
+  "learning_rate": 6e-05,
+  "max_patience": 500,
+  "val_prop": 0.2,
+  "standardize": true,
+  "standardization_method": "zscore",
+  "data_mean": [
+    1.6165781496233196,
+    1.4277077926380686,
+    0.3110107423492988
+  ],
+  "data_std": [
+    0.06777152007727442,
+    0.056860775896286866,
+    0.2104367131277167
+  ]
+}
