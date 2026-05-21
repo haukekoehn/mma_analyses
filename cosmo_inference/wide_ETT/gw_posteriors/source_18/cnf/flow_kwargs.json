@@ -1,0 +1,25 @@
+{
+  "flow_type": "block_neural_autoregressive_flow",
+  "nn_depth": 4,
+  "nn_block_dim": 8,
+  "nn_width": 50,
+  "flow_layers": 1,
+  "invert": true,
+  "cond_dim": 3,
+  "seed": 0,
+  "standardize": true,
+  "standardization_method": "zscore",
+  "transformer_type": "rational_quadratic_spline",
+  "transformer_knots": 10,
+  "transformer_interval": 5.0,
+  "data_mean": [
+    676.3736549301788,
+    1266.9705501521266,
+    407.892737301215
+  ],
+  "data_std": [
+    372.75643242947797,
+    746.7159848769016,
+    88.32914737494792
+  ]
+}
