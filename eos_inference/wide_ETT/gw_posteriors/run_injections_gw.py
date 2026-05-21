@@ -43,7 +43,7 @@ def main():
         os.mkdir(args.outdir)
 
     events = pd.read_csv("../events.dat", sep=" ")
-    event = events.loc[int(args.source), ["mass_1", "mass_2", "chi_1", "chi_2", "lambda_1", "lambda_2", "theta_jn", "luminosity_distance", "phase", "psi", "ra", "dec", "geocent_time", "redshift"]]
+    event = events.loc[int(args.source), ["mass_1", "mass_2", "chi_1", "chi_2", "lambda_1", "lambda_2", "theta_jn", "luminosity_distance", "phase", "psi", "ra", "dec", "geocent_time", "redshift", "redshift_measured"]]
     CHIEFF = (event['chi_1'] * event['mass_1'] + event['chi_2'] * event['mass_2']) / (event['mass_1'] + event['mass_2'])
     MCHIRP = bilby.gw.conversion.component_masses_to_chirp_mass(event['mass_1'], event["mass_2"])
     event["mass_ratio"] = event["mass_2"] / event["mass_1"]
@@ -148,33 +148,44 @@ def main():
     np.savez(os.path.join(args.outdir, "posterior.npz"), **posterior_samples)
 
     true_redshift = event["redshift"]
-    redshift_mean = np.random.normal(loc=true_redshift, scale=0.01*true_redshift, size=1)
+    redshift_mean = event['redshift_measured']
     redshift_samples = np.random.normal(loc=redshift_mean, scale=0.01*true_redshift, size=posterior_samples["mass_1"].shape)
 
     posterior_samples["mass_1_source"] = posterior_samples["mass_1"] / (1 + redshift_samples)
     posterior_samples["mass_2_source"] = posterior_samples["mass_2"] / (1 + redshift_samples)
+    posterior_samples["cos_theta_jn"] = np.cos(posterior_samples["theta_jn"])
     np.savez(os.path.join(args.outdir, "posterior_mm.npz"), **posterior_samples)
 
     if args.plot:
         result.plot_corner()
 
-        fig, ax = plt.subplots(1, 1, figsize=(8,6))
+        fig, ax = plt.subplots(3, 1, figsize=(8,12))
         bins = np.linspace(0.9, 2.5, 100)
 
         posterior = np.load(os.path.join(args.outdir, "posterior.npz"))
-        ax.hist(posterior["mass_1_source"], bins=bins, density=True, color="blue", histtype="step")
-        ax.hist(posterior["mass_2_source"], bins=bins, density=True, color="orange", histtype="step")
-
         posterior_mm = np.load(os.path.join(args.outdir, "posterior_mm.npz"))
-        ax.hist(posterior_mm["mass_1_source"], bins=bins, density=True, color="lightskyblue", histtype="step")
-        ax.hist(posterior_mm["mass_2_source"], bins=bins, density=True, color="bisque", histtype="step")
+
+        ax[0].hist(posterior["mass_1_source"], bins=bins, density=True, color="blue", histtype="step")
+        ax[0].hist(posterior["mass_2_source"], bins=bins, density=True, color="orange", histtype="step")
+
+        ax[0].hist(posterior_mm["mass_1_source"], bins=bins, density=True, color="lightskyblue", histtype="step")
+        ax[0].hist(posterior_mm["mass_2_source"], bins=bins, density=True, color="bisque", histtype="step")
 
         mass_1_source = event["mass_1"] / (1 + event["redshift"])
         mass_2_source = event["mass_2"] / (1 + event["redshift"])
-        ax.vlines([mass_1_source, mass_2_source], *ax.get_ylim(), color="red")
-        ax.set_xlabel("$m$ in source frame")
+        ax[0].vlines([mass_1_source, mass_2_source], *ax[0].get_ylim(), color="red")
+        ax[0].set_xlabel("$m$ in source frame")
 
-        fig.savefig(os.path.join(args.outdir, "mass_posterior.pdf"), dpi=200, bbox_inches="tight")
+        ax[1].hist(posterior_mm["luminosity_distance"], density=True, color="orange", histtype="step")
+        ax[1].vlines([event["luminosity_distance"]], *ax[1].get_ylim(), color="red")
+        ax[1].set_xlabel("$d_L$ in Mpc")
+
+        ax[2].hist(posterior_mm["theta_jn"], density=True, color="orange", histtype="step")
+        ax[2].vlines([event["theta_jn"]], *ax[2].get_ylim(), color="red")
+        ax[2].set_xlabel("$\\theta_{{JN}}$ in rad")
+
+
+        fig.savefig(os.path.join(args.outdir, "posteriors.pdf"), dpi=200, bbox_inches="tight")
     
 if __name__=="__main__":
     main()
