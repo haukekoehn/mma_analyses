@@ -22,12 +22,15 @@ from fiesta.inference.lightcurve_model import FluxModel
 
 from jesterTOV.inference.population.populations import RecycledBinary, MassRatioPowerLaw
 from jesterTOV.utils import redshift_to_luminosity_distance, solar_mass_in_meter, lambda1_lambda2_to_lambda_tilde
-from jesterTOV.inference.transforms import MultimessengerJesterTransform as mm 
+from jesterTOV.inference.transforms.multimessenger_transform import dynamic_mass_fitting_prompt_collapse, dynamic_mass_fitting, log10_disk_mass_fitting_prompt_collapse, log10_disk_mass_fitting
 
 from flax.training.train_state import TrainState
 import optax
 
 from train_nn import MLP, Config
+
+ETL_location = EarthLocation(lat=40.5*u.deg, lon=9.35*u.deg, height=100*u.m)
+ETT_location = EarthLocation(lat=50.795483*u.deg, lon=5.848956*u.deg, height=100*u.m)
 
 ### CONFIG ###
 
@@ -35,9 +38,9 @@ n_shape = 2000
 events = pd.read_csv("../events.dat", sep=" ")
 n_events = events.shape[0]
 
-ETL_location = EarthLocation(lat=40.5*u.deg, lon=9.35*u.deg, height=100*u.m)
-ETT_location = EarthLocation(lat=50.795483*u.deg, lon=5.848956*u.deg, height=100*u.m)
 
+location = ETT_location
+mass_model = MassRatioPowerLaw
 
 #############
 
@@ -94,7 +97,7 @@ psi = np.random.uniform(0, np.pi, size=n_shape)
 ra = np.random.uniform(0, 2*np.pi, size=n_shape)
 dec = np.arcsin(np.random.uniform(-1, 1, size=n_shape))
 geocent_time = np.random.uniform(Time("2050-01-01", scale="tcg").gps, Time("2050-12-31", scale="tcg").gps, size=n_shape)
-alt, az = convert_to_altaz(ra, dec, geocent_time, ETT_location)
+alt, az = convert_to_altaz(ra, dec, geocent_time, ETL_location)
 
 redshifts = sample_merger_rate()
 
@@ -119,6 +122,7 @@ def softmax(logp):
 
     return p
 
+@jax.jit
 def call_network(X):
 
     X = Xscaler.transform(X)
@@ -161,16 +165,16 @@ def multi_messenger_conversion(
 
         mej_dyn = jnp.where(
             prompt_collapse, 
-            mm.dynamic_mass_fitting_prompt_collapse(mass_1, mass_2, lambda_1, lambda_2), 
-            mm.dynamic_mass_fitting(mass_1, mass_2, compactness_1, compactness_2)
+            dynamic_mass_fitting_prompt_collapse(mass_1, mass_2, lambda_1, lambda_2), 
+            dynamic_mass_fitting(mass_1, mass_2, compactness_1, compactness_2)
         )
         log10_mej_dyn = jnp.log10(mej_dyn)
        
 
         log10_mdisk = jnp.where(
             prompt_collapse,
-            mm.log10_disk_mass_fitting_prompt_collapse(mass_1, mass_2, lambda_1, lambda_2),
-            mm.log10_disk_mass_fitting(mass_1+mass_2, mass_1/mass_2, mtov, r16)
+            log10_disk_mass_fitting_prompt_collapse(mass_1, mass_2, lambda_1, lambda_2),
+            log10_disk_mass_fitting(mass_1+mass_2, mass_1/mass_2, mtov, r16)
         )
 
         zeta = jnp.where(
@@ -183,6 +187,7 @@ def multi_messenger_conversion(
        
         return log10_mej_dyn, log10_mej_wind
 
+@jax.jit
 def gw_detection_probability(m1: np.ndarray, m2: np.ndarray, luminosity_distance: np.ndarray):
 
     X = jnp.stack((m1, m2, theta_jn, alt, az, psi)).T
@@ -191,6 +196,7 @@ def gw_detection_probability(m1: np.ndarray, m2: np.ndarray, luminosity_distance
     snr = snr.flatten() * 100 / luminosity_distance
     return jnp.mean(snr>=12), snr >=12
 
+@jax.jit
 def em_detection_probability(m1: np.ndarray, m2: np.ndarray, luminosity_distance: np.ndarray, sample: dict, gw_detected: np.ndarray):
 
     log10_mej_dyn, log10_mej_wind = multi_messenger_conversion(m1, m2, sample)
@@ -220,7 +226,7 @@ def em_detection_probability(m1: np.ndarray, m2: np.ndarray, luminosity_distance
 def detection_prob_per_sample(posterior: dict, index: int):
 
     sample = {key: val[index] for key, val in posterior.items()}
-    m1, m2 = MassRatioPowerLaw(jax.random.key(183902), sample, size=n_shape)
+    m1, m2 = mass_model(jax.random.key(183902), sample, size=n_shape)
 
     H0 = sample.get("H0", Planck18.H0.value)
     Omega0 = sample.get("Omega0", Planck18.Om0)
@@ -243,7 +249,7 @@ def calculate_pdet(file: str):
     posterior = {}
     with h5py.File(file, "r") as f:
 
-        for key in ["alpha", "m_max", "m_min", "k_coll"]:
+        for key in ["mu_1", "mu_2", "alpha", "sigma_1", "sigma_2", "m_max", "m_min", "k_coll", "H0", "Omega0"]:
             if key in f["posterior"]["parameters"].keys():
                 posterior[key] = f["posterior"]["parameters"][key][:]
         
@@ -272,8 +278,7 @@ def calculate_pdet(file: str):
 def main():
 
     calculate_pdet("./gw/outdir_gw/results.h5")
-    #calculate_pdet("./mm/outdir_mm/results.h5")
-    #calculate_pdet("./mm_full/outdir_mm/results.h5")
+    calculate_pdet("./mm/outdir_mm/results.h5")
 
 
 if __name__=="__main__":

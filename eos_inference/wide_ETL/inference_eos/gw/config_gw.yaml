@@ -16,7 +16,7 @@ prior:
   specification_file: prior_gw.prior
 population:
   name: MassRatioPowerLaw
-  N_masses_evaluation: 2000
+  N_masses_evaluation: 2500
   pop_random_key: 6028
 likelihoods:
 - type: constraints_eos

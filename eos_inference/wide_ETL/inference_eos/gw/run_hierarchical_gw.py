@@ -93,7 +93,7 @@ for src in range(0, events.shape[0]):
     likelihood = PopulationGWLikelihood(event_name = f"source_{src}",
                                         model_dir = f"../../gw_posteriors/source_{src}/nf",
                                         logprior_m1m2=logprior_m1m2,
-                                        N_masses_batch_size=500)
+                                        N_masses_batch_size=100)
     likelihoods.append(likelihood)
     logprior_m1m2=logprior_m1m2
 

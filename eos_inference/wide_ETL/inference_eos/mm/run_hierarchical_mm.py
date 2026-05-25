@@ -86,7 +86,7 @@ for src in range(0, events.shape[0]):
                                           dir_gw = f"../../gw_posteriors/source_{src}/nf_mm",
                                           dir_em = f"../../em_posteriors/source_{src}/posterior.npz",
                                           logprior_m1m2=logprior_m1m2,
-                                          N_masses_batch_size=500)
+                                          N_masses_batch_size=100)
     likelihoods.append(likelihood)
 
 likelihood = CombinedLikelihood(likelihoods)

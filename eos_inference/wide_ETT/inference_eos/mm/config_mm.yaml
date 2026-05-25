@@ -17,7 +17,7 @@ prior:
 multimessenger: True
 population:
   name: MassRatioPowerLaw
-  N_masses_evaluation: 2000
+  N_masses_evaluation: 2500
   pop_random_key: 161161
 likelihoods:
 - type: constraints_eos

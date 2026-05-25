@@ -1,5 +1,5 @@
 [INFO] jester: Derived max_nbreak from nbreak prior: 2.0000 n_sat
-[INFO] jester: Initialized JesterTransform: EOS=MetaModel_with_CSE_EOS_model, TOV=<jesterTOV.tov.gr.GRTOVSolver object at 0x7eef5c911c50>
+[INFO] jester: Initialized JesterTransform: EOS=MetaModel_with_CSE_EOS_model, TOV=<jesterTOV.tov.gr.GRTOVSolver object at 0x7fb8dac0b8d0>
 [INFO] jester:   Fixed parameters: {'E_sat': -16.0}
 [WARNING] jester: Prior contains non-EOS parameters: ['alpha', 'k_coll', 'm_max', 'm_min']. These will be preserved but only used if the transform has a population function.
 [INFO] jester: Loading NF for GW posterior source_0 from ../../gw_posteriors/source_0/nf_mm.
@@ -98,64 +98,64 @@
 [INFO] jester: Progress updates will be shown after each annealing step
 [INFO] jester: ======================================================================
 [INFO] jester: Running SMC loop (this may take several minutes)...
-2026-05-02 14:37:25.147564: E external/xla/xla/service/slow_operation_alarm.cc:73] 
+2026-05-25 11:39:42.057031: E external/xla/xla/service/slow_operation_alarm.cc:73] 
 ********************************
 [Compiling module jit_while] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
 ********************************
-2026-05-02 14:38:01.169962: E external/xla/xla/service/slow_operation_alarm.cc:140] The operation took 2m36.022498382s
+2026-05-25 11:40:29.546582: E external/xla/xla/service/slow_operation_alarm.cc:140] The operation took 2m47.4897198s
 
 ********************************
 [Compiling module jit_while] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
 ********************************
-[INFO] jester: Step    0 | λ=0.000000 | ESS= 98.8% | Accept= 73.6% | logZ=  -0.017 | t=00:06:00 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    1 | λ=0.000000 | ESS= 99.7% | Accept= 74.5% | logZ=  -0.022 | t=00:07:24 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    2 | λ=0.000000 | ESS= 99.9% | Accept= 73.5% | logZ=  -0.024 | t=00:08:49 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    3 | λ=0.000000 | ESS=100.0% | Accept= 74.3% | logZ=  -0.024 | t=00:10:13 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    4 | λ=0.000000 | ESS=100.0% | Accept= 74.7% | logZ=  -0.024 | t=00:11:36 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    5 | λ=0.000227 | ESS= 95.6% | Accept= 74.3% | logZ=  -0.316 | t=00:12:58 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    6 | λ=0.000459 | ESS= 96.8% | Accept= 73.8% | logZ=  -0.566 | t=00:14:21 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    7 | λ=0.000755 | ESS= 96.5% | Accept= 73.2% | logZ=  -0.842 | t=00:15:45 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    8 | λ=0.001090 | ESS= 97.1% | Accept= 73.2% | logZ=  -1.109 | t=00:17:09 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    9 | λ=0.001490 | ESS= 97.2% | Accept= 73.1% | logZ=  -1.391 | t=00:18:32 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   10 | λ=0.001960 | ESS= 97.5% | Accept= 73.5% | logZ=  -1.688 | t=00:19:55 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   11 | λ=0.002530 | ESS= 97.6% | Accept= 73.2% | logZ=  -2.013 | t=00:21:18 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   12 | λ=0.003221 | ESS= 97.6% | Accept= 73.4% | logZ=  -2.374 | t=00:22:40 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   13 | λ=0.004071 | ESS= 97.5% | Accept= 73.6% | logZ=  -2.790 | t=00:24:04 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   14 | λ=0.005109 | ESS= 97.5% | Accept= 73.5% | logZ=  -3.263 | t=00:25:27 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   15 | λ=0.006407 | ESS= 97.3% | Accept= 73.6% | logZ=  -3.821 | t=00:26:51 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   16 | λ=0.007871 | ESS= 97.5% | Accept= 73.4% | logZ=  -4.417 | t=00:28:13 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   17 | λ=0.009719 | ESS= 96.9% | Accept= 72.8% | logZ=  -5.134 | t=00:29:36 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   18 | λ=0.011993 | ESS= 96.6% | Accept= 72.8% | logZ=  -5.975 | t=00:30:59 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   19 | λ=0.014760 | ESS= 96.3% | Accept= 72.4% | logZ=  -6.952 | t=00:32:22 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   20 | λ=0.018106 | ESS= 96.0% | Accept= 72.1% | logZ=  -8.085 | t=00:33:45 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   21 | λ=0.021914 | ESS= 96.3% | Accept= 71.9% | logZ=  -9.324 | t=00:35:09 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   22 | λ=0.026387 | ESS= 96.4% | Accept= 71.7% | logZ= -10.733 | t=00:36:34 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   23 | λ=0.031466 | ESS= 96.7% | Accept= 70.7% | logZ= -12.292 | t=00:37:57 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   24 | λ=0.037435 | ESS= 96.7% | Accept= 70.4% | logZ= -14.083 | t=00:39:22 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   25 | λ=0.044134 | ESS= 96.9% | Accept= 69.4% | logZ= -16.054 | t=00:40:47 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   26 | λ=0.052172 | ESS= 96.7% | Accept= 68.8% | logZ= -18.377 | t=00:42:10 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   27 | λ=0.061405 | ESS= 96.8% | Accept= 67.6% | logZ= -21.005 | t=00:43:34 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   28 | λ=0.072734 | ESS= 96.4% | Accept= 67.4% | logZ= -24.185 | t=00:44:57 | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   29 | λ=0.085889 | ESS= 96.3% | Accept= 66.4% | logZ= -27.833 | t=00:46:21 | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   30 | λ=0.101378 | ESS= 96.1% | Accept= 65.6% | logZ= -32.082 | t=00:47:47 | ███░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   31 | λ=0.118504 | ESS= 96.2% | Accept= 64.3% | logZ= -36.736 | t=00:49:12 | ███░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   32 | λ=0.138330 | ESS= 96.2% | Accept= 63.0% | logZ= -42.073 | t=00:50:36 | ████░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   33 | λ=0.162510 | ESS= 95.6% | Accept= 61.6% | logZ= -48.529 | t=00:52:01 | ████░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   34 | λ=0.190195 | ESS= 95.6% | Accept= 59.7% | logZ= -55.865 | t=00:53:26 | █████░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   35 | λ=0.222026 | ESS= 95.3% | Accept= 58.0% | logZ= -64.240 | t=00:54:51 | ██████░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   36 | λ=0.258351 | ESS= 95.0% | Accept= 55.6% | logZ= -73.745 | t=00:56:16 | ███████░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   37 | λ=0.299080 | ESS= 94.7% | Accept= 53.4% | logZ= -84.342 | t=00:57:41 | ████████░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   38 | λ=0.343315 | ESS= 94.7% | Accept= 50.6% | logZ= -95.788 | t=00:59:06 | ██████████░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   39 | λ=0.392224 | ESS= 94.6% | Accept= 47.9% | logZ=-108.383 | t=01:00:31 | ███████████░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   40 | λ=0.447812 | ESS= 94.2% | Accept= 45.0% | logZ=-122.630 | t=01:01:56 | █████████████░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   41 | λ=0.507786 | ESS= 94.5% | Accept= 41.9% | logZ=-137.935 | t=01:03:21 | ███████████████░░░░░░░░░░░░░░░
-[INFO] jester: Step   42 | λ=0.574751 | ESS= 94.5% | Accept= 39.0% | logZ=-154.956 | t=01:04:46 | █████████████████░░░░░░░░░░░░░
-[INFO] jester: Step   43 | λ=0.646958 | ESS= 94.9% | Accept= 36.0% | logZ=-173.249 | t=01:06:11 | ███████████████████░░░░░░░░░░░
-[INFO] jester: Step   44 | λ=0.727159 | ESS= 95.2% | Accept= 32.9% | logZ=-193.504 | t=01:07:35 | █████████████████████░░░░░░░░░
-[INFO] jester: Step   45 | λ=0.814953 | ESS= 95.5% | Accept= 30.4% | logZ=-215.622 | t=01:09:00 | ████████████████████████░░░░░░
-[INFO] jester: Step   46 | λ=0.914073 | ESS= 95.4% | Accept= 27.7% | logZ=-240.537 | t=01:10:24 | ███████████████████████████░░░
-[INFO] jester: Step   47 | λ=1.000000 | ESS= 97.2% | Accept= 25.5% | logZ=-262.099 | t=01:11:49 | ██████████████████████████████
-[INFO] jester: Sampling complete! Runtime: 71 min 49 sec
+[INFO] jester: Step    0 | λ=0.000000 | ESS= 98.9% | Accept= 73.6% | logZ=  -0.017 | t=00:06:08 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    1 | λ=0.000000 | ESS= 99.7% | Accept= 74.6% | logZ=  -0.021 | t=00:07:30 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    2 | λ=0.000000 | ESS= 99.8% | Accept= 74.2% | logZ=  -0.024 | t=00:08:52 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    3 | λ=0.000000 | ESS= 99.9% | Accept= 74.1% | logZ=  -0.024 | t=00:10:14 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    4 | λ=0.000000 | ESS=100.0% | Accept= 74.3% | logZ=  -0.024 | t=00:11:36 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    5 | λ=0.000270 | ESS= 94.5% | Accept= 74.2% | logZ=  -0.363 | t=00:12:59 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    6 | λ=0.000539 | ESS= 96.1% | Accept= 74.1% | logZ=  -0.647 | t=00:14:21 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    7 | λ=0.000844 | ESS= 96.6% | Accept= 73.5% | logZ=  -0.918 | t=00:15:43 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    8 | λ=0.001193 | ESS= 97.0% | Accept= 73.6% | logZ=  -1.188 | t=00:17:05 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    9 | λ=0.001598 | ESS= 97.3% | Accept= 73.4% | logZ=  -1.465 | t=00:18:27 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   10 | λ=0.002078 | ESS= 97.5% | Accept= 73.2% | logZ=  -1.760 | t=00:19:49 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   11 | λ=0.002671 | ESS= 97.5% | Accept= 72.9% | logZ=  -2.090 | t=00:21:11 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   12 | λ=0.003352 | ESS= 97.7% | Accept= 73.1% | logZ=  -2.439 | t=00:22:33 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   13 | λ=0.004164 | ESS= 97.8% | Accept= 73.3% | logZ=  -2.825 | t=00:23:56 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   14 | λ=0.005233 | ESS= 97.3% | Accept= 73.4% | logZ=  -3.299 | t=00:25:19 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   15 | λ=0.006496 | ESS= 97.4% | Accept= 73.7% | logZ=  -3.825 | t=00:26:42 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   16 | λ=0.008087 | ESS= 97.1% | Accept= 73.4% | logZ=  -4.451 | t=00:28:05 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   17 | λ=0.010020 | ESS= 96.9% | Accept= 73.2% | logZ=  -5.174 | t=00:29:28 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   18 | λ=0.012334 | ESS= 96.9% | Accept= 73.1% | logZ=  -5.998 | t=00:30:51 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   19 | λ=0.015329 | ESS= 96.3% | Accept= 73.6% | logZ=  -7.018 | t=00:32:14 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   20 | λ=0.018743 | ESS= 96.6% | Accept= 73.1% | logZ=  -8.135 | t=00:33:37 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   21 | λ=0.022673 | ESS= 96.8% | Accept= 72.7% | logZ=  -9.377 | t=00:35:01 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   22 | λ=0.027107 | ESS= 97.0% | Accept= 72.3% | logZ= -10.740 | t=00:36:24 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   23 | λ=0.032304 | ESS= 97.0% | Accept= 71.9% | logZ= -12.301 | t=00:37:48 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   24 | λ=0.038622 | ESS= 96.9% | Accept= 71.5% | logZ= -14.161 | t=00:39:11 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   25 | λ=0.046215 | ESS= 96.7% | Accept= 70.7% | logZ= -16.357 | t=00:40:34 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   26 | λ=0.055073 | ESS= 96.7% | Accept= 69.9% | logZ= -18.877 | t=00:41:57 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   27 | λ=0.065573 | ESS= 96.5% | Accept= 69.2% | logZ= -21.822 | t=00:43:21 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   28 | λ=0.078056 | ESS= 96.4% | Accept= 68.3% | logZ= -25.281 | t=00:44:44 | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   29 | λ=0.093045 | ESS= 96.2% | Accept= 67.3% | logZ= -29.383 | t=00:46:07 | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   30 | λ=0.110773 | ESS= 95.8% | Accept= 66.2% | logZ= -34.185 | t=00:47:30 | ███░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   31 | λ=0.131193 | ESS= 95.7% | Accept= 65.0% | logZ= -39.666 | t=00:48:54 | ███░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   32 | λ=0.153598 | ESS= 96.0% | Accept= 63.6% | logZ= -45.630 | t=00:50:18 | ████░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   33 | λ=0.179764 | ESS= 95.7% | Accept= 62.0% | logZ= -52.545 | t=00:51:41 | █████░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   34 | λ=0.209182 | ESS= 95.6% | Accept= 60.4% | logZ= -60.267 | t=00:53:05 | ██████░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   35 | λ=0.242390 | ESS= 95.2% | Accept= 58.2% | logZ= -68.930 | t=00:54:28 | ███████░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   36 | λ=0.279406 | ESS= 94.9% | Accept= 55.8% | logZ= -78.527 | t=00:55:51 | ████████░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   37 | λ=0.318803 | ESS= 95.1% | Accept= 53.2% | logZ= -88.684 | t=00:57:13 | █████████░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   38 | λ=0.366793 | ESS= 93.8% | Accept= 50.4% | logZ=-100.989 | t=00:58:37 | ███████████░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   39 | λ=0.419025 | ESS= 93.8% | Accept= 47.6% | logZ=-114.307 | t=01:00:00 | ████████████░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   40 | λ=0.475690 | ESS= 94.1% | Accept= 44.7% | logZ=-128.685 | t=01:01:23 | ██████████████░░░░░░░░░░░░░░░░
+[INFO] jester: Step   41 | λ=0.536125 | ESS= 94.5% | Accept= 41.6% | logZ=-143.956 | t=01:02:46 | ████████████████░░░░░░░░░░░░░░
+[INFO] jester: Step   42 | λ=0.601513 | ESS= 94.9% | Accept= 39.2% | logZ=-160.413 | t=01:04:09 | ██████████████████░░░░░░░░░░░░
+[INFO] jester: Step   43 | λ=0.674770 | ESS= 94.9% | Accept= 36.7% | logZ=-178.788 | t=01:05:32 | ████████████████████░░░░░░░░░░
+[INFO] jester: Step   44 | λ=0.753140 | ESS= 95.4% | Accept= 34.6% | logZ=-198.388 | t=01:06:55 | ██████████████████████░░░░░░░░
+[INFO] jester: Step   45 | λ=0.841614 | ESS= 95.4% | Accept= 32.2% | logZ=-220.460 | t=01:08:17 | █████████████████████████░░░░░
+[INFO] jester: Step   46 | λ=0.939600 | ESS= 95.4% | Accept= 30.6% | logZ=-244.850 | t=01:09:40 | ████████████████████████████░░
+[INFO] jester: Step   47 | λ=1.000000 | ESS= 98.4% | Accept= 28.6% | logZ=-259.861 | t=01:11:02 | ██████████████████████████████
+[INFO] jester: Sampling complete! Runtime: 71 min 2 sec
 [INFO] jester: Generating SMC diagnostic plots...
 [INFO] jester: Saved diagnostic plot to outdir_mm/smc_diagnostics.png
 [INFO] jester: Creating InferenceResult from sampler output...
@@ -167,9 +167,9 @@
 [INFO] jester: Generating EOS for all 7000 posterior samples
 [INFO] jester: Applying transform to 7000 samples...
 [INFO] jester: Using batch size: 1000
-[INFO] jester: TOV solve time: 16.41 s (7000 samples)
+[INFO] jester: TOV solve time: 16.50 s (7000 samples)
 [INFO] jester: Adding derived EOS quantities to posterior
-[INFO] jester: Added 7 derived EOS quantities
+[INFO] jester: Added 8 derived EOS quantities
 [INFO] jester: EOS generation complete!
 [INFO] jester: ============================================================
 [INFO] jester: Saving inference results to outdir_mm/results.h5

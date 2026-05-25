@@ -1,22 +1,19 @@
 #!/bin/bash
 nsrc=$(ls -lah . | grep "source" | wc -l)
 
-for ((src=0; src<nsrc; src++));
+for src in {12,};
 do
 
-    sbatch <<SBATCH_EOF
+    sbatch --qos short <<SBATCH_EOF
 #!/bin/bash
 
 #SBATCH -J nf_wide_ETT_${src}
 #SBATCH -o ./source_${src}/log_nf
 #SBATCH -e ./source_${src}/log_nf
 
-#SBATCH --partition gpu
+#SBATCH --partition cpu
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:1
-#SBATCH --mem-per-gpu=80G
-
+#SBATCH --ntasks-per-node=64
 #SBATCH --time=00:30:00
 
 eval "\$(conda shell.bash hook)"  # Initialize Conda in the script
@@ -72,19 +69,16 @@ rm ./nf_config_${src}.yaml
 SBATCH_EOF
 
 
-sbatch <<SBATCH_EOF
+sbatch --qos short <<SBATCH_EOF
 #!/bin/bash
 
 #SBATCH -J nf_mm_wide_ETT_${src}
 #SBATCH -o ./source_${src}/log_nf_mm
 #SBATCH -e ./source_${src}/log_nf_mm
 
-#SBATCH --partition gpu
+#SBATCH --partition cpu
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:1
-#SBATCH --mem-per-gpu=80G
-
+#SBATCH --ntasks-per-node=64
 #SBATCH --time=00:30:00
 
 eval "\$(conda shell.bash hook)"  # Initialize Conda in the script
