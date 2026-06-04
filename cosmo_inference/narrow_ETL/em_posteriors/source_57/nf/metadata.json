@@ -8,20 +8,20 @@
   ],
   "filepath": "../../../eos_inference/narrow_ETL/em_posteriors/source_57/posterior.npz",
   "flow_type": "masked_autoregressive_flow",
-  "num_epochs": 1250,
+  "num_epochs": 3000,
   "learning_rate": 0.0001,
   "max_patience": 500,
   "val_prop": 0.2,
   "standardize": true,
   "standardization_method": "zscore",
   "data_mean": [
-    -2.0456886141536663,
-    2093.7775652386204,
-    0.0028481972991570973
+    -2.167470896984174,
+    2182.962085283389,
+    -0.007066204861371063
   ],
   "data_std": [
-    0.4466821597512289,
-    365.75565721745346,
-    0.8972801013702981
+    0.6288389654748615,
+    367.1321566641592,
+    0.9895834802742894
   ]
 }

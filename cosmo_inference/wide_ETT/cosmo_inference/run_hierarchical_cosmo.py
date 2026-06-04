@@ -11,8 +11,7 @@ from jesterTOV.inference.config.parser import load_config
 from jesterTOV.inference.run_inference import setup_transform, create_sampler, run_sampling, setup_prior
 
 from jesterTOV.inference.likelihoods import CosmoMultiMessengerLikelihood, CombinedLikelihood, ConstraintEOSLikelihood, RadioTimingLikelihood
-from jesterTOV.inference.population.populations import RecycledBinary
-
+from jesterTOV.inference.population.populations import massratiopowerlaw_logpdf
 config = load_config("./config.yaml")
 outdir = config.sampler.output_dir
 os.makedirs(outdir, exist_ok=True)
@@ -63,71 +62,20 @@ for src in range(events.shape[0]):
     likelihood = CosmoMultiMessengerLikelihood(
         event_name = f"source_{src}",
         dir_gw = f"../gw_posteriors/source_{src}/nf",
+        dir_gw_cond = f"../gw_posteriors/source_{src}/cnf",
         dir_em = f"../em_posteriors/source_{src}/nf",
-        N_eval = config.population.N_masses_evaluation,
-        redshift_mean = events.loc[src, "redshift"],
+        population_logpdf = massratiopowerlaw_logpdf,
+        N_eval = 1000,
+        redshift_mean = events.loc[src, "redshift_measured"],
         redshift_sigma = 0.01 * events.loc[src, "redshift"],
         logprior_gw = logprior_gw,
         logprior_em = logprior_em,
-        N_masses_batch_size = 400,
+        N_masses_batch_size = 100,
         key = subkey
     )
     likelihoods.append(likelihood)
 
 likelihood = CombinedLikelihood(likelihoods)
-
-"""
-########
-# TEST #
-########
-
-
-samples = prior.sample(jax.random.key(42), 1000)
-import h5py
-posterior = {}
-with h5py.File("outdir/results.h5") as f:
-    for key in f["posterior"]["parameters"].keys():
-        posterior[key] = f["posterior"]["parameters"][key][:]
-    posterior["log_prob"] = f["posterior"]["log_prob"][:]
-
-
-def check_samples_for_nan():
-    likelihood_fn = jax.jit(likelihood.evaluate)
-    for j in range(1000):
-        params = {key: samples[key][j] for key in samples.keys()}
-        params = transform.forward(params)
-        logl = likelihood_fn(params)
-        print(j, logl)
-
-def check_specific_sample(j):
-    
-    params = {key: samples[key][j] for key in samples.keys()}
-    params = transform.forward(params)
-    for j in range(len(likelihoods)):
-        logl = likelihoods[j].evaluate(params)
-        print(j, logl)
-
-def check_truth():
-    import numpy as np
-    m_eos, r_eos, l_eos = np.loadtxt("../../../eos/RMF3_MRL.dat", unpack=True)
-    
-    ind = posterior["log_prob"].argmax()
-    truth = {key: val[ind] for key, val in posterior.items()}
-    truth.update(dict(m_min=1.1, m_max=2.0, alpha=2.0, k_coll=1.3, H0=67.66, Omega0=0.30966))
-    truth = transform.forward(truth)
-    truth.update(dict(masses_EOS=m_eos, radii_EOS=r_eos, Lambdas_EOS=l_eos))
-
-    #likelihoods[32].evaluate(truth)
-    #return
-
-    for j in range(len(likelihoods)):
-        logl = likelihoods[j].evaluate(truth)
-        print(j, logl)
-
-
-check_truth()
-exit()
-"""
 
 
 ###########

@@ -1,7 +1,7 @@
 #!/bin/bash
 nsrc=$(ls -lah ../../../eos_inference/narrow_ETL/gw_posteriors | grep "source" | wc -l)
 
-for ((src=0; src<nsrc; src++));
+for src in {46,}; # ((src=0; src<nsrc; src++));
 do
 
     sbatch --qos short <<SBATCH_EOF

@@ -14,12 +14,8 @@ tov:
   type: gr
 prior:
   specification_file: prior.prior
-multimessenger: True
+multimessenger: False
 cosmology: True
-population:
-  name: MassRatioPowerLaw
-  N_masses_evaluation: 4000
-  pop_random_key: 464902364
 likelihoods:
 - type: constraints_eos
   enabled: true
