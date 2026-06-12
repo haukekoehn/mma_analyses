@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J narrow_ETL_hierarchical_gw_source-_frame
+#SBATCH -J narrow_ETL_hierarchical_gw_source_frame
 #SBATCH -o ./log_gw
 #SBATCH -e ./log_gw
 
