@@ -4,7 +4,7 @@
   "parameter_names": [
     "log10_mej_wind"
   ],
-  "filepath": "./source_7/posterior.npz",
+  "filepath": "./source_6/posterior.npz",
   "flow_type": "block_neural_autoregressive_flow",
   "num_epochs": 500,
   "learning_rate": 0.0001,

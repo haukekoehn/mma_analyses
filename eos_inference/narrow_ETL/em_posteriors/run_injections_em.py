@@ -38,11 +38,12 @@ model_afterglow = FluxModel(name="pbag_gaussian_CVAE",
 def conversion_function(sample):
     converted_sample = sample
     converted_sample["thetaWing"] = converted_sample["thetaCore"] * converted_sample["alphaWing"]
-    converted_sample["epsilon_tot"] = 10**(converted_sample["log10_epsilon_B"]) + 10**(converted_sample["log10_epsilon_e"]) 
+    converted_sample["epsilon_tot"] = 10**(converted_sample["log10_epsilon_B"]) + 10**(converted_sample["log10_epsilon_e"])
+    converted_sample["inclination_EM"] = jnp.arccos(converted_sample["cos_inclination_EM"])
     return converted_sample
 
 KN_prior = [
-            Sine(xmin=0., xmax=np.pi/2, naming=["inclination_EM"]),
+            Uniform(xmin=0.0, xmax=1.0, naming=["cos_inclination_EM"]),
             Uniform(xmin=-4.0, xmax=-1.3, naming=["log10_mej_dyn"]),
             Uniform(xmin=0.12, xmax=0.35, naming=["v_ej_dyn"]),
             Uniform(xmin=0.15, xmax=0.35, naming=["Ye_dyn"]),
@@ -89,6 +90,7 @@ def analyze_event(j, param_dict, rng_key):
 
     param_dict.update(dict(alphaWing=2., p=2.15, log10_epsilon_e=-1., log10_epsilon_B=-3., Gamma0=500))
     param_dict["log10_E0"] = param_dict.pop("log10_Ekin_iso")
+    param_dict["cos_inclination_EM"] = np.cos(param_dict["inclination_EM"])
     redshift = param_dict["redshift"]
     param_dict = enforce_surrogate_param_range(param_dict, [model_KN, model_afterglow])
 
@@ -121,6 +123,7 @@ def analyze_event(j, param_dict, rng_key):
                               data_tmax = 10.,
                               trigger_time=param_dict["trigger_time"],
                               detection_limit = None,
+                              conversion_function=conversion_function,
                             )
         
     # Save for postprocessing
@@ -150,7 +153,7 @@ def analyze_event(j, param_dict, rng_key):
 def main():
 
     events = pd.read_csv("../events.dat", sep=" ")
-    rng_key = jax.random.PRNGKey(68191)
+    rng_key = jax.random.PRNGKey(56726789)
     for j in range(events.shape[0]):
         rng_key, sub_key = jax.random.split(rng_key)
         try:
