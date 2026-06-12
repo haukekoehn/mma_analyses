@@ -57,7 +57,7 @@ def add_kn_parameters(df):
     df.loc[~pc, "log10_mdisk"] = BNSEjectaFitting().log10_disk_mass_fitting(total_mass=df["mass_1_source"][~pc]+df["mass_2_source"][~pc],
                                                                                mass_ratio=df["mass_2_source"][~pc]/df["mass_1_source"][~pc],
                                                                                MTOV=mtov,
-                                                                               R16=r16)
+                                                                               R16=r16 / 1.477)
     
     # wind ejecta
     df["log10_mej_wind"] = np.zeros(df.shape[0])
@@ -112,8 +112,8 @@ def main():
               "luminosity_distance", 
               "prompt_collapse"]
     
-    df_narrow[params].to_csv("kn_params_narrow.dat", sep=" ", index=False)
-    df_wide[params].to_csv("kn_params_wide.dat", sep=" ", index=False)
+    df_narrow[params].to_csv("kn_params_narrow_correct_disk_mass.dat", sep=" ", index=False)
+    df_wide[params].to_csv("kn_params_wide_correct_disk_mass.dat", sep=" ", index=False)
 
 
 if __name__ =="__main__":
