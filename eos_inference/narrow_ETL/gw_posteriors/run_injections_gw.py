@@ -53,6 +53,7 @@ def main():
     duration = int(duration) + 2.
 
     injection_parameters = event[["chirp_mass", "mass_ratio", "chi_1", "chi_2", "lambda_1", "lambda_2", "theta_jn", "luminosity_distance", "phase", "psi", "ra", "dec", "geocent_time"]].to_dict()
+    injection_parameters['cos_theta_jn'] = np.cos(injection_parameters['theta_jn'])
 
     waveform_generator = bilby.gw.WaveformGenerator(
         duration=duration,

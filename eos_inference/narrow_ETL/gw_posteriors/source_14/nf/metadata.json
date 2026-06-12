@@ -7,7 +7,7 @@
     "lambda_1",
     "lambda_2"
   ],
-  "filepath": "./source_13/posterior.npz",
+  "filepath": "./source_14/posterior.npz",
   "flow_type": "masked_autoregressive_flow",
   "num_epochs": 1959,
   "learning_rate": 0.0001,

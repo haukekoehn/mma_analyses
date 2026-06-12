@@ -9,7 +9,7 @@
   ],
   "filepath": "./source_37/posterior.npz",
   "flow_type": "masked_autoregressive_flow",
-  "num_epochs": 1097,
+  "num_epochs": 1321,
   "learning_rate": 0.0001,
   "max_patience": 500,
   "val_prop": 0.2,
