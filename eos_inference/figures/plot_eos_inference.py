@@ -356,6 +356,18 @@ def r14_confidence_interval(posterior):
 
     return f"{{{median:.2f}}}^{{+{plus:.2f}}}_{{-{minus:.2f}}}"
 
+def l14_confidence_interval(posterior):
+    x = np.linspace(1, 2.5, 100) # masses to plot for
+    x, quantiles, _ = get_quantiles(x, posterior["masses_EOS"], posterior["lambdas_EOS"], posterior["weights"])
+
+    lower = np.interp(1.4, x, quantiles[:, 0])
+    median = np.interp(1.4, x, quantiles[:, 2])
+    upper = np.interp(1.4, x, quantiles[:, 4])
+    plus = upper-median
+    minus = median-lower
+
+    return f"{{{median:.0f}}}^{{+{plus:.0f}}}_{{-{minus:.0f}}}"
+
 def mtov_confidence_interval(posterior):
 
     mtovs = np.max(posterior["masses_EOS"], axis=1)
