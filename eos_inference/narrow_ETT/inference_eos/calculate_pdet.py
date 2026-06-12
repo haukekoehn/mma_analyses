@@ -22,27 +22,29 @@ from fiesta.inference.lightcurve_model import FluxModel
 
 from jesterTOV.inference.population.populations import RecycledBinary, MassRatioPowerLaw
 from jesterTOV.utils import redshift_to_luminosity_distance, solar_mass_in_meter, lambda1_lambda2_to_lambda_tilde
-from jesterTOV.inference.transforms import MultimessengerJesterTransform as mm 
+from jesterTOV.inference.transforms.multimessenger_transform import dynamic_mass_fitting_prompt_collapse, dynamic_mass_fitting, log10_disk_mass_fitting_prompt_collapse, log10_disk_mass_fitting
 
 from flax.training.train_state import TrainState
 import optax
 
 from train_nn import MLP, Config
 
-### CONFIG ###
-
-n_shape = 2000
-events = pd.read_csv("../events.dat", sep=" ")
-n_events = events.shape[0]
-
 ETL_location = EarthLocation(lat=40.5*u.deg, lon=9.35*u.deg, height=100*u.m)
 ETT_location = EarthLocation(lat=50.795483*u.deg, lon=5.848956*u.deg, height=100*u.m)
 
+### CONFIG ###
+
+n_shape = 2000
+events = pd.read_csv("../../../eos_inference/narrow_ETL/events.dat", sep=" ")
+n_events = events.shape[0]
+
+
 location = ETL_location
+mass_model = RecycledBinary
 
 #############
 
-with open("../../../det_probability/networks/ETL_snr_nn.pkl", "rb") as f:
+with open("../../../det_probability/networks/ETT_snr_nn.pkl", "rb") as f:
     network_dict = pickle.load(f)
     params = network_dict["params"]
     config = network_dict["config"]
@@ -51,7 +53,7 @@ with open("../../../det_probability/networks/ETL_snr_nn.pkl", "rb") as f:
     # Create train state without optimizer
     state = TrainState.create(apply_fn=net.apply, params=params, tx=optax.adam(config.learning_rate))
 
-with open("../../../det_probability/networks/ETL_snr_nn_scalers.pkl", "rb") as f:
+with open("../../../det_probability/networks/ETT_snr_nn_scalers.pkl", "rb") as f:
     scaler_dict = pickle.load(f)
     Xscaler = scaler_dict["Xscaler"]
     yscaler = scaler_dict["yscaler"]
@@ -163,16 +165,16 @@ def multi_messenger_conversion(
 
         mej_dyn = jnp.where(
             prompt_collapse, 
-            mm.dynamic_mass_fitting_prompt_collapse(mass_1, mass_2, lambda_1, lambda_2), 
-            mm.dynamic_mass_fitting(mass_1, mass_2, compactness_1, compactness_2)
+            dynamic_mass_fitting_prompt_collapse(mass_1, mass_2, lambda_1, lambda_2), 
+            dynamic_mass_fitting(mass_1, mass_2, compactness_1, compactness_2)
         )
         log10_mej_dyn = jnp.log10(mej_dyn)
        
 
         log10_mdisk = jnp.where(
             prompt_collapse,
-            mm.log10_disk_mass_fitting_prompt_collapse(mass_1, mass_2, lambda_1, lambda_2),
-            mm.log10_disk_mass_fitting(mass_1+mass_2, mass_1/mass_2, mtov, r16)
+            log10_disk_mass_fitting_prompt_collapse(mass_1, mass_2, lambda_1, lambda_2),
+            log10_disk_mass_fitting(mass_1+mass_2, mass_1/mass_2, mtov, r16)
         )
 
         zeta = jnp.where(
@@ -221,10 +223,9 @@ def em_detection_probability(m1: np.ndarray, m2: np.ndarray, luminosity_distance
     return jnp.sum(kn_detectable) / jnp.sum(gw_detected)
     
 
-def detection_prob_per_sample(posterior: dict, index: int):
+def detection_prob_per_sample(sample: dict):
 
-    sample = {key: val[index] for key, val in posterior.items()}
-    m1, m2 = RecycledBinary(jax.random.key(183902), sample, size=n_shape)
+    m1, m2 = mass_model(jax.random.key(183902), sample, size=n_shape)
 
     H0 = sample.get("H0", Planck18.H0.value)
     Omega0 = sample.get("Omega0", Planck18.Om0)
@@ -247,7 +248,7 @@ def calculate_pdet(file: str):
     posterior = {}
     with h5py.File(file, "r") as f:
 
-        for key in ["mu_1", "mu_2", "alpha", "sigma_1", "sigma_2", "m_max", "m_min", "k_coll"]:
+        for key in ["mu_1", "mu_2", "alpha", "sigma_1", "sigma_2", "m_max", "m_min", "k_coll", "H0", "Omega0"]:
             if key in f["posterior"]["parameters"].keys():
                 posterior[key] = f["posterior"]["parameters"][key][:]
         
@@ -259,8 +260,8 @@ def calculate_pdet(file: str):
     nsamp = posterior["log_prob"].shape[0]
     pdet = np.zeros(nsamp)
 
-    for j in tqdm.tqdm(range(nsamp)):
-        pdet[j] = detection_prob_per_sample(posterior, j)
+    inds = jnp.arange(nsamp)
+    pdet = jax.lax.map(detection_prob_per_sample, posterior, batch_size=100)
 
     inverse_pdet = softmax(-n_events * np.log(pdet))
 
@@ -277,8 +278,6 @@ def main():
 
     calculate_pdet("./gw/outdir_gw/results.h5")
     calculate_pdet("./mm/outdir_mm/results.h5")
-    calculate_pdet("./mm_full/outdir_mm/results.h5")
-    calculate_pdet("./mm_cheating/outdir_mm/results.h5")
 
 
 if __name__=="__main__":

@@ -1,4 +1,4 @@
-seed: 47
+seed: 679822
 dry_run: false
 validate_only: false
 eos:
@@ -18,7 +18,7 @@ multimessenger: True
 population:
   name: RecycledBinary
   N_masses_evaluation: 2000
-  pop_random_key: 2029820
+  pop_random_key: 591008
 likelihoods:
 - type: constraints_eos
   enabled: true
