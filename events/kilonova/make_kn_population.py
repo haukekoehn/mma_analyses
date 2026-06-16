@@ -112,8 +112,8 @@ def main():
               "luminosity_distance", 
               "prompt_collapse"]
     
-    df_narrow[params].to_csv("kn_params_narrow_correct_disk_mass.dat", sep=" ", index=False)
-    df_wide[params].to_csv("kn_params_wide_correct_disk_mass.dat", sep=" ", index=False)
+    df_narrow[params].to_csv("kn_params_narrow.dat", sep=" ", index=False)
+    df_wide[params].to_csv("kn_params_wide.dat", sep=" ", index=False)
 
 
 if __name__ =="__main__":
