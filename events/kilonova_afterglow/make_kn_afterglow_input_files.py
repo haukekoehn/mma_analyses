@@ -2,6 +2,7 @@ import sys
 import tqdm
 import numpy as np
 import h5py
+from pathlib import Path
 
 import scipy.optimize as optimize
 import pandas as pd
@@ -171,29 +172,33 @@ def get_mass_histogram(m_ej_dyn, v_ej_dyn, m_ej_wind, v_ej_wind):
 def write_to_file(filename, 
                   vel_inf,
                   theta,
-                  m_ej):
+                  m_ej,
+                  inclination_EM,
+                  log10_nism):
 
     with h5py.File(filename, "w") as out:
         out.create_dataset("vel_inf", data=vel_inf, dtype=float)
         out.create_dataset("theta", data=theta, dtype=float)
         out.create_dataset("mass", data=m_ej, dtype=float)
+        out.create_dataset("inclination_EM", data=inclination_EM, dtype=float)
+        out.create_dataset("log10_nism", data=log10_nism)
 
 
 def main():
     
-    file = sys.argv[1]
+    file = Path(sys.argv[1])
     df = pd.read_csv(file, sep=" ")
+    df_grb = pd.read_csv(file.parent.parent / "grb" / file.name.replace("kn", "grb"), sep=" ")
 
-    if "narrow" in file:
+    if "narrow" in str(file):
         outdir = "narrow_kn_afterglow_input"
-    elif "wide" in file:
+    elif "wide" in str(file):
         outdir = "wide_kn_afterglow_input"
 
-    
     for j in tqdm.tqdm(range(df.shape[0])):
         mej_2d, vel_arr, theta_arr = get_mass_histogram(10**df["log10_mej_dyn"][j], df["v_ej_dyn"][j], 10**df["log10_mej_wind"][j], df["v_ej_wind"][j])
         filename = f"{outdir}/possis_geometry_{j}.h5"
-        write_to_file(filename, vel_arr, theta_arr, mej_2d)
+        write_to_file(filename, vel_arr, theta_arr, mej_2d, df["inclination_EM"][j], df_grb["log10_n0"][j])
 
         
 
