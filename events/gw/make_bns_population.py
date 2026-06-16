@@ -21,7 +21,7 @@ def narrow_mass_model(n_samples: int):
     alpha = 0.68
     mu1 = 1.34
     sigma1 = 0.02
-    mu2 = 1.43
+    mu2 = 1.47
     sigma2 = 0.15
 
     m_l = 1.16
@@ -176,3 +176,6 @@ def main():
 
     df_wide = add_mass_and_spin_BNS_parameters(df_narrow.copy(), "wide")
     df_wide.to_csv("gw_params_wide.dat", sep=" ", index=False, encoding="utf-8", quoting=csv.QUOTE_ALL)
+
+if __name__="__main__":
+    main()
