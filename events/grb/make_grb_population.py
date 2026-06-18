@@ -1,5 +1,5 @@
 import numpy as np
-np.random.seed(167834359)
+np.random.seed(158920)
 import pandas as pd
 import scipy.stats as stats
 from scipy.special import gamma
