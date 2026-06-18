@@ -181,7 +181,7 @@ def write_to_file(filename,
         out.create_dataset("theta", data=theta, dtype=float)
         out.create_dataset("mass", data=m_ej, dtype=float)
         out.create_dataset("inclination_EM", data=inclination_EM, dtype=float)
-        out.create_dataset("log10_nism", data=log10_nism)
+        out.create_dataset("log10_nism", data=log10_nism, dtype=float)
 
 
 def main():
