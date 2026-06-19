@@ -77,6 +77,7 @@ def analyze_event(j, param_dict, rng_key):
     FILTERS = ["radio-1.4GHz", "2massj", "besselli", "bessellv", "bessellux", "X-ray-1keV"]
     FILTERS_KN = ["2massj", "besselli", "bessellv", "bessellux"]
     detection_limit = {"radio-1.4GHz": 23.0, "2massj": 29.5, "besselli": 29.5, "bessellv": 29.5, "bessellux": 26, "X-ray-1keV": 39.0}
+    redshift = param_dict["redshift"]
 
     model_KN = FluxModel(name="Bu2026_MLP",
                           filters = FILTERS_KN)
@@ -84,23 +85,25 @@ def analyze_event(j, param_dict, rng_key):
     model_afterglow = FluxModel(name="pbag_gaussian_CVAE",
                                 filters=FILTERS)
 
+    model_combined = CombinedSurrogate(models=[model_KN, model_afterglow], 
+                              sample_times= jnp.geomspace(0.9 * (1+redshift) * 0.2, 1.1 * (1+redshift) *  2000, 200))
+
     param_dict.update(dict(alphaWing=2., p=2.15, log10_epsilon_e=-1., log10_epsilon_B=-3., Gamma0=500))
     param_dict["log10_E0"] = param_dict.pop("log10_Ekin_iso")
     param_dict["cos_inclination_EM"] = np.cos(param_dict["inclination_EM"])
-    redshift = param_dict["redshift"]
     param_dict = enforce_surrogate_param_range(param_dict, [model_KN, model_afterglow])
 
-    model = CombinedSurrogate(models=[model_KN, model_afterglow], 
-                              sample_times= jnp.geomspace(0.9 * (1+redshift) * 0.2, 1.1 * (1+redshift) *  2000, 200))
 
-    if param_dict["afterglow_detected"]:
+    if param_dict["has_grb"]:
         filters = FILTERS
         N_datapoints = 60
         tmax=10.
+        model = model_combined
     else:
         filters = FILTERS_KN
         N_datapoints = 30
         tmax=10.
+        model = model_KN
 
 
     injection = InjectionSurrogate(model=model,
@@ -127,7 +130,7 @@ def analyze_event(j, param_dict, rng_key):
             Uniform(xmin=-4., xmax=-0.55, naming=["log10_mej_wind"]),
             Uniform(xmin=0.05, xmax=0.15, naming=["v_ej_wind"]),
             Uniform(xmin=0.2, xmax=0.4, naming=["Ye_wind"]),
-            UniformSourceFrame(dmin=40.0, dmax=1000.0, naming=["luminosity_distance"])
+            UniformSourceFrame(dmin=40.0, dmax=8000.0, naming=["luminosity_distance"])
     ]
 
     GRB_prior = [Uniform(xmin=47.0, xmax=57.0, naming=['log10_E0']),
@@ -143,7 +146,7 @@ def analyze_event(j, param_dict, rng_key):
                  Constraint(xmin = 0., xmax = 1., naming=["epsilon_tot"])
     ]
             
-    likelihood = EMLikelihood(model,
+    likelihood = EMLikelihood(model_combined,
                               injection.data,
                               data_tmin=0.5,
                               data_tmax = tmax,
