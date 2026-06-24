@@ -33,11 +33,13 @@ def main():
 
     print(f"Total of {np.sum(selected)} selected events.")
 
-    selected_df = pd.concat([df_gw[selected], df_kn[selected], df_grb[["has_grb", "thetaCore", "log10_Ekin_iso", "log10_n0"]][selected]], axis=1)
+    selected_df = pd.concat([df_gw[selected], df_kn[selected], df_grb[selected][["has_grb", "thetaCore", "log10_Ekin_iso", "log10_n0"]]], axis=1)
+    selected_df = selected_df.loc[:, ~selected_df.columns.duplicated()]
+    selected_df["redshift_measured"] = np.random.normal(loc=selected_df["redshift"], scale=0.01*selected_df["redshift"])
     selected_df["afterglow_detected"] = np.sum(df_detection[["radio_afterglow", "opt_afterglow", "xray_afterglow"]], axis=1) >= 1
     selected_df["snr"] = df_detection.loc[selected, "snr"]
     
-    selected_df.to_csv(f"../../recovery/{catalog}/events.dat", sep=" ", index=False)
+    selected_df.to_csv(f"../../eos_inference/{catalog}/events.dat", sep=" ", index=False)
 
 if __name__=="__main__":
     main()
