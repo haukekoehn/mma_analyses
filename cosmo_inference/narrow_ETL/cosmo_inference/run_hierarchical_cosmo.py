@@ -122,7 +122,7 @@ def check_truth():
     truth.update(dict(masses_EOS=m_eos, radii_EOS=r_eos, Lambdas_EOS=l_eos))
     #truth = transform.forward(truth)
 
-    for j in range(0,events.shape[0]):
+    for j in range(70,events.shape[0]):
         logl_bestposterior= likelihoods[j+2].evaluate(best_posterior)
         logl_truth = likelihoods[j+2].evaluate(truth)
 
