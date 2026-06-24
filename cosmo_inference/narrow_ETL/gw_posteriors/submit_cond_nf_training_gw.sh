@@ -1,10 +1,17 @@
 #!/bin/bash
-nsrc=$(ls -lah ../../../eos_inference/narrow_ETL/gw_posteriors | grep "source" | wc -l)
 
-for src in {46,}; # ((src=0; src<nsrc; src++));
+nsrc=$(wc -l < ../../../eos_inference/narrow_ETL/events.dat)
+
+if [ $# -eq 0 ]; then
+    sources=$(seq 0 $((nsrc-1)))
+else
+    sources=$(echo "$1" | tr ',' ' ')
+fi
+
+for src in $sources;
 do
 
-    sbatch --qos short <<SBATCH_EOF
+    sbatch <<SBATCH_EOF
 #!/bin/bash
 
 #SBATCH -J narrow_ETL_${src}
@@ -40,7 +47,7 @@ seed: 465
 
 # Flow architecture
 flow_type: block_neural_autoregressive_flow
-flow_layers: 2
+flow_layers: 1
 nn_depth: 4
 nn_width: 50
 nn_block_dim: 8
@@ -62,7 +69,7 @@ plot_losses: true
 
 # Conditional flow settings
 cond_dim: 3
-cond_parameter_names: ["mass_1", "mass_2", "cos_theta_jn"]
+cond_parameter_names: ["mass_1_source", "mass_2_source", "cos_theta_jn"]
 CONFIG_EOF
 
 train_jester_flow "./cnf_config_${src}.yaml"

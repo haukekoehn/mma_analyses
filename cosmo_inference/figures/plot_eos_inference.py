@@ -234,7 +234,7 @@ def plot_pop(ax, posterior, color, plot_bestfit=False):
 
     if "mu_1" in posterior:
         pop_model = RecycledBinary
-        truths = dict(mu_1=1.34, mu_2=1.43, sigma_1=0.02, sigma_2=0.15, alpha=0.68, m_min=1.16, m_max=1.42, k_coll=1.3)
+        truths = dict(mu_1=1.34, mu_2=1.47, sigma_1=0.02, sigma_2=0.15, alpha=0.68, m_min=1.16, m_max=1.42, k_coll=1.3)
     else:
         pop_model = MassRatioPowerLaw
         truths = dict(m_min=1.1, m_max=2.0, alpha=2.0, k_coll=1.3)
@@ -275,7 +275,7 @@ def plot_pop_nofill(ax, posterior, color, plot_bestfit=False):
 
     if "mu_1" in posterior:
         pop_model = RecycledBinary
-        truths = dict(mu_1=1.34, mu_2=1.43, sigma_1=0.02, sigma_2=0.15, alpha=0.68, m_min=1.16, m_max=1.42, k_coll=1.3)
+        truths = dict(mu_1=1.34, mu_2=1.47, sigma_1=0.02, sigma_2=0.15, alpha=0.68, m_min=1.16, m_max=1.42, k_coll=1.3)
     else:
         pop_model = MassRatioPowerLaw
         truths = dict(m_min=1.1, m_max=2.0, alpha=2.0, k_coll=1.3)
@@ -319,7 +319,7 @@ def corner_plot(posterior, parameter_names, fig=None, color="purple"):
 
     if "mu_1" in posterior:
         pop_model = RecycledBinary
-        truths = dict(mu_1=1.34, mu_2=1.43, sigma_1=0.02, sigma_2=0.15, alpha=0.68, m_min=1.16, m_max=1.42, k_coll=1.3)
+        truths = dict(mu_1=1.34, mu_2=1.47, sigma_1=0.02, sigma_2=0.15, alpha=0.68, m_min=1.16, m_max=1.42, k_coll=1.3)
     else:
         pop_model = MassRatioPowerLaw
         truths = dict(m_min=1.1, m_max=2.0, alpha=2.0, k_coll=1.3)

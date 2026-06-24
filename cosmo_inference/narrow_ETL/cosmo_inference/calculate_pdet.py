@@ -265,6 +265,9 @@ def calculate_pdet(file: str):
 
     inverse_pdet = softmax(-n_events * np.log(pdet))
 
+    inverse_pdet = 10**np.clip(np.log10(inverse_pdet), [0.01, 0.99])
+    inverse_pdet /= np.sum(inverse_pdet)
+
     outfile = file.split("/")[:-1]
     outfile = "/".join(outfile)
     outfile += "/inverse_pdet.dat"
