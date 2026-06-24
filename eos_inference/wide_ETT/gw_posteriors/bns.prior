@@ -10,7 +10,7 @@ lambda_2 = Uniform(name="lambda_2", minimum=0, maximum=5000)
 psi = Uniform(name='psi', minimum=0, maximum=np.pi, boundary='periodic')
 phase = Uniform(name='phase', minimum=0, maximum=2 * np.pi, boundary='periodic') 
 
-theta_jn = Sine(name='theta_jn')
+cos_theta_jn = Uniform(minimum=-1.0, maximum=1.0, name="cos_theta_jn")
 luminosity_distance = bilby.gw.prior.UniformSourceFrame(name='luminosity_distance', minimum=40, maximum=8e3)
 # ra and dec are fixed
 # geocent_time will be added with an interval close to the injection value

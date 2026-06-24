@@ -5,6 +5,13 @@ import numpy as np
 import pandas as pd
 import bilby
 import matplotlib.pyplot as plt
+plt.rcParams.update({
+    "text.usetex": True,
+    "font.family": "serif",
+    "font.serif": ["Computer Modern Roman"],
+    "font.size": 12,
+    })
+import corner
 
 
 from nmma.gw.gw_likelihood import GravitationalWaveTransientLikelihood
@@ -160,7 +167,7 @@ def main():
     if args.plot:
         result.plot_corner()
 
-        fig, ax = plt.subplots(3, 1, figsize=(8,12))
+        fig, ax = plt.subplots(3, 1, figsize=(8,14))
         bins = np.linspace(0.9, 2.5, 100)
 
         posterior = np.load(os.path.join(args.outdir, "posterior.npz"))
@@ -168,22 +175,36 @@ def main():
 
         ax[0].hist(posterior["mass_1_source"], bins=bins, density=True, color="blue", histtype="step")
         ax[0].hist(posterior["mass_2_source"], bins=bins, density=True, color="orange", histtype="step")
-
         ax[0].hist(posterior_mm["mass_1_source"], bins=bins, density=True, color="lightskyblue", histtype="step")
         ax[0].hist(posterior_mm["mass_2_source"], bins=bins, density=True, color="bisque", histtype="step")
-
         mass_1_source = event["mass_1"] / (1 + event["redshift"])
         mass_2_source = event["mass_2"] / (1 + event["redshift"])
         ax[0].vlines([mass_1_source, mass_2_source], *ax[0].get_ylim(), color="red")
         ax[0].set_xlabel("$m$ in source frame")
 
-        ax[1].hist(posterior_mm["luminosity_distance"], density=True, color="orange", histtype="step")
-        ax[1].vlines([event["luminosity_distance"]], *ax[1].get_ylim(), color="red")
-        ax[1].set_xlabel("$d_L$ in Mpc")
+        ax[1].hist(posterior_mm["lambda_1"], density=True, color="blue", histtype="step")
+        ax[1].hist(posterior_mm["lambda_2"], density=True, color="orange", histtype="step")
+        ax[1].vlines([event["lambda_1"]], *ax[1].get_ylim(), color="red")
+        ax[1].vlines([event["lambda_2"]], *ax[1].get_ylim(), color="red")
 
-        ax[2].hist(posterior_mm["theta_jn"], density=True, color="orange", histtype="step")
-        ax[2].vlines([event["theta_jn"]], *ax[2].get_ylim(), color="red")
-        ax[2].set_xlabel("$\\theta_{{JN}}$ in rad")
+        corner.hist2d(
+            posterior_mm["luminosity_distance"], posterior_mm["cos_theta_jn"], 
+            ax=ax[2],
+            smooth=True, 
+            levels=[0.68, 0.95],
+            plot_density=False,
+            no_fill_contours=False,
+            fill_contours=True,
+            plot_datapoints=False,
+            truths=event.to_dict(),
+            color="orange",
+            truth_color="red",
+            labels=["$d_L [Mpc]$", "$\\cos(\\iota)$"],
+            hist_kwargs=dict(density=True),
+        )
+        
+        ax[2].vlines([event["luminosity_distance"]], *ax[2].get_ylim(), color="red")
+        ax[2].hlines([np.cos(event["theta_jn"])], *ax[2].get_xlim(), color="red")
 
 
         fig.savefig(os.path.join(args.outdir, "posteriors.pdf"), dpi=200, bbox_inches="tight")

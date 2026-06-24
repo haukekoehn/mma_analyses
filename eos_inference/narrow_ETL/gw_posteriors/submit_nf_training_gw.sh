@@ -1,13 +1,20 @@
 #!/bin/bash
-nsrc=$(ls -lah . | grep "source" | wc -l)
 
-for ((src=0; src<nsrc; src++));
+nsrc=$(wc -l < ../../../eos_inference/narrow_ETL/events.dat)
+
+if [ $# -eq 0 ]; then
+    sources=$(seq 0 $((nsrc-1)))
+else
+    sources=$(echo "$1" | tr ',' ' ')
+fi
+
+for src in $sources;
 do
 
     sbatch --qos short <<SBATCH_EOF
 #!/bin/bash
 
-#SBATCH -J nf_narrow_ETL_${src}
+#SBATCH -J narrow_ETL_nf_gw_${src}
 #SBATCH -o ./source_${src}/log_nf
 #SBATCH -e ./source_${src}/log_nf
 

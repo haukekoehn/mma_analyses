@@ -1,20 +1,20 @@
 #!/bin/bash
 nsrc=$(ls -lah . | grep "source" | wc -l)
 
-for src in {12,};
+for src in {3,15,25,31};
 do
 
     sbatch --qos short <<SBATCH_EOF
 #!/bin/bash
 
-#SBATCH -J nf_wide_ETT_${src}
+#SBATCH -J nf_wide_ETL_${src}
 #SBATCH -o ./source_${src}/log_nf
 #SBATCH -e ./source_${src}/log_nf
 
 #SBATCH --partition cpu
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=64
-#SBATCH --time=00:30:00
+#SBATCH --time=01:00:00
 
 eval "\$(conda shell.bash hook)"  # Initialize Conda in the script
 conda activate nmma_x_fiesta
@@ -72,14 +72,14 @@ SBATCH_EOF
 sbatch --qos short <<SBATCH_EOF
 #!/bin/bash
 
-#SBATCH -J nf_mm_wide_ETT_${src}
+#SBATCH -J nf_mm_wide_ETL_${src}
 #SBATCH -o ./source_${src}/log_nf_mm
 #SBATCH -e ./source_${src}/log_nf_mm
 
 #SBATCH --partition cpu
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=64
-#SBATCH --time=00:30:00
+#SBATCH --time=01:00:00
 
 eval "\$(conda shell.bash hook)"  # Initialize Conda in the script
 conda activate nmma_x_fiesta

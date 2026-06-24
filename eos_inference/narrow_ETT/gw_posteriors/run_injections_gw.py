@@ -5,6 +5,13 @@ import numpy as np
 import pandas as pd
 import bilby
 import matplotlib.pyplot as plt
+plt.rcParams.update({
+    "text.usetex": True,
+    "font.family": "serif",
+    "font.serif": ["Computer Modern Roman"],
+    "font.size": 12,
+    })
+import corner
 
 
 from nmma.gw.gw_likelihood import GravitationalWaveTransientLikelihood
@@ -43,7 +50,7 @@ def main():
         os.mkdir(args.outdir)
 
     events = pd.read_csv("../events.dat", sep=" ")
-    event = events.loc[int(args.source), ["mass_1", "mass_2", "chi_1", "chi_2", "lambda_1", "lambda_2", "theta_jn", "luminosity_distance", "phase", "psi", "ra", "dec", "geocent_time", "redshift"]]
+    event = events.loc[int(args.source), ["mass_1", "mass_2", "chi_1", "chi_2", "lambda_1", "lambda_2", "theta_jn", "luminosity_distance", "phase", "psi", "ra", "dec", "geocent_time", "redshift", "redshift_measured"]]
     CHIEFF = (event['chi_1'] * event['mass_1'] + event['chi_2'] * event['mass_2']) / (event['mass_1'] + event['mass_2'])
     MCHIRP = bilby.gw.conversion.component_masses_to_chirp_mass(event['mass_1'], event["mass_2"])
     event["mass_ratio"] = event["mass_2"] / event["mass_1"]
@@ -53,6 +60,7 @@ def main():
     duration = int(duration) + 2.
 
     injection_parameters = event[["chirp_mass", "mass_ratio", "chi_1", "chi_2", "lambda_1", "lambda_2", "theta_jn", "luminosity_distance", "phase", "psi", "ra", "dec", "geocent_time"]].to_dict()
+    injection_parameters['cos_theta_jn'] = np.cos(injection_parameters['theta_jn'])
 
     waveform_generator = bilby.gw.WaveformGenerator(
         duration=duration,
@@ -148,33 +156,58 @@ def main():
     np.savez(os.path.join(args.outdir, "posterior.npz"), **posterior_samples)
 
     true_redshift = event["redshift"]
-    redshift_mean = np.random.normal(loc=true_redshift, scale=0.01*true_redshift, size=1)
+    redshift_mean = event['redshift_measured']
     redshift_samples = np.random.normal(loc=redshift_mean, scale=0.01*true_redshift, size=posterior_samples["mass_1"].shape)
 
     posterior_samples["mass_1_source"] = posterior_samples["mass_1"] / (1 + redshift_samples)
     posterior_samples["mass_2_source"] = posterior_samples["mass_2"] / (1 + redshift_samples)
+    posterior_samples["cos_theta_jn"] = np.cos(posterior_samples["theta_jn"])
     np.savez(os.path.join(args.outdir, "posterior_mm.npz"), **posterior_samples)
 
     if args.plot:
         result.plot_corner()
 
-        fig, ax = plt.subplots(1, 1, figsize=(8,6))
+        fig, ax = plt.subplots(3, 1, figsize=(8,14))
         bins = np.linspace(0.9, 2.5, 100)
 
         posterior = np.load(os.path.join(args.outdir, "posterior.npz"))
-        ax.hist(posterior["mass_1_source"], bins=bins, density=True, color="blue", histtype="step")
-        ax.hist(posterior["mass_2_source"], bins=bins, density=True, color="orange", histtype="step")
-
         posterior_mm = np.load(os.path.join(args.outdir, "posterior_mm.npz"))
-        ax.hist(posterior_mm["mass_1_source"], bins=bins, density=True, color="lightskyblue", histtype="step")
-        ax.hist(posterior_mm["mass_2_source"], bins=bins, density=True, color="bisque", histtype="step")
 
+        ax[0].hist(posterior["mass_1_source"], bins=bins, density=True, color="blue", histtype="step")
+        ax[0].hist(posterior["mass_2_source"], bins=bins, density=True, color="orange", histtype="step")
+        ax[0].hist(posterior_mm["mass_1_source"], bins=bins, density=True, color="lightskyblue", histtype="step")
+        ax[0].hist(posterior_mm["mass_2_source"], bins=bins, density=True, color="bisque", histtype="step")
         mass_1_source = event["mass_1"] / (1 + event["redshift"])
         mass_2_source = event["mass_2"] / (1 + event["redshift"])
-        ax.vlines([mass_1_source, mass_2_source], *ax.get_ylim(), color="red")
-        ax.set_xlabel("$m$ in source frame")
+        ax[0].vlines([mass_1_source, mass_2_source], *ax[0].get_ylim(), color="red")
+        ax[0].set_xlabel("$m$ in source frame")
 
-        fig.savefig(os.path.join(args.outdir, "mass_posterior.pdf"), dpi=200, bbox_inches="tight")
+        ax[1].hist(posterior_mm["lambda_1"], density=True, color="blue", histtype="step")
+        ax[1].hist(posterior_mm["lambda_2"], density=True, color="orange", histtype="step")
+        ax[1].vlines([event["lambda_1"]], *ax[1].get_ylim(), color="red")
+        ax[1].vlines([event["lambda_2"]], *ax[1].get_ylim(), color="red")
+
+        corner.hist2d(
+            posterior_mm["luminosity_distance"], posterior_mm["cos_theta_jn"], 
+            ax=ax[2],
+            smooth=True, 
+            levels=[0.68, 0.95],
+            plot_density=False,
+            no_fill_contours=False,
+            fill_contours=True,
+            plot_datapoints=False,
+            truths=event.to_dict(),
+            color="orange",
+            truth_color="red",
+            labels=["$d_L [Mpc]$", "$\\cos(\\iota)$"],
+            hist_kwargs=dict(density=True),
+        )
+        
+        ax[2].vlines([event["luminosity_distance"]], *ax[2].get_ylim(), color="red")
+        ax[2].hlines([np.cos(event["theta_jn"])], *ax[2].get_xlim(), color="red")
+
+
+        fig.savefig(os.path.join(args.outdir, "posteriors.pdf"), dpi=200, bbox_inches="tight")
     
 if __name__=="__main__":
     main()
