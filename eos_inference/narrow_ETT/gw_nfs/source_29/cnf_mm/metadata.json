@@ -1,0 +1,36 @@
+{
+  "n_samples_total": 4088,
+  "n_samples_used": 4088,
+  "parameter_names": [
+    "lambda_1",
+    "lambda_2"
+  ],
+  "filepath": "../gw_posteriors/source_29/posterior_mm.npz",
+  "flow_type": "block_neural_autoregressive_flow",
+  "num_epochs": 1000,
+  "learning_rate": 0.0001,
+  "max_patience": 500,
+  "val_prop": 0.15,
+  "standardize": true,
+  "standardization_method": "zscore",
+  "data_mean": [
+    372.91237404186955,
+    573.4081076430616
+  ],
+  "data_std": [
+    222.90194427625602,
+    293.6791899550215
+  ],
+  "cond_data_mean": [
+    1.4089775446792625,
+    1.2978666580929117,
+    359.39408920967367,
+    -0.8965877669772193
+  ],
+  "cond_data_std": [
+    0.0398115668745148,
+    0.03525368920925535,
+    27.143010664623056,
+    0.07095115625119508
+  ]
+}
