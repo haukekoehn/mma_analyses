@@ -1,13 +1,13 @@
 #!/bin/bash
 
-#SBATCH -J wide_ETL_cosmo_pdet
+#SBATCH -J narrow_ETT_cosmo_pdet
 #SBATCH -o ./log_pdet
 #SBATCH -e ./log_pdet
 
 #SBATCH --partition cpu
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=192
-#SBATCH --time=10:00:00
+#SBATCH --time=01:00:00
 
 eval "$(conda shell.bash hook)"  # Initialize Conda in the script
 conda activate nmma_x_fiesta
