@@ -1,266 +1,89 @@
 [INFO] jester: Derived max_nbreak from nbreak prior: 2.0000 n_sat
-[INFO] jester: Initialized JesterTransform: EOS=MetaModel_with_CSE_EOS_model, TOV=<jesterTOV.tov.gr.GRTOVSolver object at 0x7f6009aed3d0>
+[INFO] jester: Initialized JesterTransform: EOS=MetaModel_with_CSE_EOS_model, TOV=<jesterTOV.tov.gr.GRTOVSolver object at 0x7f27cf092010>
 [INFO] jester:   Fixed parameters: {'E_sat': -16.0}
 [WARNING] jester: Prior contains non-EOS parameters: ['alpha', 'k_coll', 'm_max', 'm_min', 'mu_1', 'mu_2', 'sigma_1', 'sigma_2']. These will be preserved but only used if the transform has a population function.
-[INFO] jester: Loading NF for GW posterior source_0 from ../gw_posteriors/source_0/nf.
-[INFO] jester: Loading NF for EM posterior source_0 from ../em_posteriors/source_0/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_1 from ../gw_posteriors/source_1/nf.
-[INFO] jester: Loading NF for EM posterior source_1 from ../em_posteriors/source_1/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_2 from ../gw_posteriors/source_2/nf.
-[INFO] jester: Loading NF for EM posterior source_2 from ../em_posteriors/source_2/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_3 from ../gw_posteriors/source_3/nf.
-[INFO] jester: Loading NF for EM posterior source_3 from ../em_posteriors/source_3/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_4 from ../gw_posteriors/source_4/nf.
-[INFO] jester: Loading NF for EM posterior source_4 from ../em_posteriors/source_4/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_5 from ../gw_posteriors/source_5/nf.
-[INFO] jester: Loading NF for EM posterior source_5 from ../em_posteriors/source_5/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_6 from ../gw_posteriors/source_6/nf.
-[INFO] jester: Loading NF for EM posterior source_6 from ../em_posteriors/source_6/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_7 from ../gw_posteriors/source_7/nf.
-[INFO] jester: Loading NF for EM posterior source_7 from ../em_posteriors/source_7/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_8 from ../gw_posteriors/source_8/nf.
-[INFO] jester: Loading NF for EM posterior source_8 from ../em_posteriors/source_8/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_9 from ../gw_posteriors/source_9/nf.
-[INFO] jester: Loading NF for EM posterior source_9 from ../em_posteriors/source_9/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_10 from ../gw_posteriors/source_10/nf.
-[INFO] jester: Loading NF for EM posterior source_10 from ../em_posteriors/source_10/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_11 from ../gw_posteriors/source_11/nf.
-[INFO] jester: Loading NF for EM posterior source_11 from ../em_posteriors/source_11/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_12 from ../gw_posteriors/source_12/nf.
-[INFO] jester: Loading NF for EM posterior source_12 from ../em_posteriors/source_12/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_13 from ../gw_posteriors/source_13/nf.
-[INFO] jester: Loading NF for EM posterior source_13 from ../em_posteriors/source_13/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_14 from ../gw_posteriors/source_14/nf.
-[INFO] jester: Loading NF for EM posterior source_14 from ../em_posteriors/source_14/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_15 from ../gw_posteriors/source_15/nf.
-[INFO] jester: Loading NF for EM posterior source_15 from ../em_posteriors/source_15/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_16 from ../gw_posteriors/source_16/nf.
-[INFO] jester: Loading NF for EM posterior source_16 from ../em_posteriors/source_16/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_17 from ../gw_posteriors/source_17/nf.
-[INFO] jester: Loading NF for EM posterior source_17 from ../em_posteriors/source_17/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_18 from ../gw_posteriors/source_18/nf.
-[INFO] jester: Loading NF for EM posterior source_18 from ../em_posteriors/source_18/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_19 from ../gw_posteriors/source_19/nf.
-[INFO] jester: Loading NF for EM posterior source_19 from ../em_posteriors/source_19/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_20 from ../gw_posteriors/source_20/nf.
-[INFO] jester: Loading NF for EM posterior source_20 from ../em_posteriors/source_20/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_21 from ../gw_posteriors/source_21/nf.
-[INFO] jester: Loading NF for EM posterior source_21 from ../em_posteriors/source_21/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_22 from ../gw_posteriors/source_22/nf.
-[INFO] jester: Loading NF for EM posterior source_22 from ../em_posteriors/source_22/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_23 from ../gw_posteriors/source_23/nf.
-[INFO] jester: Loading NF for EM posterior source_23 from ../em_posteriors/source_23/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_24 from ../gw_posteriors/source_24/nf.
-[INFO] jester: Loading NF for EM posterior source_24 from ../em_posteriors/source_24/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_25 from ../gw_posteriors/source_25/nf.
-[INFO] jester: Loading NF for EM posterior source_25 from ../em_posteriors/source_25/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_26 from ../gw_posteriors/source_26/nf.
-[INFO] jester: Loading NF for EM posterior source_26 from ../em_posteriors/source_26/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_27 from ../gw_posteriors/source_27/nf.
-[INFO] jester: Loading NF for EM posterior source_27 from ../em_posteriors/source_27/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_28 from ../gw_posteriors/source_28/nf.
-[INFO] jester: Loading NF for EM posterior source_28 from ../em_posteriors/source_28/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_29 from ../gw_posteriors/source_29/nf.
-[INFO] jester: Loading NF for EM posterior source_29 from ../em_posteriors/source_29/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_30 from ../gw_posteriors/source_30/nf.
-[INFO] jester: Loading NF for EM posterior source_30 from ../em_posteriors/source_30/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_31 from ../gw_posteriors/source_31/nf.
-[INFO] jester: Loading NF for EM posterior source_31 from ../em_posteriors/source_31/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_32 from ../gw_posteriors/source_32/nf.
-[INFO] jester: Loading NF for EM posterior source_32 from ../em_posteriors/source_32/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_33 from ../gw_posteriors/source_33/nf.
-[INFO] jester: Loading NF for EM posterior source_33 from ../em_posteriors/source_33/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_34 from ../gw_posteriors/source_34/nf.
-[INFO] jester: Loading NF for EM posterior source_34 from ../em_posteriors/source_34/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_35 from ../gw_posteriors/source_35/nf.
-[INFO] jester: Loading NF for EM posterior source_35 from ../em_posteriors/source_35/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_36 from ../gw_posteriors/source_36/nf.
-[INFO] jester: Loading NF for EM posterior source_36 from ../em_posteriors/source_36/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_37 from ../gw_posteriors/source_37/nf.
-[INFO] jester: Loading NF for EM posterior source_37 from ../em_posteriors/source_37/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_38 from ../gw_posteriors/source_38/nf.
-[INFO] jester: Loading NF for EM posterior source_38 from ../em_posteriors/source_38/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_39 from ../gw_posteriors/source_39/nf.
-[INFO] jester: Loading NF for EM posterior source_39 from ../em_posteriors/source_39/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_40 from ../gw_posteriors/source_40/nf.
-[INFO] jester: Loading NF for EM posterior source_40 from ../em_posteriors/source_40/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_41 from ../gw_posteriors/source_41/nf.
-[INFO] jester: Loading NF for EM posterior source_41 from ../em_posteriors/source_41/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_42 from ../gw_posteriors/source_42/nf.
-[INFO] jester: Loading NF for EM posterior source_42 from ../em_posteriors/source_42/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_43 from ../gw_posteriors/source_43/nf.
-[INFO] jester: Loading NF for EM posterior source_43 from ../em_posteriors/source_43/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_44 from ../gw_posteriors/source_44/nf.
-[INFO] jester: Loading NF for EM posterior source_44 from ../em_posteriors/source_44/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_45 from ../gw_posteriors/source_45/nf.
-[INFO] jester: Loading NF for EM posterior source_45 from ../em_posteriors/source_45/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_46 from ../gw_posteriors/source_46/nf.
-[INFO] jester: Loading NF for EM posterior source_46 from ../em_posteriors/source_46/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_47 from ../gw_posteriors/source_47/nf.
-[INFO] jester: Loading NF for EM posterior source_47 from ../em_posteriors/source_47/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_48 from ../gw_posteriors/source_48/nf.
-[INFO] jester: Loading NF for EM posterior source_48 from ../em_posteriors/source_48/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_49 from ../gw_posteriors/source_49/nf.
-[INFO] jester: Loading NF for EM posterior source_49 from ../em_posteriors/source_49/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_50 from ../gw_posteriors/source_50/nf.
-[INFO] jester: Loading NF for EM posterior source_50 from ../em_posteriors/source_50/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_51 from ../gw_posteriors/source_51/nf.
-[INFO] jester: Loading NF for EM posterior source_51 from ../em_posteriors/source_51/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_52 from ../gw_posteriors/source_52/nf.
-[INFO] jester: Loading NF for EM posterior source_52 from ../em_posteriors/source_52/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_53 from ../gw_posteriors/source_53/nf.
-[INFO] jester: Loading NF for EM posterior source_53 from ../em_posteriors/source_53/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_54 from ../gw_posteriors/source_54/nf.
-[INFO] jester: Loading NF for EM posterior source_54 from ../em_posteriors/source_54/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_55 from ../gw_posteriors/source_55/nf.
-[INFO] jester: Loading NF for EM posterior source_55 from ../em_posteriors/source_55/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_56 from ../gw_posteriors/source_56/nf.
-[INFO] jester: Loading NF for EM posterior source_56 from ../em_posteriors/source_56/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_57 from ../gw_posteriors/source_57/nf.
-[INFO] jester: Loading NF for EM posterior source_57 from ../em_posteriors/source_57/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_58 from ../gw_posteriors/source_58/nf.
-[INFO] jester: Loading NF for EM posterior source_58 from ../em_posteriors/source_58/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_59 from ../gw_posteriors/source_59/nf.
-[INFO] jester: Loading NF for EM posterior source_59 from ../em_posteriors/source_59/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_60 from ../gw_posteriors/source_60/nf.
-[INFO] jester: Loading NF for EM posterior source_60 from ../em_posteriors/source_60/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_61 from ../gw_posteriors/source_61/nf.
-[INFO] jester: Loading NF for EM posterior source_61 from ../em_posteriors/source_61/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_62 from ../gw_posteriors/source_62/nf.
-[INFO] jester: Loading NF for EM posterior source_62 from ../em_posteriors/source_62/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_63 from ../gw_posteriors/source_63/nf.
-[INFO] jester: Loading NF for EM posterior source_63 from ../em_posteriors/source_63/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_64 from ../gw_posteriors/source_64/nf.
-[INFO] jester: Loading NF for EM posterior source_64 from ../em_posteriors/source_64/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_65 from ../gw_posteriors/source_65/nf.
-[INFO] jester: Loading NF for EM posterior source_65 from ../em_posteriors/source_65/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_66 from ../gw_posteriors/source_66/nf.
-[INFO] jester: Loading NF for EM posterior source_66 from ../em_posteriors/source_66/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_67 from ../gw_posteriors/source_67/nf.
-[INFO] jester: Loading NF for EM posterior source_67 from ../em_posteriors/source_67/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_68 from ../gw_posteriors/source_68/nf.
-[INFO] jester: Loading NF for EM posterior source_68 from ../em_posteriors/source_68/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_69 from ../gw_posteriors/source_69/nf.
-[INFO] jester: Loading NF for EM posterior source_69 from ../em_posteriors/source_69/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_70 from ../gw_posteriors/source_70/nf.
-[INFO] jester: Loading NF for EM posterior source_70 from ../em_posteriors/source_70/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_71 from ../gw_posteriors/source_71/nf.
-[INFO] jester: Loading NF for EM posterior source_71 from ../em_posteriors/source_71/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_72 from ../gw_posteriors/source_72/nf.
-[INFO] jester: Loading NF for EM posterior source_72 from ../em_posteriors/source_72/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_73 from ../gw_posteriors/source_73/nf.
-[INFO] jester: Loading NF for EM posterior source_73 from ../em_posteriors/source_73/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_74 from ../gw_posteriors/source_74/nf.
-[INFO] jester: Loading NF for EM posterior source_74 from ../em_posteriors/source_74/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_75 from ../gw_posteriors/source_75/nf.
-[INFO] jester: Loading NF for EM posterior source_75 from ../em_posteriors/source_75/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_76 from ../gw_posteriors/source_76/nf.
-[INFO] jester: Loading NF for EM posterior source_76 from ../em_posteriors/source_76/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_77 from ../gw_posteriors/source_77/nf.
-[INFO] jester: Loading NF for EM posterior source_77 from ../em_posteriors/source_77/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_78 from ../gw_posteriors/source_78/nf.
-[INFO] jester: Loading NF for EM posterior source_78 from ../em_posteriors/source_78/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_79 from ../gw_posteriors/source_79/nf.
-[INFO] jester: Loading NF for EM posterior source_79 from ../em_posteriors/source_79/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_80 from ../gw_posteriors/source_80/nf.
-[INFO] jester: Loading NF for EM posterior source_80 from ../em_posteriors/source_80/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_81 from ../gw_posteriors/source_81/nf.
-[INFO] jester: Loading NF for EM posterior source_81 from ../em_posteriors/source_81/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_82 from ../gw_posteriors/source_82/nf.
-[INFO] jester: Loading NF for EM posterior source_82 from ../em_posteriors/source_82/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_83 from ../gw_posteriors/source_83/nf.
-[INFO] jester: Loading NF for EM posterior source_83 from ../em_posteriors/source_83/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
-[INFO] jester: Loading NF for GW posterior source_84 from ../gw_posteriors/source_84/nf.
-[INFO] jester: Loading NF for EM posterior source_84 from ../em_posteriors/source_84/nf.
-[INFO] jester: Loaded NFs for GW and EM posterior.
+[INFO] jester: Loaded GW likelihood for source_0 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_0/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_0/cnf.
+[INFO] jester: Loaded GW likelihood for source_1 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_1/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_1/cnf.
+[INFO] jester: Loaded GW likelihood for source_2 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_2/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_2/cnf.
+[INFO] jester: Loaded GW likelihood for source_3 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_3/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_3/cnf.
+[INFO] jester: Loaded GW likelihood for source_4 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_4/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_4/cnf.
+[INFO] jester: Loaded GW likelihood for source_5 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_5/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_5/cnf.
+[INFO] jester: Loaded GW likelihood for source_6 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_6/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_6/cnf.
+[INFO] jester: Loaded GW likelihood for source_7 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_7/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_7/cnf.
+[INFO] jester: Loaded GW likelihood for source_8 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_8/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_8/cnf.
+[INFO] jester: Loaded GW likelihood for source_9 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_9/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_9/cnf.
+[INFO] jester: Loaded GW likelihood for source_10 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_10/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_10/cnf.
+[INFO] jester: Loaded GW likelihood for source_11 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_11/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_11/cnf.
+[INFO] jester: Loaded GW likelihood for source_12 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_12/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_12/cnf.
+[INFO] jester: Loaded GW likelihood for source_13 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_13/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_13/cnf.
+[INFO] jester: Loaded GW likelihood for source_14 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_14/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_14/cnf.
+[INFO] jester: Loaded GW likelihood for source_15 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_15/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_15/cnf.
+[INFO] jester: Loaded GW likelihood for source_16 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_16/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_16/cnf.
+[INFO] jester: Loaded GW likelihood for source_17 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_17/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_17/cnf.
+[INFO] jester: Loaded GW likelihood for source_18 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_18/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_18/cnf.
+[INFO] jester: Loaded GW likelihood for source_19 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_19/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_19/cnf.
+[INFO] jester: Loaded GW likelihood for source_20 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_20/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_20/cnf.
+[INFO] jester: Loaded GW likelihood for source_21 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_21/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_21/cnf.
+[INFO] jester: Loaded GW likelihood for source_22 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_22/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_22/cnf.
+[INFO] jester: Loaded GW likelihood for source_23 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_23/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_23/cnf.
+[INFO] jester: Loaded GW likelihood for source_24 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_24/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_24/cnf.
+[INFO] jester: Loaded GW likelihood for source_25 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_25/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_25/cnf.
+[INFO] jester: Loaded GW likelihood for source_26 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_26/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_26/cnf.
+[INFO] jester: Loaded GW likelihood for source_27 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_27/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_27/cnf.
+[INFO] jester: Loaded GW likelihood for source_28 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_28/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_28/cnf.
+[INFO] jester: Loaded GW likelihood for source_29 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_29/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_29/cnf.
+[INFO] jester: Loaded GW likelihood for source_30 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_30/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_30/cnf.
+[INFO] jester: Loaded GW likelihood for source_31 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_31/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_31/cnf.
+[INFO] jester: Loaded GW likelihood for source_32 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_32/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_32/cnf.
+[INFO] jester: Loaded GW likelihood for source_33 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_33/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_33/cnf.
+[INFO] jester: Loaded GW likelihood for source_34 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_34/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_34/cnf.
+[INFO] jester: Loaded GW likelihood for source_35 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_35/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_35/cnf.
+[INFO] jester: Loaded GW likelihood for source_36 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_36/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_36/cnf.
+[INFO] jester: Loaded GW likelihood for source_37 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_37/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_37/cnf.
+[INFO] jester: Loaded GW likelihood for source_38 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_38/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_38/cnf.
+[INFO] jester: Loaded GW likelihood for source_39 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_39/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_39/cnf.
+[INFO] jester: Loaded GW likelihood for source_40 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_40/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_40/cnf.
+[INFO] jester: Loaded GW likelihood for source_41 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_41/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_41/cnf.
+[INFO] jester: Loaded GW likelihood for source_42 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_42/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_42/cnf.
+[INFO] jester: Loaded GW likelihood for source_43 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_43/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_43/cnf.
+[INFO] jester: Loaded GW likelihood for source_44 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_44/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_44/cnf.
+[INFO] jester: Loaded GW likelihood for source_45 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_45/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_45/cnf.
+[INFO] jester: Loaded GW likelihood for source_46 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_46/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_46/cnf.
+[INFO] jester: Loaded GW likelihood for source_47 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_47/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_47/cnf.
+[INFO] jester: Loaded GW likelihood for source_48 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_48/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_48/cnf.
+[INFO] jester: Loaded GW likelihood for source_49 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_49/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_49/cnf.
+[INFO] jester: Loaded GW likelihood for source_50 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_50/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_50/cnf.
+[INFO] jester: Loaded GW likelihood for source_51 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_51/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_51/cnf.
+[INFO] jester: Loaded GW likelihood for source_52 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_52/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_52/cnf.
+[INFO] jester: Loaded GW likelihood for source_53 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_53/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_53/cnf.
+[INFO] jester: Loaded GW likelihood for source_54 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_54/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_54/cnf.
+[INFO] jester: Loaded GW likelihood for source_55 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_55/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_55/cnf.
+[INFO] jester: Loaded GW likelihood for source_56 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_56/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_56/cnf.
+[INFO] jester: Loaded GW likelihood for source_57 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_57/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_57/cnf.
+[INFO] jester: Loaded GW likelihood for source_58 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_58/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_58/cnf.
+[INFO] jester: Loaded GW likelihood for source_59 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_59/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_59/cnf.
+[INFO] jester: Loaded GW likelihood for source_60 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_60/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_60/cnf.
+[INFO] jester: Loaded GW likelihood for source_61 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_61/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_61/cnf.
+[INFO] jester: Loaded GW likelihood for source_62 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_62/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_62/cnf.
+[INFO] jester: Loaded GW likelihood for source_63 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_63/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_63/cnf.
+[INFO] jester: Loaded GW likelihood for source_64 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_64/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_64/cnf.
+[INFO] jester: Loaded GW likelihood for source_65 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_65/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_65/cnf.
+[INFO] jester: Loaded GW likelihood for source_66 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_66/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_66/cnf.
+[INFO] jester: Loaded GW likelihood for source_67 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_67/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_67/cnf.
+[INFO] jester: Loaded GW likelihood for source_68 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_68/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_68/cnf.
+[INFO] jester: Loaded GW likelihood for source_69 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_69/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_69/cnf.
+[INFO] jester: Loaded GW likelihood for source_70 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_70/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_70/cnf.
+[INFO] jester: Loaded GW likelihood for source_71 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_71/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_71/cnf.
+[INFO] jester: Loaded GW likelihood for source_72 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_72/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_72/cnf.
+[INFO] jester: Loaded GW likelihood for source_73 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_73/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_73/cnf.
+[INFO] jester: Loaded GW likelihood for source_74 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_74/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_74/cnf.
+[INFO] jester: Loaded GW likelihood for source_75 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_75/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_75/cnf.
+[INFO] jester: Loaded GW likelihood for source_76 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_76/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_76/cnf.
+[INFO] jester: Loaded GW likelihood for source_77 from NpzFile '../../../eos_inference/narrow_ETL/gw_posteriors/source_77/posterior_mm.npz' with keys: mass_ratio, chi_1, chi_2, lambda_1, lambda_2... and ../gw_posteriors/source_77/cnf.
 [INFO] jester: Initializing BlackJAX SMC sampler with random_walk kernel
 [INFO] jester: Configuration: 7000 particles, 10 MCMC steps per tempering stage
 [INFO] jester: Target ESS: 0.9
-[INFO] jester: Starting sampling with seed 47...
+[INFO] jester: Starting sampling with seed 678934...
 [INFO] jester: Starting SMC sampling with random_walk kernel...
 [INFO] jester: Using random walk kernel
 [INFO] jester: Fixed sigma scaling: 0.05
@@ -275,72 +98,73 @@
 [INFO] jester: Progress updates will be shown after each annealing step
 [INFO] jester: ======================================================================
 [INFO] jester: Running SMC loop (this may take several minutes)...
-2026-06-03 16:03:53.185604: E external/xla/xla/service/slow_operation_alarm.cc:73] 
+2026-07-06 12:22:24.185736: E external/xla/xla/service/slow_operation_alarm.cc:73] 
 ********************************
 [Compiling module jit_while] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
 ********************************
-2026-06-03 16:28:06.958905: E external/xla/xla/service/slow_operation_alarm.cc:140] The operation took 26m13.773430276s
+2026-07-06 12:40:50.983806: E external/xla/xla/service/slow_operation_alarm.cc:140] The operation took 20m26.798431051s
 
 ********************************
 [Compiling module jit_while] Very slow compile? If you want to file a bug, run with envvar XLA_FLAGS=--xla_dump_to=/tmp/foo and attach the results.
 ********************************
-[INFO] jester: Step    0 | λ=0.000000 | ESS= 98.9% | Accept= 68.6% | logZ=  -0.016 | t=00:42:47 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    1 | λ=0.000000 | ESS= 99.7% | Accept= 69.0% | logZ=  -0.021 | t=00:52:19 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    2 | λ=0.000000 | ESS= 99.8% | Accept= 69.2% | logZ=  -0.023 | t=01:01:51 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    3 | λ=0.000000 | ESS=100.0% | Accept= 69.2% | logZ=  -0.024 | t=01:11:25 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    4 | λ=0.000000 | ESS=100.0% | Accept= 69.4% | logZ=  -0.024 | t=01:20:57 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    5 | λ=0.000174 | ESS= 98.8% | Accept= 69.5% | logZ=  -0.344 | t=01:30:29 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    6 | λ=0.000174 | ESS=100.0% | Accept= 69.7% | logZ=  -0.344 | t=01:40:01 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    7 | λ=0.000453 | ESS= 98.1% | Accept= 69.3% | logZ=  -0.834 | t=01:49:33 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    8 | λ=0.000789 | ESS= 97.7% | Accept= 69.2% | logZ=  -1.399 | t=01:59:05 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step    9 | λ=0.001294 | ESS= 95.5% | Accept= 69.0% | logZ=  -2.206 | t=02:08:38 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   10 | λ=0.001728 | ESS= 96.9% | Accept= 69.2% | logZ=  -2.863 | t=02:18:11 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   11 | λ=0.002430 | ESS= 93.0% | Accept= 68.8% | logZ=  -3.856 | t=02:27:43 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   12 | λ=0.003171 | ESS= 92.9% | Accept= 68.4% | logZ=  -4.828 | t=02:37:16 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   13 | λ=0.003968 | ESS= 92.9% | Accept= 68.0% | logZ=  -5.792 | t=02:46:48 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   14 | λ=0.004798 | ESS= 93.5% | Accept= 67.3% | logZ=  -6.717 | t=02:56:20 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   15 | λ=0.005666 | ESS= 94.2% | Accept= 67.0% | logZ=  -7.615 | t=03:05:52 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   16 | λ=0.006595 | ESS= 94.7% | Accept= 66.5% | logZ=  -8.507 | t=03:15:23 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   17 | λ=0.007634 | ESS= 94.9% | Accept= 65.4% | logZ=  -9.443 | t=03:24:55 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   18 | λ=0.008762 | ESS= 95.4% | Accept= 64.5% | logZ= -10.400 | t=03:34:27 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   19 | λ=0.010026 | ESS= 95.5% | Accept= 63.6% | logZ= -11.417 | t=03:43:59 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   20 | λ=0.011409 | ESS= 96.0% | Accept= 62.8% | logZ= -12.478 | t=03:53:32 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   21 | λ=0.012980 | ESS= 96.2% | Accept= 62.1% | logZ= -13.632 | t=04:03:04 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   22 | λ=0.014833 | ESS= 96.0% | Accept= 61.7% | logZ= -14.946 | t=04:12:37 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   23 | λ=0.016925 | ESS= 96.3% | Accept= 60.4% | logZ= -16.380 | t=04:22:09 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   24 | λ=0.019424 | ESS= 96.1% | Accept= 60.0% | logZ= -18.041 | t=04:31:41 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   25 | λ=0.022276 | ESS= 96.2% | Accept= 59.0% | logZ= -19.892 | t=04:41:13 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   26 | λ=0.025592 | ESS= 96.1% | Accept= 58.3% | logZ= -21.994 | t=04:50:45 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   27 | λ=0.029309 | ESS= 96.2% | Accept= 57.5% | logZ= -24.303 | t=05:00:18 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   28 | λ=0.033719 | ESS= 95.9% | Accept= 56.1% | logZ= -26.993 | t=05:09:51 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   29 | λ=0.038876 | ESS= 95.7% | Accept= 54.9% | logZ= -30.089 | t=05:19:23 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   30 | λ=0.044748 | ESS= 95.8% | Accept= 53.8% | logZ= -33.560 | t=05:28:55 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   31 | λ=0.051578 | ESS= 95.5% | Accept= 53.1% | logZ= -37.544 | t=05:38:28 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   32 | λ=0.059183 | ESS= 95.8% | Accept= 51.7% | logZ= -41.923 | t=05:48:00 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   33 | λ=0.068177 | ESS= 95.3% | Accept= 51.0% | logZ= -47.052 | t=05:57:31 | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   34 | λ=0.078265 | ESS= 95.5% | Accept= 49.6% | logZ= -52.747 | t=06:07:03 | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   35 | λ=0.089882 | ESS= 95.3% | Accept= 48.8% | logZ= -59.248 | t=06:16:35 | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   36 | λ=0.102711 | ESS= 95.6% | Accept= 47.5% | logZ= -66.371 | t=06:26:07 | ███░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   37 | λ=0.117515 | ESS= 95.4% | Accept= 46.5% | logZ= -74.534 | t=06:35:38 | ███░░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   38 | λ=0.133936 | ESS= 95.6% | Accept= 45.0% | logZ= -83.532 | t=06:45:10 | ████░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   39 | λ=0.152741 | ESS= 95.6% | Accept= 44.4% | logZ= -93.780 | t=06:54:41 | ████░░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   40 | λ=0.173937 | ESS= 95.7% | Accept= 43.1% | logZ=-105.276 | t=07:04:12 | █████░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   41 | λ=0.198012 | ESS= 95.7% | Accept= 41.6% | logZ=-118.279 | t=07:13:43 | █████░░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   42 | λ=0.225864 | ESS= 95.5% | Accept= 40.5% | logZ=-133.268 | t=07:23:14 | ██████░░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   43 | λ=0.257888 | ESS= 95.4% | Accept= 39.3% | logZ=-150.446 | t=07:32:45 | ███████░░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   44 | λ=0.293263 | ESS= 95.5% | Accept= 37.8% | logZ=-169.369 | t=07:42:16 | ████████░░░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   45 | λ=0.333627 | ESS= 95.4% | Accept= 36.7% | logZ=-190.902 | t=07:51:47 | ██████████░░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   46 | λ=0.378743 | ESS= 95.3% | Accept= 35.7% | logZ=-214.915 | t=08:01:18 | ███████████░░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   47 | λ=0.430767 | ESS= 95.0% | Accept= 34.6% | logZ=-242.543 | t=08:10:48 | ████████████░░░░░░░░░░░░░░░░░░
-[INFO] jester: Step   48 | λ=0.488632 | ESS= 94.9% | Accept= 33.1% | logZ=-273.213 | t=08:20:19 | ██████████████░░░░░░░░░░░░░░░░
-[INFO] jester: Step   49 | λ=0.553271 | ESS= 94.6% | Accept= 32.2% | logZ=-307.412 | t=08:29:50 | ████████████████░░░░░░░░░░░░░░
-[INFO] jester: Step   50 | λ=0.625990 | ESS= 94.2% | Accept= 30.8% | logZ=-345.821 | t=08:39:21 | ██████████████████░░░░░░░░░░░░
-[INFO] jester: Step   51 | λ=0.706138 | ESS= 94.0% | Accept= 29.8% | logZ=-388.086 | t=08:48:52 | █████████████████████░░░░░░░░░
-[INFO] jester: Step   52 | λ=0.794347 | ESS= 93.6% | Accept= 28.6% | logZ=-434.529 | t=08:58:22 | ███████████████████████░░░░░░░
-[INFO] jester: Step   53 | λ=0.892027 | ESS= 92.9% | Accept= 27.6% | logZ=-485.884 | t=09:07:53 | ██████████████████████████░░░░
-[INFO] jester: Step   54 | λ=0.996389 | ESS= 92.6% | Accept= 26.9% | logZ=-540.671 | t=09:17:23 | █████████████████████████████░
-[INFO] jester: Step   55 | λ=1.000000 | ESS=100.0% | Accept= 25.4% | logZ=-542.565 | t=09:26:52 | ██████████████████████████████
-[INFO] jester: Sampling complete! Runtime: 566 min 52 sec
+[INFO] jester: Step    0 | λ=0.000000 | ESS= 98.9% | Accept= 69.4% | logZ=  -0.016 | t=00:35:31 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    1 | λ=0.000000 | ESS= 99.7% | Accept= 68.9% | logZ=  -0.020 | t=00:44:10 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    2 | λ=0.000000 | ESS= 99.9% | Accept= 68.8% | logZ=  -0.022 | t=00:52:48 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    3 | λ=0.000000 | ESS=100.0% | Accept= 68.7% | logZ=  -0.022 | t=01:01:27 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    4 | λ=0.000000 | ESS=100.0% | Accept= 68.9% | logZ=  -0.022 | t=01:10:06 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    5 | λ=0.000199 | ESS= 98.8% | Accept= 69.0% | logZ=  -0.352 | t=01:18:45 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    6 | λ=0.000386 | ESS= 99.2% | Accept= 69.2% | logZ=  -0.653 | t=01:27:24 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    7 | λ=0.000596 | ESS= 99.2% | Accept= 69.0% | logZ=  -0.979 | t=01:36:02 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    8 | λ=0.001043 | ESS= 96.8% | Accept= 69.0% | logZ=  -1.648 | t=01:44:39 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step    9 | λ=0.001623 | ESS= 95.2% | Accept= 68.6% | logZ=  -2.470 | t=01:53:17 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   10 | λ=0.002318 | ESS= 93.7% | Accept= 68.5% | logZ=  -3.390 | t=02:01:55 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   11 | λ=0.003015 | ESS= 94.2% | Accept= 68.9% | logZ=  -4.249 | t=02:10:33 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   12 | λ=0.003845 | ESS= 92.9% | Accept= 67.9% | logZ=  -5.196 | t=02:19:11 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   13 | λ=0.004705 | ESS= 93.6% | Accept= 67.5% | logZ=  -6.101 | t=02:27:49 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   14 | λ=0.005622 | ESS= 94.1% | Accept= 67.4% | logZ=  -6.990 | t=02:36:27 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   15 | λ=0.006613 | ESS= 94.5% | Accept= 67.1% | logZ=  -7.882 | t=02:45:05 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   16 | λ=0.007690 | ESS= 94.9% | Accept= 66.4% | logZ=  -8.786 | t=02:53:43 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   17 | λ=0.008845 | ESS= 95.5% | Accept= 65.2% | logZ=  -9.699 | t=03:02:21 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   18 | λ=0.010115 | ESS= 95.8% | Accept= 64.8% | logZ= -10.648 | t=03:10:59 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   19 | λ=0.011602 | ESS= 95.7% | Accept= 64.2% | logZ= -11.706 | t=03:19:36 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   20 | λ=0.013231 | ESS= 96.0% | Accept= 63.4% | logZ= -12.818 | t=03:28:14 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   21 | λ=0.015113 | ESS= 95.8% | Accept= 62.1% | logZ= -14.052 | t=03:36:52 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   22 | λ=0.017175 | ESS= 96.1% | Accept= 61.6% | logZ= -15.359 | t=03:45:30 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   23 | λ=0.019630 | ESS= 95.8% | Accept= 60.4% | logZ= -16.862 | t=03:54:07 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   24 | λ=0.022438 | ESS= 95.8% | Accept= 59.6% | logZ= -18.530 | t=04:02:44 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   25 | λ=0.025655 | ESS= 95.8% | Accept= 58.5% | logZ= -20.389 | t=04:11:22 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   26 | λ=0.029368 | ESS= 95.8% | Accept= 57.7% | logZ= -22.480 | t=04:20:00 | ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   27 | λ=0.033549 | ESS= 95.9% | Accept= 56.5% | logZ= -24.785 | t=04:28:38 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   28 | λ=0.038360 | ESS= 95.8% | Accept= 55.5% | logZ= -27.383 | t=04:37:16 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   29 | λ=0.043868 | ESS= 95.8% | Accept= 54.3% | logZ= -30.305 | t=04:45:53 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   30 | λ=0.050364 | ESS= 95.4% | Accept= 53.0% | logZ= -33.698 | t=04:54:31 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   31 | λ=0.057654 | ESS= 95.5% | Accept= 52.4% | logZ= -37.451 | t=05:03:08 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   32 | λ=0.065888 | ESS= 95.5% | Accept= 51.0% | logZ= -41.634 | t=05:11:45 | █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   33 | λ=0.075417 | ESS= 95.3% | Accept= 49.7% | logZ= -46.418 | t=05:20:22 | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   34 | λ=0.086336 | ESS= 95.1% | Accept= 48.3% | logZ= -51.842 | t=05:29:00 | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   35 | λ=0.098542 | ESS= 95.0% | Accept= 46.5% | logZ= -57.846 | t=05:37:37 | ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   36 | λ=0.112080 | ESS= 94.9% | Accept= 45.2% | logZ= -64.447 | t=05:46:14 | ███░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   37 | λ=0.127123 | ESS= 94.9% | Accept= 44.3% | logZ= -71.721 | t=05:54:52 | ███░░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   38 | λ=0.143752 | ESS= 94.8% | Accept= 43.0% | logZ= -79.703 | t=06:03:30 | ████░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   39 | λ=0.162245 | ESS= 94.7% | Accept= 41.6% | logZ= -88.517 | t=06:12:08 | ████░░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   40 | λ=0.182353 | ESS= 94.8% | Accept= 40.5% | logZ= -98.040 | t=06:20:45 | █████░░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   41 | λ=0.205029 | ESS= 94.5% | Accept= 39.2% | logZ=-108.716 | t=06:29:22 | ██████░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   42 | λ=0.229563 | ESS= 94.8% | Accept= 38.3% | logZ=-120.204 | t=06:38:00 | ██████░░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   43 | λ=0.256819 | ESS= 94.7% | Accept= 37.5% | logZ=-132.905 | t=06:46:37 | ███████░░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   44 | λ=0.286824 | ESS= 94.8% | Accept= 36.6% | logZ=-146.824 | t=06:55:14 | ████████░░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   45 | λ=0.319906 | ESS= 95.0% | Accept= 35.1% | logZ=-162.110 | t=07:03:51 | █████████░░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   46 | λ=0.356850 | ESS= 94.9% | Accept= 34.0% | logZ=-179.119 | t=07:12:27 | ██████████░░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   47 | λ=0.398244 | ESS= 94.9% | Accept= 33.0% | logZ=-198.115 | t=07:21:03 | ███████████░░░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   48 | λ=0.442685 | ESS= 95.1% | Accept= 31.5% | logZ=-218.452 | t=07:29:38 | █████████████░░░░░░░░░░░░░░░░░
+[INFO] jester: Step   49 | λ=0.492501 | ESS= 95.0% | Accept= 30.4% | logZ=-241.189 | t=07:38:14 | ██████████████░░░░░░░░░░░░░░░░
+[INFO] jester: Step   50 | λ=0.548613 | ESS= 94.8% | Accept= 28.8% | logZ=-266.736 | t=07:46:49 | ████████████████░░░░░░░░░░░░░░
+[INFO] jester: Step   51 | λ=0.611593 | ESS= 94.8% | Accept= 27.2% | logZ=-295.348 | t=07:55:24 | ██████████████████░░░░░░░░░░░░
+[INFO] jester: Step   52 | λ=0.680769 | ESS= 94.8% | Accept= 25.4% | logZ=-326.712 | t=08:03:59 | ████████████████████░░░░░░░░░░
+[INFO] jester: Step   53 | λ=0.756290 | ESS= 94.9% | Accept= 24.0% | logZ=-360.894 | t=08:12:35 | ██████████████████████░░░░░░░░
+[INFO] jester: Step   54 | λ=0.839381 | ESS= 95.0% | Accept= 22.5% | logZ=-398.442 | t=08:21:10 | █████████████████████████░░░░░
+[INFO] jester: Step   55 | λ=0.933357 | ESS= 94.7% | Accept= 20.8% | logZ=-440.848 | t=08:29:45 | ████████████████████████████░░
+[INFO] jester: Step   56 | λ=1.000000 | ESS= 97.7% | Accept= 19.8% | logZ=-470.884 | t=08:38:19 | ██████████████████████████████
+[INFO] jester: Sampling complete! Runtime: 518 min 20 sec
 [INFO] jester: Generating SMC diagnostic plots...
 [INFO] jester: Saved diagnostic plot to outdir/smc_diagnostics.png
 [INFO] jester: Creating InferenceResult from sampler output...
@@ -352,7 +176,7 @@
 [INFO] jester: Generating EOS for all 7000 posterior samples
 [INFO] jester: Applying transform to 7000 samples...
 [INFO] jester: Using batch size: 1000
-[INFO] jester: TOV solve time: 11.61 s (7000 samples)
+[INFO] jester: TOV solve time: 12.42 s (7000 samples)
 [INFO] jester: Adding derived EOS quantities to posterior
 [INFO] jester: Added 8 derived EOS quantities
 [INFO] jester: EOS generation complete!

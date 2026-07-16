@@ -67,7 +67,7 @@ for src in range(events.shape[0]):
         redshift_mean = events.loc[src, "redshift_measured"],
         redshift_sigma = 0.01 * events.loc[src, "redshift"],
         flow_em = f"../em_posteriors/source_{src}/nf",
-        use_em=False,
+        use_em=True,
         logprior_gw = logprior_gw,
         logprior_em = logprior_em,
         N_masses_evaluation=1000,
@@ -82,7 +82,7 @@ likelihood = CombinedLikelihood(likelihoods)
 ########
 # TEST #
 ########
-
+"""
 
 samples = prior.sample(jax.random.key(42), 1000)
 import h5py
@@ -122,7 +122,7 @@ def check_truth():
     truth.update(dict(masses_EOS=m_eos, radii_EOS=r_eos, Lambdas_EOS=l_eos))
     #truth = transform.forward(truth)
 
-    for j in range(70,events.shape[0]):
+    for j in range(0,events.shape[0]):
         logl_bestposterior= likelihoods[j+2].evaluate(best_posterior)
         logl_truth = likelihoods[j+2].evaluate(truth)
 
@@ -134,7 +134,7 @@ def check_truth():
 check_truth()
 exit()
 
-
+"""
 ###########
 # Sampler #
 ###########

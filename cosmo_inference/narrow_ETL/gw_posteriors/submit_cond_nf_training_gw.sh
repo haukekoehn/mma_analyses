@@ -47,7 +47,7 @@ seed: 465
 
 # Flow architecture
 flow_type: block_neural_autoregressive_flow
-flow_layers: 1
+flow_layers: 2
 nn_depth: 4
 nn_width: 50
 nn_block_dim: 8
