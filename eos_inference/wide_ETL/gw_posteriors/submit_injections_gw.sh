@@ -59,7 +59,7 @@ for src in $EVENT_LIST; do
 #SBATCH --ntasks-per-node 1
 #SBATCH --cpus-per-task 192
 #SBATCH -p cpu
-#SBATCH --time=08:00:00
+#SBATCH --time=12:00:00
 
 eval "\$(conda shell.bash hook)"
 conda activate nmma_x_fiesta
