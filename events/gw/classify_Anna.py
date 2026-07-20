@@ -9,7 +9,7 @@ from bilby.gw.conversion import lambda_1_lambda_2_to_lambda_tilde
 
 file = sys.argv[1]
 
-m_val, r_val, l_val = np.loadtxt("../eos/RMF3_MRL.dat", unpack=True)
+m_val, r_val, l_val = np.loadtxt("../../eos/RMF3_MRL.dat", unpack=True)
 
 PC_classifier = joblib.load("./postmerger_classifier/classifierC_model.pkl")
 scaler = joblib.load("./postmerger_classifier/scaler_classifierC.pkl")

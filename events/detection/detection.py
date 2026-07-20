@@ -1,4 +1,6 @@
 import sys
+import multiprocessing as mp
+from concurrent.futures import ProcessPoolExecutor, as_completed
 
 import numpy as np
 import pandas as pd
@@ -31,6 +33,7 @@ model_afterglow = FluxModel(name="pbag_gaussian_CVAE", filters=["ztfg", "ztfi", 
 model = CombinedSurrogate(models = [model_KN, model_afterglow], sample_times=np.geomspace(0.2, 2000, 200))
 model.add_filter(ultrasat_filter)
 
+
 def main():
 
     df_gw = pd.read_csv(sys.argv[1], sep=" ")
@@ -49,14 +52,67 @@ def main():
     detectors = sys.argv[2].split(".")[1]
     detectors = "_".join(detectors.split("_")[3:])
 
+    # result_df = prepare_result_df(nrows=NBNS)
+    
+    jobs = [(
+            j,
+            mass_dist,
+            detectors,
+            df_gw.iloc[j],
+            df_FIM.iloc[j],
+            df_kn.iloc[j],
+            df_grb.iloc[j]
+            ) for j in range(NBNS)]
+    
+    with ProcessPoolExecutor(max_workers=32, mp_context=mp.get_context("spawn")) as pool:
+        results = list(
+            tqdm.tqdm(
+                pool.map(worker, jobs),
+                total=NBNS
+            )
+        )
+
+    results.sort(key=lambda x: x[0])  # if needed
+
+    result_df = pd.DataFrame(
+        [result for _, result in results]
+    )
+
+    # save 
     outfile = f"./detection_output/{mass_dist}_{detectors}.dat"
-    result_df = prepare_result_df(nrows=NBNS)
-
-    for j in tqdm.tqdm(range(NBNS)):
-        result = observation_campaign(j, mass_dist, detectors, df_gw.iloc[j], df_FIM.iloc[j], df_kn.iloc[j], df_grb.iloc[j])
-        result_df.loc[j] = result
-
     result_df.to_csv(outfile, sep=" ", float_format="%.3f")
+
+#############################
+# SETUP AND PARALLELIZATION #
+#############################
+
+
+'''
+def set_global(mass_dist, detectors, df_gw, df_FIM, df_kn, df_grb):
+
+    global GLOBAL_mass_dist, GLOBAL_detectors, GLOBAL_df_gw, GLOBAL_df_FIM, GLOBAL_df_kn, GLOBAL_df_grb
+
+    GLOBAL_mass_dist = mass_dist
+    GLOBAL_detectors = detectors
+    GLOBAL_df_gw = df_gw
+    GLOBAL_df_FIM = df_FIM
+    GLOBAL_df_kn = df_kn
+    GLOBAL_df_grb = df_grb
+'''
+def worker(args):
+
+    j, mass_dist, detectors, gw, fim, kn, grb = args
+
+    result = observation_campaign(
+        j,
+        mass_dist,
+        detectors,
+        gw,
+        fim,
+        kn,
+        grb,
+    )
+    return j, result
 
 def prepare_result_df(nrows: int):
 
@@ -91,6 +147,10 @@ def prepare_result_df(nrows: int):
     })
 
     return df
+
+################################
+# actual observation functions #
+################################
 
 def observation_campaign(j, mass_dist, detectors, gw_event, fim_event, kn_event, grb_event):
     
@@ -339,6 +399,7 @@ def afterglow_detection(gw_event, kn_event, grb_event, DeltaOmega, kn_result, j,
     return afterglow_results
          
 if __name__=="__main__":
+    mp.set_start_method("spawn", force=True)
     main()
 
 

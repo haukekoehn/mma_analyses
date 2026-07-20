@@ -12,14 +12,14 @@ from jesterTOV.inference.run_inference import setup_transform, create_sampler, r
 
 from jesterTOV.inference.likelihoods import CosmoMultiMessengerLikelihood, CombinedLikelihood, ConstraintEOSLikelihood, RadioTimingLikelihood
 from jesterTOV.inference.population.populations import massratiopowerlaw_logpdf
+
+
 config = load_config("./config.yaml")
 outdir = config.sampler.output_dir
 os.makedirs(outdir, exist_ok=True)
 
 events = pd.read_csv("../../../eos_inference/wide_ETT/events.dat", sep=" ")
-events["chirp_mass"] = (events["mass_1"]*events["mass_2"])**0.6 / (events["mass_1"] + events["mass_2"])**0.2
-
-key = jax.random.key(8902)
+key = jax.random.key(88888888)
 
 #########
 # Prior #
@@ -36,11 +36,11 @@ bilby_dL_prior = UniformSourceFrame(name='luminosity_distance', minimum=40, maxi
 def get_logprior(src: int):
 
     def logprior_gw(sample):
-        dL = sample[4]
+        dL = sample["luminosity_distance"]
         return jnp.log(jnp.interp(dL, bilby_dL_prior.xx, bilby_dL_prior.yy))
     
     def logprior_em(sample):
-        dL = sample[1]
+        dL = sample["luminosity_distance"]
         return jnp.log(jnp.interp(dL, bilby_dL_prior.xx, bilby_dL_prior.yy))
     
     return logprior_gw, logprior_em
@@ -61,23 +61,79 @@ for src in range(events.shape[0]):
     key, subkey = jax.random.split(key)
     likelihood = CosmoMultiMessengerLikelihood(
         event_name = f"source_{src}",
-        dir_gw = f"../gw_posteriors/source_{src}/nf",
-        dir_gw_cond = f"../gw_posteriors/source_{src}/cnf",
-        dir_em = f"../em_posteriors/source_{src}/nf",
-        population_logpdf = massratiopowerlaw_logpdf,
-        N_eval = 1000,
+        posterior_gw = f"../../../eos_inference/wide_ETT/gw_posteriors/source_{src}/posterior_mm.npz",
+        conditional_flow_gw = f"../gw_posteriors/source_{src}/cnf",
+        mass_model_logpdf=massratiopowerlaw_logpdf,
         redshift_mean = events.loc[src, "redshift_measured"],
         redshift_sigma = 0.01 * events.loc[src, "redshift"],
+        flow_em = f"../em_posteriors/source_{src}/nf",
+        use_em=True,
         logprior_gw = logprior_gw,
         logprior_em = logprior_em,
+        N_masses_evaluation=1000,
         N_masses_batch_size = 100,
-        key = subkey
+        key = subkey,
     )
     likelihoods.append(likelihood)
 
 likelihood = CombinedLikelihood(likelihoods)
 
+"""
+########
+# TEST #
+########
 
+
+samples = prior.sample(jax.random.key(42), 1000)
+import h5py
+posterior = {}
+with h5py.File("outdir/results.h5") as f:
+    for key in f["posterior"]["parameters"].keys():
+        posterior[key] = f["posterior"]["parameters"][key][:]
+    posterior["log_prob"] = f["posterior"]["log_prob"][:]
+
+
+def check_samples_for_nan():
+    likelihood_fn = jax.jit(likelihood.evaluate)
+    for j in range(1000):
+        params = {key: samples[key][j] for key in samples.keys()}
+        params = transform.forward(params)
+        logl = likelihood_fn(params)
+        print(j, logl)
+
+def check_specific_sample(j):
+    
+    params = {key: samples[key][j] for key in samples.keys()}
+    params = transform.forward(params)
+    for j in range(len(likelihoods)):
+        logl = likelihoods[j].evaluate(params)
+        print(j, logl)
+
+def check_truth():
+    import numpy as np
+    from copy import deepcopy
+    m_eos, r_eos, l_eos = np.loadtxt("../../../eos/RMF3_MRL.dat", unpack=True)
+    
+    ind = posterior["log_prob"].argmax()
+    best_posterior = {key: val[ind] for key, val in posterior.items()}
+    best_posterior = transform.forward(best_posterior)
+
+    truth = deepcopy(best_posterior)
+    truth.update(dict(masses_EOS=m_eos, radii_EOS=r_eos, Lambdas_EOS=l_eos))
+    #truth = transform.forward(truth)
+
+    for j in range(0,events.shape[0]):
+        logl_bestposterior= likelihoods[j+2].evaluate(best_posterior)
+        logl_truth = likelihoods[j+2].evaluate(truth)
+
+        print(j, events.loc[j, "redshift"], logl_bestposterior, logl_truth, logl_truth - logl_bestposterior)
+
+    breakpoint()
+
+
+check_truth()
+exit()
+"""
 ###########
 # Sampler #
 ###########

@@ -39,12 +39,25 @@ events = pd.read_csv("../../../eos_inference/narrow_ETT/events.dat", sep=" ")
 n_events = events.shape[0]
 
 
-location = ETT_location
-mass_model = RecycledBinary
+detector = "ETT"
+mass_distribution = "narrow"
 
 #############
 
-with open("../../../det_probability/networks/ETT_snr_nn.pkl", "rb") as f:
+if detector=="ETL":
+    location = ETL_location
+elif detector=="ETT":
+    location = ETT_location
+else:
+    raise ValueError
+
+if mass_distribution == "narrow":
+    mass_model = RecycledBinary
+elif mass_distribution == "wide":
+    mass_model = MassRatioPowerLaw
+
+
+with open(f"../../../det_probability/networks/{detector}_snr_nn.pkl", "rb") as f:
     network_dict = pickle.load(f)
     params = network_dict["params"]
     config = network_dict["config"]
@@ -53,7 +66,7 @@ with open("../../../det_probability/networks/ETT_snr_nn.pkl", "rb") as f:
     # Create train state without optimizer
     state = TrainState.create(apply_fn=net.apply, params=params, tx=optax.adam(config.learning_rate))
 
-with open("../../../det_probability/networks/ETT_snr_nn_scalers.pkl", "rb") as f:
+with open(f"../../../det_probability/networks/{detector}_snr_nn_scalers.pkl", "rb") as f:
     scaler_dict = pickle.load(f)
     Xscaler = scaler_dict["Xscaler"]
     yscaler = scaler_dict["yscaler"]
@@ -97,7 +110,7 @@ psi = np.random.uniform(0, np.pi, size=n_shape)
 ra = np.random.uniform(0, 2*np.pi, size=n_shape)
 dec = np.arcsin(np.random.uniform(-1, 1, size=n_shape))
 geocent_time = np.random.uniform(Time("2050-01-01", scale="tcg").gps, Time("2050-12-31", scale="tcg").gps, size=n_shape)
-alt, az = convert_to_altaz(ra, dec, geocent_time, ETL_location)
+alt, az = convert_to_altaz(ra, dec, geocent_time, location)
 
 redshifts = sample_merger_rate()
 
@@ -264,6 +277,9 @@ def calculate_pdet(file: str):
     pdet = jax.lax.map(detection_prob_per_sample, posterior, batch_size=100)
 
     inverse_pdet = softmax(-n_events * np.log(pdet))
+
+    inverse_pdet = 10**np.clip(np.log10(inverse_pdet), *np.quantile(np.log10(inverse_pdet), [0.01, 0.99]))
+    inverse_pdet /= np.sum(inverse_pdet)
 
     outfile = file.split("/")[:-1]
     outfile = "/".join(outfile)

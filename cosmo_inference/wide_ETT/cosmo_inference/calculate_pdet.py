@@ -35,16 +35,29 @@ ETT_location = EarthLocation(lat=50.795483*u.deg, lon=5.848956*u.deg, height=100
 ### CONFIG ###
 
 n_shape = 2000
-events = pd.read_csv("../../../eos_inference/wide_ETT/events.dat", sep=" ")
+events = pd.read_csv("../../../eos_inference/wide_ETL/events.dat", sep=" ")
 n_events = events.shape[0]
 
 
-location = ETT_location
-mass_model = MassRatioPowerLaw
+detector = "ETT"
+mass_distribution = "wide"
 
 #############
 
-with open("../../../det_probability/networks/ETT_snr_nn.pkl", "rb") as f:
+if detector=="ETL":
+    location = ETL_location
+elif detector=="ETT":
+    location = ETT_location
+else:
+    raise ValueError
+
+if mass_distribution == "narrow":
+    mass_model = RecycledBinary
+elif mass_distribution == "wide":
+    mass_model = MassRatioPowerLaw
+
+
+with open(f"../../../det_probability/networks/{detector}_snr_nn.pkl", "rb") as f:
     network_dict = pickle.load(f)
     params = network_dict["params"]
     config = network_dict["config"]
@@ -53,7 +66,7 @@ with open("../../../det_probability/networks/ETT_snr_nn.pkl", "rb") as f:
     # Create train state without optimizer
     state = TrainState.create(apply_fn=net.apply, params=params, tx=optax.adam(config.learning_rate))
 
-with open("../../../det_probability/networks/ETT_snr_nn_scalers.pkl", "rb") as f:
+with open(f"../../../det_probability/networks/{detector}_snr_nn_scalers.pkl", "rb") as f:
     scaler_dict = pickle.load(f)
     Xscaler = scaler_dict["Xscaler"]
     yscaler = scaler_dict["yscaler"]
@@ -97,7 +110,7 @@ psi = np.random.uniform(0, np.pi, size=n_shape)
 ra = np.random.uniform(0, 2*np.pi, size=n_shape)
 dec = np.arcsin(np.random.uniform(-1, 1, size=n_shape))
 geocent_time = np.random.uniform(Time("2050-01-01", scale="tcg").gps, Time("2050-12-31", scale="tcg").gps, size=n_shape)
-alt, az = convert_to_altaz(ra, dec, geocent_time, ETL_location)
+alt, az = convert_to_altaz(ra, dec, geocent_time, location)
 
 redshifts = sample_merger_rate()
 
@@ -223,9 +236,8 @@ def em_detection_probability(m1: np.ndarray, m2: np.ndarray, luminosity_distance
     return jnp.sum(kn_detectable) / jnp.sum(gw_detected)
     
 
-def detection_prob_per_sample(posterior: dict, index: int):
+def detection_prob_per_sample(sample: dict):
 
-    sample = {key: val[index] for key, val in posterior.items()}
     m1, m2 = mass_model(jax.random.key(183902), sample, size=n_shape)
 
     H0 = sample.get("H0", Planck18.H0.value)
@@ -261,10 +273,13 @@ def calculate_pdet(file: str):
     nsamp = posterior["log_prob"].shape[0]
     pdet = np.zeros(nsamp)
 
-    for j in tqdm.tqdm(range(nsamp)):
-        pdet[j] = detection_prob_per_sample(posterior, j)
+    inds = jnp.arange(nsamp)
+    pdet = jax.lax.map(detection_prob_per_sample, posterior, batch_size=100)
 
     inverse_pdet = softmax(-n_events * np.log(pdet))
+
+    inverse_pdet = 10**np.clip(np.log10(inverse_pdet), *np.quantile(np.log10(inverse_pdet), [0.01, 0.99]))
+    inverse_pdet /= np.sum(inverse_pdet)
 
     outfile = file.split("/")[:-1]
     outfile = "/".join(outfile)

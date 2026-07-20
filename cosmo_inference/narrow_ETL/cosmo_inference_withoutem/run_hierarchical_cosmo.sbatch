@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH -J narrow_ETL_hierarchical_cosmo
+#SBATCH -J narrow_ETL_hierarchical_cosmo_withoutem
 #SBATCH -o ./log
 #SBATCH -e ./log
 

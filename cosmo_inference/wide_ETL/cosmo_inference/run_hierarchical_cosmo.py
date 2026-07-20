@@ -19,7 +19,7 @@ outdir = config.sampler.output_dir
 os.makedirs(outdir, exist_ok=True)
 
 events = pd.read_csv("../../../eos_inference/wide_ETL/events.dat", sep=" ")
-key = jax.random.key(204976)
+key = jax.random.key(48093)
 
 #########
 # Prior #
@@ -36,11 +36,11 @@ bilby_dL_prior = UniformSourceFrame(name='luminosity_distance', minimum=40, maxi
 def get_logprior(src: int):
 
     def logprior_gw(sample):
-        dL = sample[4]
+        dL = sample["luminosity_distance"]
         return jnp.log(jnp.interp(dL, bilby_dL_prior.xx, bilby_dL_prior.yy))
     
     def logprior_em(sample):
-        dL = sample[1]
+        dL = sample["luminosity_distance"]
         return jnp.log(jnp.interp(dL, bilby_dL_prior.xx, bilby_dL_prior.yy))
     
     return logprior_gw, logprior_em
@@ -61,23 +61,24 @@ for src in range(events.shape[0]):
     key, subkey = jax.random.split(key)
     likelihood = CosmoMultiMessengerLikelihood(
         event_name = f"source_{src}",
-        dir_gw = f"../gw_posteriors/source_{src}/nf",
-        dir_gw_cond = f"../gw_posteriors/source_{src}/cnf",
-        dir_em = f"../em_posteriors/source_{src}/nf",
-        population_logpdf=massratiopowerlaw_logpdf,
-        N_eval = 1000,
+        posterior_gw = f"../../../eos_inference/wide_ETL/gw_posteriors/source_{src}/posterior_mm.npz",
+        conditional_flow_gw = f"../gw_posteriors/source_{src}/cnf",
+        mass_model_logpdf=massratiopowerlaw_logpdf,
         redshift_mean = events.loc[src, "redshift_measured"],
         redshift_sigma = 0.01 * events.loc[src, "redshift"],
+        flow_em = f"../em_posteriors/source_{src}/nf",
+        use_em=True,
         logprior_gw = logprior_gw,
         logprior_em = logprior_em,
+        N_masses_evaluation=1000,
         N_masses_batch_size = 100,
-        key = subkey
+        key = subkey,
     )
     likelihoods.append(likelihood)
 
 likelihood = CombinedLikelihood(likelihoods)
 
-
+"""
 ########
 # TEST #
 ########
@@ -111,9 +112,6 @@ def check_specific_sample(j):
 def check_truth():
     import numpy as np
     from copy import deepcopy
-    from jax.scipy.special import logsumexp
-
-
     m_eos, r_eos, l_eos = np.loadtxt("../../../eos/RMF3_MRL.dat", unpack=True)
     
     ind = posterior["log_prob"].argmax()
@@ -121,26 +119,27 @@ def check_truth():
     best_posterior = transform.forward(best_posterior)
 
     truth = deepcopy(best_posterior)
-    truth.update(dict(alpha=2.0, m_min=1.1, m_max=2.0, k_coll=1.3, H0=67.66, Omega0=0.30966))
-    truth = transform.forward(truth)
     truth.update(dict(masses_EOS=m_eos, radii_EOS=r_eos, Lambdas_EOS=l_eos))
+    #truth = transform.forward(truth)
 
-    for j in range(2, len(likelihoods)):
-        mass_1 = likelihoods[j].mass_1
-        mass_2 = likelihoods[j].mass_2
-        logl_bestposterior= logsumexp(likelihoods[j].population_logpdf(mass_1, mass_2, best_posterior)) - np.log(1000)
-        logl_truth = logsumexp(likelihoods[j].population_logpdf(mass_1, mass_2, truth)) - np.log(1000)
-        #logl_bestposterior = likelihoods[j].evaluate(best_posterior)
-        #logl_truth = likelihoods[j].evaluate(truth)
+    for j in range(0,events.shape[0]):
+        
+        total_mass = np.sum(events.loc[j, ["mass_1_source", "mass_2_source"]])
+        pc_best = total_mass  >= best_posterior["masses_EOS"].max() * best_posterior["k_coll"]
+        pc_truth = total_mass >= truth["masses_EOS"].max() * best_posterior["k_coll"] 
 
-        print(j, logl_bestposterior, logl_truth)
-    
+
+        logl_bestposterior= likelihoods[j+2].evaluate(best_posterior)
+        logl_truth = likelihoods[j+2].evaluate(truth)
+
+        print(j, events.loc[j, "redshift"], pc_best, pc_truth, logl_bestposterior, logl_truth, logl_truth - logl_bestposterior)
+
     breakpoint()
 
-# check_samples_for_nan()
+
 check_truth()
 exit()
-
+"""
 
 ###########
 # Sampler #

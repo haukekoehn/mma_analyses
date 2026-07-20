@@ -1,0 +1,82 @@
+15:20 fiesta INFO    : Loading surrogate Bu2026_MLP. This surrogate should only be used in the following parameter ranges:
+15:20 fiesta INFO    : 	 log10_mej_dyn: (-4.0, -1.3010299956639813)
+15:20 fiesta INFO    : 	 v_ej_dyn: (0.12, 0.35)
+15:20 fiesta INFO    : 	 Ye_dyn: (0.15, 0.35)
+15:20 fiesta INFO    : 	 log10_mej_wind: (-4.0, -0.5502131530142267)
+15:20 fiesta INFO    : 	 v_ej_wind: (0.05, 0.15)
+15:20 fiesta INFO    : 	 Ye_wind: (0.2, 0.4)
+15:20 fiesta INFO    : 	 inclination_EM: (0.0, 1.5707963267948966)
+15:20 fiesta INFO    : Surrogate Bu2026_MLP is loading with source-frame time range [ 0.19405578 27.52765949] days.
+15:20 fiesta INFO    : Surrogate Bu2026_MLP is loading with the following filters: ['2massj', 'besselli', 'bessellv', 'bessellux'].
+15:20 fiesta INFO    : Loaded for surrogate Bu2026_MLP from /work/koehn1/fiesta/fiesta/src/fiesta/surrogates/KN/Bu2026_MLP/model.
+15:20 fiesta INFO    : Loading surrogate pbag_gaussian_CVAE. This surrogate should only be used in the following parameter ranges:
+15:20 fiesta INFO    : 	 inclination_EM: (0, 1.5707963267948966)
+15:20 fiesta INFO    : 	 log10_E0: (47, 57)
+15:20 fiesta INFO    : 	 thetaCore: (0.01, 0.6283185307179586)
+15:20 fiesta INFO    : 	 alphaWing: (0.2, 3.5)
+15:20 fiesta INFO    : 	 log10_n0: (-6, 2)
+15:20 fiesta INFO    : 	 p: (2.01, 3)
+15:20 fiesta INFO    : 	 log10_epsilon_e: (-4, 0)
+15:20 fiesta INFO    : 	 log10_epsilon_B: (-8, 0)
+15:20 fiesta INFO    : 	 Gamma0: (100, 1000)
+15:20 fiesta INFO    : Surrogate pbag_gaussian_CVAE is loading with source-frame time range [1.e-04 2.e+03] days.
+15:20 fiesta INFO    : Surrogate pbag_gaussian_CVAE is loading with the following filters: ['radio-1.4GHz', '2massj', 'besselli', 'bessellv', 'bessellux', 'X-ray-1keV'].
+15:20 fiesta INFO    : Loaded for surrogate pbag_gaussian_CVAE from /work/koehn1/fiesta/fiesta/src/fiesta/surrogates/GRB/pbag_gaussian_CVAE/model.
+15:20 fiesta INFO    : Creating injection with filters: ['radio-1.4GHz', '2massj', 'besselli', 'bessellv', 'bessellux', 'X-ray-1keV']
+15:20 fiesta INFO    : Loading and preprocessing observations in likelihood . . .
+15:20 fiesta INFO    : No detection limit is given. Putting it to infinity.
+15:20 fiesta INFO    : Loading and preprocessing observations in likelihood . . . DONE
+15:20 fiesta INFO    : Initializing Fast Inference of Electromagnetic Transients with JAX...
+15:20 fiesta INFO    : Likelihood is using a collective freely sampled systematic uncertainty as specified in the prior.
+15:20 fiesta INFO    : Set up flowmc sampler with 500 chains, 7 training loops and 3 production loops.
+15:20 fiesta INFO    : Initializing Fast Inference of Electromagnetic Transients with JAX... DONE
+15:20 fiesta INFO    : Starting sampling.
+Resources or strategies not provided. Using resource strategy bundles.
+Compiling MALA body
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training NF:   0%|          | 0/20 [00:00<?, ?it/s]Training NF:   0%|          | 0/20 [00:10<?, ?it/s]Training NF, current loss: 27.708:   0%|          | 0/20 [00:10<?, ?it/s]Training NF, current loss: 27.708:   5%|▌         | 1/20 [00:10<03:14, 10.24s/it]Training NF, current loss: 27.708:  10%|█         | 2/20 [00:12<01:44,  5.78s/it]Training NF, current loss: 26.415:  10%|█         | 2/20 [00:12<01:44,  5.78s/it]Training NF, current loss: 25.791:  10%|█         | 2/20 [00:12<01:44,  5.78s/it]Training NF, current loss: 25.525:  10%|█         | 2/20 [00:12<01:44,  5.78s/it]Training NF, current loss: 25.386:  10%|█         | 2/20 [00:12<01:44,  5.78s/it]Training NF, current loss: 25.250:  10%|█         | 2/20 [00:12<01:44,  5.78s/it]Training NF, current loss: 25.096:  10%|█         | 2/20 [00:12<01:44,  5.78s/it]Training NF, current loss: 24.947:  10%|█         | 2/20 [00:12<01:44,  5.78s/it]Training NF, current loss: 24.816:  10%|█         | 2/20 [00:12<01:44,  5.78s/it]Training NF, current loss: 24.703:  10%|█         | 2/20 [00:12<01:44,  5.78s/it]Training NF, current loss: 24.703: 100%|██████████| 20/20 [00:13<00:00,  2.75it/s]Training NF, current loss: 24.703: 100%|██████████| 20/20 [00:13<00:00,  1.54it/s]
+Compiling training step
+Compiling training step
+Compiling NF proposal kernel
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training NF:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 25.333:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 25.276:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 25.182:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 25.076:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 24.967:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 24.858:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 24.755:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 24.668:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 24.668:  75%|███████▌  | 15/20 [00:00<00:00, 149.09it/s]Training NF, current loss: 24.593:  75%|███████▌  | 15/20 [00:00<00:00, 149.09it/s]Training NF, current loss: 24.527:  75%|███████▌  | 15/20 [00:00<00:00, 149.09it/s]Training NF, current loss: 24.527: 100%|██████████| 20/20 [00:00<00:00, 150.39it/s]
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training NF:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 24.408:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 24.299:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 24.171:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 24.029:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 23.888:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 23.751:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 23.629:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 23.534:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 23.534:  80%|████████  | 16/20 [00:00<00:00, 153.03it/s]Training NF, current loss: 23.455:  80%|████████  | 16/20 [00:00<00:00, 153.03it/s]Training NF, current loss: 23.391:  80%|████████  | 16/20 [00:00<00:00, 153.03it/s]Training NF, current loss: 23.391: 100%|██████████| 20/20 [00:00<00:00, 155.81it/s]
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training NF:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 23.439:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 23.231:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 23.014:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 22.836:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 22.628:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 22.396:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 22.218:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 22.050:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 22.050:  75%|███████▌  | 15/20 [00:00<00:00, 149.79it/s]Training NF, current loss: 21.900:  75%|███████▌  | 15/20 [00:00<00:00, 149.79it/s]Training NF, current loss: 21.778:  75%|███████▌  | 15/20 [00:00<00:00, 149.79it/s]Training NF, current loss: 21.778: 100%|██████████| 20/20 [00:00<00:00, 153.07it/s]
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training NF:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 24.158:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 23.983:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 23.753:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 23.498:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 23.220:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 22.966:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 22.764:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 22.593:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 22.451:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 22.451:  85%|████████▌ | 17/20 [00:00<00:00, 164.51it/s]Training NF, current loss: 22.327:  85%|████████▌ | 17/20 [00:00<00:00, 164.51it/s]Training NF, current loss: 22.327: 100%|██████████| 20/20 [00:00<00:00, 164.64it/s]
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training NF:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 22.763:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 22.568:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 22.401:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 22.233:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 22.068:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 21.937:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 21.811:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 21.704:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 21.704:  80%|████████  | 16/20 [00:00<00:00, 152.15it/s]Training NF, current loss: 21.601:  80%|████████  | 16/20 [00:00<00:00, 152.15it/s]Training NF, current loss: 21.507:  80%|████████  | 16/20 [00:00<00:00, 152.15it/s]Training NF, current loss: 21.507: 100%|██████████| 20/20 [00:00<00:00, 154.40it/s]
+Training model
+Training data shape: (10000, 18)
+n_epochs: 20
+batch_size: 10000
+Training NF:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 21.606:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 21.417:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 21.278:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 21.149:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 21.042:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 20.956:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 20.865:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 20.814:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 20.749:   0%|          | 0/20 [00:00<?, ?it/s]Training NF, current loss: 20.749:  85%|████████▌ | 17/20 [00:00<00:00, 162.10it/s]Training NF, current loss: 20.698:  85%|████████▌ | 17/20 [00:00<00:00, 162.10it/s]Training NF, current loss: 20.698: 100%|██████████| 20/20 [00:00<00:00, 163.23it/s]
+15:22 fiesta INFO    : Sampling finished. Sampling took 132.86 seconds.
+15:22 fiesta INFO    : Saving best fit params to ./source_18/bestfit_params.pkl.
+15:22 fiesta INFO    : Saving posterior samples to ./source_18/posterior.npz.
+WARNING:root:Pandas support in corner is deprecated; use ArviZ directly
+Updated state target_positions to positions_production
+Updated state target_log_prob to log_prob_production
+Updated state target_local_accs to local_accs_production
+Updated state target_global_accs to global_accs_production
+Updated state training to False

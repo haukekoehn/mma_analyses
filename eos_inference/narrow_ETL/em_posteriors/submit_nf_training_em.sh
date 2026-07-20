@@ -1,8 +1,54 @@
 #!/bin/bash
-nsrc=$(ls -lah . | grep "source" | wc -l)
 
-for ((src=0; src<nsrc; src++));
-do
+# ----------------------------
+# Defaults
+# ----------------------------
+SEED=58934836
+EVENTS_INPUT=""
+ALL_EVENTS=1
+
+# ----------------------------
+# Parse arguments
+# ----------------------------
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --random-seed)
+            SEED="$2"
+            shift 2
+            ;;
+        *)
+            # assume first positional argument = event list
+            EVENTS_INPUT="$1"
+            ALL_EVENTS=0
+            shift
+            ;;
+    esac
+done
+
+# ----------------------------
+# Build event list
+# ----------------------------
+nsrc=$(wc -l < ../events.dat)
+nsrc=$(( nsrc - 1 ))
+
+if [[ $ALL_EVENTS -eq 1 ]]; then
+    EVENT_LIST=$(seq 0 $((nsrc - 1)))
+else
+    # convert "12,35,6" -> array
+    IFS=',' read -r -a EVENT_ARRAY <<< "$EVENTS_INPUT"
+    EVENT_LIST="${EVENT_ARRAY[@]}"
+fi
+
+# ----------------------------
+# Submit jobs
+# ----------------------------
+for src in $EVENT_LIST; do
+
+    # optional: basic bounds check
+    if (( src < 0 || src >= nsrc )); then
+        echo "Skipping invalid src index: $src"
+        continue
+    fi
 
     sbatch --qos short <<SBATCH_EOF
 #!/bin/bash

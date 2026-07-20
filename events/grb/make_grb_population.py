@@ -1,5 +1,5 @@
 import numpy as np
-np.random.seed(167834359)
+np.random.seed(158920)
 import pandas as pd
 import scipy.stats as stats
 from scipy.special import gamma
@@ -21,7 +21,7 @@ r16 = np.interp(1.6, m_val, r_val)
 
 def eta(chi_BH):
     OmegaH = chi_BH / (2*(1+np.sqrt(1-chi_BH**2)))
-    return 0.015 * OmegaH**2 * (1+1.38*OmegaH**2-9.2*OmegaH**4) # 0.02 if the prompt collapse threshold is 3.0 msun
+    return 0.016 * OmegaH**2 * (1+1.38*OmegaH**2-9.2*OmegaH**4) # 0.02 if the prompt collapse threshold is 3.0 msun
 
 def draw_thetaCore(n):
     theta_c = np.zeros(n)

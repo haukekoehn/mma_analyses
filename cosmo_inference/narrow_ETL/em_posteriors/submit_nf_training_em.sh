@@ -1,7 +1,14 @@
 #!/bin/bash
-nsrc=$(ls -lah ../../../eos_inference/narrow_ETL/em_posteriors | grep "source" | wc -l)
 
-for src in {46,};
+nsrc=$(wc -l < ../../../eos_inference/narrow_ETL/events.dat)
+
+if [ $# -eq 0 ]; then
+    sources=$(seq 0 $((nsrc-1)))
+else
+    sources=$(echo "$1" | tr ',' ' ')
+fi
+
+for src in $sources;
 do
 
 sbatch --qos short <<SBATCH_EOF
@@ -53,7 +60,7 @@ transformer_knots: 10
 transformer_interval: 5.0
 
 # Data preprocessing (NEW DEFAULTS)
-max_samples: 30_000
+max_samples: 10_000
 standardize: true
 standardization_method: zscore
 

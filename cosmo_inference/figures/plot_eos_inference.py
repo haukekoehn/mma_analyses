@@ -142,12 +142,12 @@ def plot_quantiles(ax, x, quantiles, color, fillx: bool= False, plot_median=True
         ax.fill_betweenx(x, quantiles[:, 0], quantiles[:, 4], color=color, alpha=alpha)
         #ax.plot(quantiles[:, 1], x, color=color, linestyle="dashed")
         #ax.plot(quantiles[:, 3], x, color=color, linestyle="dashed")
-        ax.plot(quantiles[:, 2], x, color=color) if plot_median else None
+        ax.plot(quantiles[:, 2], x, color=color, linestyle="dotted") if plot_median else None
     else:
         ax.fill_between(x, quantiles[:, 0], quantiles[:, 4], color=color, alpha=alpha)
         #ax.plot(x, quantiles[:, 1], color=color, linestyle="dashed")
         #ax.plot(x, quantiles[:, 3], color=color, linestyle="dashed")
-        ax.plot(x, quantiles[:, 2], color=color) if plot_median else None
+        ax.plot(x, quantiles[:, 2], color=color, linestyle="dotted") if plot_median else None
     
 
 def plot_mr(ax, posterior, color, plot_bestfit=True, alpha=0.15):
@@ -160,7 +160,7 @@ def plot_mr(ax, posterior, color, plot_bestfit=True, alpha=0.15):
 
     # plot best fit 
     if plot_bestfit:
-        ax.plot(posterior["radii_EOS"][best_ind], posterior["masses_EOS"][best_ind], color=color, linestyle="solid")
+        ax.plot(posterior["radii_EOS"][best_ind], posterior["masses_EOS"][best_ind], color=color, linestyle="dashed")
 
     # plot truth
     ax.plot(r_eos, m_eos, color="red", zorder=3)
@@ -180,7 +180,7 @@ def plot_mr_nofill(ax, posterior, color, plot_bestfit=True, alpha=0.15):
 
     # plot best fit 
     if plot_bestfit:
-        ax.plot(posterior["radii_EOS"][best_ind], posterior["masses_EOS"][best_ind], color=color, linestyle="solid")
+        ax.plot(posterior["radii_EOS"][best_ind], posterior["masses_EOS"][best_ind], color=color, linestyle="dashed")
 
     # plot truth
     ax.plot(r_eos, m_eos, color="red", zorder=3)
@@ -195,17 +195,17 @@ def plot_ml(ax, posterior, color, plot_bestfit=True):
     x = np.linspace(1, 2.5, 100) # masses to plot for
 
     x, quantiles, _ = get_quantiles(x, posterior["masses_EOS"], posterior["lambdas_EOS"], posterior["weights"])
-    plot_quantiles(ax, x, quantiles, color, fillx=True, plot_median=not plot_bestfit)
+    plot_quantiles(ax, x, quantiles, color, plot_median=not plot_bestfit)
 
     # plot best fit 
     if plot_bestfit:
-        ax.plot(posterior["lambdas_EOS"][best_ind], posterior["masses_EOS"][best_ind], color=color, linestyle="solid")
+        ax.plot(posterior["masses_EOS"][best_ind], posterior["lambdas_EOS"][best_ind], color=color, linestyle="dashed")
     # plot truth
-    ax.plot(l_eos, m_eos, color="red", zorder=3)
+    ax.plot(m_eos, l_eos, color="red", zorder=3)
     
-    ax.set_ylabel("$M$ [$M_\\odot$]", fontsize=fontsize, labelpad=2)
-    ax.set_xlabel("$\\Lambda$", fontsize=fontsize)
-    ax.set(ylim=(1, 2), xscale="log", xlim=(20, 2e3))
+    ax.set_xlabel("$M$ [$M_\\odot$]", fontsize=fontsize, labelpad=2)
+    ax.set_ylabel("$\\Lambda$", fontsize=fontsize)
+    ax.set(xlim=(1, 2), yscale="log", ylim=(20, 2e3))
 
 def plot_pressure(ax, posterior, color, plot_bestfit=True):
 
@@ -217,7 +217,7 @@ def plot_pressure(ax, posterior, color, plot_bestfit=True):
 
     # plot best fit 
     if plot_bestfit:
-        ax.plot(posterior["densities_EOS"][best_ind] / 0.16, posterior["pressures_EOS"][best_ind], color=color, linestyle="solid")
+        ax.plot(posterior["densities_EOS"][best_ind] / 0.16, posterior["pressures_EOS"][best_ind], color=color, linestyle="dashed")
 
     # plot truth
     ax.plot(n_eos/0.16, p_eos, color="red", zorder=3)
@@ -234,7 +234,7 @@ def plot_pop(ax, posterior, color, plot_bestfit=False):
 
     if "mu_1" in posterior:
         pop_model = RecycledBinary
-        truths = dict(mu_1=1.34, mu_2=1.43, sigma_1=0.02, sigma_2=0.15, alpha=0.68, m_min=1.16, m_max=1.42, k_coll=1.3)
+        truths = dict(mu_1=1.34, mu_2=1.47, sigma_1=0.02, sigma_2=0.15, alpha=0.68, m_min=1.16, m_max=1.42, k_coll=1.3)
     else:
         pop_model = MassRatioPowerLaw
         truths = dict(m_min=1.1, m_max=2.0, alpha=2.0, k_coll=1.3)
@@ -253,19 +253,19 @@ def plot_pop(ax, posterior, color, plot_bestfit=False):
     # plot m1
     x, quantiles_m1, _ = get_quantiles(x, X, Y_pdf_m1, posterior["weights"])
     plot_quantiles(ax[0], x, quantiles_m1, color, plot_median=not plot_bestfit)
-    ax[0].plot(x, pdf_m1_bestfit) if plot_bestfit else None
+    ax[0].plot(x, pdf_m1_bestfit, linestyle="dashed") if plot_bestfit else None
     ax[0].plot(x, pdf_m1_truth, color="red", zorder=3)
     ax[0].set_xlabel("$m_1$ [$M_\\odot$]", fontsize=fontsize)
-    ax[0].set_ylabel("pop. density", fontsize=fontsize, labelpad=-4)
+    ax[0].set_ylabel("mass distr.", fontsize=fontsize, labelpad=-4)
     ax[0].set(xlim=(1, 2.1), yscale="log", ylim=(0.1, quantiles_m1.max() * 2))
 
     # plot m2
     x, quantiles_m2, _ = get_quantiles(x, X, Y_pdf_m2, posterior["weights"])
     plot_quantiles(ax[1], x, quantiles_m2, color, plot_median=not plot_bestfit)
-    ax[1].plot(x, pdf_m2_bestfit) if plot_bestfit else None
+    ax[1].plot(x, pdf_m2_bestfit, linestyle="dashed") if plot_bestfit else None
     ax[1].plot(x, pdf_m2_truth, color="red", zorder=3)
     ax[1].set_xlabel("$m_2$ [$M_\\odot$]", fontsize=fontsize)
-    ax[1].set_ylabel("pop. density", fontsize=fontsize, labelpad=-4)
+    ax[1].set_ylabel("mass distr.", fontsize=fontsize, labelpad=-4)
     ax[1].set(xlim=(1, 2.1), yscale="log", ylim=(0.1, quantiles_m2.max() * 2))
 
 def plot_pop_nofill(ax, posterior, color, plot_bestfit=False):
@@ -275,7 +275,7 @@ def plot_pop_nofill(ax, posterior, color, plot_bestfit=False):
 
     if "mu_1" in posterior:
         pop_model = RecycledBinary
-        truths = dict(mu_1=1.34, mu_2=1.43, sigma_1=0.02, sigma_2=0.15, alpha=0.68, m_min=1.16, m_max=1.42, k_coll=1.3)
+        truths = dict(mu_1=1.34, mu_2=1.47, sigma_1=0.02, sigma_2=0.15, alpha=0.68, m_min=1.16, m_max=1.42, k_coll=1.3)
     else:
         pop_model = MassRatioPowerLaw
         truths = dict(m_min=1.1, m_max=2.0, alpha=2.0, k_coll=1.3)
@@ -298,7 +298,7 @@ def plot_pop_nofill(ax, posterior, color, plot_bestfit=False):
     ax[0].plot(x, pdf_m1_bestfit) if plot_bestfit else None
     ax[0].plot(x, pdf_m1_truth, color="red", zorder=3)
     ax[0].set_xlabel("$m_1$ [$M_\\odot$]", fontsize=fontsize)
-    ax[0].set_ylabel("pop. density", fontsize=fontsize, labelpad=-4)
+    ax[0].set_ylabel("mass distr.", fontsize=fontsize, labelpad=-4)
     ax[0].set(xlim=(1, 2.1), yscale="log", ylim=(0.1, quantiles_m1.max() * 2))
 
     # plot m2
@@ -308,7 +308,7 @@ def plot_pop_nofill(ax, posterior, color, plot_bestfit=False):
     ax[1].plot(x, pdf_m2_bestfit) if plot_bestfit else None
     ax[1].plot(x, pdf_m2_truth, color="red", zorder=3)
     ax[1].set_xlabel("$m_2$ [$M_\\odot$]", fontsize=fontsize)
-    ax[1].set_ylabel("pop. density", fontsize=fontsize, labelpad=-4)
+    ax[1].set_ylabel("mass distr.", fontsize=fontsize, labelpad=-4)
     ax[1].set(xlim=(1, 2.1), yscale="log", ylim=(0.1, quantiles_m2.max() * 2))
 
 def corner_plot(posterior, parameter_names, fig=None, color="purple"):
@@ -319,7 +319,7 @@ def corner_plot(posterior, parameter_names, fig=None, color="purple"):
 
     if "mu_1" in posterior:
         pop_model = RecycledBinary
-        truths = dict(mu_1=1.34, mu_2=1.43, sigma_1=0.02, sigma_2=0.15, alpha=0.68, m_min=1.16, m_max=1.42, k_coll=1.3)
+        truths = dict(mu_1=1.34, mu_2=1.47, sigma_1=0.02, sigma_2=0.15, alpha=0.68, m_min=1.16, m_max=1.42, k_coll=1.3)
     else:
         pop_model = MassRatioPowerLaw
         truths = dict(m_min=1.1, m_max=2.0, alpha=2.0, k_coll=1.3)
@@ -371,6 +371,7 @@ def plot_cosmo(ax, posterior, color="orange", levels=[0.68, 0.95], fill_contours
 
     ax.vlines([67.66], *ax.get_ylim(), color="red")
     ax.hlines([0.30966], *ax.get_xlim(), color="red")
+    ax.scatter(67.66, 0.30966, color="red", marker="s", s=40, zorder=4)
 
     ax.set_xlabel("$H_0$ [km s$^{-1}$ Mpc$^{-1}$]", labelpad=labelpad, zorder=0)
     ax.set_ylabel("$\\Omega_0$", labelpad=labelpad, zorder=0)

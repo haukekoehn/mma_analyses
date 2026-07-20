@@ -1,0 +1,49 @@
+[INFO] jester: ============================================================
+[INFO] jester: Normalizing Flow Training
+[INFO] jester: ============================================================
+[INFO] jester: Posterior file: ../gw_posteriors/source_3/posterior.npz
+[INFO] jester: Output directory: ./source_3/cnf_gw
+[INFO] jester: Parameter names: ['lambda_1', 'lambda_2']
+[INFO] jester: Max samples: 30000
+[INFO] jester: Flow type: block_neural_autoregressive_flow
+[INFO] jester: NN depth: 4
+[INFO] jester: NN block dim: 8
+[INFO] jester: NN width: 50
+[INFO] jester: Flow layers: 2
+[INFO] jester: Invert: True
+[INFO] jester: Cond dim: 4
+[INFO] jester: Cond. parameters: ['mass_1_source', 'mass_2_source']
+[INFO] jester: Transformer: rational_quadratic_spline
+[INFO] jester: Transformer knots: 10
+[INFO] jester: Transformer interval: 5.0
+[INFO] jester: Standardize: True
+[INFO] jester: Standardization method: zscore
+[INFO] jester: Max epochs: 1000
+[INFO] jester: Learning rate: 0.0001
+[INFO] jester: Patience: 500
+[INFO] jester: Val proportion: 0.15
+[INFO] jester: Seed: 465
+[INFO] jester: ============================================================
+[INFO] jester: JAX devices: [CpuDevice(id=0)]
+[INFO] jester: [1/5] Loading posterior samples...
+[INFO] jester: Using all 4601 samples
+[INFO] jester: Data shape: (4601, 2)
+[INFO] jester: Parameters: ['lambda_1', 'lambda_2']
+[INFO] jester: Original data ranges:
+[INFO] jester:   lambda_1: [0.135, 2362.161]
+[INFO] jester:   lambda_2: [0.009, 4022.044]
+[INFO] jester: Standardizing data using z-score (mean=0, std=1)...
+[INFO] jester: Standardized data statistics:
+[INFO] jester:   lambda_1: mean=-0.000, std=1.000
+[INFO] jester:   lambda_2: mean=0.000, std=1.000
+[INFO] jester: Data mean and std saved for inverse transformation
+[INFO] jester: [1.5/5] Loading conditional samples...
+Traceback (most recent call last):
+  File "/home/koehn1/miniconda3/envs/nmma_x_fiesta/bin/train_jester_flow", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/work/koehn1/jester/jesterTOV/inference/flows/train_flow.py", line 755, in main
+    train_flow_from_config(config)
+  File "/work/koehn1/jester/jesterTOV/inference/flows/train_flow.py", line 547, in train_flow_from_config
+    raise ValueError(
+ValueError: If conditional dimension is set, you also need to provide 4 conditional parameter names. You provided 2.

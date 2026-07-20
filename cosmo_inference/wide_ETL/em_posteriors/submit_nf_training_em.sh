@@ -1,22 +1,26 @@
 #!/bin/bash
-nsrc=$(ls -lah ../../../eos_inference/wide_ETL/em_posteriors | grep "source" | wc -l)
 
-for ((src=0; src<nsrc; src++));
+nsrc=$(wc -l < ../../../eos_inference/wide_ETL/events.dat)-1
+
+if [ $# -eq 0 ]; then
+    sources=$(seq 0 $((nsrc-1)))
+else
+    sources=$(echo "$1" | tr ',' ' ')
+fi
+
+for src in $sources;
 do
 
-sbatch <<SBATCH_EOF
+sbatch --qos short <<SBATCH_EOF
 #!/bin/bash
 
 #SBATCH -J nf_wide_ETL_${src}
 #SBATCH -o ./source_${src}/log_nf
 #SBATCH -e ./source_${src}/log_nf
 
-#SBATCH --partition gpu
+#SBATCH --partition cpu
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:1
-#SBATCH --mem-per-gpu=80G
-
+#SBATCH --ntasks-per-node=64
 #SBATCH --time=01:00:00
 
 eval "\$(conda shell.bash hook)"  # Initialize Conda in the script
@@ -36,11 +40,11 @@ parameter_names: ["log10_mej_dyn", "luminosity_distance", "cos_theta_jn"]
 
 # Training parameters
 num_epochs: 3000
-learning_rate: 0.0001
+learning_rate: 0.00005
 max_patience: 500
 batch_size: 128
 val_prop: 0.2
-seed: 0
+seed: 564783
 
 # Flow architecture
 flow_type: masked_autoregressive_flow
@@ -56,7 +60,7 @@ transformer_knots: 10
 transformer_interval: 5.0
 
 # Data preprocessing (NEW DEFAULTS)
-max_samples: 30_000
+max_samples: 10_000
 standardize: true
 standardization_method: zscore
 
