@@ -26,7 +26,20 @@ m_eos, r_eos, l_eos = np.loadtxt("../../eos/RMF3_MRL.dat", unpack=True)
 mtov = m_eos.max()
 n_eos, p_eos = np.loadtxt("../../eos/RMF3_cold_beta_lamb.d", unpack=True, usecols=[1,3])
 
-latex_labels={"mu_1": "$\\mu_1$", "mu_2": "$\\mu_2$", "sigma_1": "$\\sigma_1$", "sigma_2": "$\\sigma_2$", "alpha": "$\\alpha$", "m_min": "$m_{\\rm{min}}$", "m_max": "$m_{\\rm{max}}$", "H0": "$H_0$", "Omega0": "$\\Omega_0$", "beta_1": "$\\beta_1$", "beta_2": "$\\beta_2$"}
+latex_labels={
+    "mu_1": "$\\mu_1$", 
+    "mu_2": "$\\mu_2$", 
+    "sigma_1": "$\\sigma_1$", 
+    "sigma_2": "$\\sigma_2$", 
+    "alpha": "$\\alpha$", 
+    "m_min": "$m_{\\rm{min}}$", 
+    "m_max": "$m_{\\rm{max}}$", 
+    "H0": "$H_0$", 
+    "Omega0": "$\\Omega_0$",
+    "E_sym": "$E_{\\rm sym}$ [MeV]",
+    "L_sym": "$L_{\\rm sym}$ [MeV]",
+    "K_sat": "$K_{\\rm sat}$ [MeV]",
+    }
 fontsize=14
 
 def load_posterior(file):
@@ -35,7 +48,7 @@ def load_posterior(file):
 
     with h5py.File(file) as f:
 
-        for key in ["mu_1", "mu_2", "alpha", "sigma_1", "sigma_2", "m_max", "m_min", "k_coll", "H0", "Omega0", "beta_1", "beta_2"]:
+        for key in ["mu_1", "mu_2", "alpha", "sigma_1", "sigma_2", "m_max", "m_min", "k_coll", "H0", "Omega0", 'E_sym', 'K_sat', 'K_sym', 'L_sym', 'Q_sat', 'Q_sym', 'Z_sat', 'Z_sym']:
             if key in f["posterior"]["parameters"].keys():
                 posterior[key] = f["posterior"]["parameters"][key][:]
         
@@ -207,6 +220,25 @@ def plot_ml(ax, posterior, color, plot_bestfit=True):
     ax.set_ylabel("$\\Lambda$", fontsize=fontsize)
     ax.set(xlim=(1, 2), yscale="log", ylim=(20, 2e3))
 
+def plot_ml_relative(ax, posterior, color):
+
+    x = np.linspace(1, 2, 50) # masses to plot for
+
+    l_eos_local = np.interp(x, m_eos, l_eos)
+
+    x, quantiles, _ = get_quantiles(x, posterior["masses_EOS"], posterior["lambdas_EOS"], posterior["weights"])
+
+    relative_quantiles = (quantiles - l_eos_local[:, None]) / l_eos_local[:, None]
+
+    plot_quantiles(ax, x, relative_quantiles, color=color, plot_median=True)
+    
+    # plot truth 
+    ax.plot(x, np.zeros_like(x), color="red", zorder=0, alpha=0.3)
+
+    ax.set_xlabel("$M$ [$M_\\odot$]", fontsize=fontsize, labelpad=2)
+    ax.set_ylabel("$\\Delta \\Lambda / \\Lambda^{\\rm{EOS}}$", fontsize=fontsize)
+    ax.set(xlim=(1, 2), ylim=(-0.2, 0.2))
+
 def plot_pressure(ax, posterior, color, plot_bestfit=True):
 
     best_ind = (posterior["log_prob"] +  np.log(posterior["weights"])).argmax()
@@ -311,7 +343,7 @@ def plot_pop_nofill(ax, posterior, color, plot_bestfit=False):
     ax[1].set_ylabel("mass distr.", fontsize=fontsize, labelpad=-4)
     ax[1].set(xlim=(1, 2.1), yscale="log", ylim=(0.1, quantiles_m2.max() * 2))
 
-def corner_plot(posterior, parameter_names, fig=None, color="purple"):
+def corner_plot(posterior, parameter_names, fig=None, color="purple", levels=[0.68, 0.95], fill_contours=True, linestyle="solid"):
 
     if fig is None:
         n_params = len(parameter_names)
@@ -324,25 +356,29 @@ def corner_plot(posterior, parameter_names, fig=None, color="purple"):
         pop_model = MassRatioPowerLaw
         truths = dict(m_min=1.1, m_max=2.0, alpha=2.0, k_coll=1.3)
     
-    truths.update(dict(H0=67.66, Omega0=0.30966, beta_1=500, beta_2=3000))
+    truths.update(dict(H0=67.66, Omega0=0.30966, E_sat=-16.39, K_sat=231.3, E_sym=31.29, L_sym=47.2))
 
     labels = [latex_labels.get(p,p) for p in parameter_names]
 
     data = {p: posterior[p] for p in parameter_names}
 
-    corner.corner(data,
-                  weights=posterior['weights'],
-                  smooth=True, 
-                  levels=[0.68, 0.95],
-                  fig=fig, 
-                  plot_density=False,
-                  fill_contours=True,
-                  plot_datapoints=False,
-                  truths=truths,
-                  color=color,
-                  truth_color="red",
-                  labels=labels,
-                  hist_kwargs=dict(density=True))
+    corner.corner(
+        data,
+        weights=posterior['weights'],
+        smooth=True, 
+        levels=levels,
+        fig=fig, 
+        plot_density=False,
+        no_fill_contours=not fill_contours,
+        fill_contours=fill_contours,
+        plot_datapoints=False,
+        truths=truths,
+        color=color,
+        truth_color="red",
+        labels=labels,
+        hist_kwargs=dict(density=True),
+        contour_kwargs=dict(linestyles=linestyle, zorder=2)
+    )
     
     return fig
 
