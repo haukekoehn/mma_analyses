@@ -1,6 +1,6 @@
 {
-  "n_samples_total": 375000,
-  "n_samples_used": 28847,
+  "n_samples_total": 405000,
+  "n_samples_used": 9879,
   "parameter_names": [
     "log10_mej_dyn",
     "luminosity_distance",
@@ -8,20 +8,20 @@
   ],
   "filepath": "../../../eos_inference/wide_ETL/em_posteriors/source_15/posterior.npz",
   "flow_type": "masked_autoregressive_flow",
-  "num_epochs": 971,
+  "num_epochs": 3000,
   "learning_rate": 0.0001,
   "max_patience": 500,
   "val_prop": 0.2,
   "standardize": true,
   "standardization_method": "zscore",
   "data_mean": [
-    -2.121034547130243,
-    1760.6289484162437,
-    -2.563705654099987e-05
+    -2.323138915366617,
+    466.9532486287818,
+    -0.00812596310677105
   ],
   "data_std": [
-    0.5022256457364359,
-    317.7099563707873,
-    0.8912900809325642
+    0.3138737899624914,
+    66.48087778821282,
+    0.7905856049128342
   ]
 }

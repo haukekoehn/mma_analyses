@@ -15,4 +15,4 @@ alpha = UniformPrior(0.0, 4.0, parameter_names=["alpha"])
 k_coll = UniformPrior(1.2, 1.6, parameter_names=["k_coll"])
 
 H0 = UniformPrior(50, 100, parameter_names=["H0"])
-Omega0 = UniformPrior(0, 1, parameter_names=["Omega0"])
+Omega0 = UniformPrior(0, 1.0, parameter_names=["Omega0"])
