@@ -6,20 +6,20 @@
   "flow_layers": 1,
   "invert": true,
   "cond_dim": 3,
-  "seed": 0,
+  "seed": 465,
   "standardize": true,
   "standardization_method": "zscore",
   "transformer_type": "rational_quadratic_spline",
   "transformer_knots": 10,
   "transformer_interval": 5.0,
   "data_mean": [
-    676.3736549301788,
-    1266.9705501521266,
-    407.892737301215
+    714.2999375639562,
+    1241.564450291606,
+    1548.3549708103883
   ],
   "data_std": [
-    372.75643242947797,
-    746.7159848769016,
-    88.32914737494792
+    432.7929496669037,
+    797.0655245719669,
+    264.5838097090067
   ]
 }

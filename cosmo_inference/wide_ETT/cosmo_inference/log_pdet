@@ -1,0 +1,12 @@
+WARNING: Tried to get polar motions for times after IERS data is valid. Defaulting to polar motion from the 50-yr mean for those. This may affect precision at the arcsec level. Please check your astropy.utils.iers.conf.iers_auto_url and point it to a newer version if necessary. [astropy.coordinates.builtin_frames.utils]
+23:01 fiesta INFO    : Loading surrogate Bu2026_MLP. This surrogate should only be used in the following parameter ranges:
+23:01 fiesta INFO    : 	 log10_mej_dyn: (-4.0, -1.3010299956639813)
+23:01 fiesta INFO    : 	 v_ej_dyn: (0.12, 0.35)
+23:01 fiesta INFO    : 	 Ye_dyn: (0.15, 0.35)
+23:01 fiesta INFO    : 	 log10_mej_wind: (-4.0, -0.5502131530142267)
+23:01 fiesta INFO    : 	 v_ej_wind: (0.05, 0.15)
+23:01 fiesta INFO    : 	 Ye_wind: (0.2, 0.4)
+23:01 fiesta INFO    : 	 inclination_EM: (0.0, 1.5707963267948966)
+23:01 fiesta INFO    : Surrogate Bu2026_MLP is loading with source-frame time range [ 0.19405578 27.52765949] days.
+23:01 fiesta INFO    : Surrogate Bu2026_MLP is loading with the following filters: ['lssti'].
+23:01 fiesta INFO    : Loaded for surrogate Bu2026_MLP from /work/koehn1/fiesta/fiesta/src/fiesta/surrogates/KN/Bu2026_MLP/model.

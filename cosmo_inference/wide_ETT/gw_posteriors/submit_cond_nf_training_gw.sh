@@ -1,13 +1,20 @@
 #!/bin/bash
-nsrc=$(ls -lah ../../../eos_inference/wide_ETT/gw_posteriors | grep "source" | wc -l)
 
-for ((src=0; src<nsrc; src++));
+nsrc=$(wc -l < ../../../eos_inference/wide_ETT/events.dat)
+
+if [ $# -eq 0 ]; then
+    sources=$(seq 0 $((nsrc-1)))
+else
+    sources=$(echo "$1" | tr ',' ' ')
+fi
+
+for src in $sources;
 do
 
-    sbatch --qos short <<SBATCH_EOF
+    sbatch <<SBATCH_EOF
 #!/bin/bash
 
-#SBATCH -J cnf_wide_ETT_${src}
+#SBATCH -J wide_ETT_${src}
 #SBATCH -o ./source_${src}/log_cnf
 #SBATCH -e ./source_${src}/log_cnf
 
@@ -35,8 +42,8 @@ num_epochs: 1000
 learning_rate: 0.0001
 max_patience: 500
 batch_size: 128
-val_prop: 0.2
-seed: 0
+val_prop: 0.15
+seed: 465
 
 # Flow architecture
 flow_type: block_neural_autoregressive_flow
@@ -62,7 +69,7 @@ plot_losses: true
 
 # Conditional flow settings
 cond_dim: 3
-cond_parameter_names: ["mass_1", "mass_2", "cos_theta_jn"]
+cond_parameter_names: ["mass_1_source", "mass_2_source", "cos_theta_jn"]
 CONFIG_EOF
 
 train_jester_flow "./cnf_config_${src}.yaml"
