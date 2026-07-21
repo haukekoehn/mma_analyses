@@ -19,7 +19,7 @@ outdir = config.sampler.output_dir
 os.makedirs(outdir, exist_ok=True)
 
 events = pd.read_csv("../events.dat", sep=" ")
-key = jax.random.key(61120)
+key = jax.random.key(611858920)
 
 #########
 # Prior #
