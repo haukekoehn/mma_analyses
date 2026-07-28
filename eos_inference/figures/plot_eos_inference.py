@@ -188,8 +188,8 @@ def plot_mr_nofill(ax, posterior, color, plot_bestfit=True, alpha=0.15):
     x = np.linspace(1, 2.5, 100) # masses to plot for
 
     x, quantiles, _ = get_quantiles(x, posterior["masses_EOS"], posterior["radii_EOS"], posterior["weights"])
-    ax.plot(quantiles[:,0], x, color=color, linestyle="dashed")
-    ax.plot(quantiles[:,4], x, color=color, linestyle="dashed")
+    ax.plot(quantiles[:,0], x, color=color, linestyle="solid", alpha=0.4)
+    ax.plot(quantiles[:,4], x, color=color, linestyle="solid", alpha=0.4)
 
     # plot best fit 
     if plot_bestfit:
