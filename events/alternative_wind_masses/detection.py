@@ -32,7 +32,7 @@ np.random.seed(671938)
 model_KN = FluxModel(name="Bu2026_MLP", filters=["ztfg", "ztfi", "lsstg", "lssti", "ps1::g", "ps1::i", "f158", "f213"])
 model_afterglow = FluxModel(name="pbag_gaussian_CVAE", filters=["ztfg", "ztfi", "lsstg", "lssti", "ps1::g", "ps1::i", "f158", "f213", "radio-1.4GHz", "X-ray-1keV"])
 model = CombinedSurrogate(models = [model_KN, model_afterglow], sample_times=np.geomspace(0.2, 2000, 200))
-model.add_filter(ultrasat_filter)
+model.add_filters(ultrasat_filter)
 
 
 def main():
@@ -50,7 +50,7 @@ def main():
     else: 
         mass_dist = "wide"
     
-    detectors = sys.argv[2].split(".")[1]
+    detectors = sys.argv[2].split(".")[-2]
     detectors = "_".join(detectors.split("_")[3:])
 
     # result_df = prepare_result_df(nrows=NBNS)
