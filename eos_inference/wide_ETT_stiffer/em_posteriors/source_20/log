@@ -1,0 +1,42 @@
+17:13 fiesta INFO    : Loading surrogate Bu2026_MLP. This surrogate should only be used in the following parameter ranges:
+17:13 fiesta INFO    : 	 log10_mej_dyn: (-4.0, -1.3010299956639813)
+17:13 fiesta INFO    : 	 v_ej_dyn: (0.12, 0.35)
+17:13 fiesta INFO    : 	 Ye_dyn: (0.15, 0.35)
+17:13 fiesta INFO    : 	 log10_mej_wind: (-4.0, -0.5502131530142267)
+17:13 fiesta INFO    : 	 v_ej_wind: (0.05, 0.15)
+17:13 fiesta INFO    : 	 Ye_wind: (0.2, 0.4)
+17:13 fiesta INFO    : 	 inclination_EM: (0.0, 1.5707963267948966)
+17:13 fiesta INFO    : Surrogate Bu2026_MLP is loading with source-frame time range [ 0.19405578 27.52765949] days.
+17:13 fiesta INFO    : Surrogate Bu2026_MLP is loading with the following filters: ['2massj', 'besselli', 'bessellv', 'bessellux'].
+17:13 fiesta INFO    : Loaded for surrogate Bu2026_MLP from /work/koehn1/fiesta/fiesta/src/fiesta/surrogates/KN/Bu2026_MLP/model.
+17:13 fiesta INFO    : Loading surrogate pbag_gaussian_CVAE. This surrogate should only be used in the following parameter ranges:
+17:13 fiesta INFO    : 	 inclination_EM: (0, 1.5707963267948966)
+17:13 fiesta INFO    : 	 log10_E0: (47, 57)
+17:13 fiesta INFO    : 	 thetaCore: (0.01, 0.6283185307179586)
+17:13 fiesta INFO    : 	 alphaWing: (0.2, 3.5)
+17:13 fiesta INFO    : 	 log10_n0: (-6, 2)
+17:13 fiesta INFO    : 	 p: (2.01, 3)
+17:13 fiesta INFO    : 	 log10_epsilon_e: (-4, 0)
+17:13 fiesta INFO    : 	 log10_epsilon_B: (-8, 0)
+17:13 fiesta INFO    : 	 Gamma0: (100, 1000)
+17:13 fiesta INFO    : Surrogate pbag_gaussian_CVAE is loading with source-frame time range [1.e-04 2.e+03] days.
+17:13 fiesta INFO    : Surrogate pbag_gaussian_CVAE is loading with the following filters: ['radio-1.4GHz', '2massj', 'besselli', 'bessellv', 'bessellux', 'X-ray-1keV'].
+17:13 fiesta INFO    : Loaded for surrogate pbag_gaussian_CVAE from /work/koehn1/fiesta/fiesta/src/fiesta/surrogates/GRB/pbag_gaussian_CVAE/model.
+17:13 fiesta INFO    : Creating injection with filters: ['radio-1.4GHz', '2massj', 'besselli', 'bessellv', 'bessellux', 'X-ray-1keV']
+17:13 fiesta INFO    : Loading and preprocessing observations in likelihood . . .
+17:13 fiesta INFO    : No detection limit is given. Putting it to infinity.
+17:13 fiesta INFO    : Loading and preprocessing observations in likelihood . . . DONE
+17:13 fiesta INFO    : Initializing Fast Inference of Electromagnetic Transients with JAX...
+17:13 fiesta INFO    : Likelihood is using a collective freely sampled systematic uncertainty as specified in the prior.
+Traceback (most recent call last):
+  File "/work/koehn1/mma_analyses/eos_inference/wide_ETT_stiffer/em_posteriors/run_injections_em.py", line 184, in <module>
+    main()
+  File "/work/koehn1/mma_analyses/eos_inference/wide_ETT_stiffer/em_posteriors/run_injections_em.py", line 40, in main
+    analyze_event(args.source, events.iloc[args.source].to_dict(), rng_key)
+  File "/work/koehn1/mma_analyses/eos_inference/wide_ETT_stiffer/em_posteriors/run_injections_em.py", line 163, in analyze_event
+    fiesta = Fiesta(likelihood,
+             ^^^^^^^^^^^^^^^^^^
+  File "/work/koehn1/fiesta/fiesta/src/fiesta/inference/fiesta.py", line 83, in __init__
+    raise ValueError(f"First data point is at {min_datatime} days,"
+ValueError: First data point is at 0.6034897565841675 days, but with your redshift settings, the model time array in observer frame can start as late as 0.6074665188789368 days. Please check your data time range, or e.g. adjust ``data_tmin`` in the likelihood.
+srun: error: hgc01: task 0: Exited with exit code 1
