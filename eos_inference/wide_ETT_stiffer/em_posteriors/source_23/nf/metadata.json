@@ -1,0 +1,27 @@
+{
+  "n_samples_total": 405000,
+  "n_samples_used": 9879,
+  "parameter_names": [
+    "log10_mej_dyn",
+    "luminosity_distance",
+    "cos_theta_jn"
+  ],
+  "filepath": "./source_23/posterior.npz",
+  "flow_type": "masked_autoregressive_flow",
+  "num_epochs": 3000,
+  "learning_rate": 0.0001,
+  "max_patience": 500,
+  "val_prop": 0.2,
+  "standardize": true,
+  "standardization_method": "zscore",
+  "data_mean": [
+    -2.453438577025462,
+    5247.928434595718,
+    -0.007995621903920804
+  ],
+  "data_std": [
+    0.6507755972749475,
+    1039.583853085196,
+    0.9759927359202604
+  ]
+}
