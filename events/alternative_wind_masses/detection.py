@@ -233,8 +233,8 @@ def kn_detection(gw_event, kn_event, grb_event, DeltaOmega, grb_detected, detect
     ra = gw_event["ra"]
     
     params = dict(kn_event)
-    params["log10_mej_wind"] = params["log10_mej_wind"] - np.log10(2) # halve the wind ejecta masses
     params.update(kn_event)
+    params["log10_mej_wind"] = params["log10_mej_wind"] - np.log10(2) # only use half of the wind ejecta masses
     params.update(grb_event)
     params.update(dict(alphaWing=2., p=2.15, log10_epsilon_e=-1., log10_epsilon_B=-3., Gamma0=500))
     params["log10_E0"] = params.pop("log10_Ekin_iso")
