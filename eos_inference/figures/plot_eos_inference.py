@@ -7,6 +7,7 @@ import h5py
 import numpy as np
 import pandas as pd
 import scipy.stats as stats
+import scipy.integrate as integrate
 
 import matplotlib.pyplot as plt
 plt.rcParams.update({
